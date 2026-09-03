@@ -3,10 +3,12 @@
     // titulo variable
     $titulo_pag = "Inicio | Pantalla principal";
     // se incluye el encabezado
-    include 'html/header.html';
+    include 'components/header.php';
 ?>
 <!-- Se cierra el segmento de php para poder escribir el código html -->
- 
-    <body>
-        <p>Esta será la pantalla principal donde trabajaremos</p>
-    </body>
+
+<main>
+    <br>
+    <p>Esta será la pantalla principal donde trabajaremos</p>
+</main>
+        
