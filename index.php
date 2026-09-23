@@ -3,33 +3,40 @@ $titulo_pag = "Inicio | Colegio de Ingenieros Civiles";
 include 'components/header.php';
 ?>
 
-<main class="container page-content">
-    <section class="hero" id="novedades">
-        <div class="hero-copy">
-            <span class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span> Comunidad y profesión</span>
-            <h1>Construimos el futuro de la <em>ingeniería civil.</em></h1>
-            <p class="lead">Un punto de encuentro para profesionales, estudiantes y empresas que transforman nuestro entorno con responsabilidad.</p>
-            <div class="hero-actions">
-                <a class="button button-primary" href="#tramites">Conoce nuestros servicios <span aria-hidden="true">↗</span></a>
-                <a class="text-link" href="#atencion">Habla con nosotros <span aria-hidden="true">→</span></a>
+<main>
+    <section class="particle-hero relative bg-neutral-950 text-white min-h-[85vh] flex items-center overflow-hidden border-b-4 border-red-700" id="novedades">
+        <div class="max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10 space-y-6 text-center lg:text-left">
+                <span class="inline-block bg-red-900/60 border border-red-500/40 text-red-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                    📍 Tuxtla Gutiérrez, Chiapas
+                </span>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                    Colegio de <br>
+                    <span class="text-red-500">Ingenieros Civiles</span>
+                </h1>
+                <p class="text-neutral-400 text-base md:text-lg max-w-lg leading-relaxed mx-auto lg:mx-0">
+                    Impulsando la innovación técnica, el desarrollo de infraestructura sustentable y la colegiación profesional en Chiapas.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+                    <a href="#tramites" class="bg-red-700 hover:bg-red-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-red-900/40 transition-all">
+                        Trámites y Colegiación
+                    </a>
+                    <a href="#padron" class="bg-neutral-900 hover:bg-neutral-800 text-neutral-300 border border-neutral-700 font-medium px-6 py-3 rounded-lg transition-all">
+                        Directorio Profesional
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="hero-panel">
-            <div class="hero-visual" aria-hidden="true">
-                <span class="visual-line visual-line-one"></span>
-                <span class="visual-line visual-line-two"></span>
-                <span class="visual-dot visual-dot-one"></span>
-                <span class="visual-dot visual-dot-two"></span>
-                <span class="visual-dot visual-dot-three"></span>
-                <span class="visual-grid">C I C<br><small>2024</small></span>
+
+            <div class="relative w-full h-[450px] md:h-[550px] flex items-center justify-center">
+                <div id="canvas-particles" class="w-full h-full cursor-grab active:cursor-grabbing" aria-label="Visualización animada de partículas institucionales"></div>
             </div>
-            <span class="accent-badge">Colegio de Ingenieros Civiles</span>
-            <h2>Tu profesión,<br><strong>en movimiento.</strong></h2>
-            <p>Información, orientación y oportunidades para seguir creciendo.</p>
-            <div class="panel-mark">CIC <span>◆</span></div>
         </div>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/particles.js"></script>
+
+    <div class="container page-content">
     <section class="section" id="tramites">
         <div class="section-heading">
             <div>
@@ -72,11 +79,12 @@ include 'components/header.php';
         </ul>
     </section>
 
-    <section class="stats-section">
+    <section class="stats-section" id="padron">
         <div class="stat"><strong>+25</strong><span>Años construyendo<br>comunidad</span></div>
         <div class="stat"><strong>+500</strong><span>Profesionales<br>conectados</span></div>
         <div class="stat"><strong>100%</strong><span>Compromiso con<br>nuestro sector</span></div>
     </section>
+    </div>
 </main>
 
 <?php include 'components/footer.php'; ?>
