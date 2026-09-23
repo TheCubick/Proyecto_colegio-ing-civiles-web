@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?php echo $titulo_pag ?? 'Titulo de Pagina' ?></title>
+    <title><?= htmlspecialchars($titulo_pag ?? 'Colegio de Ingenieros Civiles') ?></title>
 
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Iconos Lucide -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
-    <body>
-        <!-- los colores se cambiarán claro -->
-        <header class="bg-[#CFBCBC] border-b border-gray-200 shadow-[##A88585]">
-            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                <div class="font-bold text-lg text-[##0F0B0B]">
-                    Colegio de Ingenieros Civiles (Los más capitos)
-                </div>
-                <ul class="flex space-x-6 text-sm font-medium text-[##0F0B0B]">
-                    <li class="hover:text-[#ffffff] cursor-pointer transition">Novedades</li>
-                    <li class="hover:text-[#ffffff] cursor-pointer transition">Tramites</li>
-                    <li class="hover:text-[#ffffff] cursor-pointer transition">Atención</li>
-                </ul>
-            </nav>
-        </header>
-
-    </body>
-</html>
+<body>
+    <header class="site-header">
+        <nav class="container nav-bar" aria-label="Navegación principal">
+            <a class="brand" href="index.php">
+                <img src="img/logo_carrera.png" alt="Logo del Colegio de Ingenieros Civiles">
+                <span>Colegio de<br>Ingenieros Civiles</span>
+            </a>
+            <div class="nav-links">
+                <a href="#novedades">Novedades</a>
+                <a href="#tramites">Trámites</a>
+                <a href="#atencion">Atención</a>
+            </div>
+            <a class="button button-dark nav-action" href="#atencion">Contáctanos <span aria-hidden="true">↗</span></a>
+        </nav>
+    </header>
