@@ -1,0 +1,7 @@
+.cards-section { padding: 60px 20px; background: #fff; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+.red-card { padding: 30px; border-radius: 15px; background: #a01a20; color: #fff; text-align: center; box-shadow: 0 10px 20px rgb(0 0 0 / 20%); transition: transform .3s ease; }
+.red-card:hover { transform: translateY(-10px); }
+.card-icon { margin-bottom: 15px; }
+.red-card h2 { margin-bottom: 15px; font-size: 1.2rem; }
+.red-card p { color: #f1f1f1; font-size: .95rem; line-height: 1.5; }
