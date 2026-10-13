@@ -1,10 +1,9 @@
 import "./App.css";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import PartnerCarousel from "./components/PartnerCarousel";
-import FeatureCards from "./components/FeatureCards";
-import BannerCarrusel from "./components/BannerCarrusel";
-import Footer from "./components/Footer";
+import Header from "./components/layout/Header";
+import Hero from "./components/sections/Hero";
+import FeatureCards from "./components/sections/FeatureCards";
+import BannerCarrusel from "./components/sections/BannerCarrusel";
+import Footer from "./components/layout/Footer";
 
 export default function App() {
   return (
