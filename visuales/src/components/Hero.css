@@ -1,9 +1,76 @@
-.hero-section { position: relative; height: 80vh; min-height: 520px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.hero-bg { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-.video-overlay { position: absolute; width: 100%; height: 100%; background: rgb(0 50 100 / 40%); z-index: -1; }
-.hero-content { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; padding: 0 20px; color: #fff; }
-.hero-text-box { max-width: 600px; }
-.hero-text-box h1 { margin-bottom: 20px; font-size: clamp(2.2rem, 5vw, 3rem); text-shadow: 2px 2px 4px rgb(0 0 0 / 50%); }
-.hero-text-box p { font-size: 1.1rem; line-height: 1.6; text-shadow: 1px 1px 3px rgb(0 0 0 / 80%); }
-.hero-logo-large img { width: 250px; opacity: .8; }
-@media (max-width: 700px) { .hero-section { min-height: 620px; } .hero-content { flex-direction: column; align-items: flex-start; justify-content: center; gap: 32px; } .hero-logo-large img { width: 150px; } }
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.video-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 50 100 / 40%);
+    z-index: -1;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 80px;
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 5%;
+    padding-right: 20px;
+    color: #fff;
+    margin-right: auto;
+}
+
+.hero-text-box {
+    max-width: 600px;
+}
+
+.hero-text-box h1 {
+    margin-bottom: 20px;
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+}
+
+.hero-text-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgb(0 0 0 / 80%);
+}
+
+.hero-logo-large img {
+    width: 250px;
+    /* opacity: .8; */
+}
+
+@media (max-width: 700px) {
+    .hero-section {
+        min-height: 620px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 32px;
+    }
+
+    .hero-logo-large img {
+        width: 150px;
+    }
+}

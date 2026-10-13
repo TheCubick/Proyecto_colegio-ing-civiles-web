@@ -1,0 +1,80 @@
+.carrusel-section {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 5%;
+    background-color: #a01a20; /* Tu rojo corporativo */
+    overflow: hidden;
+}
+
+.carrusel-texto-fondo {
+    width: 40%;
+    color: white;
+    z-index: 2;
+}
+
+.carrusel-texto-fondo h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.carrusel-texto-fondo p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.carrusel-contenedor {
+    width: 55%; /* El carrusel ocupará la otra mitad de la pantalla */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.slide-content {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.slide-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+}
+
+/* Modificamos los colores de los botones del Swiper para que combinen */
+.swiper-button-next, .swiper-button-prev {
+    color: white !important;
+    text-shadow: 0 0 5px rgba(0,0,0,0.8);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #a01a20 !important;
+}
+
+/* Modo celular */
+@media (max-width: 768px) {
+    .carrusel-section {
+        flex-direction: column;
+        padding: 20px;
+    }
+.carrusel-texto-fondo, .carrusel-contenedor {
+    width: 100%;
+}
+.carrusel-texto-fondo {
+    margin-bottom: 30px;
+    text-align: center;
+}
+}

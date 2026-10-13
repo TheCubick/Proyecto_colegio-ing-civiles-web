@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import PartnerCarousel from "./components/PartnerCarousel";
 import FeatureCards from "./components/FeatureCards";
-import InfoBanner from "./components/InfoBanner";
+import BannerCarrusel from "./components/BannerCarrusel";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -12,9 +12,9 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <PartnerCarousel />
+        {/* <PartnerCarousel /> */}
         <FeatureCards />
-        <InfoBanner />
+        <BannerCarrusel />
       </main>
       <Footer />
     </div>
