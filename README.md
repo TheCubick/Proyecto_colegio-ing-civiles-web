@@ -131,12 +131,3 @@ git push origin feat/menu-tramites
 4. ¡Listo! El encargado del proyecto revisará tu código y lo unirá al `main`.
 
 ---
-
-## ❓ ¿Qué hacer si alguien más subió cambios mientras trabajabas?
-Si necesitas actualizar tu rama de trabajo con lo nuevo que subió otro compañero:
-```bash
-git checkout main
-git pull origin main
-git checkout tu-rama
-git merge main
-```
