@@ -52,67 +52,91 @@ Para mantener la consistencia visual en toda la plataforma, por favor utiliza lo
 
 ---
 
-# 🚀 Guía de Git y GitHub para el Equipo
+# 🛠️ Guía Rápida para Colaboradores: Git, GitHub y Estructura del Proyecto
 
-¡Hola equipo! 👋 Para que podamos trabajar todos al mismo tiempo en el portal del Colegio de Ingenieros sin borrar el progreso de los demás, usaremos un flujo de trabajo basado en **Ramas (Branches)** y **Pull Requests (PR)**. 
+¡Hola equipo! 👋 Para trabajar de forma ordenada, evitar borrar el trabajo de los demás y entregar a tiempo el viernes, sigan estas instrucciones paso a paso.
 
-⚠️ **REGLA DE ORO:** NUNCA, bajo ninguna circunstancia, se debe escribir código o hacer *commits* estando en la rama `main`. La rama `main` es sagrada y solo tiene código 100% terminado y funcional.
+---
 
-Aquí están los pasos exactos que debes seguir cada vez que te sientes a trabajar en tu parte:
+## 📂 1. ¿Dónde y cómo crear tus carpetas y archivos? (Estructura)
 
-## Paso 1: Actualiza tu computadora (¡Haz esto SIEMPRE antes de empezar!) 🔄
-Antes de crear nada, debes asegurarte de que tienes los últimos cambios que hicieron tus compañeros.
-Abre tu terminal en VS Code y escribe:
+Antes de empezar a programar, ubica bien dónde debe vivir tu parte. Toda nuestra aplicación está dentro de `visuales/src/`:
+
+```text
+src/
+ ├── assets/          📁 Iconos pequeños o imágenes que importes directo en el código.
+ ├── components/      📁 Componentes de contenido (carruseles, tarjetas, banners, etc.).
+ ├── layouts/         📁 Elementos globales de la página (Header, Footer).
+ ├── pages/           📁 Vistas completas (Inicio, Tramites, Servicios).
+ ├── App.jsx          📄 Archivo principal donde se ensambla la página.
+ └── index.css        📄 Estilos globales y paleta de colores.
+```
+
+### 📌 Reglas clave para no romper el orden:
+1. **Cada componente en su propia carpeta:** No dejes archivos `.jsx` y `.css` sueltos.
+   * ❌ *Mal:* `src/components/Tramites.jsx` y `src/components/Tramites.css`
+   * ✅ *Bien:* Crea la carpeta `src/components/Tramites/` y adentro coloca `Tramites.jsx` y `Tramites.css`.
+2. **Nombres de archivos:** 
+   * Componentes en mayúscula inicial (*PascalCase*): `BolsaTrabajo.jsx`.
+   * Estilos asociados con el mismo nombre: `BolsaTrabajo.css`.
+3. **Imágenes grandes, fotos institucionales o PDFs:**
+   * Colócalos dentro de la carpeta `public/` (ejemplo: `public/documentos/` o `public/banners/`).
+   * Nunca uses espacios ni la letra "ñ" en nombres de archivos (ejemplo: usa `diseno` en lugar de `diseño`).
+
+---
+
+## 🌿 2. Flujo de Git y Comandos (Paso a Paso)
+
+> ⚠️ **REGLA DE ORO:** NUNCA trabajes directamente sobre la rama `main`. Siempre crea tu propia rama.
+
+### Paso 1: Actualiza tu proyecto local 🔄
+Antes de tocar cualquier archivo, descarga la versión más reciente del repositorio:
 ```bash
 git checkout main
 git pull origin main
 ```
-*(Esto te cambia a la rama principal y descarga lo más nuevo de GitHub).*
 
-## Paso 2: Crea tu propia rama de trabajo 🌿
-Ahora vas a crear una "copia" del proyecto donde podrás hacer todos los cambios sin afectar a nadie. Nombra tu rama dependiendo de lo que vayas a hacer:
-- Si es algo visual o de código: `feat/nombre-seccion`
-- Si es arreglar un error: `fix/error-boton`
-- Si es documentación: `docs/manual-usuario`
+### Paso 2: Crea tu rama de trabajo 🌿
+Crea una copia donde puedas trabajar seguro sin afectar al resto:
+* Si creas una sección/función: `feat/nombre-de-tu-tarea`
+* Si corriges algo: `fix/nombre-del-error`
 
-Escribe en la terminal:
 ```bash
-git checkout -b feat/mi-nueva-seccion
+git checkout -b feat/menu-tramites
 ```
-*(El `-b` crea la rama y te pasa automáticamente a ella. ¡Ahora es seguro trabajar!)*
 
-## Paso 3: ¡A trabajar! 💻
-Abre tus archivos, modifica el CSS, agrega componentes de React, escribe la documentación, etc. Guarda tus archivos normalmente (`Ctrl + S`).
+### Paso 3: Desarrolla tu parte 💻
+Crea tu carpeta, programa tu componente en React y dale estilos con CSS. Puedes probarlo ejecutando:
+```bash
+npm run dev
+```
 
-## Paso 4: Guarda tus cambios (Add y Commit) 📦
-Cuando hayas terminado una tarea específica (por ejemplo, "Terminé el Footer"), debes "empaquetar" esos cambios.
-Primero, prepara todos los archivos modificados:
+### Paso 4: Guarda tus cambios (Commit) 📦
+Cuando tu sección esté lista o quieras guardar tu avance del día:
 ```bash
 git add .
+git commit -m "Agregado componente de tramites y estilos"
 ```
-Luego, ponles una etiqueta explicando qué hiciste (sé claro y breve):
+
+### Paso 5: Sube tu rama a GitHub ☁️
+Envía tus cambios a la nube (asegúrate de poner el nombre de tu rama):
 ```bash
-git commit -m "Agregado el mapa de Google al Footer"
+git push origin feat/menu-tramites
 ```
-*(Puedes hacer varios `add` y `commit` en tu rama si estás haciendo muchas cosas).*
 
-## Paso 5: Sube tu rama a la nube ☁️
-Hasta ahora, todos tus cambios solo existen en tu computadora. Para que el equipo los vea, súbelos a GitHub:
-```bash
-git push origin feat/mi-nueva-seccion
-```
-*(Asegúrate de escribir el nombre exacto de la rama que creaste en el Paso 2).*
-
-## Paso 6: Crea el Pull Request (PR) en GitHub 🤝
-1. Ve a la página de nuestro repositorio en **GitHub**.
-2. Verás un cartelito amarillo/verde que dice que acabas de subir una rama y un botón que dice **"Compare & pull request"**. ¡Dale clic!
-3. Ponle un título a tu PR (ej. *"Diseño final del Footer"*) y en la descripción comenta brevemente qué hiciste.
-4. Haz clic en **"Create pull request"**.
-
-¡Y listo! 🎉 Ahora el encargado de revisar el código verá tu trabajo, lo aprobará y lo unirá a la rama `main` de forma segura.
+### Paso 6: Solicita la revisión (Pull Request) 🤝
+1. Entra a nuestro repositorio en **GitHub**.
+2. Verás un banner que dice que tu rama se acaba de subir; haz clic en **"Compare & pull request"**.
+3. Escribe brevemente qué hiciste y haz clic en **"Create pull request"**.
+4. ¡Listo! El encargado del proyecto revisará tu código y lo unirá al `main`.
 
 ---
 
-### 💡 Tips Rápidos
-* ¿No sabes en qué rama estás parado? Escribe: `git branch` (la que tiene un asterisco verde es donde estás).
-* Si vas a dejar de trabajar hoy pero no has terminado tu sección, igual haz un `commit` y `push` para tener un respaldo en la nube. Al día siguiente solo abres tu rama y sigues trabajando.
+## ❓ ¿Qué hacer si alguien más subió cambios mientras trabajabas?
+Si necesitas actualizar tu rama de trabajo con lo nuevo que subió otro compañero:
+```bash
+git checkout main
+git pull origin main
+git checkout tu-rama
+git merge main
+```
