@@ -6,6 +6,7 @@ import FeatureCards from "./components/sections/FeatureCards";
 import BannerCarrusel from "./components/sections/BannerCarrusel";
 import Footer from "./components/layout/Footer";
 import InfoPage from "./pages/InfoPage";
+import Asambleas from "./pages/Eventos/Asambleas";
 
 const infoRoutes = [
   ["tramites/dro", "Director Responsable de Obra (DRO)", "Trámites"],
@@ -15,7 +16,6 @@ const infoRoutes = [
   ["servicios/calculo-estructural", "Cálculo Estructural", "Servicios"],
   ["servicios/bolsa-de-trabajo", "Bolsa de Trabajo", "Servicios"],
   ["eventos/cursos-y-capacitacion", "Cursos y Capacitación", "Eventos"],
-  ["eventos/asambleas", "Asambleas", "Eventos"],
   ["conocenos/mision-y-vision", "Misión y Visión", "Conócenos"],
   ["conocenos/comisiones", "Comisiones", "Conócenos"],
   ["conocenos/normateca-y-estatutos", "Normateca y Estatutos", "Conócenos"],
@@ -42,6 +42,10 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          
+          {/* Nueva ruta conectada con tu Header.jsx */}
+          <Route path="/eventos/asambleas" element={<Asambleas />} />
+          
           {infoRoutes.map(([path, title, category]) => (
             <Route
               key={path}

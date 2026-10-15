@@ -1,48 +1,333 @@
-.footer {
-  padding: 56px max(24px, calc((100% - 1200px) / 2));
-  background: #29282a;
+.cic-footer {
+  --cic-red: #ba2a33;
+  --cic-red-dark: #962e35;
+  --cic-text: rgba(255, 255, 255, 0.75);
+  --cic-muted: rgba(255, 255, 255, 0.55);
+  --cic-line: rgba(255, 255, 255, 0.1);
+
+  position: relative;
+  background: #383637;
+  border-top: 3px solid var(--cic-red);
+  color: var(--cic-text);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* Remate en rojo oscuro sobre la línea roja superior */
+.cic-footer::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: min(180px, 30%);
+  height: 3px;
+  background: var(--cic-red);
+}
+
+.cic-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 24px 28px;
+}
+
+.cic-footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+  gap: 40px;
+}
+
+.cic-footer-col {
+  min-width: 0;
+}
+
+.cic-footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.cic-footer a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Columna 1: identidad ---------- */
+.cic-footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.2;
+}
+
+.cic-footer-logo img {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  padding: 6px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.cic-footer-logo small {
+  display: block;
+  margin-top: 4px;
+  color: var(--cic-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.cic-footer-text {
+  margin: 20px 0 24px;
+  max-width: 320px;
+}
+
+.cic-footer-social {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cic-footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
 }
 
-.footer-main {
+.cic-footer-social a:hover {
+  border-color: var(--cic-red);
+  background: var(--cic-red);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.45);
+}
+
+/* ---------- Títulos y listas de enlaces ---------- */
+.cic-footer-title {
+  position: relative;
+  margin: 0 0 22px;
+  padding-bottom: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.cic-footer-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 32px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cic-red);
+}
+
+.cic-footer-links {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cic-footer-link {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.cic-footer-link svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: var(--cic-red);
+  transition: all 0.25s ease;
+}
+
+.cic-footer-link:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.cic-footer-link:hover svg {
+  color: #fff;
+}
+
+.cic-footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 10px 18px;
+  border: 1px solid var(--cic-red);
+  border-radius: 999px;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.cic-footer-cta:hover {
+  background: var(--cic-red);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.45);
+}
+
+.cic-footer-cta svg {
+  transition: all 0.25s ease;
+}
+
+.cic-footer-cta:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* ---------- Columna 4: contacto ---------- */
+.cic-footer-contact {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cic-footer-contact li {
+  display: flex;
+  gap: 12px;
+}
+
+.cic-footer-contact li > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--cic-red);
+}
+
+.cic-footer-contact div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cic-footer-contact strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.cic-footer-inline:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.cic-footer-email {
+  overflow-wrap: anywhere;
+}
+
+.cic-footer-branches {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cic-line);
+  font-size: 0.85rem;
+}
+
+.cic-footer-branches h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cic-footer-branches p {
+  margin: 0 0 4px;
+  color: var(--cic-muted);
+}
+
+.cic-footer-branches strong {
+  color: var(--cic-text);
+  font-weight: 600;
+}
+
+/* ---------- Barra inferior ---------- */
+.cic-footer-bottom {
   display: flex;
   align-items: center;
-  gap: 28px;
-  padding-bottom: 34px;
-  border-bottom: 1px solid rgb(255 255 255 / 15%);
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 22px;
+  border-top: 1px solid var(--cic-line);
+  color: var(--cic-muted);
+  font-size: 0.8rem;
 }
 
-.footer-brand { display: flex; align-items: center; gap: 14px; min-width: 280px; }
-.footer-brand img { width: 58px; height: 58px; object-fit: contain; border-radius: 12px; background: #fff; }
-.footer-brand strong { display: block; color: #fff; font-size: 1.05rem; line-height: 1.1; }
-.footer-brand span { display: block; margin-top: 7px; color: #c7c4c5; font-size: .8rem; }
-.footer-intro { max-width: 390px; margin: 0 auto 0 0; color: #c7c4c5; line-height: 1.6; }
-.facebook-mark { display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; border: 1px solid rgb(255 255 255 / 20%); border-radius: 50%; background: #1877f2; color: #fff; font: 700 25px Arial, sans-serif; transition: transform .2s ease, background .2s ease; }
-.facebook-mark:hover { transform: translateY(-3px); background: #3d8df5; }
-
-.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; padding: 36px 0; }
-.footer-map { min-height: 220px; overflow: hidden; border: 1px solid rgb(255 255 255 / 15%); border-radius: 16px; }
-.contact-details h2 { margin: 0 0 18px; color: #fff; font-size: 1rem; }
-.contact-details p { margin: 0 0 16px; color: #c7c4c5; font-size: .9rem; line-height: 1.55; }
-.contact-details strong { color: #fff; }
-.contact-details a { transition: color .2s ease; }
-.contact-details a:hover, .footer-bottom a:hover { color: #ffb3b7; }
-
-.footer-bottom { display: flex; justify-content: space-between; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 15%); color: #9f9b9d; font-size: .78rem; }
-.footer-bottom a { color: #e5e1e2; }
-
-@media (max-width: 800px) {
-  .footer { padding: 42px 24px 24px; }
-  .footer-main { align-items: flex-start; flex-wrap: wrap; }
-  .footer-intro { order: 3; flex-basis: 100%; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-map { grid-column: 1 / -1; }
+.cic-footer-bottom p {
+  margin: 0;
 }
 
-@media (max-width: 520px) {
-  .footer-main { gap: 18px; }
-  .footer-brand { min-width: 0; }
-  .footer-grid { grid-template-columns: 1fr; gap: 26px; }
-  .footer-map { grid-column: auto; }
-  .footer-bottom { align-items: flex-start; flex-direction: column; gap: 10px; }
+.cic-footer-bottom ul {
+  display: flex;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cic-footer-bottom a:hover {
+  color: #fff;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .cic-footer-inner {
+    padding-top: 52px;
+  }
+
+  .cic-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cic-footer-inner {
+    padding: 44px 20px 24px;
+  }
+
+  .cic-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .cic-footer-text {
+    max-width: none;
+  }
+
+  .cic-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 36px;
+  }
+
+  .cic-footer-bottom ul {
+    flex-wrap: wrap;
+    gap: 10px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cic-footer *,
+  .cic-footer *::before,
+  .cic-footer *::after {
+    transition: none !important;
+  }
 }

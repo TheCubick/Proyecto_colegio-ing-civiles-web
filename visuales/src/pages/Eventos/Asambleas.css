@@ -1,0 +1,270 @@
+/* =========================================================
+   PÁGINA DE ASAMBLEAS
+   El header del sitio es fijo y transparente con texto oscuro,
+   por eso la cabecera de la página es clara y deja espacio arriba.
+   ========================================================= */
+.asm-page {
+  --asm-red: #ba2a33;
+  --asm-red-dark: #962e35;
+  --asm-dark: #383637;
+  --asm-text: #383637;
+  --asm-muted: rgba(56, 54, 55, 0.7);
+  --asm-light: #e5e5e5;
+
+  background: var(--asm-light);
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+}
+
+.asm-container {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Cabecera ---------- */
+.asm-hero {
+  padding: 9rem 0 3rem;
+  background: #fff;
+  border-bottom: 3px solid var(--asm-red);
+}
+
+.asm-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  color: var(--asm-muted);
+  font-size: 0.85rem;
+}
+
+.asm-breadcrumb a {
+  color: var(--asm-red);
+  font-weight: 600;
+}
+
+.asm-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.asm-hero h1 {
+  margin: 0 0 12px;
+  padding-left: 16px;
+  border-left: 5px solid var(--asm-red);
+  color: var(--asm-dark);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.asm-hero p {
+  max-width: 640px;
+  margin: 0;
+  color: var(--asm-text);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* ---------- Listado ---------- */
+.asm-listado {
+  display: grid;
+  gap: 32px;
+  padding-top: 48px;
+  padding-bottom: 72px;
+}
+
+.asm-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(150, 46, 53, 0.1);
+  /* Para que al llegar con /eventos/asambleas#id el header no tape la tarjeta */
+  scroll-margin-top: 110px;
+}
+
+.asm-card-body {
+  padding: 32px;
+}
+
+.asm-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 14px;
+  color: var(--asm-muted);
+  font-size: 0.88rem;
+}
+
+.asm-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.asm-meta svg {
+  color: var(--asm-red-dark);
+}
+
+.asm-tipo {
+  padding: 3px 12px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.asm-tipo-ordinaria {
+  background: var(--asm-dark);
+}
+
+.asm-tipo-extraordinaria {
+  background: var(--asm-red);
+}
+
+.asm-card h2 {
+  margin: 0 0 14px;
+  color: var(--asm-dark);
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.asm-card p {
+  margin: 0 0 12px;
+  color: var(--asm-text);
+  line-height: 1.65;
+}
+
+.asm-acuerdos {
+  margin-top: 20px;
+  padding: 16px 20px;
+  border-left: 4px solid var(--asm-red);
+  border-radius: 8px;
+  background: rgba(150, 46, 53, 0.06);
+}
+
+.asm-acuerdos h3 {
+  margin: 0 0 8px;
+  color: var(--asm-dark);
+  font-size: 1rem;
+}
+
+.asm-acuerdos ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--asm-text);
+  line-height: 1.6;
+}
+
+/* ---------- Galería ---------- */
+.asm-galeria {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--asm-dark);
+}
+
+.asm-foto-principal {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.asm-miniaturas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+}
+
+.asm-miniatura {
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.25s ease;
+}
+
+.asm-miniatura:hover,
+.asm-miniatura.is-activa {
+  border-color: var(--asm-red);
+  opacity: 1;
+}
+
+.asm-miniatura:focus-visible {
+  outline: 2px solid var(--asm-red-dark);
+  outline-offset: 2px;
+}
+
+.asm-miniatura-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.asm-foto-vacia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+}
+
+.asm-miniatura .asm-foto-vacia span {
+  display: none;
+}
+
+.asm-vacio {
+  padding: 48px 24px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--asm-text);
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 850px) {
+  .asm-hero {
+    padding-top: 8rem;
+  }
+
+  .asm-card {
+    grid-template-columns: 1fr;
+  }
+
+  .asm-card-body {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .asm-container {
+    padding: 0 16px;
+  }
+
+  .asm-hero {
+    padding: 7.5rem 0 2.25rem;
+  }
+
+  .asm-listado {
+    gap: 24px;
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  .asm-card h2 {
+    font-size: 1.3rem;
+  }
+}
