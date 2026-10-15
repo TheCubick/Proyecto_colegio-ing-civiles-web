@@ -7,11 +7,11 @@ import BannerCarrusel from "./components/sections/BannerCarrusel";
 import Footer from "./components/layout/Footer";
 import InfoPage from "./pages/InfoPage";
 import Asambleas from "./pages/Eventos/Asambleas";
+import Dro from "./pages/Tramites/Dro";
+import Rt from "./pages/Tramites/Rt";
+import Dictaminador from "./pages/Tramites/Dictaminador";
 
 const infoRoutes = [
-  ["tramites/dro", "Director Responsable de Obra (DRO)", "Trámites"],
-  ["tramites/rt", "Representante Técnico (RT)", "Trámites"],
-  ["tramites/dictaminador-de-riesgos", "Dictaminador de Riesgos", "Trámites"],
   ["servicios/peritos-valuadores", "Peritos Valuadores", "Servicios"],
   ["servicios/calculo-estructural", "Cálculo Estructural", "Servicios"],
   ["servicios/bolsa-de-trabajo", "Bolsa de Trabajo", "Servicios"],
@@ -23,15 +23,12 @@ const infoRoutes = [
 
 function HomePage() {
   return (
-    <>
-      <main>
-        <Hero />
-        {/* <PartnerCarousel /> */}
-        <FeatureCards />
-        <BannerCarrusel />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Hero />
+      {/* <PartnerCarousel /> */}
+      <FeatureCards />
+      <BannerCarrusel />
+    </main>
   );
 }
 
@@ -45,6 +42,9 @@ export default function App() {
           
           {/* Nueva ruta conectada con tu Header.jsx */}
           <Route path="/eventos/asambleas" element={<Asambleas />} />
+          <Route path="/tramites/dro" element={<Dro />} />
+          <Route path="/tramites/rt" element={<Rt />} />
+          <Route path="/tramites/dictaminador-de-riesgos" element={<Dictaminador />} />
           
           {infoRoutes.map(([path, title, category]) => (
             <Route
@@ -55,6 +55,7 @@ export default function App() {
           ))}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

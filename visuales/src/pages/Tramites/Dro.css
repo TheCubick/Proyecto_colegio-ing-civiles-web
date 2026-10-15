@@ -1,0 +1,312 @@
+/* =========================================================
+   TRÁMITE: DIRECTOR RESPONSABLE DE OBRA (DRO)
+   ========================================================= */
+.dro-page {
+  --dro-red: #ba2a33;
+  --dro-red-dark: #962e35;
+  --dro-dark: #383637;
+  --dro-light: #e5e5e5;
+
+  background: #fff;
+  color: var(--dro-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+}
+
+.dro-page h1,
+.dro-page h2,
+.dro-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.dro-container {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Hero ---------- */
+/* El padding superior deja espacio al header fijo del sitio */
+.dro-hero {
+  padding: 9rem 0 3.5rem;
+  border-bottom: 3px solid var(--dro-red);
+}
+
+.dro-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 0.85rem;
+}
+
+.dro-breadcrumb a {
+  color: var(--dro-red);
+  font-weight: 600;
+}
+
+.dro-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.dro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--dro-red);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dro-hero h1 {
+  margin: 0 0 14px;
+  color: var(--dro-red);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.dro-intro {
+  max-width: 680px;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ---------- Información + imagen ---------- */
+.dro-content {
+  padding: 4.5rem 0;
+}
+
+.dro-content-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.dro-text h2 {
+  margin: 0 0 18px;
+  color: var(--dro-red);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+}
+
+.dro-text p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.dro-figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(150, 46, 53, 0.25);
+  aspect-ratio: 4 / 3;
+}
+
+.dro-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dro-img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+  background: var(--dro-light);
+  color: rgba(56, 54, 55, 0.6);
+  font-size: 0.9rem;
+}
+
+/* ---------- Requisitos ---------- */
+.dro-requisitos {
+  padding: 4.5rem 0;
+  background: var(--dro-light);
+}
+
+.dro-requisitos h2 {
+  margin: 0 0 28px;
+  color: var(--dro-red);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+}
+
+.dro-requisitos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dro-requisitos-grid li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--dro-red);
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.dro-requisitos-grid li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.15);
+}
+
+.dro-requisitos-grid svg {
+  flex-shrink: 0;
+  color: var(--dro-red);
+}
+
+.dro-nota {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: rgba(150, 46, 53, 0.08);
+}
+
+.dro-nota svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--dro-red-dark);
+}
+
+.dro-nota p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ---------- Llamado a la acción ---------- */
+.dro-cta {
+  padding: 4.5rem 0;
+}
+
+.dro-cta-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.dro-cta h2 {
+  margin: 0 0 8px;
+  color: var(--dro-dark);
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+}
+
+.dro-cta p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.dro-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dro-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border: 2px solid var(--dro-red);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.dro-btn-primary {
+  background: var(--dro-red);
+  color: #fff;
+}
+
+.dro-btn-primary:hover {
+  border-color: var(--dro-red-dark);
+  background: var(--dro-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.3);
+}
+
+.dro-btn-secondary {
+  background: transparent;
+  color: var(--dro-red);
+}
+
+.dro-btn-secondary:hover {
+  background: rgba(186, 42, 51, 0.08);
+  transform: translateY(-2px);
+}
+
+.dro-btn:focus-visible,
+.dro-breadcrumb a:focus-visible {
+  outline: 2px solid var(--dro-red-dark);
+  outline-offset: 3px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 850px) {
+  .dro-hero {
+    padding-top: 8rem;
+  }
+
+  .dro-content-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .dro-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .dro-container {
+    padding: 0 16px;
+  }
+
+  .dro-hero {
+    padding: 7.5rem 0 2.5rem;
+  }
+
+  .dro-content,
+  .dro-requisitos,
+  .dro-cta {
+    padding: 3rem 0;
+  }
+
+  .dro-cta-actions,
+  .dro-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dro-page * {
+    transition: none !important;
+  }
+}

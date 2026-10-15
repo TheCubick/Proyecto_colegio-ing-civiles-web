@@ -56,7 +56,7 @@ export default function Header() {
     >
       <div className="nav-container">
         <Link className="logo-container" to="/" aria-label="Ir al inicio">
-          <img src="/logo.png" alt="" className="nav-logo" />
+          <img src="Diseño/logos/logo_colegio.png" alt="" className="nav-logo" />
           <span className="nav-title">
             Colegio de Ingenieros
             <br />
