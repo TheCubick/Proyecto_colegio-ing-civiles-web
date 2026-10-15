@@ -12,7 +12,7 @@ export default function Hero() {
         playsInline
         aria-label="Video de presentación del Colegio de Ingenieros Civiles"
       >
-        <source src="/Diseño/videos/2.mp4" type="video/mp4" />
+        <source src="/Diseño/videos/home.mp4" type="video/mp4" />
         Tu navegador no soporta la reproducción de video.
       </video>
       <div className="hero-content">

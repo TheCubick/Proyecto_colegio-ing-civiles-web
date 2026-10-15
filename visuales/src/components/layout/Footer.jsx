@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const contact = {
   office: "961-612-5541 / 961-119-0009 / 961-114-1636 / 961-130-3088",
@@ -41,7 +42,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span>© {currentYear} Colegio de Ingenieros Civiles</span>
-        <a href="#inicio">Volver al inicio ↑</a>
+        <Link to="/#inicio">Volver al inicio ↑</Link>
       </div>
     </footer>
   );
