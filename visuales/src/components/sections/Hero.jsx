@@ -17,10 +17,20 @@ export default function Hero() {
       </video>
       <div className="hero-content">
         <div className="hero-text-box">
-          <h1>Colegio de Ingenieros<br />Civiles de Tuxtla Gutiérrez</h1>
-          <p>Asociación que promueve la capacitación permanente y la representación ante las instancias gubernamentales, para desarrollar la profesión de la Ingeniería Civil con apego al Código de Ética.</p>
+          <span className="hero-eyebrow hero-anim">Tuxtla Gutiérrez, Chiapas</span>
+          <h1>
+            <span className="hero-line hero-anim">Colegio de Ingenieros</span>
+            <span className="hero-line hero-anim">Civiles de Tuxtla Gutiérrez</span>
+          </h1>
+          <span className="hero-divider hero-anim" aria-hidden="true" />
+          <p className="hero-anim">
+            Asociación que promueve la capacitación permanente y la representación ante las instancias
+            gubernamentales, para desarrollar la profesión de la Ingeniería Civil con apego al Código de Ética.
+          </p>
         </div>
-        <div className="hero-logo-large"><img src="Diseño/logos/logo_colegio.png" alt="Logo del Colegio de Ingenieros Civiles" /></div>
+        <div className="hero-logo-large">
+          <img src="/Diseño/logos/logo_colegio.png" alt="Logo del Colegio de Ingenieros Civiles" />
+        </div>
       </div>
     </section>
   );
