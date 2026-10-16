@@ -4,6 +4,7 @@ import Header from "./components/layout/Header";
 import Hero from "./components/sections/Hero";
 import FeatureCards from "./components/sections/FeatureCards";
 import BannerCarrusel from "./components/sections/BannerCarrusel";
+import AtencionWhatsapp from "./components/sections/AtencionWhatsapp";
 import Footer from "./components/layout/Footer";
 import Asambleas from "./pages/Eventos/Asambleas";
 import CursosCapacitacion from "./pages/Eventos/CursosCapacitacion";
@@ -23,6 +24,7 @@ function HomePage() {
       <Hero />
       <FeatureCards />
       <BannerCarrusel />
+      <AtencionWhatsapp />
     </main>
   );
 }

@@ -424,11 +424,14 @@
   backdrop-filter: blur(4px);
 }
 
+/* Banner, pestañas y pie fijos; solo el contenido de la pestaña hace scroll */
 .hd-modal {
   position: relative;
-  width: min(640px, 100%);
+  display: flex;
+  flex-direction: column;
+  width: min(780px, 100%);
   max-height: calc(100dvh - 32px);
-  overflow-y: auto;
+  overflow: hidden;
   border-radius: 20px;
   background: #fff;
   color: var(--hd-dark);
@@ -440,7 +443,7 @@
   position: absolute;
   top: 14px;
   right: 14px;
-  z-index: 1;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -461,7 +464,8 @@
 }
 
 .hd-modal-banner {
-  padding: 28px 28px 26px;
+  flex-shrink: 0;
+  padding: 24px 28px 22px;
   background: linear-gradient(135deg, var(--hd-red) 0%, var(--hd-red-dark) 100%);
   color: #fff;
 }
@@ -470,7 +474,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   padding: 4px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.18);
@@ -493,8 +497,8 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 58px;
-  height: 58px;
+  width: 56px;
+  height: 56px;
   border-radius: 16px;
   background: #fff;
   color: var(--hd-red);
@@ -513,67 +517,497 @@
   font-size: 0.92rem;
 }
 
-.hd-modal-body {
-  padding: 26px 28px 28px;
-}
-
-.hd-modal-requisitos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hd-modal-requisitos li {
+/* ---------- Pestañas ---------- */
+.hd-tabs {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: var(--hd-light);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-
-.hd-modal-requisitos li:hover {
-  background: rgba(186, 42, 51, 0.1);
-}
-
-.hd-modal-requisitos svg {
   flex-shrink: 0;
+  border-bottom: 1px solid var(--hd-light);
+  background: #fff;
+}
+
+.hd-tab {
+  position: relative;
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 10px;
+  border: 0;
+  background: none;
+  color: rgba(56, 54, 55, 0.75);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.hd-tab:hover {
+  background: rgba(186, 42, 51, 0.05);
   color: var(--hd-red);
 }
 
-.hd-modal-nota {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
-  padding: 12px 14px;
-  border-left: 4px solid var(--hd-red);
-  border-radius: 8px;
-  background: rgba(150, 46, 53, 0.06);
-  font-size: 0.86rem;
+.hd-tab.is-active {
+  color: var(--hd-red);
 }
 
-.hd-modal-nota svg {
+.hd-tab-corto {
+  display: none;
+}
+
+.hd-tab-indicator {
+  position: absolute;
+  right: 12px;
+  bottom: -1px;
+  left: 12px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--hd-red);
+}
+
+.hd-tab:focus-visible,
+.hd-copy:focus-visible,
+.hd-descarga:focus-visible,
+.hd-oficio:focus-visible {
+  outline: 2px solid var(--hd-red-dark);
+  outline-offset: -2px;
+}
+
+/* ---------- Contenido de las pestañas ---------- */
+.hd-modal-body {
+  flex: 1;
+  min-height: 0;
+  padding: 24px 28px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.hd-panel-intro {
+  margin: 0 0 16px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.hd-subtitulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 12px;
+  color: var(--hd-dark);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.hd-subtitulo svg {
+  color: var(--hd-red);
+}
+
+/* Aviso de trámite presencial */
+.hd-aviso {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid rgba(186, 42, 51, 0.25);
+  border-left: 5px solid var(--hd-red);
+  border-radius: 12px;
+  background: rgba(186, 42, 51, 0.06);
+}
+
+.hd-aviso > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--hd-red);
+}
+
+.hd-aviso p {
+  margin: 0 0 10px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.hd-aviso strong {
+  color: var(--hd-red);
+}
+
+.hd-aviso-datos {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hd-aviso-datos li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.hd-aviso-datos svg {
   flex-shrink: 0;
   margin-top: 2px;
   color: var(--hd-red-dark);
 }
 
-.hd-modal-nota p {
+/* Requisitos */
+.hd-requisitos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hd-requisitos li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--hd-light);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  transition: background 0.2s ease;
+}
+
+.hd-requisitos li:hover {
+  background: rgba(186, 42, 51, 0.1);
+}
+
+.hd-requisitos svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--hd-red);
+}
+
+.hd-nota {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(150, 46, 53, 0.06);
+  font-size: 0.85rem;
+}
+
+.hd-nota svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--hd-red-dark);
+}
+
+.hd-nota p {
   margin: 0;
   line-height: 1.6;
 }
 
-.hd-modal-actions {
+/* Descargas de formatos PDF */
+.hd-descargas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.hd-descarga {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--hd-light);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--hd-dark);
+  transition: all 0.25s ease;
+}
+
+.hd-descarga:hover {
+  border-color: var(--hd-red);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(150, 46, 53, 0.15);
+}
+
+.hd-descarga-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--hd-red);
+  transition: all 0.25s ease;
+}
+
+.hd-descarga:hover .hd-descarga-icon {
+  background: var(--hd-red);
+  color: #fff;
+}
+
+.hd-descarga-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.hd-descarga-text small {
+  color: rgba(56, 54, 55, 0.65);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hd-descarga-arrow {
+  flex-shrink: 0;
+  color: var(--hd-red);
+}
+
+.hd-triptico {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 10px;
+}
+
+/* Tabla de costos */
+.hd-tabla-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--hd-light);
+  border-radius: 12px;
+}
+
+.hd-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.hd-tabla th,
+.hd-tabla td {
+  padding: 10px 16px;
+  text-align: left;
+}
+
+.hd-tabla td:last-child,
+.hd-tabla thead th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.hd-tabla thead th {
+  background: var(--hd-dark);
+  color: #fff;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hd-tabla-grupo th {
+  background: rgba(186, 42, 51, 0.08);
+  color: var(--hd-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+}
+
+.hd-tabla tbody tr:not(.hd-tabla-grupo) {
+  border-top: 1px solid var(--hd-light);
+  transition: background 0.15s ease;
+}
+
+.hd-tabla tbody tr:not(.hd-tabla-grupo):hover {
+  background: rgba(229, 229, 229, 0.5);
+}
+
+.hd-tabla td:last-child {
+  color: var(--hd-dark);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.hd-pie-tabla {
+  margin: 8px 0 0;
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 0.8rem;
+}
+
+/* Enlace al oficio oficial (miniatura + texto) */
+.hd-oficio {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 10px 16px 10px 10px;
+  border: 2px solid var(--hd-red);
+  border-radius: 14px;
+  color: var(--hd-dark);
+  transition: all 0.25s ease;
+}
+
+.hd-oficio:hover {
+  background: rgba(186, 42, 51, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(150, 46, 53, 0.18);
+}
+
+.hd-oficio img {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
+  background: var(--hd-light);
+}
+
+.hd-oficio span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.hd-oficio strong {
+  color: var(--hd-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+}
+
+.hd-oficio small {
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 0.8rem;
+}
+
+.hd-oficio > svg {
+  flex-shrink: 0;
+  color: var(--hd-red);
+}
+
+/* Cuentas bancarias */
+.hd-cuentas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hd-cuenta {
+  padding: 16px;
+  border-top: 4px solid var(--hd-red);
+  border-radius: 12px;
+  background: var(--hd-light);
+}
+
+.hd-cuenta h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: var(--hd-dark);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.hd-cuenta h3 svg {
+  color: var(--hd-red);
+}
+
+.hd-dato {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2px 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.hd-dato + .hd-dato {
+  margin-top: 8px;
+}
+
+.hd-dato-label {
+  grid-column: 1 / -1;
+  color: rgba(56, 54, 55, 0.65);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hd-dato code {
+  overflow-wrap: anywhere;
+  color: var(--hd-dark);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.hd-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 1px solid rgba(186, 42, 51, 0.35);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--hd-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hd-copy:hover {
+  border-color: var(--hd-red);
+  background: var(--hd-red);
+  color: #fff;
+}
+
+.hd-reglas {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.hd-reglas li::marker {
+  color: var(--hd-red);
+}
+
+.hd-reglas a {
+  color: var(--hd-red);
+  font-weight: 700;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+/* Pie del pop-up */
+.hd-modal-footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: 14px 28px;
+  border-top: 1px solid var(--hd-light);
+  background: #fff;
+}
+
+.hd-modal-footer .hd-btn {
+  width: 100%;
+  max-width: 420px;
 }
 
 /* ---------- Responsive ---------- */
@@ -584,6 +1018,19 @@
 
   .hd-burger {
     display: inline-flex;
+  }
+}
+
+@media (max-width: 760px) {
+  .hd-tab {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .hd-descargas {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -606,17 +1053,56 @@
     font-size: 0.85rem;
   }
 
-  .hd-modal-banner,
-  .hd-modal-body {
-    padding: 22px 20px;
+  .hd-modal-overlay {
+    padding: 8px;
   }
 
-  .hd-modal-requisitos {
+  .hd-modal {
+    max-height: calc(100dvh - 16px);
+  }
+
+  .hd-modal-banner {
+    padding: 18px 20px;
+  }
+
+  .hd-modal-badge {
+    margin-bottom: 10px;
+  }
+
+  .hd-modal-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hd-modal-body {
+    padding: 18px 16px;
+  }
+
+  .hd-modal-footer {
+    padding: 12px 16px;
+  }
+
+  .hd-tab-largo {
+    display: none;
+  }
+
+  .hd-tab-corto {
+    display: inline;
+  }
+
+  .hd-requisitos,
+  .hd-descargas,
+  .hd-cuentas {
     grid-template-columns: 1fr;
   }
 
-  .hd-modal-actions .hd-btn {
-    width: 100%;
+  .hd-triptico .hd-btn {
+    flex: 1;
+  }
+
+  .hd-tabla th,
+  .hd-tabla td {
+    padding: 9px 12px;
   }
 }
 

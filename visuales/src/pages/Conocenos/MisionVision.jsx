@@ -1,6 +1,21 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, ChevronRight, Eye, Landmark, Target, Users } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  ChevronRight,
+  Eye,
+  FlaskConical,
+  Gavel,
+  GraduationCap,
+  Landmark,
+  Lightbulb,
+  Scale,
+  ShieldCheck,
+  Target,
+  Users,
+  Zap,
+} from "lucide-react";
 import "./MisionVision.css";
 
 const pilares = [
@@ -19,6 +34,33 @@ const pilares = [
     titulo: "Visión",
     texto:
       "Tener reconocimiento a nivel estatal como la asociación que por su trayectoria intachable genere confianza de sus agremiados ante la prestación de servicios a la sociedad.",
+  },
+];
+
+const valores = [
+  { icono: Zap, titulo: "Eficiencia", texto: "Trámites y servicios técnicos atendidos con oportunidad y calidad." },
+  { icono: Scale, titulo: "Ética", texto: "Ejercicio profesional con apego estricto al Código de Ética." },
+  { icono: Lightbulb, titulo: "Innovación", texto: "Actualización continua ante los nuevos retos de la ingeniería civil." },
+];
+
+const compromisos = [
+  {
+    icono: Gavel,
+    texto: "Apego estricto al Código de Ética y vigilancia mediante la Comisión de Honor y Justicia.",
+  },
+  {
+    icono: Landmark,
+    texto: "Promover leyes, reglamentos y reformas relativos al ejercicio profesional.",
+  },
+  {
+    icono: GraduationCap,
+    texto:
+      "Colaborar en la elaboración y acreditamiento de proyectos de estudio y planes de especialidades y maestrías con universidades, para la excelencia académica.",
+  },
+  {
+    icono: FlaskConical,
+    texto:
+      "Impulsar la investigación científica, tecnológica y la certificación continua: registro ante la SEP, padrón activo mayor a 100 colegiados y el requisito reglamentario de 4 cursos / 30 horas de capacitación anual por agremiado.",
   },
 ];
 
@@ -68,6 +110,62 @@ export default function MisionVision() {
               <p>{texto}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="mv-valores" aria-labelledby="mv-valores-titulo">
+        <div className="mv-container">
+          <h2 id="mv-valores-titulo" className="mv-section-title">Nuestros Valores Institucionales</h2>
+          <div className="mv-valores-grid">
+            {valores.map(({ icono: Icono, titulo, texto }) => (
+              <article className="mv-card mv-valor" key={titulo}>
+                <span className="mv-card-icon mv-card-icon-lg">
+                  <Icono size={30} aria-hidden="true" />
+                </span>
+                <h3>{titulo}</h3>
+                <p>{texto}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mv-section" aria-labelledby="mv-compromisos-titulo">
+        <div className="mv-container">
+          <h2 id="mv-compromisos-titulo" className="mv-section-title">
+            Compromisos ante la Profesión y Código de Ética
+          </h2>
+          <ol className="mv-compromisos">
+            {compromisos.map(({ icono: Icono, texto }, i) => (
+              <li className="mv-card mv-compromiso" key={texto}>
+                <span className="mv-compromiso-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="mv-card-icon">
+                  <Icono size={22} aria-hidden="true" />
+                </span>
+                <p>{texto}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="mv-privacidad" aria-labelledby="mv-privacidad-titulo">
+        <div className="mv-container">
+          <div className="mv-privacidad-box">
+            <span className="mv-card-icon mv-card-icon-lg">
+              <ShieldCheck size={30} aria-hidden="true" />
+            </span>
+            <div>
+              <h2 id="mv-privacidad-titulo">Política de Privacidad y Seguridad Gremial</h2>
+              <p>
+                Para salvaguardar la integridad y seguridad de nuestros socios y directivos, todo
+                requerimiento de especialistas (DRO, RT, Peritos y Estructuristas) se gestiona de manera
+                centralizada a través de las oficinas oficiales del Colegio.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

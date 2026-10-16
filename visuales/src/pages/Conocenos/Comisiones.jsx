@@ -6,9 +6,12 @@ import {
   ChevronRight,
   DraftingCompass,
   HardHat,
+  HeartHandshake,
   House,
+  Leaf,
   Scale,
   ShieldAlert,
+  Trophy,
   Users,
 } from "lucide-react";
 import "./Comisiones.css";
@@ -49,6 +52,21 @@ const comisiones = [
     icono: Scale,
     titulo: "Comisión de Honor y Justicia",
     texto: "Encargada de vigilar el correcto desempeño del Colegio y el cumplimiento del código de ética.",
+  },
+  {
+    icono: Leaf,
+    titulo: "Comisión Ambiental e Impacto Ecológico",
+    texto: "Atiende los temas ambientales y de impacto ecológico relacionados con la ingeniería civil.",
+  },
+  {
+    icono: Trophy,
+    titulo: "Comisión de Deportes",
+    texto: "Organiza actividades deportivas que fomentan la convivencia entre los agremiados.",
+  },
+  {
+    icono: HeartHandshake,
+    titulo: "Comisión de Acción Social",
+    texto: "Impulsa acciones del Colegio en beneficio de la comunidad.",
   },
 ];
 

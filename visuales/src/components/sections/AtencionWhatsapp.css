@@ -1,0 +1,320 @@
+/* =========================================================
+   ATENCIÓN POR WHATSAPP: PREGUNTAS FRECUENTES + BUZÓN
+   ========================================================= */
+.aw-section {
+  --aw-red: #ba2a33;
+  --aw-red-dark: #962e35;
+  --aw-dark: #383637;
+  --aw-light: #e5e5e5;
+
+  padding: 5rem 0;
+  background: var(--aw-light);
+  color: var(--aw-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+  scroll-margin-top: 80px;
+}
+
+.aw-section h2,
+.aw-section h3,
+.aw-btn,
+.aw-faq-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.aw-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Encabezado ---------- */
+.aw-header {
+  max-width: 680px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.aw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--aw-red);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.aw-header h2 {
+  margin: 0 0 10px;
+  color: var(--aw-red);
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.aw-header p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ---------- Distribución ---------- */
+.aw-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.aw-block-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  color: var(--aw-dark);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.aw-block-title svg {
+  color: var(--aw-red);
+}
+
+/* ---------- Preguntas frecuentes (acordeón) ---------- */
+.aw-faq-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aw-faq-item {
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(56, 54, 55, 0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.aw-faq-item:hover {
+  box-shadow: 0 10px 24px rgba(150, 46, 53, 0.12);
+}
+
+.aw-faq-item.is-open {
+  border-color: rgba(186, 42, 51, 0.35);
+  box-shadow: 0 12px 28px rgba(150, 46, 53, 0.15);
+}
+
+.aw-faq-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 20px;
+  border: 0;
+  background: none;
+  color: var(--aw-dark);
+  font-size: 0.97rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.aw-faq-btn:hover,
+.is-open .aw-faq-btn {
+  color: var(--aw-red);
+}
+
+.aw-faq-chevron {
+  flex-shrink: 0;
+  color: var(--aw-red);
+  transition: transform 0.25s ease;
+}
+
+.is-open .aw-faq-chevron {
+  transform: rotate(180deg);
+}
+
+.aw-faq-panel {
+  overflow: hidden;
+}
+
+.aw-faq-content {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--aw-light);
+}
+
+.aw-faq-content p {
+  margin: 16px 0;
+  line-height: 1.7;
+}
+
+/* ---------- Buzón ---------- */
+.aw-buzon {
+  position: sticky;
+  top: 100px;
+  padding: 28px;
+  border-top: 5px solid var(--aw-red);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 36px rgba(150, 46, 53, 0.15);
+}
+
+.aw-buzon-intro {
+  margin: -6px 0 20px;
+  color: rgba(56, 54, 55, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.aw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.aw-field > span {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.aw-field small {
+  color: rgba(56, 54, 55, 0.65);
+  font-weight: 500;
+}
+
+.aw-field select,
+.aw-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--aw-light);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--aw-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aw-field textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.aw-field select:focus,
+.aw-field textarea:focus {
+  border-color: var(--aw-red);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(186, 42, 51, 0.12);
+}
+
+.aw-contador {
+  align-self: flex-end;
+  font-size: 0.75rem;
+}
+
+/* ---------- Botones ---------- */
+.aw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: 2px solid var(--aw-red);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.aw-btn-primary {
+  width: 100%;
+  background: var(--aw-red);
+  color: #fff;
+}
+
+.aw-btn-primary:hover {
+  border-color: var(--aw-red-dark);
+  background: var(--aw-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.3);
+}
+
+.aw-btn-outline {
+  padding: 10px 18px;
+  background: transparent;
+  color: var(--aw-red);
+  font-size: 0.9rem;
+}
+
+.aw-btn-outline:hover {
+  background: var(--aw-red);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.aw-faq-btn:focus-visible,
+.aw-btn:focus-visible {
+  outline: 2px solid var(--aw-red-dark);
+  outline-offset: 3px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .aw-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aw-buzon {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .aw-section {
+    padding: 3.5rem 0;
+  }
+
+  .aw-container {
+    padding: 0 16px;
+  }
+
+  .aw-header {
+    margin-bottom: 28px;
+  }
+
+  .aw-faq-btn {
+    padding: 16px;
+  }
+
+  .aw-faq-content {
+    padding: 0 16px 16px;
+  }
+
+  .aw-btn-outline {
+    width: 100%;
+  }
+
+  .aw-buzon {
+    padding: 22px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aw-section * {
+    transition: none !important;
+  }
+}

@@ -3,27 +3,42 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   BadgeCheck,
+  Banknote,
   BookOpen,
   Briefcase,
   CalendarDays,
+  Check,
   CheckCircle2,
   ChevronDown,
+  ClipboardList,
+  Clock,
+  Copy,
+  Download,
   DraftingCompass,
+  ExternalLink,
+  FileDown,
   FileText,
   GraduationCap,
   HardHat,
   House,
+  Image,
+  Info,
+  Landmark,
   Mail,
+  MapPin,
   Menu,
+  MessageCircle,
   Phone,
+  Pin,
+  Receipt,
   ShieldAlert,
   Sparkles,
   Target,
   UserPlus,
   Users,
+  Wallet,
   X,
 } from "lucide-react";
-import { notaCartas, requisitosGenerales } from "../../pages/Tramites/requisitos";
 import "./Header.css";
 
 const LOGO_SRC = "/Diseño/logos/logo_colegio.png";
@@ -110,15 +125,383 @@ function MenuLink({ label, href, current, onNavigate, index = 0 }) {
   );
 }
 
-function AfiliacionModal({ abierto, onCerrar }) {
+// ---------- Pop-up de afiliación ----------
+const WHATSAPP_DUDAS =
+  "https://wa.me/529611190009?text=Hola,%20me%20gustar%C3%ADa%20recibir%20orientaci%C3%B3n%20sobre%20el%20proceso%20de%20afiliaci%C3%B3n%20al%20CICTGZ.";
+
+const requisitosIngreso = [
+  "Solicitud dirigida al Presidente (respaldada por 2 Miembros Numerarios según Art. 23).",
+  "Cédula profesional expedida por la S.E.P. y Título.",
+  "Currículum Vitae actualizado.",
+  "Constancia de Situación Fiscal (RFC).",
+  "Comprobante de domicilio actualizado.",
+  "Acta de nacimiento, INE y CURP.",
+  "Pago de inscripción correspondiente.",
+];
+
+const formatos = [
+  ["Oficio de Inscripción", "/Documents/pdf/OFICIO DE INSCRIPCION.docx.pdf"],
+  ["Cédula de Inscripción", "/Documents/pdf/CEDULA DE INSCRIPCION.docx.pdf"],
+  ["Carta Bajo Protesta de Decir Verdad", "/Documents/pdf/CARTA DE PROTESTA DE DECIR VERDAD 2023.doc.pdf"],
+];
+
+const triptico = [
+  ["Ver Tríptico (Frente)", "/Documents/img/triptico enfrente_.jpg"],
+  ["Ver Tríptico (Reverso)", "/Documents/img/triptico atras.jpg"],
+];
+
+// Oficio CICTG/PRES/VI/01/2026. Montos en MXN.
+const costos = [
+  {
+    grupo: "Inscripción",
+    filas: [
+      ["Nuevo Agremiado (Ene–Dic 2026)", "$1,500.00"],
+      ["Pasante", "$500.00"],
+      ["Estudiante", "$300.00"],
+    ],
+  },
+  {
+    grupo: "Reinscripción",
+    filas: [
+      ["Enero (promoción)", "$2,200.00"],
+      ["Febrero a Diciembre", "$2,600.00"],
+    ],
+  },
+  {
+    grupo: "Cartas y Sellos",
+    filas: [
+      ["Carta Propia", "$600.00"],
+      ["Carta Ajena*", "$25,000.00"],
+      ["Carta Adicional Propia", "$600.00"],
+      ["Carta Adicional Ajena", "$700.00"],
+      ["Carta DROyC", "$800.00"],
+      ["Sello de Planos", "$1,000.00"],
+    ],
+  },
+];
+
+// Oficio CICTG/PRES/VI/02/2026
+const cuentas = [
+  { banco: "SANTANDER", cuenta: "65508294566", clabe: "0141-0065-5082-945-660" },
+  { banco: "BBVA MÉXICO", cuenta: "0112233592", clabe: "0121-0000-1122-335-922" },
+];
+
+const facturacion = {
+  email: "cictgcontabilidad@gmail.com",
+  whatsapp: "961-285-1837",
+};
+
+const pestanas = [
+  { id: "requisitos", label: "1. Requisitos y Formatos", corto: "Requisitos", icono: ClipboardList },
+  { id: "costos", label: "2. Costos y Cuotas 2026", corto: "Costos", icono: Banknote },
+  { id: "bancos", label: "3. Datos Bancarios y Facturación", corto: "Pagos", icono: Landmark },
+];
+
+function CopiarDato({ etiqueta, valor }) {
+  const [copiado, setCopiado] = useState(false);
+
+  const copiar = async () => {
+    try {
+      await navigator.clipboard.writeText(valor.replaceAll("-", ""));
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 1800);
+    } catch {
+      // Sin permiso de portapapeles: el dato sigue visible para copiarlo a mano.
+    }
+  };
+
+  return (
+    <div className="hd-dato">
+      <span className="hd-dato-label">{etiqueta}</span>
+      <code>{valor}</code>
+      <button type="button" className="hd-copy" onClick={copiar} aria-label={`Copiar ${etiqueta}`}>
+        {copiado ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+        <span>{copiado ? "Copiado" : "Copiar"}</span>
+      </button>
+    </div>
+  );
+}
+
+function PanelRequisitos() {
+  return (
+    <>
+      <div className="hd-aviso">
+        <Pin size={20} aria-hidden="true" />
+        <div>
+          <p>
+            <strong>El trámite de inscripción es 100% presencial</strong> en nuestras oficinas. Descarga,
+            imprime y llena tus formatos antes de acudir.
+          </p>
+          <ul className="hd-aviso-datos">
+            <li>
+              <MapPin size={15} aria-hidden="true" />
+              Calle 11ª Ote. Sur 1056, Col. Maldonado
+            </li>
+            <li>
+              <Clock size={15} aria-hidden="true" />
+              Lunes a Viernes 9:00 a 17:00 hrs · Sábados 9:00 a 14:00 hrs
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 className="hd-subtitulo">Requisitos de ingreso</h3>
+      <ol className="hd-requisitos">
+        {requisitosIngreso.map((requisito) => (
+          <li key={requisito}>
+            <CheckCircle2 size={18} aria-hidden="true" />
+            <span>{requisito}</span>
+          </li>
+        ))}
+      </ol>
+
+      <div className="hd-nota">
+        <Info size={18} aria-hidden="true" />
+        <p>
+          <strong>Notas para cartas:</strong> 2 años de expedición de cédula para solicitar Carta Propia;
+          5 años para Carta Ajena. Si perteneció a otro Colegio, anexar carta de no adeudo y renuncia.
+        </p>
+      </div>
+
+      <h3 className="hd-subtitulo">Formatos oficiales (PDF)</h3>
+      <div className="hd-descargas">
+        {formatos.map(([titulo, href]) => (
+          <a key={href} href={href} download target="_blank" rel="noopener noreferrer" className="hd-descarga">
+            <span className="hd-descarga-icon">
+              <FileDown size={20} aria-hidden="true" />
+            </span>
+            <span className="hd-descarga-text">
+              <small>Descargar</small>
+              {titulo}
+            </span>
+            <Download size={18} aria-hidden="true" className="hd-descarga-arrow" />
+          </a>
+        ))}
+      </div>
+
+      <h3 className="hd-subtitulo">Tríptico informativo</h3>
+      <div className="hd-triptico">
+        {triptico.map(([titulo, href]) => (
+          <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="hd-btn hd-btn-secondary">
+            <Image size={18} aria-hidden="true" />
+            {titulo}
+          </a>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function PanelCostos() {
+  return (
+    <>
+      <p className="hd-panel-intro">
+        Cuotas oficiales vigentes según el oficio <strong>CICTG/PRES/VI/01/2026</strong>. Montos en pesos mexicanos.
+      </p>
+      <div className="hd-tabla-wrap">
+        <table className="hd-tabla">
+          <thead>
+            <tr>
+              <th scope="col">Concepto</th>
+              <th scope="col">Costo</th>
+            </tr>
+          </thead>
+          {costos.map(({ grupo, filas }) => (
+            <tbody key={grupo}>
+              <tr className="hd-tabla-grupo">
+                <th scope="rowgroup" colSpan={2}>
+                  {grupo}
+                </th>
+              </tr>
+              {filas.map(([concepto, monto]) => (
+                <tr key={concepto}>
+                  <td>{concepto}</td>
+                  <td>{monto}</td>
+                </tr>
+              ))}
+            </tbody>
+          ))}
+        </table>
+      </div>
+      <p className="hd-pie-tabla">* Acuerdo intercolegial.</p>
+
+      <a href="/Documents/img/costos.jpg" target="_blank" rel="noopener noreferrer" className="hd-oficio">
+        <img src="/Documents/img/costos.jpg" alt="" loading="lazy" />
+        <span>
+          <strong>Ver comunicado oficial de costos</strong>
+          <small>Abrir imagen en una pestaña nueva</small>
+        </span>
+        <ExternalLink size={18} aria-hidden="true" />
+      </a>
+    </>
+  );
+}
+
+function PanelBancos() {
+  return (
+    <>
+      <p className="hd-panel-intro">
+        Cuentas oficiales según el oficio <strong>CICTG/PRES/VI/02/2026</strong>.
+      </p>
+      <div className="hd-cuentas">
+        {cuentas.map(({ banco, cuenta, clabe }) => (
+          <article className="hd-cuenta" key={banco}>
+            <h3>
+              <Wallet size={18} aria-hidden="true" />
+              {banco}
+            </h3>
+            <CopiarDato etiqueta="Cuenta" valor={cuenta} />
+            <CopiarDato etiqueta="CLABE" valor={clabe} />
+          </article>
+        ))}
+      </div>
+
+      <h3 className="hd-subtitulo">
+        <Receipt size={18} aria-hidden="true" />
+        Reglas de facturación
+      </h3>
+      <ul className="hd-reglas">
+        <li>
+          Envía tu comprobante legible (anotando <strong>nombre y concepto</strong>), tu Constancia de Situación
+          Fiscal y el Uso de CFDI a <a href={`mailto:${facturacion.email}`}>{facturacion.email}</a> o al WhatsApp{" "}
+          <a href={`https://wa.me/52${facturacion.whatsapp.replaceAll("-", "")}`} target="_blank" rel="noopener noreferrer">
+            {facturacion.whatsapp}
+          </a>
+          .
+        </li>
+        <li>
+          Solo se facturan pagos del <strong>mes en curso</strong>. Límite: último día hábil antes de las 5:00 p.m., o
+          sábado antes de la 1:00 p.m.
+        </li>
+        <li>
+          Los pagos de <strong>Persona Moral</strong> y <strong>Carta Ajena</strong> son más I.V.A.
+        </li>
+      </ul>
+
+      <a href="/Documents/img/datos bancarios.jpg" target="_blank" rel="noopener noreferrer" className="hd-oficio">
+        <img src="/Documents/img/datos bancarios.jpg" alt="" loading="lazy" />
+        <span>
+          <strong>Ver oficio bancario oficial</strong>
+          <small>Abrir imagen en una pestaña nueva</small>
+        </span>
+        <ExternalLink size={18} aria-hidden="true" />
+      </a>
+    </>
+  );
+}
+
+const paneles = {
+  requisitos: PanelRequisitos,
+  costos: PanelCostos,
+  bancos: PanelBancos,
+};
+
+// Se monta cada vez que se abre el pop-up, así siempre inicia en la primera pestaña.
+function AfiliacionContenido({ onCerrar }) {
   const cerrarRef = useRef(null);
+  const tabsRef = useRef([]);
+  const [activa, setActiva] = useState(pestanas[0].id);
 
   useEffect(() => {
-    if (abierto) cerrarRef.current?.focus();
-  }, [abierto]);
+    cerrarRef.current?.focus();
+  }, []);
 
-  const mailto = `mailto:${contacto.email}?subject=${encodeURIComponent("Solicitud de afiliación al Colegio")}`;
+  // Flechas izquierda/derecha para moverse entre pestañas
+  const handleTabKey = (event, index) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    const paso = event.key === "ArrowRight" ? 1 : -1;
+    const siguiente = (index + paso + pestanas.length) % pestanas.length;
+    setActiva(pestanas[siguiente].id);
+    tabsRef.current[siguiente]?.focus();
+  };
 
+  const Panel = paneles[activa];
+
+  return (
+    <motion.div
+      className="hd-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="hd-modal-titulo"
+      onClick={(event) => event.stopPropagation()}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 24, scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 320, damping: 28 }}
+    >
+      <button ref={cerrarRef} type="button" className="hd-modal-close" onClick={onCerrar} aria-label="Cerrar">
+        <X size={20} aria-hidden="true" />
+      </button>
+
+      <div className="hd-modal-banner">
+        <span className="hd-modal-badge">
+          <Sparkles size={14} aria-hidden="true" />
+          Únete al gremio
+        </span>
+        <div className="hd-modal-heading">
+          <span className="hd-modal-icon">
+            <UserPlus size={28} aria-hidden="true" />
+          </span>
+          <div>
+            <h2 id="hd-modal-titulo">Inscripción al Colegio</h2>
+            <p>Requisitos, formatos, costos y datos de pago en un solo lugar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="hd-tabs" role="tablist" aria-label="Información de afiliación">
+        {pestanas.map(({ id, label, corto, icono: Icono }, i) => (
+          <button
+            key={id}
+            ref={(el) => {
+              tabsRef.current[i] = el;
+            }}
+            type="button"
+            role="tab"
+            id={`hd-tab-${id}`}
+            aria-selected={activa === id}
+            aria-controls={`hd-panel-${id}`}
+            tabIndex={activa === id ? 0 : -1}
+            className={`hd-tab ${activa === id ? "is-active" : ""}`}
+            onClick={() => setActiva(id)}
+            onKeyDown={(event) => handleTabKey(event, i)}
+          >
+            <Icono size={17} aria-hidden="true" />
+            <span className="hd-tab-largo">{label}</span>
+            <span className="hd-tab-corto">{corto}</span>
+            {activa === id && <motion.span layoutId="hd-tab-indicator" className="hd-tab-indicator" />}
+          </button>
+        ))}
+      </div>
+
+      <div className="hd-modal-body">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={activa}
+            role="tabpanel"
+            id={`hd-panel-${activa}`}
+            aria-labelledby={`hd-tab-${activa}`}
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -16 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Panel />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="hd-modal-footer">
+        <a href={WHATSAPP_DUDAS} target="_blank" rel="noopener noreferrer" className="hd-btn hd-btn-primary">
+          <MessageCircle size={18} aria-hidden="true" />
+          Tengo dudas sobre mi inscripción
+        </a>
+      </div>
+    </motion.div>
+  );
+}
+
+function AfiliacionModal({ abierto, onCerrar }) {
   return (
     <AnimatePresence>
       {abierto && (
@@ -130,73 +513,7 @@ function AfiliacionModal({ abierto, onCerrar }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <motion.div
-            className="hd-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="hd-modal-titulo"
-            onClick={(event) => event.stopPropagation()}
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 24, scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 320, damping: 28 }}
-          >
-            <button ref={cerrarRef} type="button" className="hd-modal-close" onClick={onCerrar} aria-label="Cerrar">
-              <X size={20} aria-hidden="true" />
-            </button>
-
-            <div className="hd-modal-banner">
-              <span className="hd-modal-badge">
-                <Sparkles size={14} aria-hidden="true" />
-                Únete al gremio
-              </span>
-              <div className="hd-modal-heading">
-                <span className="hd-modal-icon">
-                  <UserPlus size={28} aria-hidden="true" />
-                </span>
-                <div>
-                  <h2 id="hd-modal-titulo">Requisitos de Afiliación</h2>
-                  <p>Forma parte del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez A.C.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="hd-modal-body">
-              <ul className="hd-modal-requisitos">
-                {requisitosGenerales.map((requisito, i) => (
-                  <motion.li
-                    key={requisito}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.12 + i * 0.04 }}
-                  >
-                    <CheckCircle2 size={20} aria-hidden="true" />
-                    <span>{requisito}</span>
-                  </motion.li>
-                ))}
-              </ul>
-
-              <div className="hd-modal-nota">
-                <FileText size={18} aria-hidden="true" />
-                <p>
-                  {notaCartas.propias}
-                  <br />
-                  {notaCartas.ajenas}
-                </p>
-              </div>
-
-              <div className="hd-modal-actions">
-                <a href={mailto} className="hd-btn hd-btn-primary">
-                  <Mail size={18} aria-hidden="true" />
-                  Solicitar afiliación
-                </a>
-                <a href={`tel:+52${contacto.telefono.replaceAll("-", "")}`} className="hd-btn hd-btn-secondary">
-                  <Phone size={18} aria-hidden="true" />
-                  {contacto.telefono}
-                </a>
-              </div>
-            </div>
-          </motion.div>
+          <AfiliacionContenido onCerrar={onCerrar} />
         </motion.div>
       )}
     </AnimatePresence>
