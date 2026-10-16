@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, ChevronRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 const currentYear = new Date().getFullYear();
-const LOGO_SRC = "/logo.png";
-const LOGO_FALLBACK = "/Diseño/Colegio de Ingenieros Civiles de Tuxtla Gutierrez.svg";
+const LOGO_SRC = "/Diseño/logos/logo_colegio.png";
 
 const contact = {
   address: "Tuxtla Gutiérrez, Chiapas, México",
@@ -60,15 +59,10 @@ function InstagramIcon() {
 }
 
 const socialLinks = [
-  ["https://www.facebook.com/", "Facebook del Colegio", <FacebookIcon key="fb" />],
-  ["https://www.instagram.com/", "Instagram del Colegio", <InstagramIcon key="ig" />],
+  ["https://www.facebook.com/profile.php?id=100063697292088", "Facebook del Colegio", <FacebookIcon key="fb" />],
+  ["https://www.instagram.com/colegio_d_ingenieros_civilesac/", "Instagram del Colegio", <InstagramIcon key="ig" />],
   [contact.whatsapp, "Escríbenos por WhatsApp", <MessageCircle key="wa" size={18} aria-hidden="true" />],
 ];
-
-function handleLogoError(event) {
-  const img = event.currentTarget;
-  if (!img.src.endsWith(encodeURI(LOGO_FALLBACK))) img.src = LOGO_FALLBACK;
-}
 
 function FooterLinks({ title, links }) {
   return (
@@ -95,7 +89,7 @@ export default function Footer() {
         <div className="cic-footer-grid">
           <section className="cic-footer-col cic-footer-brand">
             <Link to="/" className="cic-footer-logo">
-              <img src={LOGO_SRC} alt="" onError={handleLogoError} />
+              <img src={LOGO_SRC} alt="" />
               <span>
                 Colegio de Ingenieros Civiles
                 <small>de Tuxtla Gutiérrez A.C.</small>
@@ -120,10 +114,10 @@ export default function Footer() {
 
           <div className="cic-footer-col">
             <FooterLinks title="Eventos y El Colegio" links={collegeLinks} />
-            <a href="/#afiliate" className="cic-footer-cta">
+            <Link to="#afiliacion" className="cic-footer-cta">
               Afíliate al Colegio
               <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+            </Link>
           </div>
 
           <section className="cic-footer-col">

@@ -21,7 +21,6 @@ function HomePage() {
   return (
     <main>
       <Hero />
-      {/* <PartnerCarousel /> */}
       <FeatureCards />
       <BannerCarrusel />
     </main>

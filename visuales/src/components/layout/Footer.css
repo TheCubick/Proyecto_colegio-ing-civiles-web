@@ -10,8 +10,8 @@
   border-top: 3px solid var(--cic-red);
   color: var(--cic-text);
   font-family: "DM Sans", "Segoe UI", sans-serif;
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 /* Remate en rojo oscuro sobre la línea roja superior */
@@ -28,13 +28,13 @@
 .cic-footer-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 64px 24px 28px;
+  padding: 38px 24px 20px;
 }
 
 .cic-footer-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
-  gap: 40px;
+  grid-template-columns: 1.15fr 1fr 1fr 1.3fr;
+  gap: 24px;
 }
 
 .cic-footer-col {
@@ -57,39 +57,39 @@
 .cic-footer-logo {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   color: #fff !important;
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 0.9rem;
   line-height: 1.2;
 }
 
 .cic-footer-logo img {
   flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-  padding: 6px;
+  width: 48px;
+  height: 48px;
+  padding: 4px;
   object-fit: contain;
-  border-radius: 14px;
+  border-radius: 10px;
   background: #fff;
 }
 
 .cic-footer-logo small {
   display: block;
-  margin-top: 4px;
+  margin-top: 2px;
   color: var(--cic-muted);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 500;
 }
 
 .cic-footer-text {
-  margin: 20px 0 24px;
-  max-width: 320px;
+  margin: 14px 0 16px;
+  max-width: 280px;
 }
 
 .cic-footer-social {
   display: flex;
-  gap: 10px;
+  gap: 7px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -99,8 +99,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.05);
@@ -117,10 +117,10 @@
 /* ---------- Títulos y listas de enlaces ---------- */
 .cic-footer-title {
   position: relative;
-  margin: 0 0 22px;
-  padding-bottom: 12px;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.86rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -138,7 +138,7 @@
 
 .cic-footer-links {
   display: grid;
-  gap: 10px;
+  gap: 6px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -169,14 +169,14 @@
 .cic-footer-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 22px;
-  padding: 10px 18px;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 8px 12px;
   border: 1px solid var(--cic-red);
   border-radius: 999px;
   color: #fff !important;
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
 }
 
 .cic-footer-cta:hover {
@@ -196,7 +196,7 @@
 /* ---------- Columna 4: contacto ---------- */
 .cic-footer-contact {
   display: grid;
-  gap: 16px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -204,7 +204,7 @@
 
 .cic-footer-contact li {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 .cic-footer-contact li > svg {
@@ -217,6 +217,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .cic-footer-contact strong {
@@ -234,8 +235,8 @@
 }
 
 .cic-footer-branches {
-  margin-top: 22px;
-  padding-top: 16px;
+  margin-top: 14px;
+  padding-top: 10px;
   border-top: 1px solid var(--cic-line);
   font-size: 0.85rem;
 }
@@ -263,11 +264,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 48px;
-  padding-top: 22px;
+  margin-top: 28px;
+  padding-top: 14px;
   border-top: 1px solid var(--cic-line);
   color: var(--cic-muted);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .cic-footer-bottom p {
@@ -276,7 +277,7 @@
 
 .cic-footer-bottom ul {
   display: flex;
-  gap: 22px;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -289,23 +290,23 @@
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .cic-footer-inner {
-    padding-top: 52px;
+    padding-top: 32px;
   }
 
   .cic-footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px 32px;
+    gap: 28px 24px;
   }
 }
 
 @media (max-width: 600px) {
   .cic-footer-inner {
-    padding: 44px 20px 24px;
+    padding: 32px 20px 20px;
   }
 
   .cic-footer-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 26px;
   }
 
   .cic-footer-text {
