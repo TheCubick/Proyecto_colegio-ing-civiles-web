@@ -16,7 +16,6 @@ import CalculoEstructural from "./pages/Servicios/CalculoEstructural";
 import BolsaTrabajo from "./pages/Servicios/BolsaTrabajo";
 import MisionVision from "./pages/Conocenos/MisionVision";
 import Comisiones from "./pages/Conocenos/Comisiones";
-import Normateca from "./pages/Conocenos/Normateca";
 
 function HomePage() {
   return (
@@ -46,7 +45,6 @@ export default function App() {
           <Route path="/servicios/bolsa-de-trabajo" element={<BolsaTrabajo />} />
           <Route path="/conocenos/mision-y-vision" element={<MisionVision />} />
           <Route path="/conocenos/comisiones" element={<Comisiones />} />
-          <Route path="/conocenos/normateca-y-estatutos" element={<Normateca />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />

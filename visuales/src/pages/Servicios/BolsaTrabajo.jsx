@@ -14,6 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import vacantes from "./vacantesData";
+import ModalContacto from "../../components/shared/ModalContacto";
 import "./BolsaTrabajo.css";
 
 const CONTACTO_EMAIL = "colegiodeingenieroscivilestg@gmail.com";
@@ -47,6 +48,7 @@ const dirigidoA = [
 ];
 
 export default function BolsaTrabajo() {
+  const [contactoAbierto, setContactoAbierto] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
@@ -97,7 +99,7 @@ export default function BolsaTrabajo() {
               </div>
             ) : (
               <img
-                src="/placeholder-bolsa.jpg"
+                src="/pages/Servicios/bolsa.jpg"
                 alt="Ingenieros civiles trabajando en una obra"
                 onError={() => setImgError(true)}
               />
@@ -175,13 +177,15 @@ export default function BolsaTrabajo() {
               <Mail size={18} aria-hidden="true" />
               Publicar una vacante
             </a>
-            <a href="#contacto" className="bt-btn bt-btn-secondary">
+            <button type="button" className="bt-btn bt-btn-secondary" onClick={() => setContactoAbierto(true)}>
               Contacto
               <ArrowRight size={18} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <ModalContacto isOpen={contactoAbierto} onClose={() => setContactoAbierto(false)} />
     </main>
   );
 }

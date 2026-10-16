@@ -7,7 +7,7 @@ const LOGO_SRC = "/Diseño/logos/logo_colegio.png";
 
 const contact = {
   address: "Tuxtla Gutiérrez, Chiapas, México",
-  mapUrl: "https://www.google.com/maps/search/?api=1&query=16.749996,-93.1256335",
+  mapUrl: "https://www.google.com/maps/place/Colegio+de+Ingenieros+Civiles+De+Tuxtla+Gutierrez+A.C./@16.7441016,-93.1082779,19.99z/data=!4m6!3m5!1s0x85ecd8a3b3b8a423:0xf059605d90c93d2d!8m2!3d16.7439165!4d-93.1086248!16s%2Fg%2F11cp762rvb?entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D",
   phones: ["961-612-5541", "961-119-0009", "961-114-1636", "961-130-3088"],
   emails: ["colegiodeingenieroscivilestg@gmail.com", "cictgcontabilidad@gmail.com"],
   whatsapp: "https://wa.me/529616125541",
@@ -36,7 +36,6 @@ const collegeLinks = [
   ["/eventos/asambleas", "Asambleas"],
   ["/conocenos/mision-y-vision", "Misión y Visión"],
   ["/conocenos/comisiones", "Comisiones"],
-  ["/conocenos/normateca-y-estatutos", "Normateca y Estatutos"],
 ];
 
 // lucide-react v1 ya no incluye iconos de marca, por eso se dibujan aquí.

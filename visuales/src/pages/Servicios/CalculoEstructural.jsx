@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Building2, ChevronRight, DraftingCompass, HardHat, ImageOff, Mail, Ruler } from "lucide-react";
+import ModalContacto from "../../components/shared/ModalContacto";
 import "./CalculoEstructural.css";
 
 const CONTACTO_EMAIL = "colegiodeingenieroscivilestg@gmail.com";
@@ -25,6 +26,7 @@ const alcances = [
 ];
 
 export default function CalculoEstructural() {
+  const [contactoAbierto, setContactoAbierto] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
@@ -76,7 +78,7 @@ export default function CalculoEstructural() {
               </div>
             ) : (
               <img
-                src="/placeholder-calculo.jpg"
+                src="/pages/Servicios/calculo.jpg"
                 alt="Ingeniero revisando planos estructurales de un edificio"
                 onError={() => setImgError(true)}
               />
@@ -113,13 +115,15 @@ export default function CalculoEstructural() {
               <Mail size={18} aria-hidden="true" />
               Solicitar cálculo
             </a>
-            <a href="#contacto" className="ce-btn ce-btn-secondary">
+            <button type="button" className="ce-btn ce-btn-secondary" onClick={() => setContactoAbierto(true)}>
               Otros medios de contacto
               <ArrowRight size={18} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <ModalContacto isOpen={contactoAbierto} onClose={() => setContactoAbierto(false)} />
     </main>
   );
 }

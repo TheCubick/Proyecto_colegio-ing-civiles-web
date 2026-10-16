@@ -9,8 +9,8 @@
   - titulo:   nombre de la asamblea
   - resumen:  arreglo de párrafos
   - acuerdos: (opcional) lista de acuerdos tomados
-  - fotos:    lista de { src, alt }. Guarda las imágenes en public/asambleas/<id>/
-              y escribe la ruta empezando con "/asambleas/...".
+  - fotos:    lista de { src, alt }. Las imágenes deben estar dentro de public/
+              y la ruta debe comenzar con "/".
 
   Se ordenan automáticamente de la más reciente a la más antigua.
   Los dos registros siguientes son DE EJEMPLO: reemplázalos con información real.
@@ -31,9 +31,9 @@ const asambleas = [
       "Acuerdo de ejemplo número dos.",
     ],
     fotos: [
-      { src: "/asambleas/ejemplo-asamblea-ordinaria/1.jpg", alt: "Mesa directiva durante la asamblea" },
-      { src: "/asambleas/ejemplo-asamblea-ordinaria/2.jpg", alt: "Agremiados en la sesión" },
-      { src: "/asambleas/ejemplo-asamblea-ordinaria/3.jpg", alt: "Votación de acuerdos" },
+      { src: "/pages/Eventos/asambleas/asamblea1.jpg", alt: "Mesa directiva durante la asamblea" },
+      { src: "/pages/Eventos/asambleas/asamblea1_2.jpg", alt: "Agremiados en la sesión" },
+      { src: "/pages/Eventos/asambleas/asamblea1_3.jpg", alt: "Votación de acuerdos" },
     ],
   },
   {
@@ -46,7 +46,7 @@ const asambleas = [
       "Texto de ejemplo: explica el motivo de la convocatoria extraordinaria y las decisiones principales.",
     ],
     fotos: [
-      { src: "/asambleas/ejemplo-asamblea-extraordinaria/1.jpg", alt: "Asistentes a la asamblea extraordinaria" },
+      { src: "/pages/Eventos/asambleas/asamblea2.jpg", alt: "Asistentes a la asamblea extraordinaria" },
     ],
   },
 ];

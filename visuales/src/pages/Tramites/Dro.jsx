@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, Download, FileText, HardHat, ImageOff, Info } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "./requisitos";
+import ModalContacto from "../../components/shared/ModalContacto";
 import "./Dro.css";
 
 export default function Dro() {
+  const [contactoAbierto, setContactoAbierto] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
@@ -14,20 +16,25 @@ export default function Dro() {
   return (
     <main className="dro-page">
       <section className="dro-hero">
+        <video className="dro-hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+          <source src="/Diseño/videos/Vista_area.mp4" type="video/mp4" />
+        </video>
+        <div className="dro-hero-overlay" aria-hidden="true" />
         <div className="dro-container">
-          <nav className="dro-breadcrumb" aria-label="Ruta de navegación">
+          <nav className="dro-breadcrumb dro-hero-anim" aria-label="Ruta de navegación">
             <Link to="/">Inicio</Link>
             <ChevronRight size={14} aria-hidden="true" />
             <span>Trámites</span>
             <ChevronRight size={14} aria-hidden="true" />
             <span aria-current="page">DRO</span>
           </nav>
-          <span className="dro-badge">
+          <span className="dro-badge dro-hero-anim">
             <HardHat size={16} aria-hidden="true" />
             Trámites
           </span>
-          <h1>Director Responsable de Obra (DRO)</h1>
-          <p className="dro-intro">
+          <h1 className="dro-hero-anim">Director Responsable de Obra (DRO)</h1>
+          <span className="dro-hero-divider dro-hero-anim" aria-hidden="true" />
+          <p className="dro-intro dro-hero-anim">
             Registro y respaldo gremial para los ingenieros civiles que ejercen como Directores
             Responsables de Obra ante el municipio.
           </p>
@@ -53,7 +60,7 @@ export default function Dro() {
               </div>
             ) : (
               <img
-                src="/placeholder-dro.jpg"
+                src="/pages/Tramites/Dro.jpg"
                 alt="Director Responsable de Obra supervisando una construcción"
                 onError={() => setImgError(true)}
               />
@@ -95,13 +102,15 @@ export default function Dro() {
               <Download size={18} aria-hidden="true" />
               Descargar Lista de Documentos
             </a>
-            <a href="#contacto" className="dro-btn dro-btn-secondary">
+            <button type="button" className="dro-btn dro-btn-secondary" onClick={() => setContactoAbierto(true)}>
               Iniciar Trámite
               <ArrowRight size={18} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <ModalContacto isOpen={contactoAbierto} onClose={() => setContactoAbierto(false)} />
     </main>
   );
 }

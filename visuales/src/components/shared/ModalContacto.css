@@ -1,0 +1,245 @@
+/* =========================================================
+   MODAL UNIVERSAL DE CONTACTO Y TRÁMITES
+   ========================================================= */
+.mc-modal {
+  --mc-red: #ba2a33;
+  --mc-red-dark: #962e35;
+  --mc-dark: #383637;
+  --mc-light: #e5e5e5;
+
+  width: min(600px, calc(100% - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--mc-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.mc-modal[open] {
+  animation: mc-fade-up 0.3s ease-out;
+}
+
+.mc-modal::backdrop {
+  background: rgba(56, 54, 55, 0.65);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes mc-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mc-content {
+  position: relative;
+}
+
+.mc-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--mc-light);
+  color: var(--mc-dark);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.mc-close:hover {
+  background: var(--mc-red);
+  color: #fff;
+}
+
+/* ---------- Cabecera ---------- */
+.mc-header {
+  padding: 28px 72px 18px 28px;
+  border-bottom: 3px solid var(--mc-red);
+}
+
+.mc-header h2 {
+  margin: 0;
+  color: var(--mc-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/* ---------- Cuerpo ---------- */
+.mc-body {
+  display: grid;
+  gap: 22px;
+  padding: 22px 28px;
+}
+
+.mc-aviso {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  border-left: 5px solid var(--mc-red);
+  border-radius: 8px;
+  background: var(--mc-light);
+  color: var(--mc-dark);
+}
+
+.mc-aviso svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--mc-red);
+}
+
+.mc-aviso p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.mc-lista {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mc-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.mc-lista li > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--mc-red);
+}
+
+.mc-lista li > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.mc-lista strong {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+}
+
+.mc-telefonos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.mc-lista a {
+  color: var(--mc-red);
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.mc-lista a:hover {
+  color: var(--mc-red-dark);
+  text-decoration: underline;
+}
+
+/* ---------- Pie ---------- */
+.mc-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 28px 24px;
+  border-top: 1px solid var(--mc-light);
+}
+
+.mc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.mc-btn-primary {
+  border: 2px solid var(--mc-red);
+  background: var(--mc-red);
+  color: #fff;
+}
+
+.mc-btn-primary:hover {
+  border-color: var(--mc-red-dark);
+  background: var(--mc-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(150, 46, 53, 0.3);
+}
+
+.mc-btn-secondary {
+  border: 2px solid var(--mc-light);
+  background: #fff;
+  color: var(--mc-dark);
+}
+
+.mc-btn-secondary:hover {
+  border-color: var(--mc-dark);
+  transform: translateY(-2px);
+}
+
+.mc-close:focus-visible,
+.mc-btn:focus-visible,
+.mc-lista a:focus-visible {
+  outline: 2px solid var(--mc-red-dark);
+  outline-offset: 3px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .mc-header {
+    padding: 22px 64px 16px 20px;
+  }
+
+  .mc-body {
+    padding: 20px;
+  }
+
+  .mc-footer {
+    flex-direction: column-reverse;
+    padding: 16px 20px 20px;
+  }
+
+  .mc-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-modal[open],
+  .mc-modal * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

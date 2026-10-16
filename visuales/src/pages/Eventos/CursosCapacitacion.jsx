@@ -2,33 +2,47 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
+  Banknote,
   CalendarDays,
+  CheckCircle2,
   ChevronRight,
   Clock,
+  CreditCard,
   FileText,
   GraduationCap,
   ImageOff,
   Laptop,
+  Mail,
   MapPin,
+  MessageCircle,
   Newspaper,
+  Phone,
+  Pin,
   Shuffle,
   X,
 } from "lucide-react";
 import "./CursosCapacitacion.css";
 
-const CONTACTO_EMAIL = "colegiodeingenieroscivilestg@gmail.com";
+const WHATSAPP_INSCRIPCION =
+  "https://wa.me/529611190009?text=Hola,%20me%20gustar%C3%ADa%20inscribirme%20a%20un%20curso%20y%20solicitar%20los%20datos%20bancarios.";
+
+const requisitosInscripcion = [
+  "Llenar formato de inscripción impreso.",
+  "Identificación Oficial (INE).",
+  "Comprobante de pago (Voucher original o impreso).",
+];
 
 /*
   Cursos y capacitaciones activas. DATOS DE EJEMPLO: reemplázalos con los cursos reales.
   - modalidad: "Presencial", "En línea" o "Mixta"
   - temario:   (opcional) ruta a un PDF en public/, ej. "/documentos/temario-precios.pdf".
                Si no se indica, no se muestra el botón "Ver temario".
-  El botón "Inscribirse" abre un correo con el nombre del curso en el asunto.
+  El botón "Inscribirse" abre el modal con el proceso de inscripción y requisitos.
 */
 const cursosData = [
   {
     id: 1,
-    img: "/placeholder-curso.jpg",
+    img: "/pages/Eventos/cursos/curso1.jpg",
     titulo: "Diplomado en Supervisión de Obra Pública",
     fecha: "Inicia: 15 de noviembre de 2026",
     horario: "Sábados, 9:00 AM – 2:00 PM",
@@ -37,7 +51,7 @@ const cursosData = [
   },
   {
     id: 2,
-    img: "/placeholder-curso.jpg",
+    img: "/pages/Eventos/cursos/curso2.jpg",
     titulo: "Curso de Análisis de Precios Unitarios",
     fecha: "Inicia: 22 de noviembre de 2026",
     horario: "Martes y jueves, 6:00 PM – 9:00 PM",
@@ -46,7 +60,7 @@ const cursosData = [
   },
   {
     id: 3,
-    img: "/placeholder-curso.jpg",
+    img: "/pages/Eventos/cursos/Curso3.jpg",
     titulo: "Taller de Bitácora Electrónica de Obra Pública",
     fecha: "5 de diciembre de 2026",
     horario: "Viernes, 4:00 PM – 8:00 PM",
@@ -127,9 +141,8 @@ function PostImagen({ src, alt, className }) {
   return <img src={src} alt={alt} className={className} loading="lazy" onError={() => setError(true)} />;
 }
 
-function CursoCard({ curso }) {
+function CursoCard({ curso, onInscribirse }) {
   const IconoModalidad = iconoModalidad[curso.modalidad] ?? MapPin;
-  const mailto = `mailto:${CONTACTO_EMAIL}?subject=${encodeURIComponent(`Inscripción: ${curso.titulo}`)}`;
 
   return (
     <article className="cc-curso">
@@ -154,10 +167,10 @@ function CursoCard({ curso }) {
         </ul>
         <p>{curso.descripcion}</p>
         <div className="cc-curso-actions">
-          <a href={mailto} className="cc-btn">
+          <button type="button" className="cc-btn" onClick={onInscribirse}>
             Inscribirse
             <ArrowRight size={16} aria-hidden="true" />
-          </a>
+          </button>
           {curso.temario && (
             <a href={curso.temario} target="_blank" rel="noopener noreferrer" className="cc-btn cc-btn-outline">
               <FileText size={16} aria-hidden="true" />
@@ -226,8 +239,144 @@ function PostModal({ post, onCerrar }) {
   );
 }
 
+function InscripcionModal({ isOpen, onCerrar }) {
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (isOpen && !dialog.open) dialog.showModal();
+    if (!isOpen && dialog.open) dialog.close();
+  }, [isOpen]);
+
+  // Bloquea el scroll de la página de fondo mientras el modal está abierto
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const overflowPrevio = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = overflowPrevio;
+    };
+  }, [isOpen]);
+
+  // Cierra al hacer clic fuera del contenido (en el fondo oscuro)
+  const handleClick = (event) => {
+    if (event.target === dialogRef.current) onCerrar();
+  };
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="cc-modal cc-insc"
+      onClose={onCerrar}
+      onClick={handleClick}
+      aria-labelledby="cc-insc-titulo"
+      aria-describedby="cc-insc-subtitulo"
+    >
+      {isOpen && (
+        <div className="cc-modal-content">
+          <button type="button" className="cc-modal-close" onClick={onCerrar} aria-label="Cerrar">
+            <X size={20} aria-hidden="true" />
+          </button>
+
+          <header className="cc-insc-header">
+            <h2 id="cc-insc-titulo">Inscripción a Curso / Capacitación</h2>
+            <p id="cc-insc-subtitulo">Proceso de registro y requisitos.</p>
+          </header>
+
+          <div className="cc-insc-body">
+            <div className="cc-insc-aviso">
+              <Pin size={20} aria-hidden="true" />
+              <p>
+                <strong>Aviso:</strong> Todo proceso de registro, entrega de documentos y control de
+                asistencia se realiza <strong>estrictamente de manera presencial</strong> el día de
+                inicio del curso en nuestras oficinas.
+              </p>
+            </div>
+
+            <section className="cc-insc-bloque" aria-labelledby="cc-insc-requisitos">
+              <h3 id="cc-insc-requisitos">Requisitos generales</h3>
+              <ul className="cc-insc-lista">
+                {requisitosInscripcion.map((requisito) => (
+                  <li key={requisito}>
+                    <CheckCircle2 size={18} aria-hidden="true" />
+                    <span>{requisito}</span>
+                  </li>
+                ))}
+                <li>
+                  <CheckCircle2 size={18} aria-hidden="true" />
+                  <span>
+                    <em>(Para descuentos)</em>: Credencial de estudiante vigente o Constancia de
+                    agremiado activo.
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <section className="cc-insc-bloque" aria-labelledby="cc-insc-pago">
+              <h3 id="cc-insc-pago">Métodos de pago</h3>
+              <div className="cc-insc-pagos">
+                <div className="cc-insc-pago">
+                  <CreditCard size={22} aria-hidden="true" />
+                  <div>
+                    <strong>Transferencia Bancaria</strong>
+                    <p>Puedes solicitar el número de cuenta oficial vía WhatsApp o correo.</p>
+                  </div>
+                </div>
+                <div className="cc-insc-pago">
+                  <Banknote size={22} aria-hidden="true" />
+                  <div>
+                    <strong>Pago en Efectivo</strong>
+                    <p>Directamente en la ventanilla del Colegio.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="cc-insc-bloque" aria-labelledby="cc-insc-contacto">
+              <h3 id="cc-insc-contacto">Ubicación y contacto</h3>
+              <ul className="cc-insc-lista cc-insc-contacto">
+                <li>
+                  <MapPin size={18} aria-hidden="true" />
+                  <span>Calle 11ª Ote. Sur 1056, Col. Maldonado, Tuxtla Gutiérrez, Chiapas.</span>
+                </li>
+                <li>
+                  <Phone size={18} aria-hidden="true" />
+                  <span>
+                    <a href="tel:+529616125541">961-612-5541</a> /{" "}
+                    <a href="tel:+529611190009">961-119-0009</a>
+                  </span>
+                </li>
+                <li>
+                  <Mail size={18} aria-hidden="true" />
+                  <a href="mailto:cictgcontabilidad@gmail.com">cictgcontabilidad@gmail.com</a>
+                </li>
+              </ul>
+            </section>
+          </div>
+
+          <footer className="cc-insc-footer">
+            <a
+              href={WHATSAPP_INSCRIPCION}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cc-btn cc-insc-whatsapp"
+            >
+              <MessageCircle size={18} aria-hidden="true" />
+              Solicitar Información por WhatsApp
+            </a>
+            <button type="button" className="cc-insc-cerrar" onClick={onCerrar}>
+              Cerrar
+            </button>
+          </footer>
+        </div>
+      )}
+    </dialog>
+  );
+}
+
 export default function CursosCapacitacion() {
   const [postAbierto, setPostAbierto] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -261,7 +410,7 @@ export default function CursosCapacitacion() {
           {cursosData.length > 0 ? (
             <div className="cc-cursos-lista">
               {cursosData.map((curso) => (
-                <CursoCard key={curso.id} curso={curso} />
+                <CursoCard key={curso.id} curso={curso} onInscribirse={() => setIsModalOpen(true)} />
               ))}
             </div>
           ) : (
@@ -287,6 +436,7 @@ export default function CursosCapacitacion() {
       </section>
 
       <PostModal post={postAbierto} onCerrar={() => setPostAbierto(null)} />
+      <InscripcionModal isOpen={isModalOpen} onCerrar={() => setIsModalOpen(false)} />
     </main>
   );
 }

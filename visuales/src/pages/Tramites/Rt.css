@@ -29,6 +29,11 @@
 .rt-hero {
   padding: 9rem 0 3.5rem;
   border-bottom: 3px solid var(--rt-red);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #383637;
+  color: #fff;
 }
 
 .rt-breadcrumb {
@@ -37,12 +42,12 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 20px;
-  color: rgba(56, 54, 55, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   font-size: 0.85rem;
 }
 
 .rt-breadcrumb a {
-  color: var(--rt-red);
+  color: #fff;
   font-weight: 600;
 }
 
@@ -57,8 +62,9 @@
   margin-bottom: 14px;
   padding: 5px 14px;
   border-radius: 999px;
-  background: rgba(186, 42, 51, 0.1);
-  color: var(--rt-red);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(186, 42, 51, 0.55);
+  color: #fff;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -78,6 +84,27 @@
   margin: 0;
   font-size: 1.1rem;
   line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.rt-hero-video,
+.rt-hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rt-hero-video {
+  z-index: -2;
+  object-fit: cover;
+}
+
+.rt-hero-overlay {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(56, 54, 55, 0.92) 0%, rgba(56, 54, 55, 0.72) 55%, rgba(150, 46, 53, 0.45) 100%),
+    linear-gradient(0deg, rgba(56, 54, 55, 0.55) 0%, transparent 45%);
 }
 
 /* ---------- Información + imagen ---------- */
@@ -236,6 +263,7 @@
   border-radius: 8px;
   font-size: 15px;
   font-weight: 700;
+  cursor: pointer;
   transition: all 0.25s ease;
 }
 
@@ -259,6 +287,10 @@
 .rt-btn-secondary:hover {
   background: rgba(186, 42, 51, 0.08);
   transform: translateY(-2px);
+}
+
+.rt-page .rt-hero a:focus-visible {
+  outline-color: #fff;
 }
 
 .rt-btn:focus-visible,
@@ -308,5 +340,117 @@
 @media (prefers-reduced-motion: reduce) {
   .rt-page * {
     transition: none !important;
+  }
+}
+
+/* ---------- Hero con video a pantalla completa ----------
+   Mismo tamaño y estilo que el video de inicio (Hero.css) */
+.rt-page .rt-hero {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  min-height: 520px;
+  padding: 6rem 0 3rem;
+  border-bottom: 0;
+}
+
+.rt-hero > .rt-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 0 0;
+  padding: 0 20px 0 5%;
+}
+
+.rt-hero-overlay {
+  background: linear-gradient(90deg, rgb(56 54 55 / 75%) 0%, rgb(56 54 55 / 45%) 55%, rgb(150 46 53 / 30%) 100%);
+}
+
+.rt-page .rt-hero h1 {
+  max-width: 600px;
+  margin: 0 0 20px;
+  color: #fff;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 1.15;
+  text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+}
+
+.rt-page .rt-intro {
+  max-width: 600px;
+  color: #fff;
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-shadow: 1px 1px 3px rgb(0 0 0 / 80%);
+}
+
+.rt-page .rt-badge {
+  margin-bottom: 16px;
+  padding: 6px 14px;
+  background: rgb(255 255 255 / 12%);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 700px) {
+  .rt-page .rt-hero {
+    min-height: 620px;
+  }
+
+  .rt-hero > .rt-container {
+    padding: 0 16px;
+  }
+}
+
+/* ---------- Animaciones de entrada (mismas que Hero.css) ---------- */
+@keyframes rt-hero-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rt-hero-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.rt-hero-anim {
+  opacity: 0;
+  animation: rt-hero-slide-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.rt-breadcrumb.rt-hero-anim { animation-delay: 0.45s; }
+.rt-badge.rt-hero-anim { animation-delay: 0.6s; }
+.rt-hero h1.rt-hero-anim { animation-delay: 0.75s; }
+.rt-intro.rt-hero-anim { animation-delay: 1.2s; }
+
+/* La línea roja crece de izquierda a derecha */
+.rt-hero-divider {
+  display: block;
+  width: 90px;
+  height: 4px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background: #ba2a33;
+  transform-origin: left;
+}
+
+.rt-hero-divider.rt-hero-anim {
+  opacity: 1;
+  transform: scaleX(0);
+  animation: rt-hero-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-hero-anim,
+  .rt-hero-divider.rt-hero-anim {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BadgeCheck, ChevronRight, Download, FileText, ImageOff, Info } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "./requisitos";
+import ModalContacto from "../../components/shared/ModalContacto";
 import "./Rt.css";
 
 export default function Rt() {
+  const [contactoAbierto, setContactoAbierto] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
@@ -14,20 +16,25 @@ export default function Rt() {
   return (
     <main className="rt-page">
       <section className="rt-hero">
+        <video className="rt-hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+          <source src="/Diseño/videos/Puente_colores.mp4" type="video/mp4" />
+        </video>
+        <div className="rt-hero-overlay" aria-hidden="true" />
         <div className="rt-container">
-          <nav className="rt-breadcrumb" aria-label="Ruta de navegación">
+          <nav className="rt-breadcrumb rt-hero-anim" aria-label="Ruta de navegación">
             <Link to="/">Inicio</Link>
             <ChevronRight size={14} aria-hidden="true" />
             <span>Trámites</span>
             <ChevronRight size={14} aria-hidden="true" />
             <span aria-current="page">RT</span>
           </nav>
-          <span className="rt-badge">
+          <span className="rt-badge rt-hero-anim">
             <BadgeCheck size={16} aria-hidden="true" />
             Trámites
           </span>
-          <h1>Representante Técnico (RT)</h1>
-          <p className="rt-intro">
+          <h1 className="rt-hero-anim">Representante Técnico (RT)</h1>
+          <span className="rt-hero-divider rt-hero-anim" aria-hidden="true" />
+          <p className="rt-intro rt-hero-anim">
             Gestión y respaldo del Colegio para que sus agremiados obtengan y mantengan sus claves
             de especialidad como Representantes Técnicos de empresas constructoras.
           </p>
@@ -53,7 +60,7 @@ export default function Rt() {
               </div>
             ) : (
               <img
-                src="/placeholder-rt.jpg"
+                src="/pages/Tramites/Rt.jpg"
                 alt="Representante Técnico revisando planos de una obra"
                 onError={() => setImgError(true)}
               />
@@ -95,13 +102,15 @@ export default function Rt() {
               <Download size={18} aria-hidden="true" />
               Descargar Lista de Documentos
             </a>
-            <a href="#contacto" className="rt-btn rt-btn-secondary">
+            <button type="button" className="rt-btn rt-btn-secondary" onClick={() => setContactoAbierto(true)}>
               Iniciar Trámite
               <ArrowRight size={18} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <ModalContacto isOpen={contactoAbierto} onClose={() => setContactoAbierto(false)} />
     </main>
   );
 }

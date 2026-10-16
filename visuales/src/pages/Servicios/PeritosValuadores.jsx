@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, House, ImageOff, Landmark, Mail, Scale } from "lucide-react";
+import ModalContacto from "../../components/shared/ModalContacto";
 import "./PeritosValuadores.css";
 
 const CONTACTO_EMAIL = "colegiodeingenieroscivilestg@gmail.com";
@@ -25,6 +26,7 @@ const usos = [
 ];
 
 export default function PeritosValuadores() {
+  const [contactoAbierto, setContactoAbierto] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
@@ -76,7 +78,7 @@ export default function PeritosValuadores() {
               </div>
             ) : (
               <img
-                src="/placeholder-peritos.jpg"
+                src="/pages/Servicios/Peritos.jpg"
                 alt="Perito valuador inspeccionando una vivienda"
                 onError={() => setImgError(true)}
               />
@@ -113,13 +115,15 @@ export default function PeritosValuadores() {
               <Mail size={18} aria-hidden="true" />
               Solicitar peritaje
             </a>
-            <a href="#contacto" className="pv-btn pv-btn-secondary">
+            <button type="button" className="pv-btn pv-btn-secondary" onClick={() => setContactoAbierto(true)}>
               Otros medios de contacto
               <ArrowRight size={18} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <ModalContacto isOpen={contactoAbierto} onClose={() => setContactoAbierto(false)} />
     </main>
   );
 }

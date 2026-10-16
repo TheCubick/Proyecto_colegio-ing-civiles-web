@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  BookOpen,
   ChevronRight,
   Eye,
   FlaskConical,
@@ -66,7 +65,6 @@ const compromisos = [
 
 const enlaces = [
   { to: "/conocenos/comisiones", icono: Users, titulo: "Comisiones", texto: "Especialidades y servicios técnicos del Colegio." },
-  { to: "/conocenos/normateca-y-estatutos", icono: BookOpen, titulo: "Normateca y Estatutos", texto: "Documentos normativos del Colegio." },
 ];
 
 export default function MisionVision() {
@@ -77,20 +75,25 @@ export default function MisionVision() {
   return (
     <main className="mv-page">
       <section className="mv-hero">
+        <video className="mv-hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+          <source src="/Diseño/videos/Parque_central.mp4" type="video/mp4" />
+        </video>
+        <div className="mv-hero-overlay" aria-hidden="true" />
         <div className="mv-container">
-          <nav className="mv-breadcrumb mv-animate" aria-label="Ruta de navegación">
+          <nav className="mv-breadcrumb mv-hero-anim" aria-label="Ruta de navegación">
             <Link to="/">Inicio</Link>
             <ChevronRight size={14} aria-hidden="true" />
             <span>Conócenos</span>
             <ChevronRight size={14} aria-hidden="true" />
             <span aria-current="page">Misión y Visión</span>
           </nav>
-          <span className="mv-badge mv-animate">
+          <span className="mv-badge mv-hero-anim">
             <Landmark size={16} aria-hidden="true" />
             Conócenos
           </span>
-          <h1 className="mv-animate">Misión y Visión</h1>
-          <p className="mv-intro mv-animate">
+          <h1 className="mv-hero-anim">Misión y Visión</h1>
+          <span className="mv-hero-divider mv-hero-anim" aria-hidden="true" />
+          <p className="mv-intro mv-hero-anim">
             El Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. es la institución que agrupa y
             representa a los profesionales de la ingeniería civil en la región. Su objetivo es elevar
             la calidad del ejercicio profesional y promover la actualización continua.
@@ -127,6 +130,29 @@ export default function MisionVision() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mv-organigrama" aria-labelledby="mv-organigrama-titulo">
+        <div className="mv-container">
+          <h2 id="mv-organigrama-titulo" className="mv-organigrama-titulo">
+            Estructura del Consejo Directivo
+          </h2>
+          <figure className="mv-organigrama-figura">
+            <a
+              href="/Documents/img/organigrama.jpeg"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir el organigrama en tamaño completo"
+            >
+              <img
+                src="/Documents/img/organigrama.jpeg"
+                alt="Organigrama del Consejo Directivo del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez"
+                loading="lazy"
+              />
+            </a>
+            <figcaption>Haz clic en la imagen para verla en tamaño completo.</figcaption>
+          </figure>
         </div>
       </section>
 

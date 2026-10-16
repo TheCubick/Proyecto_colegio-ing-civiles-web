@@ -236,6 +236,7 @@
   border-radius: 8px;
   font-size: 15px;
   font-weight: 700;
+  cursor: pointer;
   transition: all 0.25s ease;
 }
 

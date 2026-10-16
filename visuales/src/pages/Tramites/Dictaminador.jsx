@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, Download, FileText, ImageOff, Info, ShieldAlert } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "./requisitos";
+import ModalContacto from "../../components/shared/ModalContacto";
 import "./Dictaminador.css";
 
 export default function Dictaminador() {
+  const [contactoAbierto, setContactoAbierto] = useState(false);
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function Dictaminador() {
               </div>
             ) : (
               <img
-                src="/placeholder-dictaminador.jpg"
+                src="/pages/Tramites/Dictaminador.jpg"
                 alt="Dictaminador evaluando los riesgos de una estructura"
                 onError={() => setImgError(true)}
               />
@@ -96,13 +98,15 @@ export default function Dictaminador() {
               <Download size={18} aria-hidden="true" />
               Descargar Lista de Documentos
             </a>
-            <a href="#contacto" className="dict-btn dict-btn-secondary">
+            <button type="button" className="dict-btn dict-btn-secondary" onClick={() => setContactoAbierto(true)}>
               Iniciar Trámite
               <ArrowRight size={18} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <ModalContacto isOpen={contactoAbierto} onClose={() => setContactoAbierto(false)} />
     </main>
   );
 }

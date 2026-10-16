@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   BadgeCheck,
   Banknote,
-  BookOpen,
   Briefcase,
   CalendarDays,
   Check,
@@ -80,7 +79,6 @@ const menus = [
     links: [
       ["Misión y Visión", "/conocenos/mision-y-vision"],
       ["Comisiones", "/conocenos/comisiones"],
-      ["Normateca y Estatutos", "/conocenos/normateca-y-estatutos"],
     ],
   },
 ];
@@ -96,7 +94,6 @@ const iconos = {
   "/eventos/asambleas": CalendarDays,
   "/conocenos/mision-y-vision": Target,
   "/conocenos/comisiones": Users,
-  "/conocenos/normateca-y-estatutos": BookOpen,
 };
 
 const menuId = (label) => `hd-menu-${label.normalize("NFD").replace(/[^\w]/g, "").toLowerCase()}`;
