@@ -1,32 +1,17 @@
-import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Header from "./components/layout/Header";
-import Hero from "./components/sections/Hero";
-import FeatureCards from "./components/sections/FeatureCards";
-import BannerCarrusel from "./components/sections/BannerCarrusel";
-import AtencionWhatsapp from "./components/sections/AtencionWhatsapp";
-import Footer from "./components/layout/Footer";
-import Asambleas from "./pages/Eventos/Asambleas";
-import CursosCapacitacion from "./pages/Eventos/CursosCapacitacion";
-import Dro from "./pages/Tramites/Dro";
-import Rt from "./pages/Tramites/Rt";
-import Dictaminador from "./pages/Tramites/Dictaminador";
-import PeritosValuadores from "./pages/Servicios/PeritosValuadores";
-import CalculoEstructural from "./pages/Servicios/CalculoEstructural";
-import BolsaTrabajo from "./pages/Servicios/BolsaTrabajo";
-import MisionVision from "./pages/Conocenos/MisionVision";
-import Comisiones from "./pages/Conocenos/Comisiones";
-
-function HomePage() {
-  return (
-    <main>
-      <Hero />
-      <FeatureCards />
-      <BannerCarrusel />
-      <AtencionWhatsapp />
-    </main>
-  );
-}
+import Header from "./components/layout/Header/Header";
+import Footer from "./components/layout/Footer/Footer";
+import Inicio from "./pages/Inicio/Inicio";
+import Asambleas from "./pages/Eventos/Asambleas/Asambleas";
+import CursosCapacitacion from "./pages/Eventos/CursosCapacitacion/CursosCapacitacion";
+import Dro from "./pages/Tramites/Dro/Dro";
+import Rt from "./pages/Tramites/Rt/Rt";
+import Dictaminador from "./pages/Tramites/Dictaminador/Dictaminador";
+import PeritosValuadores from "./pages/Servicios/PeritosValuadores/PeritosValuadores";
+import CalculoEstructural from "./pages/Servicios/CalculoEstructural/CalculoEstructural";
+import BolsaTrabajo from "./pages/Servicios/BolsaTrabajo/BolsaTrabajo";
+import MisionVision from "./pages/Conocenos/MisionVision/MisionVision";
+import Comisiones from "./pages/Conocenos/Comisiones/Comisiones";
 
 export default function App() {
   return (
@@ -34,7 +19,7 @@ export default function App() {
       <div className="main-container">
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Inicio />} />
           <Route path="/eventos/cursos-y-capacitacion" element={<CursosCapacitacion />} />
           <Route path="/eventos/asambleas" element={<Asambleas />} />
           <Route path="/tramites/dro" element={<Dro />} />
