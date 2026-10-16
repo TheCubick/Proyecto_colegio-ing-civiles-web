@@ -1,0 +1,240 @@
+/* =========================================================
+   CONÓCENOS: COMISIONES
+   ========================================================= */
+.com-page {
+  --com-red: #ba2a33;
+  --com-red-dark: #962e35;
+  --com-dark: #383637;
+  --com-light: #e5e5e5;
+
+  background: #fff;
+  color: var(--com-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+}
+
+.com-page h1,
+.com-page h2,
+.com-page h3,
+.com-page strong,
+.com-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.com-container {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Animación de entrada ---------- */
+@keyframes com-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.com-animate {
+  animation: com-fade-up 0.7s ease-out both;
+}
+
+.com-animate:nth-child(2) { animation-delay: 0.1s; }
+.com-animate:nth-child(3) { animation-delay: 0.2s; }
+.com-animate:nth-child(4) { animation-delay: 0.3s; }
+
+/* ---------- Hero ---------- */
+/* El padding superior deja espacio al header fijo del sitio */
+.com-hero {
+  padding: 9rem 0 4rem;
+  background: linear-gradient(180deg, #fff 0%, var(--com-light) 100%);
+  border-bottom: 3px solid var(--com-red);
+}
+
+.com-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 0.85rem;
+}
+
+.com-breadcrumb a {
+  color: var(--com-red);
+  font-weight: 600;
+}
+
+.com-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.com-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--com-red);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.com-hero h1 {
+  margin: 0 0 14px;
+  color: var(--com-red);
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.com-intro {
+  max-width: 720px;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+/* ---------- Sección gris con tarjetas ---------- */
+.com-section {
+  padding: 4.5rem 0;
+  background: var(--com-light);
+}
+
+.com-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(56, 54, 55, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.com-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(150, 46, 53, 0.18);
+}
+
+.com-card-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--com-red);
+  transition: all 0.3s ease;
+}
+
+.com-card:hover .com-card-icon {
+  background: var(--com-red);
+  color: #fff;
+}
+
+.com-breadcrumb a:focus-visible,
+.com-page a:focus-visible {
+  outline: 2px solid var(--com-red-dark);
+  outline-offset: 3px;
+}
+
+/* ---------- Grid de comisiones ---------- */
+.com-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.com-card {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 4px solid transparent;
+}
+
+.com-card:hover {
+  border-bottom-color: var(--com-red);
+}
+
+.com-card .com-card-icon {
+  margin-bottom: 18px;
+}
+
+.com-card h2 {
+  margin: 0 0 10px;
+  color: var(--com-red);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.com-card p {
+  margin: 0 0 18px;
+  line-height: 1.7;
+}
+
+.com-card-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  margin-top: auto;
+  color: var(--com-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.com-card-link:hover {
+  color: var(--com-red-dark);
+  transform: translateX(4px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 850px) {
+  .com-hero {
+    padding-top: 8rem;
+  }
+
+  .com-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .com-container {
+    padding: 0 16px;
+  }
+
+  .com-hero {
+    padding: 7.5rem 0 3rem;
+  }
+
+  .com-section {
+    padding: 3rem 0;
+  }
+
+  .com-card {
+    padding: 24px;
+  }
+
+  .com-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .com-page *,
+  .com-animate {
+    animation: none !important;
+    transition: none !important;
+  }
+}

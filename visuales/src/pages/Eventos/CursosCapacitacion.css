@@ -1,0 +1,497 @@
+/* =========================================================
+   CURSOS, CAPACITACIONES Y EVENTOS (MURO DE NOTICIAS)
+   ========================================================= */
+.cc-page {
+  --cc-red: #ba2a33;
+  --cc-red-dark: #962e35;
+  --cc-dark: #383637;
+  --cc-light: #e5e5e5;
+
+  background: #fff;
+  color: var(--cc-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+}
+
+.cc-page h1,
+.cc-page h2,
+.cc-page h3,
+.cc-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.cc-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Animación de entrada ---------- */
+@keyframes cc-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cc-animate {
+  animation: cc-fade-up 0.7s ease-out both;
+}
+
+.cc-animate:nth-child(2) { animation-delay: 0.1s; }
+.cc-animate:nth-child(3) { animation-delay: 0.2s; }
+
+/* ---------- Hero ---------- */
+/* El padding superior deja espacio al header fijo del sitio */
+.cc-hero {
+  padding: 9rem 0 3.5rem;
+  background: linear-gradient(180deg, #fff 0%, #f3f3f3 100%);
+  border-bottom: 3px solid var(--cc-red);
+}
+
+.cc-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 0.85rem;
+}
+
+.cc-breadcrumb a {
+  color: var(--cc-red);
+  font-weight: 600;
+}
+
+.cc-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.cc-hero h1 {
+  margin: 0 0 14px;
+  color: var(--cc-red);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.cc-intro {
+  max-width: 680px;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ---------- Próximos cursos (destacados) ---------- */
+.cc-cursos {
+  padding: 4rem 0;
+  background: #fff;
+}
+
+.cc-cursos-lista {
+  display: grid;
+  gap: 28px;
+}
+
+.cc-curso {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  overflow: hidden;
+  border: 1px solid var(--cc-light);
+  border-left: 5px solid var(--cc-red);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(56, 54, 55, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cc-curso:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(150, 46, 53, 0.22);
+}
+
+.cc-curso-media {
+  position: relative;
+  min-height: 240px;
+  overflow: hidden;
+  background: var(--cc-light);
+}
+
+.cc-curso-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cc-curso:hover .cc-curso-img {
+  transform: scale(1.05);
+}
+
+.cc-curso-modalidad {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--cc-red);
+  color: #fff;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(150, 46, 53, 0.35);
+}
+
+.cc-curso-body {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px;
+}
+
+.cc-curso h3 {
+  margin: 0 0 14px;
+  color: var(--cc-red);
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cc-curso-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.cc-curso-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cc-curso-meta svg {
+  flex-shrink: 0;
+  color: var(--cc-red);
+}
+
+.cc-curso p {
+  margin: 0 0 22px;
+  line-height: 1.7;
+}
+
+.cc-curso-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.cc-curso-actions .cc-btn {
+  padding: 12px 22px;
+  font-size: 15px;
+}
+
+.cc-btn-outline {
+  border: 2px solid var(--cc-red);
+  background: transparent;
+  color: var(--cc-red);
+}
+
+.cc-btn-outline:hover {
+  border-color: var(--cc-red-dark);
+  background: rgba(186, 42, 51, 0.08);
+  color: var(--cc-red-dark);
+  box-shadow: none;
+}
+
+.cc-cursos-vacio {
+  margin: 0;
+  padding: 40px 24px;
+  border: 2px dashed rgba(56, 54, 55, 0.2);
+  border-radius: 14px;
+  text-align: center;
+}
+
+/* ---------- Muro de noticias ---------- */
+.cc-muro {
+  padding: 4rem 0 5rem;
+  background: var(--cc-light);
+}
+
+.cc-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  color: var(--cc-red);
+}
+
+.cc-section-header h2 {
+  margin: 0;
+  color: var(--cc-dark);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 700;
+}
+
+.cc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+}
+
+/* ---------- Tarjeta ---------- */
+.cc-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(56, 54, 55, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(150, 46, 53, 0.2);
+}
+
+.cc-card-media {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--cc-light);
+}
+
+.cc-card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cc-card:hover .cc-card-img {
+  transform: scale(1.05);
+}
+
+.cc-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px 22px 22px;
+}
+
+.cc-card h3 {
+  margin: 0 0 10px;
+  color: var(--cc-red);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Extracto de 4 líneas; el texto completo se lee en "Leer más" */
+.cc-card p {
+  display: -webkit-box;
+  margin: 0 0 18px;
+  overflow: hidden;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
+.cc-btn {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--cc-red);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cc-btn:hover {
+  background: var(--cc-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(150, 46, 53, 0.3);
+}
+
+.cc-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.cc-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.cc-btn:focus-visible,
+.cc-btn-outline:focus-visible,
+.cc-breadcrumb a:focus-visible,
+.cc-modal-close:focus-visible {
+  outline: 2px solid var(--cc-red-dark);
+  outline-offset: 3px;
+}
+
+.cc-img-vacia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  background: var(--cc-light);
+  color: rgba(56, 54, 55, 0.5);
+}
+
+/* ---------- Modal "Leer más" ---------- */
+.cc-modal {
+  width: min(760px, calc(100% - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--cc-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.cc-modal[open] {
+  animation: cc-fade-up 0.3s ease-out;
+}
+
+.cc-modal::backdrop {
+  background: rgba(56, 54, 55, 0.75);
+}
+
+.cc-modal-content {
+  position: relative;
+}
+
+.cc-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--cc-dark);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+}
+
+.cc-modal-close:hover {
+  background: var(--cc-red);
+  color: #fff;
+}
+
+.cc-modal-img {
+  display: block;
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  background: var(--cc-light);
+}
+
+.cc-modal-body {
+  padding: 24px 28px 28px;
+}
+
+.cc-modal-body h2 {
+  margin: 0 0 12px;
+  color: var(--cc-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.cc-modal-body p {
+  margin: 0;
+  line-height: 1.75;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 850px) {
+  .cc-hero {
+    padding-top: 8rem;
+  }
+
+  .cc-curso {
+    grid-template-columns: 1fr;
+    border-top: 5px solid var(--cc-red);
+    border-left-width: 1px;
+  }
+
+  .cc-curso-media {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 600px) {
+  .cc-container {
+    padding: 0 16px;
+  }
+
+  .cc-hero {
+    padding: 7.5rem 0 2.5rem;
+  }
+
+  .cc-cursos,
+  .cc-muro {
+    padding: 3rem 0 3.5rem;
+  }
+
+  .cc-curso-body {
+    padding: 22px 20px;
+  }
+
+  .cc-curso-actions .cc-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cc-modal-body {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-page *,
+  .cc-animate,
+  .cc-modal[open] {
+    animation: none !important;
+    transition: none !important;
+  }
+}

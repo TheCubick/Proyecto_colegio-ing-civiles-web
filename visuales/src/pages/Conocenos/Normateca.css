@@ -1,0 +1,344 @@
+/* =========================================================
+   CONÓCENOS: NORMATECA Y ESTATUTOS
+   ========================================================= */
+.nor-page {
+  --nor-red: #ba2a33;
+  --nor-red-dark: #962e35;
+  --nor-dark: #383637;
+  --nor-light: #e5e5e5;
+
+  background: #fff;
+  color: var(--nor-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+}
+
+.nor-page h1,
+.nor-page h2,
+.nor-page h3,
+.nor-page strong,
+.nor-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.nor-container {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Animación de entrada ---------- */
+@keyframes nor-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nor-animate {
+  animation: nor-fade-up 0.7s ease-out both;
+}
+
+.nor-animate:nth-child(2) { animation-delay: 0.1s; }
+.nor-animate:nth-child(3) { animation-delay: 0.2s; }
+.nor-animate:nth-child(4) { animation-delay: 0.3s; }
+
+/* ---------- Hero ---------- */
+/* El padding superior deja espacio al header fijo del sitio */
+.nor-hero {
+  padding: 9rem 0 4rem;
+  background: linear-gradient(180deg, #fff 0%, var(--nor-light) 100%);
+  border-bottom: 3px solid var(--nor-red);
+}
+
+.nor-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 0.85rem;
+}
+
+.nor-breadcrumb a {
+  color: var(--nor-red);
+  font-weight: 600;
+}
+
+.nor-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.nor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--nor-red);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nor-hero h1 {
+  margin: 0 0 14px;
+  color: var(--nor-red);
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.nor-intro {
+  max-width: 720px;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+/* ---------- Sección gris con tarjetas ---------- */
+.nor-section {
+  padding: 4.5rem 0;
+  background: var(--nor-light);
+}
+
+.nor-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(56, 54, 55, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(150, 46, 53, 0.18);
+}
+
+.nor-card-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--nor-red);
+  transition: all 0.3s ease;
+}
+
+.nor-card:hover .nor-card-icon {
+  background: var(--nor-red);
+  color: #fff;
+}
+
+.nor-breadcrumb a:focus-visible,
+.nor-page a:focus-visible {
+  outline: 2px solid var(--nor-red-dark);
+  outline-offset: 3px;
+}
+
+/* ---------- Documentos (tarjetas tipo archivo PDF) ---------- */
+.nor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.nor-doc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+/* Icono con forma de hoja con la esquina doblada */
+.nor-doc-file {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 88px;
+  border-radius: 6px 22px 6px 6px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--nor-red);
+  transition: all 0.3s ease;
+}
+
+.nor-doc-file::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 0 0 0 6px;
+  background: rgba(150, 46, 53, 0.25);
+}
+
+.nor-doc:hover .nor-doc-file {
+  background: var(--nor-red);
+  color: #fff;
+}
+
+.nor-doc-ext {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--nor-red-dark);
+  color: #fff;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  transform: translateX(-50%);
+}
+
+.nor-doc-body {
+  flex: 1;
+}
+
+.nor-doc h2 {
+  margin: 0 0 8px;
+  color: var(--nor-red);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.nor-doc p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.nor-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 8px;
+  background: var(--nor-red);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.nor-btn:hover {
+  background: var(--nor-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.3);
+}
+
+.nor-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.nor-btn:hover svg {
+  transform: translateY(2px);
+}
+
+/* Documento sin archivo disponible */
+.nor-doc.is-pendiente .nor-doc-file {
+  background: var(--nor-light);
+  color: rgba(56, 54, 55, 0.6);
+}
+
+.nor-doc.is-pendiente .nor-doc-ext {
+  background: rgba(56, 54, 55, 0.6);
+}
+
+.nor-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 2px dashed rgba(56, 54, 55, 0.3);
+  border-radius: 8px;
+  color: rgba(56, 54, 55, 0.8);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.nor-nota {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  padding: 16px 20px;
+  border-left: 4px solid var(--nor-red);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.nor-nota svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--nor-red);
+}
+
+.nor-nota p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.nor-nota a {
+  color: var(--nor-red);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 850px) {
+  .nor-hero {
+    padding-top: 8rem;
+  }
+
+  .nor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .nor-container {
+    padding: 0 16px;
+  }
+
+  .nor-hero {
+    padding: 7.5rem 0 3rem;
+  }
+
+  .nor-section {
+    padding: 3rem 0;
+  }
+
+  .nor-card {
+    padding: 24px;
+  }
+
+  .nor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nor-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nor-page *,
+  .nor-animate {
+    animation: none !important;
+    transition: none !important;
+  }
+}
