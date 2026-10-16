@@ -10,11 +10,11 @@ import Asambleas from "./pages/Eventos/Asambleas";
 import Dro from "./pages/Tramites/Dro";
 import Rt from "./pages/Tramites/Rt";
 import Dictaminador from "./pages/Tramites/Dictaminador";
+import PeritosValuadores from "./pages/Servicios/PeritosValuadores";
+import CalculoEstructural from "./pages/Servicios/CalculoEstructural";
+import BolsaTrabajo from "./pages/Servicios/BolsaTrabajo";
 
 const infoRoutes = [
-  ["servicios/peritos-valuadores", "Peritos Valuadores", "Servicios"],
-  ["servicios/calculo-estructural", "Cálculo Estructural", "Servicios"],
-  ["servicios/bolsa-de-trabajo", "Bolsa de Trabajo", "Servicios"],
   ["eventos/cursos-y-capacitacion", "Cursos y Capacitación", "Eventos"],
   ["conocenos/mision-y-vision", "Misión y Visión", "Conócenos"],
   ["conocenos/comisiones", "Comisiones", "Conócenos"],
@@ -45,6 +45,9 @@ export default function App() {
           <Route path="/tramites/dro" element={<Dro />} />
           <Route path="/tramites/rt" element={<Rt />} />
           <Route path="/tramites/dictaminador-de-riesgos" element={<Dictaminador />} />
+          <Route path="/servicios/peritos-valuadores" element={<PeritosValuadores />} />
+          <Route path="/servicios/calculo-estructural" element={<CalculoEstructural />} />
+          <Route path="/servicios/bolsa-de-trabajo" element={<BolsaTrabajo />} />
           
           {infoRoutes.map(([path, title, category]) => (
             <Route

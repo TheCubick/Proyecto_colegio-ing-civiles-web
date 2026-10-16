@@ -1,0 +1,451 @@
+/* =========================================================
+   SERVICIO: BOLSA DE TRABAJO
+   ========================================================= */
+.bt-page {
+  --bt-red: #ba2a33;
+  --bt-red-dark: #962e35;
+  --bt-dark: #383637;
+  --bt-light: #e5e5e5;
+
+  background: #fff;
+  color: var(--bt-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+}
+
+.bt-page h1,
+.bt-page h2,
+.bt-page h3,
+.bt-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.bt-container {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Animación de entrada ---------- */
+@keyframes bt-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bt-animate {
+  animation: bt-fade-up 0.7s ease-out both;
+}
+
+.bt-animate:nth-child(2) { animation-delay: 0.1s; }
+.bt-animate:nth-child(3) { animation-delay: 0.2s; }
+.bt-animate:nth-child(4) { animation-delay: 0.3s; }
+
+/* ---------- Hero ---------- */
+/* El padding superior deja espacio al header fijo del sitio */
+.bt-hero {
+  padding: 9rem 0 4rem;
+  background: linear-gradient(180deg, #fff 0%, var(--bt-light) 100%);
+  border-bottom: 3px solid var(--bt-red);
+}
+
+.bt-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 0.85rem;
+}
+
+.bt-breadcrumb a {
+  color: var(--bt-red);
+  font-weight: 600;
+}
+
+.bt-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.bt-hero h1 {
+  margin: 0 0 14px;
+  color: var(--bt-red);
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.bt-intro {
+  max-width: 640px;
+  margin: 0;
+  font-size: 1.12rem;
+  line-height: 1.7;
+}
+
+.bt-hero-actions {
+  margin-top: 28px;
+}
+
+/* ---------- Tarjetas ---------- */
+.bt-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(56, 54, 55, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bt-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(150, 46, 53, 0.18);
+}
+
+.bt-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--bt-red);
+  transition: all 0.3s ease;
+}
+
+.bt-card:hover .bt-card-icon {
+  background: var(--bt-red);
+  color: #fff;
+}
+
+.bt-card h2,
+.bt-card h3 {
+  margin: 0 0 10px;
+  color: var(--bt-dark);
+  font-weight: 700;
+}
+
+.bt-card h2 {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+.bt-card h3 {
+  font-size: 1.1rem;
+}
+
+.bt-card p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ---------- Información + imagen ---------- */
+.bt-content {
+  padding: 4.5rem 0;
+}
+
+.bt-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.bt-card-main {
+  padding: 36px;
+  border-left: 5px solid var(--bt-red);
+}
+
+.bt-card-main p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.bt-figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(150, 46, 53, 0.25);
+  aspect-ratio: 4 / 3;
+}
+
+.bt-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bt-figure:hover img {
+  transform: scale(1.04);
+}
+
+.bt-img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+  background: var(--bt-light);
+  color: rgba(56, 54, 55, 0.6);
+  font-size: 0.9rem;
+}
+
+/* ---------- Bloque destacado ---------- */
+.bt-features {
+  padding: 4.5rem 0;
+  background: var(--bt-light);
+}
+
+.bt-features > .bt-container > h2 {
+  margin: 0 0 28px;
+  color: var(--bt-red);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+}
+
+.bt-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* ---------- Llamado a la acción ---------- */
+.bt-cta {
+  padding: 4.5rem 0;
+}
+
+.bt-cta-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.bt-cta h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+}
+
+.bt-cta p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.bt-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.bt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border: 2px solid var(--bt-red);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.bt-btn-primary {
+  background: var(--bt-red);
+  color: #fff;
+}
+
+.bt-btn-primary:hover {
+  border-color: var(--bt-red-dark);
+  background: var(--bt-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.3);
+}
+
+.bt-btn-secondary {
+  background: transparent;
+  color: var(--bt-red);
+}
+
+.bt-btn-secondary:hover {
+  background: rgba(186, 42, 51, 0.08);
+  transform: translateY(-2px);
+}
+
+.bt-btn:focus-visible,
+.bt-breadcrumb a:focus-visible {
+  outline: 2px solid var(--bt-red-dark);
+  outline-offset: 3px;
+}
+
+/* ---------- Vacantes ---------- */
+.bt-vacantes {
+  padding: 4.5rem 0 0;
+  /* Para que el header fijo no tape el título al usar "Ver vacantes" */
+  scroll-margin-top: 80px;
+}
+
+.bt-vacantes > .bt-container > h2 {
+  margin: 0 0 28px;
+  color: var(--bt-red);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+}
+
+.bt-vacantes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.bt-vacante {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 4px solid var(--bt-red);
+}
+
+.bt-vacante h3 {
+  margin: 0;
+}
+
+.bt-vacante-origen {
+  align-self: flex-start;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--bt-red);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bt-vacante .bt-vacante-empresa {
+  font-weight: 600;
+}
+
+.bt-vacante-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(56, 54, 55, 0.75);
+  font-size: 0.85rem;
+}
+
+.bt-vacante-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bt-vacante-meta svg {
+  color: var(--bt-red);
+}
+
+.bt-vacante-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--bt-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.bt-vacante-link:hover {
+  color: var(--bt-red-dark);
+  transform: translateX(4px);
+}
+
+.bt-vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  border: 2px dashed rgba(56, 54, 55, 0.2);
+  border-radius: 14px;
+  color: rgba(56, 54, 55, 0.75);
+  text-align: center;
+}
+
+.bt-vacio svg {
+  color: var(--bt-red);
+}
+
+.bt-vacio p {
+  margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 850px) {
+  .bt-hero {
+    padding-top: 8rem;
+  }
+
+  .bt-content-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .bt-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .bt-container {
+    padding: 0 16px;
+  }
+
+  .bt-hero {
+    padding: 7.5rem 0 3rem;
+  }
+
+  .bt-content,
+  .bt-features,
+  .bt-cta {
+    padding: 3rem 0;
+  }
+
+  .bt-vacantes {
+    padding-top: 3rem;
+  }
+
+  .bt-vacantes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bt-card,
+  .bt-card-main {
+    padding: 24px;
+  }
+
+  .bt-cta-actions,
+  .bt-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bt-page *,
+  .bt-animate {
+    animation: none !important;
+    transition: none !important;
+  }
+}
