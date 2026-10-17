@@ -152,7 +152,7 @@ const costos = [
   {
     grupo: "Inscripción",
     filas: [
-      ["Nuevo Agremiado (Ene–Dic 2026)", "$1,500.00"],
+      ["Nuevo Agremiado (Ene-Dic 2026)", "$1,500.00"],
       ["Pasante", "$500.00"],
       ["Estudiante", "$300.00"],
     ],
