@@ -57,7 +57,7 @@ export default function PeritosValuadores() {
         </div>
       </section>
 
-      <section className="pv-content">
+      <section className="pv-content fondo-cuadricula">
         <div className="pv-container pv-content-grid">
           <article className="pv-card pv-card-main">
             <span className="pv-card-icon">
@@ -104,7 +104,7 @@ export default function PeritosValuadores() {
         </div>
       </section>
 
-      <section className="pv-cta">
+      <section className="pv-cta fondo-cuadricula">
         <div className="pv-container pv-cta-box">
           <div>
             <h2>¿Necesitas un dictamen de valor?</h2>

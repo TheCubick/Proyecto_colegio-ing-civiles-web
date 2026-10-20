@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BadgeCheck, ChevronRight, Download, FileText, ImageOff, Info } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "../../../data/requisitos";
+import { infoRt } from "../../../data/tramitesInfo";
 import ModalContacto from "../../../components/ui/ModalContacto/ModalContacto";
+import TramiteDetalle from "../../../components/sections/TramiteDetalle/TramiteDetalle";
 import "./Rt.css";
 
 export default function Rt() {
@@ -41,7 +43,7 @@ export default function Rt() {
         </div>
       </section>
 
-      <section className="rt-content">
+      <section className="rt-content fondo-cuadricula">
         <div className="rt-container rt-content-grid">
           <div className="rt-text">
             <h2>¿Qué es un Representante Técnico?</h2>
@@ -69,6 +71,8 @@ export default function Rt() {
         </div>
       </section>
 
+      <TramiteDetalle info={infoRt} sigla="RT" onContactar={() => setContactoAbierto(true)} />
+
       <section className="rt-requisitos">
         <div className="rt-container">
           <h2>Requisitos generales</h2>
@@ -91,7 +95,7 @@ export default function Rt() {
         </div>
       </section>
 
-      <section className="rt-cta">
+      <section className="rt-cta fondo-cuadricula">
         <div className="rt-container rt-cta-box">
           <div>
             <h2>¿Listo para iniciar tu trámite?</h2>

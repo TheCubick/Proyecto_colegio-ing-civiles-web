@@ -116,7 +116,7 @@ export default function MisionVision() {
         </div>
       </section>
 
-      <section className="mv-valores" aria-labelledby="mv-valores-titulo">
+      <section className="mv-valores fondo-cuadricula" aria-labelledby="mv-valores-titulo">
         <div className="mv-container">
           <h2 id="mv-valores-titulo" className="mv-section-title">Nuestros Valores Institucionales</h2>
           <div className="mv-valores-grid">
@@ -195,7 +195,7 @@ export default function MisionVision() {
         </div>
       </section>
 
-      <section className="mv-mas">
+      <section className="mv-mas fondo-cuadricula">
         <div className="mv-container">
           <h2>Conoce más del Colegio</h2>
           <div className="mv-mas-grid">

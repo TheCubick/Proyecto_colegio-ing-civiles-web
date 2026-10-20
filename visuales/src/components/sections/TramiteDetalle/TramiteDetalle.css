@@ -1,0 +1,320 @@
+/* =========================================================
+   TRÁMITES: INFORMACIÓN AMPLIADA (funciones, contratación, normativa)
+   ========================================================= */
+.td-section {
+  --td-red: #ba2a33;
+  --td-red-dark: #962e35;
+  --td-dark: #383637;
+  --td-light: #e5e5e5;
+
+  padding: 4.5rem 0;
+  color: var(--td-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+}
+
+.td-section h2,
+.td-section h3,
+.td-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.td-container {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Encabezado de cada bloque ---------- */
+.td-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.td-head-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--td-red);
+  color: #fff;
+}
+
+.td-head h2 {
+  margin: 0;
+  color: var(--td-red);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.td-intro {
+  max-width: 860px;
+  margin: 0 0 32px;
+}
+
+/* ---------- Funciones (gris claro con puntos) ---------- */
+.td-funciones-sec {
+  background-color: var(--td-light);
+}
+
+.td-funciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.td-funcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--td-light);
+  border-top: 4px solid var(--td-red);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(56, 54, 55, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.td-funcion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(150, 46, 53, 0.15);
+}
+
+.td-funcion > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--td-red);
+}
+
+.td-funcion h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.td-funcion p {
+  margin: 0;
+}
+
+/* ---------- Cómo contratar (bloque oscuro para cerrar con contraste) ---------- */
+.td-contratar {
+  background: var(--td-dark);
+  color: #fff;
+}
+
+.td-contratar .td-head h2 {
+  color: #fff;
+}
+
+.td-contratar .td-paso {
+  color: var(--td-dark);
+}
+
+.td-pasos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.td-paso {
+  position: relative;
+  padding: 28px 22px 24px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(56, 54, 55, 0.08);
+}
+
+.td-paso-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: var(--td-red);
+  color: #fff;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.td-paso h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.td-paso p {
+  margin: 0;
+}
+
+.td-contratar-pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 20px 24px;
+  border-left: 5px solid var(--td-red);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.td-privacidad {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+}
+
+.td-privacidad svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: #fff;
+}
+
+.td-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border: 2px solid var(--td-red);
+  border-radius: 8px;
+  background: var(--td-red);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.td-btn:hover {
+  border-color: var(--td-red-dark);
+  background: var(--td-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.3);
+}
+
+.td-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ---------- Importancia normativa ---------- */
+.td-normativa {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.td-parrafo {
+  margin: 0 0 18px;
+}
+
+.td-parrafo:last-child {
+  margin-bottom: 0;
+}
+
+.td-riesgos {
+  padding: 28px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--td-red) 0%, var(--td-red-dark) 100%);
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(150, 46, 53, 0.3);
+}
+
+.td-riesgos h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.td-riesgos h3 svg {
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.td-riesgos ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.td-riesgos li {
+  padding: 12px 16px;
+  border-left: 4px solid #fff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 950px) {
+  .td-pasos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .td-normativa {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 700px) {
+  .td-funciones,
+  .td-pasos {
+    grid-template-columns: 1fr;
+  }
+
+  .td-contratar-pie {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 600px) {
+  .td-section {
+    padding: 3rem 0;
+  }
+
+  .td-container {
+    padding: 0 16px;
+  }
+
+  .td-head-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .td-funcion {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .td-section * {
+    transition: none !important;
+  }
+}

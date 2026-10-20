@@ -1,0 +1,5 @@
+- Justificar los textos
+- el header debe contener algún color blanco casi transparente para no perder legibilidad en los fondos de los videos
+- Agregar más información en DRO, RT, etc. sobre que hacen, como contratar, etc.
+- Agregar algún fondo con estampados, ya que hay muchos espacios en blanco, y según las personas pierden el interes
+- Agrandar las letras, ya que son muy pequeñas, porque la mayoría de los usuarios serían personas adultas con vista cansada o con dificultades de ver

@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, Download, FileText, ImageOff, Info, ShieldAlert } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "../../../data/requisitos";
+import { infoDictaminador } from "../../../data/tramitesInfo";
 import ModalContacto from "../../../components/ui/ModalContacto/ModalContacto";
+import TramiteDetalle from "../../../components/sections/TramiteDetalle/TramiteDetalle";
 import "./Dictaminador.css";
 
 export default function Dictaminador() {
@@ -15,7 +17,7 @@ export default function Dictaminador() {
 
   return (
     <main className="dict-page">
-      <section className="dict-hero">
+      <section className="dict-hero fondo-cuadricula">
         <div className="dict-container">
           <nav className="dict-breadcrumb" aria-label="Ruta de navegación">
             <Link to="/">Inicio</Link>
@@ -36,7 +38,7 @@ export default function Dictaminador() {
         </div>
       </section>
 
-      <section className="dict-content">
+      <section className="dict-content fondo-cuadricula">
         <div className="dict-container dict-content-grid">
           <div className="dict-text">
             <h2>¿Qué hace un Dictaminador de Riesgos?</h2>
@@ -65,6 +67,8 @@ export default function Dictaminador() {
         </div>
       </section>
 
+      <TramiteDetalle info={infoDictaminador} sigla="Dictaminador" onContactar={() => setContactoAbierto(true)} />
+
       <section className="dict-requisitos">
         <div className="dict-container">
           <h2>Requisitos generales</h2>
@@ -87,7 +91,7 @@ export default function Dictaminador() {
         </div>
       </section>
 
-      <section className="dict-cta">
+      <section className="dict-cta fondo-cuadricula">
         <div className="dict-container dict-cta-box">
           <div>
             <h2>¿Listo para iniciar tu trámite?</h2>

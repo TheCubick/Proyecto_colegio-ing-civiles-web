@@ -215,8 +215,10 @@
   position: relative;
   z-index: 1;
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: var(--fs-parrafo);
+  line-height: var(--lh-parrafo);
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* ---------- Conoce más ---------- */
@@ -325,7 +327,10 @@
 
 .mv-valor p {
   margin: 0;
-  line-height: 1.65;
+  font-size: var(--fs-parrafo);
+  line-height: var(--lh-parrafo);
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* ---------- Organigrama ---------- */
@@ -412,7 +417,10 @@
 .mv-compromiso p {
   position: relative;
   margin: 0;
-  line-height: 1.7;
+  font-size: var(--fs-parrafo);
+  line-height: var(--lh-parrafo);
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* ---------- Privacidad y seguridad gremial ---------- */
@@ -445,7 +453,10 @@
 
 .mv-privacidad-box p {
   margin: 0;
-  line-height: 1.75;
+  font-size: var(--fs-parrafo);
+  line-height: var(--lh-parrafo);
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* ---------- Responsive ---------- */

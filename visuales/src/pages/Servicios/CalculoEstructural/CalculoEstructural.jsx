@@ -57,7 +57,7 @@ export default function CalculoEstructural() {
         </div>
       </section>
 
-      <section className="ce-content">
+      <section className="ce-content fondo-cuadricula">
         <div className="ce-container ce-content-grid">
           <article className="ce-card ce-card-main">
             <span className="ce-card-icon">
@@ -104,7 +104,7 @@ export default function CalculoEstructural() {
         </div>
       </section>
 
-      <section className="ce-cta">
+      <section className="ce-cta fondo-cuadricula">
         <div className="ce-container ce-cta-box">
           <div>
             <h2>¿Tu proyecto necesita cálculo estructural?</h2>

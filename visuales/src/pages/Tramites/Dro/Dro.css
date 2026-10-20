@@ -128,8 +128,10 @@
 
 .dro-text p {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: var(--fs-parrafo);
+  line-height: var(--lh-parrafo);
+  text-align: justify;
+  hyphens: auto;
 }
 
 .dro-figure {

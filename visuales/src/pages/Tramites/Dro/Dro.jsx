@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, Download, FileText, HardHat, ImageOff, Info } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "../../../data/requisitos";
+import { infoDro } from "../../../data/tramitesInfo";
 import ModalContacto from "../../../components/ui/ModalContacto/ModalContacto";
+import TramiteDetalle from "../../../components/sections/TramiteDetalle/TramiteDetalle";
 import "./Dro.css";
 
 export default function Dro() {
@@ -41,7 +43,7 @@ export default function Dro() {
         </div>
       </section>
 
-      <section className="dro-content">
+      <section className="dro-content fondo-cuadricula">
         <div className="dro-container dro-content-grid">
           <div className="dro-text">
             <h2>¿Qué es un DRO?</h2>
@@ -69,6 +71,8 @@ export default function Dro() {
         </div>
       </section>
 
+      <TramiteDetalle info={infoDro} sigla="DRO" onContactar={() => setContactoAbierto(true)} />
+
       <section className="dro-requisitos">
         <div className="dro-container">
           <h2>Requisitos generales</h2>
@@ -91,7 +95,7 @@ export default function Dro() {
         </div>
       </section>
 
-      <section className="dro-cta">
+      <section className="dro-cta fondo-cuadricula">
         <div className="dro-container dro-cta-box">
           <div>
             <h2>¿Listo para iniciar tu trámite?</h2>

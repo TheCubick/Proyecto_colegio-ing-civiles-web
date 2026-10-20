@@ -140,7 +140,10 @@
 
 .pv-card p {
   margin: 0;
-  line-height: 1.7;
+  font-size: var(--fs-parrafo);
+  line-height: var(--lh-parrafo);
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* ---------- Información + imagen ---------- */
@@ -160,10 +163,6 @@
   border-left: 5px solid var(--pv-red);
 }
 
-.pv-card-main p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
 
 .pv-figure {
   margin: 0;

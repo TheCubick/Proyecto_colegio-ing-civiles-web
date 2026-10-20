@@ -18,20 +18,30 @@
   z-index: 100;
   width: 100%;
   padding: 18px 0;
-  border-bottom: 1px solid transparent;
-  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  /* Cristal blanco siempre activo: el texto oscuro del menú se lee
+     aunque pase sobre los videos o imágenes de fondo */
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 18px rgba(56, 54, 55, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   font-family: "Montserrat", "Segoe UI", sans-serif;
-  transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Glassmorphism al hacer scroll */
+/* Al hacer scroll se compacta y gana un poco más de opacidad y sombra */
 .hd-header.is-scrolled {
   padding: 10px 0;
-  border-bottom-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 8px 30px rgba(56, 54, 55, 0.12);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  backdrop-filter: blur(14px) saturate(160%);
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 30px rgba(56, 54, 55, 0.14);
+}
+
+/* Navegadores sin backdrop-filter: fondo casi opaco para no perder contraste */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hd-header,
+  .hd-header.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.97);
+  }
 }
 
 .hd-container {

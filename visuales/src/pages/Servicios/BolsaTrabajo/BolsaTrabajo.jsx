@@ -79,7 +79,7 @@ export default function BolsaTrabajo() {
         </div>
       </section>
 
-      <section className="bt-content">
+      <section className="bt-content fondo-cuadricula">
         <div className="bt-container bt-content-grid">
           <article className="bt-card bt-card-main">
             <span className="bt-card-icon">
@@ -166,7 +166,7 @@ export default function BolsaTrabajo() {
         </div>
       </section>
 
-      <section className="bt-cta">
+      <section className="bt-cta fondo-cuadricula">
         <div className="bt-container bt-cta-box">
           <div>
             <h2>¿Tienes una vacante para ingenieros civiles?</h2>
