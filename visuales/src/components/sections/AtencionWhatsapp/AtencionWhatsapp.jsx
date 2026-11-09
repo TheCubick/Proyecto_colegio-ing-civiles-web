@@ -1,52 +1,12 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, CircleHelp, Inbox, MessageCircle, Send } from "lucide-react";
+import { preguntasFrecuentes, tiposMensaje } from "../../../data/inicio";
+import { enlaceWhatsapp } from "../../../utils/enlaces";
 import "./AtencionWhatsapp.css";
 
-const WHATSAPP_NUMERO = "529611190009";
+// Preguntas frecuentes + buzón por WhatsApp. Las preguntas están en src/data/inicio.js.
 const MAX_COMENTARIO = 1000;
-
-const whatsappUrl = (mensaje) => `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensaje)}`;
-
-const preguntas = [
-  {
-    pregunta: "¿Cómo puedo afiliarme si soy recién egresado, pasante o estudiante?",
-    respuesta:
-      "La inscripción es presencial en las oficinas del Colegio. Existen cuotas especiales para pasantes y estudiantes; consulta requisitos, formatos y costos en el botón “Afíliate” del menú.",
-    mensaje: "Hola, me gustaría recibir información sobre cómo inscribirme al Colegio como estudiante/pasante.",
-  },
-  {
-    pregunta: "¿Cómo solicito un Director Responsable de Obra (DRO), Perito o Dictaminador?",
-    respuesta:
-      "Por seguridad de nuestros socios, todo requerimiento de especialistas se gestiona de manera centralizada a través de las oficinas del Colegio. Escríbenos con los datos de tu obra o trámite.",
-    mensaje: "Hola, me gustaría solicitar un especialista (DRO, Perito o Dictaminador) para mi obra o trámite.",
-  },
-  {
-    pregunta: "¿Los cursos de capacitación están abiertos al público general y estudiantes?",
-    respuesta:
-      "Consulta las convocatorias vigentes en la sección Cursos y Capacitación. Cada curso indica sus requisitos de inscripción; escríbenos si tienes dudas sobre uno en particular.",
-    mensaje: "Hola, me gustaría saber si puedo inscribirme a los cursos de capacitación del Colegio.",
-  },
-  {
-    pregunta: "¿Cómo establezco un convenio institucional (Universidad o Dependencia)?",
-    respuesta:
-      "El Colegio mantiene vinculación con universidades y dependencias de gobierno. Envíanos el nombre de tu institución y el propósito del convenio para darle seguimiento.",
-    mensaje: "Hola, represento a una institución y me gustaría establecer un convenio con el Colegio.",
-  },
-  {
-    pregunta: "¿Cómo envío mi comprobante de pago para facturación?",
-    respuesta:
-      "Envía tu comprobante legible (con nombre y concepto), tu Constancia de Situación Fiscal y el Uso de CFDI a cictgcontabilidad@gmail.com o al WhatsApp 961-285-1837. Solo se facturan pagos del mes en curso.",
-    mensaje: "Hola, me gustaría enviar mi comprobante de pago para solicitar factura.",
-  },
-];
-
-const tiposMensaje = [
-  "Sugerencia para el Colegio",
-  "Queja o Reporte Ético",
-  "Solicitud de Convenio",
-  "Duda sobre Trámites",
-];
 
 function Pregunta({ item, index, abierta, onToggle }) {
   const panelId = `aw-respuesta-${index}`;
@@ -75,7 +35,7 @@ function Pregunta({ item, index, abierta, onToggle }) {
           >
             <div className="aw-faq-content">
               <p>{item.respuesta}</p>
-              <a href={whatsappUrl(item.mensaje)} target="_blank" rel="noopener noreferrer" className="aw-btn aw-btn-outline">
+              <a href={enlaceWhatsapp(item.mensaje)} target="_blank" rel="noopener noreferrer" className="aw-btn aw-btn-outline">
                 <MessageCircle size={17} aria-hidden="true" />
                 Preguntar por WhatsApp
               </a>
@@ -119,7 +79,7 @@ export default function AtencionWhatsapp() {
               Preguntas frecuentes
             </h3>
             <ul className="aw-faq-list">
-              {preguntas.map((item, i) => (
+              {preguntasFrecuentes.map((item, i) => (
                 <Pregunta
                   key={item.pregunta}
                   item={item}
@@ -167,7 +127,7 @@ export default function AtencionWhatsapp() {
               </small>
             </label>
 
-            <a href={whatsappUrl(mensajeBuzon)} target="_blank" rel="noopener noreferrer" className="aw-btn aw-btn-primary">
+            <a href={enlaceWhatsapp(mensajeBuzon)} target="_blank" rel="noopener noreferrer" className="aw-btn aw-btn-primary">
               <Send size={18} aria-hidden="true" />
               Enviar por WhatsApp al Colegio ↗
             </a>

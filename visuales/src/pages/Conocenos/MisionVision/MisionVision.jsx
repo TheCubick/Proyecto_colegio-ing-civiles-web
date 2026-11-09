@@ -1,77 +1,11 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  ChevronRight,
-  Eye,
-  FlaskConical,
-  Gavel,
-  GraduationCap,
-  Landmark,
-  Lightbulb,
-  Scale,
-  ShieldCheck,
-  Target,
-  Users,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, Landmark, ShieldCheck } from "lucide-react";
+import { compromisos, enlaces, pilares, valores } from "../../../data/misionVision";
+import Migas from "../../../components/ui/Migas/Migas";
 import "./MisionVision.css";
 
-const pilares = [
-  {
-    id: "mision",
-    icono: Target,
-    etiqueta: "Nuestra razón de ser",
-    titulo: "Misión",
-    texto:
-      "Ser una Asociación que promueva la capacitación permanente; así como la representación ante las instancias gubernamentales, a fin de que desarrollen la profesión de la Ingeniería Civil con el apego estricto al Código de Ética.",
-  },
-  {
-    id: "vision",
-    icono: Eye,
-    etiqueta: "Hacia dónde vamos",
-    titulo: "Visión",
-    texto:
-      "Tener reconocimiento a nivel estatal como la asociación que por su trayectoria intachable genere confianza de sus agremiados ante la prestación de servicios a la sociedad.",
-  },
-];
-
-const valores = [
-  { icono: Zap, titulo: "Eficiencia", texto: "Trámites y servicios técnicos atendidos con oportunidad y calidad." },
-  { icono: Scale, titulo: "Ética", texto: "Ejercicio profesional con apego estricto al Código de Ética." },
-  { icono: Lightbulb, titulo: "Innovación", texto: "Actualización continua ante los nuevos retos de la ingeniería civil." },
-];
-
-const compromisos = [
-  {
-    icono: Gavel,
-    texto: "Apego estricto al Código de Ética y vigilancia mediante la Comisión de Honor y Justicia.",
-  },
-  {
-    icono: Landmark,
-    texto: "Promover leyes, reglamentos y reformas relativos al ejercicio profesional.",
-  },
-  {
-    icono: GraduationCap,
-    texto:
-      "Colaborar en la elaboración y acreditamiento de proyectos de estudio y planes de especialidades y maestrías con universidades, para la excelencia académica.",
-  },
-  {
-    icono: FlaskConical,
-    texto:
-      "Impulsar la investigación científica, tecnológica y la certificación continua: registro ante la SEP, padrón activo mayor a 100 colegiados y el requisito reglamentario de 4 cursos / 30 horas de capacitación anual por agremiado.",
-  },
-];
-
-const enlaces = [
-  { to: "/conocenos/comisiones", icono: Users, titulo: "Comisiones", texto: "Especialidades y servicios técnicos del Colegio." },
-];
-
+// PÁGINA «MISIÓN Y VISIÓN». Los textos están en src/data/misionVision.js.
 export default function MisionVision() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <main className="mv-page">
       <section className="mv-hero">
@@ -80,13 +14,7 @@ export default function MisionVision() {
         </video>
         <div className="mv-hero-overlay" aria-hidden="true" />
         <div className="mv-container">
-          <nav className="mv-breadcrumb mv-hero-anim" aria-label="Ruta de navegación">
-            <Link to="/">Inicio</Link>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span>Conócenos</span>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span aria-current="page">Misión y Visión</span>
-          </nav>
+          <Migas className="mv-breadcrumb mv-hero-anim" />
           <span className="mv-badge mv-hero-anim">
             <Landmark size={16} aria-hidden="true" />
             Conócenos

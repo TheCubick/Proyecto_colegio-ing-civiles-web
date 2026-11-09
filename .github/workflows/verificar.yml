@@ -1,0 +1,27 @@
+# Revisa cada Pull Request: lint, build y reglas del Colegio (visuales/scripts/verificar-reglas.mjs).
+name: Verificar reglas CICTGZ
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: visuales
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: visuales/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - name: Reglas del Colegio (solo archivos del PR)
+        run: node scripts/verificar-reglas.mjs --base origin/${{ github.base_ref }}
