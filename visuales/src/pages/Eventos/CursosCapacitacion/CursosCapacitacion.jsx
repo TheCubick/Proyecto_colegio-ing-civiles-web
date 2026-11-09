@@ -1,16 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Fragment, useState } from "react";
 import {
   ArrowRight,
   Banknote,
   CalendarDays,
   CheckCircle2,
-  ChevronRight,
   Clock,
   CreditCard,
   FileText,
   GraduationCap,
-  ImageOff,
   Laptop,
   Mail,
   MapPin,
@@ -21,53 +18,22 @@ import {
   Shuffle,
   X,
 } from "lucide-react";
+import { cursos, noticias, requisitosInscripcion } from "../../../data/cursos";
+import { contacto } from "../../../data/contacto";
+import useBloquearScroll from "../../../hooks/useBloquearScroll";
+import useDialogo from "../../../hooks/useDialogo";
+import { enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
+import Migas from "../../../components/ui/Migas/Migas";
+import ImagenSegura from "../../../components/ui/ImagenSegura/ImagenSegura";
 import "./CursosCapacitacion.css";
 
-const WHATSAPP_INSCRIPCION =
-  "https://wa.me/529611190009?text=Hola,%20me%20gustar%C3%ADa%20inscribirme%20a%20un%20curso%20y%20solicitar%20los%20datos%20bancarios.";
-
-const requisitosInscripcion = [
-  "Llenar formato de inscripción impreso.",
-  "Identificación Oficial (INE).",
-  "Comprobante de pago (Voucher original o impreso).",
-];
-
 /*
-  Cursos y capacitaciones activas. DATOS DE EJEMPLO: reemplázalos con los cursos reales.
-  - modalidad: "Presencial", "En línea" o "Mixta"
-  - temario:   (opcional) ruta a un PDF en public/, ej. "/documentos/temario-precios.pdf".
-               Si no se indica, no se muestra el botón "Ver temario".
-  El botón "Inscribirse" abre el modal con el proceso de inscripción y requisitos.
+  PÁGINA «CURSOS Y CAPACITACIÓN».
+  Los cursos, las noticias y los requisitos están en src/data/cursos.js.
 */
-const cursosData = [
-  {
-    id: 1,
-    img: "/img/paginas/eventos/cursos/curso1.jpg",
-    titulo: "Diplomado en Supervisión de Obra Pública",
-    fecha: "Inicia: 15 de noviembre de 2026",
-    horario: "Sábados, 9:00 AM – 2:00 PM",
-    modalidad: "Mixta",
-    descripcion: "Especialización enfocada en la normativa actual y control de calidad en obra.",
-  },
-  {
-    id: 2,
-    img: "/img/paginas/eventos/cursos/curso2.jpg",
-    titulo: "Curso de Análisis de Precios Unitarios",
-    fecha: "Inicia: 22 de noviembre de 2026",
-    horario: "Martes y jueves, 6:00 PM – 9:00 PM",
-    modalidad: "En línea",
-    descripcion: "Integración de costos directos, indirectos y financiamiento para presupuestos de obra.",
-  },
-  {
-    id: 3,
-    img: "/img/paginas/eventos/cursos/curso3.jpg",
-    titulo: "Taller de Bitácora Electrónica de Obra Pública",
-    fecha: "5 de diciembre de 2026",
-    horario: "Viernes, 4:00 PM – 8:00 PM",
-    modalidad: "Presencial",
-    descripcion: "Uso práctico de la BEOP: apertura, notas, firmas y cierre de bitácora.",
-  },
-];
+
+const MENSAJE_WHATSAPP_INSCRIPCION =
+  "Hola, me gustaría inscribirme a un curso y solicitar los datos bancarios.";
 
 const iconoModalidad = {
   Presencial: MapPin,
@@ -75,79 +41,13 @@ const iconoModalidad = {
   Mixta: Shuffle,
 };
 
-// Publicaciones del muro. Las más nuevas van al inicio del arreglo.
-const posts = [
-  {
-    id: 1,
-    img: "/img/posts/1.png",
-    titulo: "Avance de las nuevas instalaciones",
-    texto: "El Ing. Adrián Hernández Hernández encabezó la revisión formal de la primera etapa de construcción de las instalaciones del CICTGZ, verificando el diseño de fachada y los espacios para actividades gremiales.",
-  },
-  {
-    id: 2,
-    img: "/img/posts/2.png",
-    titulo: "Unidad Gremial e Infraestructura",
-    texto: "Participación en la Intercolegial de Colegios de Profesionistas de Chiapas. Destacó la entrega formal de una terna de mujeres profesionistas al gobernador Eduardo Ramírez para la titularidad del INIFECH.",
-  },
-  {
-    id: 3,
-    img: "/img/posts/3.png",
-    titulo: "Respaldo al Mtro. Jhovani Salazar",
-    texto: "El Consejo Directivo acudió a Palacio de Gobierno para respaldar al Mtro. Jhovani Salazar Ruiz tras su renuncia, reconociendo su labor como puente entre el sector profesional y la ciudadanía.",
-  },
-  {
-    id: 4,
-    img: "/img/posts/4.png",
-    titulo: "XV aniversario de MORENA",
-    texto: "Representantes del VI Consejo Directivo asistieron al XV aniversario de MORENA en Tuxtla Gutiérrez, respondiendo al diálogo institucional y al papel clave de la ingeniería civil en el desarrollo del estado.",
-  },
-  {
-    id: 5,
-    img: "/img/posts/5.png",
-    titulo: "Infraestructura Hídrica",
-    texto: "Participación en el Primer Ciclo de Conferencias Técnicas en Materia Hídrica en Oaxaca. El CICTGZ refrendó la importancia de la cooperación para impulsar obras hídricas eficientes.",
-  },
-  {
-    id: 6,
-    img: "/img/posts/6.png",
-    titulo: "Programa de Desinfección del Agua 2026",
-    texto: "El presidente del CICTGZ, Ing. Adrián Hernández, acompañó al gobernador en el arranque del Programa de Desinfección del Agua 2026, reafirmando su agenda técnica con dependencias estatales.",
-  },
-  {
-    id: 7,
-    img: "/img/posts/7.png",
-    titulo: "Desayuno Intercolegial",
-    texto: "Encuentro con presidentes de 14 colegios de profesionistas para analizar temas prioritarios. El CICTGZ dio a conocer la propuesta para la titularidad del INIFECH, impulsando la certeza técnica.",
-  },
-  {
-    id: 8,
-    img: "/img/posts/8.png",
-    titulo: "Propuesta de sitio web por estudiantes",
-    texto: "Estudiantes de Informática de la Universidad Salazar presentaron una propuesta de sitio web para el CICTGZ. Una herramienta para difundir de manera ágil publicaciones y convocatorias.",
-  },
-];
-
-function PostImagen({ src, alt, className }) {
-  const [error, setError] = useState(false);
-
-  if (error) {
-    return (
-      <div className={`${className} cc-img-vacia`} role="img" aria-label={alt}>
-        <ImageOff size={28} aria-hidden="true" />
-      </div>
-    );
-  }
-
-  return <img src={src} alt={alt} className={className} loading="lazy" onError={() => setError(true)} />;
-}
-
 function CursoCard({ curso, onInscribirse }) {
   const IconoModalidad = iconoModalidad[curso.modalidad] ?? MapPin;
 
   return (
     <article className="cc-curso">
       <div className="cc-curso-media">
-        <PostImagen src={curso.img} alt={curso.titulo} className="cc-curso-img" />
+        <ImagenSegura claseVacia="cc-img-vacia" src={curso.img} alt={curso.titulo} className="cc-curso-img" />
         <span className="cc-curso-modalidad">
           <IconoModalidad size={14} aria-hidden="true" />
           {curso.modalidad}
@@ -187,7 +87,7 @@ function PostCard({ post, onAbrir }) {
   return (
     <article className="cc-card">
       <div className="cc-card-media">
-        <PostImagen src={post.img} alt={post.titulo} className="cc-card-img" />
+        <ImagenSegura claseVacia="cc-img-vacia" src={post.img} alt={post.titulo} className="cc-card-img" />
       </div>
       <div className="cc-card-body">
         <h3>{post.titulo}</h3>
@@ -202,25 +102,14 @@ function PostCard({ post, onAbrir }) {
 }
 
 function PostModal({ post, onCerrar }) {
-  const dialogRef = useRef(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (post && !dialog.open) dialog.showModal();
-    if (!post && dialog.open) dialog.close();
-  }, [post]);
-
-  // Cierra al hacer clic fuera del contenido (en el fondo oscuro)
-  const handleClick = (event) => {
-    if (event.target === dialogRef.current) onCerrar();
-  };
+  const { dialogRef, cerrarAlClicFuera } = useDialogo(Boolean(post), onCerrar);
 
   return (
     <dialog
       ref={dialogRef}
       className="cc-modal"
       onClose={onCerrar}
-      onClick={handleClick}
+      onClick={cerrarAlClicFuera}
       aria-labelledby="cc-modal-titulo"
     >
       {post && (
@@ -228,7 +117,7 @@ function PostModal({ post, onCerrar }) {
           <button type="button" className="cc-modal-close" onClick={onCerrar} aria-label="Cerrar">
             <X size={20} aria-hidden="true" />
           </button>
-          <PostImagen src={post.img} alt={post.titulo} className="cc-modal-img" />
+          <ImagenSegura claseVacia="cc-img-vacia" src={post.img} alt={post.titulo} className="cc-modal-img" />
           <div className="cc-modal-body">
             <h2 id="cc-modal-titulo">{post.titulo}</h2>
             <p>{post.texto}</p>
@@ -240,35 +129,15 @@ function PostModal({ post, onCerrar }) {
 }
 
 function InscripcionModal({ isOpen, onCerrar }) {
-  const dialogRef = useRef(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (isOpen && !dialog.open) dialog.showModal();
-    if (!isOpen && dialog.open) dialog.close();
-  }, [isOpen]);
-
-  // Bloquea el scroll de la página de fondo mientras el modal está abierto
-  useEffect(() => {
-    if (!isOpen) return undefined;
-    const overflowPrevio = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = overflowPrevio;
-    };
-  }, [isOpen]);
-
-  // Cierra al hacer clic fuera del contenido (en el fondo oscuro)
-  const handleClick = (event) => {
-    if (event.target === dialogRef.current) onCerrar();
-  };
+  const { dialogRef, cerrarAlClicFuera } = useDialogo(isOpen, onCerrar);
+  useBloquearScroll(isOpen);
 
   return (
     <dialog
       ref={dialogRef}
       className="cc-modal cc-insc"
       onClose={onCerrar}
-      onClick={handleClick}
+      onClick={cerrarAlClicFuera}
       aria-labelledby="cc-insc-titulo"
       aria-describedby="cc-insc-subtitulo"
     >
@@ -337,18 +206,22 @@ function InscripcionModal({ isOpen, onCerrar }) {
               <ul className="cc-insc-lista cc-insc-contacto">
                 <li>
                   <MapPin size={18} aria-hidden="true" />
-                  <span>Calle 11ª Ote. Sur 1056, Col. Maldonado, Tuxtla Gutiérrez, Chiapas.</span>
+                  <span>{`${contacto.direccion.corta}, Tuxtla Gutiérrez, Chiapas.`}</span>
                 </li>
                 <li>
                   <Phone size={18} aria-hidden="true" />
                   <span>
-                    <a href="tel:+529616125541">961-612-5541</a> /{" "}
-                    <a href="tel:+529611190009">961-119-0009</a>
+                    {contacto.telefonos.slice(0, 2).map((telefono, i) => (
+                      <Fragment key={telefono}>
+                        {i > 0 && " / "}
+                        <a href={enlaceTelefono(telefono)}>{telefono}</a>
+                      </Fragment>
+                    ))}
                   </span>
                 </li>
                 <li>
                   <Mail size={18} aria-hidden="true" />
-                  <a href="mailto:cictgcontabilidad@gmail.com">cictgcontabilidad@gmail.com</a>
+                  <a href={enlaceCorreo(contacto.correoContabilidad)}>{contacto.correoContabilidad}</a>
                 </li>
               </ul>
             </section>
@@ -356,7 +229,7 @@ function InscripcionModal({ isOpen, onCerrar }) {
 
           <footer className="cc-insc-footer">
             <a
-              href={WHATSAPP_INSCRIPCION}
+              href={enlaceWhatsapp(MENSAJE_WHATSAPP_INSCRIPCION)}
               target="_blank"
               rel="noopener noreferrer"
               className="cc-btn cc-insc-whatsapp"
@@ -378,21 +251,11 @@ export default function CursosCapacitacion() {
   const [postAbierto, setPostAbierto] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <main className="cc-page">
       <section className="cc-hero">
         <div className="cc-container">
-          <nav className="cc-breadcrumb cc-animate" aria-label="Ruta de navegación">
-            <Link to="/">Inicio</Link>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span>Eventos</span>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span aria-current="page">Cursos y Capacitación</span>
-          </nav>
+          <Migas className="cc-breadcrumb cc-animate" />
           <h1 className="cc-animate">Cursos, Capacitaciones y Eventos</h1>
           <p className="cc-intro cc-animate">
             Mantente actualizado con las últimas noticias, asambleas y cursos de actualización
@@ -407,9 +270,9 @@ export default function CursosCapacitacion() {
             <GraduationCap size={28} aria-hidden="true" />
             <h2 id="cc-cursos-titulo">Próximos Cursos y Capacitaciones</h2>
           </div>
-          {cursosData.length > 0 ? (
+          {cursos.length > 0 ? (
             <div className="cc-cursos-lista">
-              {cursosData.map((curso) => (
+              {cursos.map((curso) => (
                 <CursoCard key={curso.id} curso={curso} onInscribirse={() => setIsModalOpen(true)} />
               ))}
             </div>
@@ -428,7 +291,7 @@ export default function CursosCapacitacion() {
             <h2 id="cc-muro-titulo">Noticias recientes</h2>
           </div>
           <div className="cc-grid">
-            {posts.map((post) => (
+            {noticias.map((post) => (
               <PostCard key={post.id} post={post} onAbrir={setPostAbierto} />
             ))}
           </div>

@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { CalendarDays, ChevronRight, ImageOff, MapPin } from "lucide-react";
+import { useState } from "react";
+import { CalendarDays, MapPin } from "lucide-react";
 import asambleas from "../../../data/asambleas";
+import Migas from "../../../components/ui/Migas/Migas";
+import ImagenSegura from "../../../components/ui/ImagenSegura/ImagenSegura";
 import "./Asambleas.css";
+
+// PÁGINA «ASAMBLEAS». Las asambleas están en src/data/asambleas.js.
 
 const ordenadas = [...asambleas].sort((a, b) => b.fecha.localeCompare(a.fecha));
 
@@ -13,19 +16,9 @@ const formatoFecha = new Intl.DateTimeFormat("es-MX", {
   timeZone: "UTC",
 });
 
-function Foto({ src, alt, className }) {
-  const [error, setError] = useState(false);
-
-  if (error) {
-    return (
-      <div className={`${className} asm-foto-vacia`} role="img" aria-label={alt}>
-        <ImageOff size={28} aria-hidden="true" />
-        <span>Foto pendiente</span>
-      </div>
-    );
-  }
-
-  return <img src={src} alt={alt} className={className} loading="lazy" onError={() => setError(true)} />;
+// Foto de una asamblea; si el archivo no existe muestra «Foto pendiente».
+function Foto(props) {
+  return <ImagenSegura {...props} claseVacia="asm-foto-vacia" texto="Foto pendiente" />;
 }
 
 function Galeria({ fotos }) {
@@ -97,22 +90,12 @@ function AsambleaCard({ asamblea }) {
 }
 
 export default function Asambleas() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="asm-page">
       <main>
         <header className="asm-hero">
           <div className="asm-container">
-            <nav className="asm-breadcrumb" aria-label="Ruta de navegación">
-              <Link to="/">Inicio</Link>
-              <ChevronRight size={14} aria-hidden="true" />
-              <span>Eventos</span>
-              <ChevronRight size={14} aria-hidden="true" />
-              <span aria-current="page">Asambleas</span>
-            </nav>
+            <Migas className="asm-breadcrumb" />
             <h1>Asambleas</h1>
             <p>
               Memoria de las sesiones ordinarias y extraordinarias del Colegio: temas tratados,

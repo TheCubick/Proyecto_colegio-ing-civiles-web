@@ -1,3 +1,4 @@
+import { LOGO } from "../../../data/contacto";
 import "./Hero.css";
 
 export default function Hero() {
@@ -29,7 +30,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="hero-logo-large">
-          <img src="/img/logos/logo-colegio.png" alt="Logo del Colegio de Ingenieros Civiles" />
+          <img src={LOGO} alt="Logo del Colegio de Ingenieros Civiles" />
         </div>
       </div>
     </section>

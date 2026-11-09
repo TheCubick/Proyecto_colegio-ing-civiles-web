@@ -1,51 +1,27 @@
-import { useEffect, useRef } from "react";
 import { Clock, Mail, MapPin, MessageCircle, Phone, Pin, X } from "lucide-react";
+import { contacto } from "../../../data/contacto";
+import useBloquearScroll from "../../../hooks/useBloquearScroll";
+import useDialogo from "../../../hooks/useDialogo";
+import { enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
 import "./ModalContacto.css";
 
-const WHATSAPP_URL =
-  "https://wa.me/529611190009?text=Hola,%20quisiera%20informaci%C3%B3n%20sobre%20los%20tr%C3%A1mites%20y%20servicios%20del%20Colegio.";
-
-const MAPA_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  "Calle 11a Oriente Sur 1056, Col. Maldonado, 29080 Tuxtla Gutiérrez, Chiapas"
-)}`;
-
-const CORREO = "colegiodeingenieroscivilestg@gmail.com";
-const TELEFONOS = ["961-612-5541", "961-119-0009", "961-114-1636"];
-
 /*
-  Modal universal de contacto y trámites.
+  VENTANA UNIVERSAL DE CONTACTO Y TRÁMITES (dirección, horario, teléfonos, correo, WhatsApp).
+  Los datos salen de src/data/contacto.js.
   Uso: <ModalContacto isOpen={abierto} onClose={() => setAbierto(false)} />
 */
+const MENSAJE_WHATSAPP = "Hola, quisiera información sobre los trámites y servicios del Colegio.";
+
 export default function ModalContacto({ isOpen, onClose }) {
-  const dialogRef = useRef(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (isOpen && !dialog.open) dialog.showModal();
-    if (!isOpen && dialog.open) dialog.close();
-  }, [isOpen]);
-
-  // Bloquea el scroll de la página de fondo mientras el modal está abierto
-  useEffect(() => {
-    if (!isOpen) return undefined;
-    const overflowPrevio = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = overflowPrevio;
-    };
-  }, [isOpen]);
-
-  // Cierra al hacer clic fuera del contenido (en el fondo oscuro)
-  const handleClick = (event) => {
-    if (event.target === dialogRef.current) onClose();
-  };
+  const { dialogRef, cerrarAlClicFuera } = useDialogo(isOpen, onClose);
+  useBloquearScroll(isOpen);
 
   return (
     <dialog
       ref={dialogRef}
       className="mc-modal"
       onClose={onClose}
-      onClick={handleClick}
+      onClick={cerrarAlClicFuera}
       aria-labelledby="mc-titulo"
     >
       {isOpen && (
@@ -73,15 +49,18 @@ export default function ModalContacto({ isOpen, onClose }) {
                 <MapPin size={20} aria-hidden="true" />
                 <div>
                   <strong>Oficinas</strong>
-                  <span>Calle 11ª Ote. Sur 1056, Col. Maldonado, C.P. 29080, Tuxtla Gutiérrez, Chiapas.</span>
+                  <span>{contacto.direccion.completa}</span>
                 </div>
               </li>
               <li>
                 <Clock size={20} aria-hidden="true" />
                 <div>
                   <strong>Horario</strong>
-                  <span>Lunes a Viernes de 9:00 AM a 5:00 PM</span>
-                  <span>Sábados de 9:00 AM a 1:00 PM</span>
+                  {contacto.horario.map(({ dias, horas }) => (
+                    <span key={dias}>
+                      {dias} de {horas.replace(" – ", " a ")}
+                    </span>
+                  ))}
                 </div>
               </li>
               <li>
@@ -89,9 +68,9 @@ export default function ModalContacto({ isOpen, onClose }) {
                 <div>
                   <strong>Teléfonos</strong>
                   <span className="mc-telefonos">
-                    {TELEFONOS.map((tel) => (
-                      <a key={tel} href={`tel:+52${tel.replace(/-/g, "")}`}>
-                        {tel}
+                    {contacto.telefonos.map((telefono) => (
+                      <a key={telefono} href={enlaceTelefono(telefono)}>
+                        {telefono}
                       </a>
                     ))}
                   </span>
@@ -101,18 +80,23 @@ export default function ModalContacto({ isOpen, onClose }) {
                 <Mail size={20} aria-hidden="true" />
                 <div>
                   <strong>Correo</strong>
-                  <a href={`mailto:${CORREO}`}>{CORREO}</a>
+                  <a href={enlaceCorreo(contacto.correo)}>{contacto.correo}</a>
                 </div>
               </li>
             </ul>
           </div>
 
           <footer className="mc-footer">
-            <a href={MAPA_URL} target="_blank" rel="noopener noreferrer" className="mc-btn mc-btn-secondary">
+            <a href={contacto.mapa} target="_blank" rel="noopener noreferrer" className="mc-btn mc-btn-secondary">
               <MapPin size={18} aria-hidden="true" />
               Ver ubicación en Mapa
             </a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mc-btn mc-btn-primary">
+            <a
+              href={enlaceWhatsapp(MENSAJE_WHATSAPP)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mc-btn mc-btn-primary"
+            >
               <MessageCircle size={18} aria-hidden="true" />
               Enviar mensaje por WhatsApp
             </a>

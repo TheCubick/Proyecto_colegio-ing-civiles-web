@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
   Briefcase,
-  Building,
   CalendarDays,
-  ChevronRight,
-  GraduationCap,
-  ImageOff,
   Mail,
   MapPin,
-  Users,
 } from "lucide-react";
 import vacantes from "../../../data/vacantes";
+import { dirigidoA } from "../../../data/bolsaTrabajo";
+import { enlaceCorreo } from "../../../utils/enlaces";
 import ModalContacto from "../../../components/ui/ModalContacto/ModalContacto";
+import Migas from "../../../components/ui/Migas/Migas";
+import ImagenSegura from "../../../components/ui/ImagenSegura/ImagenSegura";
 import "./BolsaTrabajo.css";
 
-const CONTACTO_EMAIL = "colegiodeingenieroscivilestg@gmail.com";
-const mailtoPublicar = `mailto:${CONTACTO_EMAIL}?subject=${encodeURIComponent("Publicar vacante en la Bolsa de Trabajo")}`;
+// PÁGINA «BOLSA DE TRABAJO». Las vacantes están en src/data/vacantes.js.
+const mailtoPublicar = enlaceCorreo(undefined, "Publicar vacante en la Bolsa de Trabajo");
 
 const formatoFecha = new Intl.DateTimeFormat("es-MX", {
   day: "numeric",
@@ -29,43 +27,14 @@ const formatoFecha = new Intl.DateTimeFormat("es-MX", {
 
 const vacantesOrdenadas = [...vacantes].sort((a, b) => b.fecha.localeCompare(a.fecha));
 
-const dirigidoA = [
-  {
-    icono: Users,
-    titulo: "Ingenieros civiles",
-    texto: "Oportunidades laborales para profesionales de la ingeniería civil.",
-  },
-  {
-    icono: GraduationCap,
-    titulo: "Estudiantes próximos a egresar",
-    texto: "Vacantes pensadas para quienes están por concluir la carrera.",
-  },
-  {
-    icono: Building,
-    titulo: "Universidades, constructoras y agremiados",
-    texto: "Las ofertas provienen de instituciones, empresas y miembros del Colegio.",
-  },
-];
-
 export default function BolsaTrabajo() {
   const [contactoAbierto, setContactoAbierto] = useState(false);
-  const [imgError, setImgError] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <main className="bt-page">
       <section className="bt-hero">
         <div className="bt-container">
-          <nav className="bt-breadcrumb bt-animate" aria-label="Ruta de navegación">
-            <Link to="/">Inicio</Link>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span>Servicios</span>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span aria-current="page">Bolsa de Trabajo</span>
-          </nav>
+          <Migas className="bt-breadcrumb bt-animate" />
           <h1 className="bt-animate">Bolsa de Trabajo</h1>
           <p className="bt-intro bt-animate">
             Conectamos a ingenieros civiles y futuros egresados con oportunidades laborales en Chiapas.
@@ -92,18 +61,14 @@ export default function BolsaTrabajo() {
             </p>
           </article>
           <figure className="bt-figure">
-            {imgError ? (
-              <div className="bt-img-placeholder" role="img" aria-label="Imagen pendiente">
-                <ImageOff size={32} aria-hidden="true" />
-                <span>Imagen pendiente</span>
-              </div>
-            ) : (
-              <img
-                src="/img/paginas/servicios/bolsa.jpg"
-                alt="Ingenieros civiles trabajando en una obra"
-                onError={() => setImgError(true)}
-              />
-            )}
+            <ImagenSegura
+              src="/img/paginas/servicios/bolsa.jpg"
+              alt="Ingenieros civiles trabajando en una obra"
+              claseVacia="bt-img-placeholder"
+              texto="Imagen pendiente"
+              tamanoIcono={32}
+              lazy={false}
+            />
           </figure>
         </div>
       </section>

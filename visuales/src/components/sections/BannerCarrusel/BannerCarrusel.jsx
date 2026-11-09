@@ -5,48 +5,11 @@ import { A11y, Autoplay, EffectFade, Keyboard } from "swiper/modules";
 import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import { banners } from "../../../data/inicio";
 import "./BannerCarrusel.css";
 
+// Carrusel «Actividades del Colegio». Las fotos y textos están en src/data/inicio.js.
 const AUTOPLAY_MS = 5500;
-
-// Fotografías reales de eventos del Colegio (public/img/banners/).
-const bannerSlides = [
-  {
-    id: 1,
-    tag: "VINCULACIÓN INSTITUCIONAL",
-    titulo: "Alianza con la Comisión Estatal de Caminos",
-    descripcion:
-      "Fortalecemos la cooperación técnica y el desarrollo de infraestructura carretera y de caminos en Chiapas.",
-    enlace: "/eventos/cursos-y-capacitacion",
-    img: "/img/banners/comision-de-caminos.jpg",
-  },
-  {
-    id: 2,
-    tag: "JORNADAS TÉCNICAS",
-    titulo: "Foros Académicos y de Actualización",
-    descripcion:
-      "Participación en conferencias magistrales, vinculación con universidades y excelencia en la ingeniería civil.",
-    enlace: "/eventos/cursos-y-capacitacion",
-    img: "/img/banners/reunion.jpg",
-  },
-  {
-    id: 3,
-    tag: "CONSEJO DIRECTIVO",
-    titulo: "Sesiones y Acuerdos de Trabajo Colegiado",
-    descripcion: "Compromiso continuo y seguimiento transparente a los proyectos estratégicos de nuestro gremio.",
-    enlace: "/eventos/asambleas",
-    img: "/img/banners/grupal.jpg",
-  },
-  {
-    id: 4,
-    tag: "COMUNIDAD Y DEPORTE",
-    titulo: "Encuentros Deportivos y Fraternidad",
-    descripcion:
-      "Fomentando la integración, la convivencia gremial y el vínculo universitario a través del deporte.",
-    enlace: "/eventos/cursos-y-capacitacion",
-    img: "/img/banners/partido-futbol-salazar.jpg",
-  },
-];
 
 export default function BannerCarrusel() {
   const swiperRef = useRef(null);
@@ -99,7 +62,7 @@ export default function BannerCarrusel() {
             }}
             className="bc-swiper"
           >
-            {bannerSlides.map((slide, i) => (
+            {banners.map((slide, i) => (
               <SwiperSlide key={slide.id}>
                 <article className="bc-slide">
                   <img
@@ -144,7 +107,7 @@ export default function BannerCarrusel() {
 
         <div className="bc-controls">
           <div className="bc-dots" role="group" aria-label="Elegir anuncio">
-            {bannerSlides.map((slide, i) => (
+            {banners.map((slide, i) => (
               <button
                 key={slide.id}
                 type="button"
