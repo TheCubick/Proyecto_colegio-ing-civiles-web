@@ -386,7 +386,7 @@
   color: #fff;
   font-size: clamp(2.2rem, 5vw, 3rem);
   line-height: 1.15;
-  text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+  text-shadow: 2px 2px 4px rgb(56 54 55 / 50%);
 }
 
 .tr-page .tr-hero--video .tr-intro {
@@ -395,7 +395,7 @@
   font-family: "Open Sans", "Segoe UI", sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
-  text-shadow: 1px 1px 3px rgb(0 0 0 / 80%);
+  text-shadow: 1px 1px 3px rgb(56 54 55 / 80%);
 }
 
 .tr-page .tr-hero--video .tr-badge {

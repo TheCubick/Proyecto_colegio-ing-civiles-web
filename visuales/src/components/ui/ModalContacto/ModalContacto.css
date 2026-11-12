@@ -16,7 +16,7 @@
   background: #fff;
   color: var(--mc-dark);
   font-family: "Open Sans", "Segoe UI", sans-serif;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 60px rgba(56, 54, 55, 0.35);
 }
 
 .mc-modal[open] {
