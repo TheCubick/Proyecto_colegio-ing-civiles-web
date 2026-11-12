@@ -40,7 +40,7 @@
   gap: 6px;
   margin-bottom: 20px;
   color: rgba(56, 54, 55, 0.7);
-  font-size: 0.85rem;
+  font-size: 0.95rem; /* Actualizado de 0.85rem a 0.95rem (etiqueta) */
 }
 
 .tr-breadcrumb a {
@@ -61,7 +61,7 @@
   border-radius: 999px;
   background: rgba(186, 42, 51, 0.1);
   color: var(--tr-red);
-  font-size: 0.8rem;
+  font-size: 0.95rem; /* Actualizado de 0.8rem a 0.95rem (etiqueta) */
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -133,7 +133,7 @@
   height: 100%;
   background: var(--tr-light);
   color: rgba(56, 54, 55, 0.6);
-  font-size: 0.9rem;
+  font-size: 1rem; /* Actualizado de 0.9rem a 1rem (texto normal) */
 }
 
 /* ---------- Requisitos ---------- */
@@ -238,7 +238,7 @@
   padding: 13px 24px;
   border: 2px solid var(--tr-red);
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 1rem; /* Actualizado de 15px (~0.9375rem) a 1rem (texto normal) */
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
