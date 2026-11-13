@@ -19,12 +19,13 @@ export const requisitosIngreso = [
 export const notaCartasAfiliacion =
   "2 años de expedición de cédula para solicitar Carta Propia; 5 años para Carta Ajena. Si perteneció a otro Colegio, anexar carta de no adeudo y renuncia.";
 
-// [título, ruta del PDF en public/]
-export const formatos = [
-  ["Oficio de Inscripción", "/documentos/oficio-inscripcion.pdf"],
-  ["Cédula de Inscripción", "/documentos/cedula-inscripcion.pdf"],
-  ["Carta Bajo Protesta de Decir Verdad", "/documentos/carta-protesta-decir-verdad-2023.pdf"],
-];
+// Formatos de inscripción EN BLANCO: [título, ruta del PDF en public/].
+// Los PDF anteriores tenían datos personales y se retiraron (F1-PR0). Cuando el Colegio
+// mande los formatos en blanco, se agregan aquí (ej. ["Cédula de Inscripción", "/documentos/cedula-inscripcion.pdf"]).
+// Mientras la lista esté vacía, el pop-up muestra `avisoFormatos`.
+export const formatos = [];
+
+export const avisoFormatos = "Formatos disponibles en las oficinas del Colegio.";
 
 export const triptico = [
   ["Ver Tríptico (Frente)", "/img/documentos/triptico-enfrente.jpg"],

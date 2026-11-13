@@ -23,6 +23,7 @@ import {
   X,
 } from "lucide-react";
 import {
+  avisoFormatos,
   costos,
   datosBancarios,
   facturacion,
@@ -95,8 +96,8 @@ function PanelRequisitos() {
         <Pin size={20} aria-hidden="true" />
         <div>
           <p>
-            <strong>El trámite de inscripción es 100% presencial</strong> en nuestras oficinas. Descarga,
-            imprime y llena tus formatos antes de acudir.
+            <strong>El trámite de inscripción es 100% presencial</strong> en nuestras oficinas. Los
+            formatos se entregan en nuestras oficinas.
           </p>
           <ul className="hd-aviso-datos">
             <li>
@@ -128,7 +129,13 @@ function PanelRequisitos() {
         </p>
       </div>
 
-      <h3 className="hd-subtitulo">Formatos oficiales (PDF)</h3>
+      <h3 className="hd-subtitulo">Formatos de inscripción</h3>
+      {formatos.length === 0 && (
+        <div className="hd-nota">
+          <Info size={18} aria-hidden="true" />
+          <p>{avisoFormatos}</p>
+        </div>
+      )}
       <div className="hd-descargas">
         {formatos.map(([titulo, href]) => (
           <a key={href} href={href} download target="_blank" rel="noopener noreferrer" className="hd-descarga">

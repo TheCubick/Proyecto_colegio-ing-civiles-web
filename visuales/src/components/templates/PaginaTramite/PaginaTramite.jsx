@@ -93,7 +93,11 @@ export default function PaginaTramite({ datos }) {
         <div className="tr-container tr-cta-box">
           <div>
             <h2>¿Listo para iniciar tu trámite?</h2>
-            <p>Descarga la lista de documentos o contáctanos para recibir orientación.</p>
+            <p>
+              {pdfRequisitos
+                ? "Descarga la lista de documentos o contáctanos para recibir orientación."
+                : "Contáctanos para recibir orientación."}
+            </p>
           </div>
           <div className="tr-cta-actions">
             {pdfRequisitos && (

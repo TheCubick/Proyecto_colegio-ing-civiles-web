@@ -132,10 +132,6 @@ export default function Footer() {
 
         <div className="cic-footer-bottom">
           <p>© {anioActual} Colegio de Ingenieros Civiles de Tuxtla Gutiérrez A.C. Todos los derechos reservados.</p>
-          <ul>
-            <li><Link to="/aviso-de-privacidad">Aviso de Privacidad</Link></li>
-            <li><Link to="/codigo-de-etica">Código de Ética</Link></li>
-          </ul>
         </div>
       </div>
     </footer>

@@ -31,7 +31,6 @@ export const tramites = {
       alt: "Director Responsable de Obra supervisando una construcción",
     },
     info: infoDro,
-    pdfRequisitos: "/documentos/requisitos-dro.pdf",
   },
 
   rt: {
@@ -49,7 +48,6 @@ export const tramites = {
       alt: "Representante Técnico revisando planos de una obra",
     },
     info: infoRt,
-    pdfRequisitos: "/documentos/requisitos-rt.pdf",
   },
 
   dictaminador: {
@@ -66,6 +64,5 @@ export const tramites = {
       alt: "Dictaminador evaluando los riesgos de una estructura",
     },
     info: infoDictaminador,
-    pdfRequisitos: "/documentos/requisitos-dictaminador.pdf",
   },
 };
