@@ -73,3 +73,32 @@ button, input, textarea, select { font: inherit; }
   background-image: radial-gradient(var(--patron-punto) 1.2px, transparent 1.6px);
   background-size: 22px 22px;
 }
+
+/* Trazos arquitectónicos (petición del Consejo): plano tenue en mosaico.
+   Clase duplicada a propósito: gana a los "background" de cada componente. */
+.fondo-trazos.fondo-trazos {
+  background-image: url("/img/patrones/trazos-arquitectonicos.svg");
+  background-repeat: repeat;
+  background-size: 320px auto;
+}
+
+/* =========================================================
+   APARICIÓN SUAVE DE SECCIONES AL BAJAR (solo CSS).
+   Se agrega la clase "aparecer" a una sección. Solo se anima si la persona
+   no pidió reducir el movimiento y el navegador soporta animation-timeline;
+   si no, la sección se ve normal.
+   ========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .aparecer {
+      animation: aparecer linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+  }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
