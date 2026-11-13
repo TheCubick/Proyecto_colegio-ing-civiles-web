@@ -238,3 +238,10 @@
     transition: none !important;
   }
 }
+
+/* Texto justificado (F1-IM1) */
+.com-intro,
+.com-card p {
+  text-align: justify;
+  hyphens: auto;
+}
