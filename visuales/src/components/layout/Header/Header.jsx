@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronDown, Menu, UserPlus } from "lucide-react";
-import { menus } from "../../../config/rutas";
-import { LOGO } from "../../../data/contacto";
+import { menus, RUTAS_CON_PORTADA } from "../../../config/rutas";
+import { LOGO, NOMBRE_COLEGIO, SIGLAS } from "../../../data/contacto";
 import useBloquearScroll from "../../../hooks/useBloquearScroll";
 import ModalAfiliacion from "../../ui/ModalAfiliacion/ModalAfiliacion";
 import MenuEnlace from "./MenuEnlace";
@@ -15,6 +15,10 @@ import "./Header.css";
   - Los menús salen de src/config/rutas.js (no se escriben aquí).
   - El menú del celular está en MenuMovil.jsx y cada enlace en MenuEnlace.jsx.
   - El pop-up «Afíliate» está en components/ui/ModalAfiliacion.
+  - Letras del menú siempre blancas; solo cambia el fondo (especificación en CLAUDE.md):
+      · página con video/imagen de portada y arriba del todo → velo oscuro degradado (hd-sobre-media);
+      · página sin portada, o cualquier página al bajar → rojo institucional (hd-solido).
+    Las páginas con portada se marcan con `portada: true` en src/config/rutas.js.
 */
 
 // Cualquier enlace a "#afiliacion" (por ejemplo, desde el footer) abre el pop-up de afiliación.
@@ -80,12 +84,14 @@ export default function Header() {
   // Evitar que la página haga scroll detrás del menú móvil o del pop-up
   useBloquearScroll(movilAbierto || afiliacionAbierta);
 
+  const sobreMedia = RUTAS_CON_PORTADA.includes(location.pathname) && !scrolled;
+
   const grupoActivo = (paginas) => paginas.some(({ ruta }) => ruta === location.pathname);
 
   return (
     <>
       <motion.header
-        className={`hd-header ${scrolled ? "is-scrolled" : ""}`}
+        className={`hd-header ${sobreMedia ? "hd-sobre-media" : "hd-solido"} ${scrolled ? "is-scrolled" : ""}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -94,9 +100,8 @@ export default function Header() {
           <Link className="hd-logo" to="/" aria-label="Ir al inicio" onClick={cerrarMenus}>
             <img src={LOGO} alt="" />
             <span className="hd-logo-text">
-              Colegio de Ingenieros
-              <br />
-              Civiles de Tuxtla Gutiérrez
+              <strong>{SIGLAS}</strong>
+              <small>{NOMBRE_COLEGIO}</small>
             </span>
           </Link>
 

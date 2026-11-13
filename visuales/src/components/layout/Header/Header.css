@@ -17,30 +17,35 @@
   z-index: 100;
   width: 100%;
   padding: 18px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  /* Cristal blanco siempre activo: el texto oscuro del menú se lee
-     aunque pase sobre los videos o imágenes de fondo */
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 4px 18px rgba(56, 54, 55, 0.08);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  color: #fff;
   font-family: "Montserrat", "Segoe UI", sans-serif;
   transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Al hacer scroll se compacta y gana un poco más de opacidad y sombra */
-.hd-header.is-scrolled {
-  padding: 10px 0;
-  background-color: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 8px 30px rgba(56, 54, 55, 0.14);
+/*
+  Letras del menú SIEMPRE blancas; solo cambia el fondo (especificación en CLAUDE.md).
+  - hd-sobre-media: página con video/imagen de portada y arriba del todo → velo oscuro degradado.
+  - hd-solido:      página sin portada, o cualquier página al bajar → rojo institucional.
+  Contraste: blanco sobre #BA2A33 ≈ 5.9:1 (cumple AA).
+*/
+.hd-header.hd-sobre-media {
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, rgba(56, 54, 55, 0.55), rgba(56, 54, 55, 0));
+  box-shadow: none;
+  text-shadow: 0 1px 3px rgba(56, 54, 55, 0.6);
 }
 
-/* Navegadores sin backdrop-filter: fondo casi opaco para no perder contraste */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .hd-header,
-  .hd-header.is-scrolled {
-    background-color: rgba(255, 255, 255, 0.97);
-  }
+.hd-header.hd-solido {
+  background-color: var(--hd-red);
+  background-image: none;
+  box-shadow: 0 4px 18px rgba(56, 54, 55, 0.18);
+}
+
+/* Al hacer scroll se compacta y pasa al rojo oscuro */
+.hd-header.is-scrolled {
+  padding: 10px 0;
+  background-color: var(--hd-red-dark);
+  box-shadow: 0 8px 30px rgba(56, 54, 55, 0.25);
 }
 
 .hd-container {
@@ -61,23 +66,48 @@
   gap: 10px;
 }
 
+/* El logo es rojo: en el header va sobre una base blanca para que se vea (el logo no se modifica) */
 .hd-logo img {
+  box-sizing: content-box;
   width: auto;
-  height: 54px;
-  max-width: 64px;
+  height: 46px;
+  max-width: 56px;
+  padding: 4px;
+  border-radius: 12px;
+  background: #fff;
   object-fit: contain;
+  box-shadow: 0 2px 8px rgba(56, 54, 55, 0.25);
   transition: height 0.3s ease;
 }
 
 .is-scrolled .hd-logo img {
-  height: 44px;
+  height: 38px;
 }
 
 .hd-logo-text {
+  display: flex;
+  flex-direction: column;
   color: var(--hd-red);
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.15;
+}
+
+.hd-header .hd-logo-text {
+  color: #fff;
+}
+
+.hd-logo-text strong {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.hd-logo-text small {
+  max-width: 17rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 /* ---------- Navegación de escritorio ---------- */
@@ -100,9 +130,9 @@
   border: 0;
   border-radius: 10px;
   background: none;
-  color: var(--hd-dark);
+  color: #fff;
   font-family: inherit;
-  font-size: 0.93rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: color 0.25s ease, background 0.25s ease;
@@ -110,12 +140,22 @@
 
 .hd-navbtn:hover,
 .hd-navbtn.is-open {
-  background: rgba(186, 42, 51, 0.07);
-  color: var(--hd-red);
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.hd-solido .hd-navbtn:hover,
+.hd-solido .hd-navbtn.is-open {
+  background: var(--hd-red-dark);
+}
+
+.is-scrolled .hd-navbtn:hover,
+.is-scrolled .hd-navbtn.is-open {
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .hd-navbtn.is-active {
-  color: var(--hd-red);
+  color: #fff;
 }
 
 .hd-chevron {
@@ -134,7 +174,7 @@
   left: 14px;
   height: 3px;
   border-radius: 3px;
-  background: var(--hd-red);
+  background: #fff;
 }
 
 .hd-menu {
@@ -148,6 +188,8 @@
   border-radius: 14px;
   background: #fff;
   box-shadow: 0 18px 40px rgba(56, 54, 55, 0.18);
+  color: var(--hd-dark);
+  text-shadow: none;
   list-style: none;
   transform-origin: top left;
 }
@@ -170,7 +212,7 @@
   border-radius: 10px;
   color: var(--hd-dark);
   font-family: "Open Sans", "Segoe UI", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   transition: all 0.2s ease;
 }
@@ -224,7 +266,7 @@
   background: var(--hd-red);
   color: #fff;
   font-family: inherit;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(186, 42, 51, 0.3);
@@ -234,6 +276,28 @@
 .hd-cta:hover {
   background: var(--hd-red-dark);
   box-shadow: 0 10px 22px rgba(150, 46, 53, 0.4);
+}
+
+/* En el header (rojo o velo oscuro) el botón «Afíliate» es blanco con letra roja */
+.hd-header .hd-cta {
+  background: #fff;
+  color: var(--hd-red);
+  text-shadow: none;
+  box-shadow: 0 6px 16px rgba(56, 54, 55, 0.25);
+}
+
+.hd-header .hd-cta:hover {
+  background: var(--hd-light);
+  color: var(--hd-red-dark);
+}
+
+.hd-header .hd-cta::after {
+  animation-name: hd-pulse-blanco;
+}
+
+@keyframes hd-pulse-blanco {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55); }
+  70%, 100% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
 }
 
 /* Pulso sutil para invitar al clic */
@@ -270,6 +334,17 @@
   color: #fff;
 }
 
+/* Hamburguesa del header: blanca (la de cerrar dentro del menú del celular sigue roja) */
+.hd-header .hd-burger {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.hd-header .hd-burger:hover {
+  background: #fff;
+  color: var(--hd-red);
+}
+
 .hd-navbtn:focus-visible,
 .hd-menu-link:focus-visible,
 .hd-cta:focus-visible,
@@ -280,6 +355,14 @@
 .hd-modal-close:focus-visible {
   outline: 2px solid var(--hd-red-dark);
   outline-offset: 3px;
+}
+
+/* Sobre rojo o video, el foco se marca en blanco (los desplegables conservan el rojo) */
+.hd-header .hd-navbtn:focus-visible,
+.hd-header .hd-cta:focus-visible,
+.hd-header .hd-burger:focus-visible,
+.hd-header .hd-logo:focus-visible {
+  outline-color: #fff;
 }
 
 /* ---------- Menú móvil (drawer) ---------- */
@@ -373,7 +456,7 @@
   gap: 8px;
   color: var(--hd-dark);
   font-family: "Open Sans", "Segoe UI", sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   overflow-wrap: anywhere;
 }
 
@@ -421,6 +504,13 @@
 }
 
 /* ---------- Responsive ---------- */
+/* Entre 1025 y 1200 px el menú completo no deja espacio para el nombre largo: solo CICTGZ */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .hd-header .hd-logo-text small {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .hd-nav {
     display: none;
@@ -438,22 +528,40 @@
   }
 
   .hd-logo img {
-    height: 44px;
+    height: 38px;
   }
 
-  .hd-logo-text {
-    font-size: 0.75rem;
+  /* En celular solo se muestran las siglas */
+  .hd-header .hd-logo-text small {
+    display: none;
   }
 
   .hd-cta {
     padding: 10px 14px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
-
 }
 
 @media (max-width: 420px) {
-  .hd-logo-text {
+  .hd-logo {
+    gap: 8px;
+  }
+
+  .hd-logo-text strong {
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hd-actions {
+    gap: 8px;
+  }
+
+  .hd-cta {
+    gap: 6px;
+    padding: 10px 12px;
+  }
+
+  .hd-cta svg {
     display: none;
   }
 }
