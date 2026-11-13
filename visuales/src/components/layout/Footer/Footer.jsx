@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, ChevronRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { paginasDe } from "../../../config/rutas";
 import { contacto, LOGO, NOMBRE_COLEGIO, SIGLAS } from "../../../data/contacto";
+import { codigoEtica } from "../../../data/documentos";
 import { enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
 import { IconoFacebook, IconoInstagram } from "./IconosRedes";
 import "./Footer.css";
@@ -132,6 +133,15 @@ export default function Footer() {
 
         <div className="cic-footer-bottom">
           <p>© {anioActual} Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. Todos los derechos reservados.</p>
+          {codigoEtica && (
+            <ul>
+              <li>
+                <a href={codigoEtica} target="_blank" rel="noopener noreferrer">
+                  Código de Ética
+                </a>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </footer>
