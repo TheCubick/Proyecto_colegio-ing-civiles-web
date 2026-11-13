@@ -13,7 +13,7 @@ export default function PaginaInformativa({ datos }) {
 
   return (
     <main className="pi-page">
-      <section className="pi-hero">
+      <section className="pi-hero decor-plano">
         <div className="pi-container">
           <Migas className="pi-breadcrumb" />
           <span className="pi-badge">

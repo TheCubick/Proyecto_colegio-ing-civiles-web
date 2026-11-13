@@ -112,3 +112,52 @@ button, input, textarea, select { font: inherit; }
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: none; }
 }
+
+/* =========================================================
+   ILUSTRACIONES DE PLANOS EN LAS PORTADAS CLARAS (dibujos de Jocelyn).
+   Se agregan al className de la sección: "decor-plano" (calle) o
+   "decor-plano decor-plano--edificio" (edificio). Líneas #383637 tenues a la
+   derecha, detrás del texto. Aparición suave solo si no se pidió reducir el movimiento.
+   ========================================================= */
+.decor-plano {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.decor-plano::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  width: min(640px, 50%);
+  height: 100%;
+  background: url("/img/patrones/plano-calle.webp") no-repeat right bottom / contain;
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.decor-plano--edificio::after {
+  width: min(440px, 38%);
+  background-image: url("/img/patrones/plano-edificio.webp");
+  background-position: right 24px bottom;
+}
+
+@media (max-width: 760px) {
+  .decor-plano::after,
+  .decor-plano--edificio::after {
+    width: 100%;
+    opacity: 0.09;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .decor-plano::after {
+    animation: decor-plano-entrar 1.2s ease-out both;
+  }
+}
+
+@keyframes decor-plano-entrar {
+  from { opacity: 0; transform: translateY(16px); }
+}

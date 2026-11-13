@@ -21,7 +21,7 @@ export default function PaginaServicio({ datos }) {
 
   return (
     <main className="sv-page">
-      <section className="sv-hero">
+      <section className="sv-hero decor-plano">
         <div className="sv-container">
           <Migas className="sv-breadcrumb sv-animate" />
           <h1 className="sv-animate">{titulo}</h1>

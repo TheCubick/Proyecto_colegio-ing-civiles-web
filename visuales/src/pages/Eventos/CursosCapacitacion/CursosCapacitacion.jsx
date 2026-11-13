@@ -253,7 +253,7 @@ export default function CursosCapacitacion() {
 
   return (
     <main className="cc-page">
-      <section className="cc-hero">
+      <section className="cc-hero decor-plano">
         <div className="cc-container">
           <Migas className="cc-breadcrumb cc-animate" />
           <h1 className="cc-animate">Cursos, Capacitaciones y Eventos</h1>

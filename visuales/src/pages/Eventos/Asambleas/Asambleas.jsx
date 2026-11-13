@@ -93,7 +93,7 @@ export default function Asambleas() {
   return (
     <div className="asm-page">
       <main>
-        <header className="asm-hero">
+        <header className="asm-hero decor-plano decor-plano--edificio">
           <div className="asm-container">
             <Migas className="asm-breadcrumb" />
             <h1>Asambleas</h1>

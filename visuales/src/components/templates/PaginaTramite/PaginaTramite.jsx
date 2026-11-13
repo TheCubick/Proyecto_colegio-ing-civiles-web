@@ -25,7 +25,7 @@ export default function PaginaTramite({ datos }) {
 
   return (
     <main className="tr-page">
-      <section className={`tr-hero${video ? " tr-hero--video" : ""}`}>
+      <section className={`tr-hero${video ? " tr-hero--video" : " decor-plano"}`}>
         {video && (
           <>
             <video className="tr-hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">

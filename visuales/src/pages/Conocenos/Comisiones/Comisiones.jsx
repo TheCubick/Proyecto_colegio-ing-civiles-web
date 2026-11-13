@@ -8,7 +8,7 @@ import "./Comisiones.css";
 export default function Comisiones() {
   return (
     <main className="com-page">
-      <section className="com-hero">
+      <section className="com-hero decor-plano decor-plano--edificio">
         <div className="com-container">
           <Migas className="com-breadcrumb com-animate" />
           <span className="com-badge com-animate">

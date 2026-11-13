@@ -33,7 +33,7 @@ export default function BolsaTrabajo() {
 
   return (
     <main className="bt-page">
-      <section className="bt-hero">
+      <section className="bt-hero decor-plano decor-plano--edificio">
         <div className="bt-container">
           <Migas className="bt-breadcrumb bt-animate" />
           <h1 className="bt-animate">Bolsa de Trabajo</h1>
