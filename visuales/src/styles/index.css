@@ -22,10 +22,66 @@
   --patron-linea: rgba(56, 54, 55, 0.04);
   --patron-linea-mayor: rgba(56, 54, 55, 0.07);
   --patron-punto: rgba(56, 54, 55, 0.08);
+
+  /* ===================== TOKENS DE DISEÑO =====================
+     Una sola fuente para colores, espacios, radios, sombras y movimiento.
+     PALETA OBLIGATORIA DEL COLEGIO: no agregar colores; los tonos suaves
+     se obtienen con transparencia de estos cinco. */
+  --color-rojo: #ba2a33;          /* principal: botones, enlaces, títulos */
+  --color-rojo-oscuro: #962e35;   /* hover, foco, encabezado al bajar */
+  --color-gris-oscuro: #383637;   /* texto */
+  --color-gris-claro: #e5e5e5;    /* fondos y bordes */
+  --color-blanco: #fff;
+
+  /* Texto secundario: gris oscuro al 80 % (≥ 5.3:1 sobre #E5E5E5, ≥ 6.7:1 sobre blanco; cumple AA) */
+  --color-texto-suave: rgba(56, 54, 55, 0.8);
+  --color-rojo-tenue: rgba(186, 42, 51, 0.08);   /* fondo de hover en superficies claras */
+  --color-rojo-suave: rgba(186, 42, 51, 0.14);   /* fondo de chips e íconos */
+  --color-borde: rgba(56, 54, 55, 0.12);
+
+  /* Espaciado: escala de 4 px (proximidad coherente) */
+  --esp-1: 4px;
+  --esp-2: 8px;
+  --esp-3: 12px;
+  --esp-4: 16px;
+  --esp-5: 24px;
+  --esp-6: 32px;
+  --esp-7: 48px;
+  --esp-8: 64px;
+  --esp-9: 96px;
+
+  /* Radios */
+  --radio-sm: 8px;
+  --radio-md: 12px;
+  --radio-lg: 16px;
+  --radio-pildora: 999px;
+
+  /* Sombras (siempre gris oscuro de la paleta, nunca negro puro) */
+  --sombra-1: 0 2px 8px rgba(56, 54, 55, 0.08);
+  --sombra-2: 0 8px 24px rgba(56, 54, 55, 0.12);
+  --sombra-3: 0 18px 40px rgba(56, 54, 55, 0.18);
+  --sombra-roja: 0 8px 20px rgba(186, 42, 51, 0.28);
+
+  /* Movimiento (entradas suaves; cambios de estado rápidos) */
+  --curva-entrada: cubic-bezier(0.22, 1, 0.36, 1);
+  --curva-estado: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-rapida: 150ms;
+  --dur-media: 250ms;
+  --dur-lenta: 800ms;
+
+  /* Accesibilidad */
+  --toque-min: 48px;               /* área táctil mínima (Fitts / WCAG 2.5.5) */
+  --foco-color: var(--color-rojo-oscuro);
+  --foco-anillo: 3px solid var(--foco-color);
+  --contenido-max: 1200px;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 body {
   margin: 0;
   min-width: 320px;
@@ -72,16 +128,6 @@ button, input, textarea, select { font: inherit; }
 .fondo-puntos {
   background-image: radial-gradient(var(--patron-punto) 1.2px, transparent 1.6px);
   background-size: 22px 22px;
-}
-
-/* Aviso mientras se descarga una página (carga diferida en App.jsx) */
-.cargando {
-  min-height: 70vh;
-  margin: 0;
-  padding: 10rem 24px 4rem;
-  color: #383637;
-  font-size: 1rem;
-  text-align: center;
 }
 
 /* Trazos arquitectónicos (petición del Consejo): plano tenue en mosaico.
@@ -186,7 +232,228 @@ footer p,
 .cc-cursos-vacio p,
 .bt-vacio p,
 .ne-page p,
-p.cargando {
+.estado-error p {
   text-align: justify;
   text-align-last: center;
+}
+
+/* =========================================================
+   SISTEMA DE INTERACCIÓN Y ACCESIBILIDAD (WCAG 2.2 AA)
+   Reglas compartidas por todos los componentes. Usan :where() para no
+   pelear con los estilos propios de cada componente.
+   ========================================================= */
+
+/* Foco visible y evidente en todo el sitio (solo con teclado) */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--foco-anillo);
+  outline-offset: 3px;
+}
+
+/* Sobre fondos oscuros o rojos el anillo es blanco */
+:where(.hd-header, .cic-footer, .hero-section, .tr-hero--video, .mv-hero, .red-card, .hd-modal-banner, .vf-control)
+  :focus-visible,
+.vf-control:focus-visible {
+  outline-color: var(--color-blanco);
+}
+
+/* Enlace «Saltar al contenido»: primer elemento al pulsar Tab */
+.saltar-contenido {
+  position: fixed;
+  top: var(--esp-3);
+  left: var(--esp-3);
+  z-index: 1000;
+  padding: var(--esp-3) var(--esp-5);
+  border-radius: var(--radio-sm);
+  background: var(--color-gris-oscuro);
+  color: var(--color-blanco);
+  font-weight: 700;
+  transform: translateY(-200%);
+  transition: transform var(--dur-media) var(--curva-estado);
+}
+
+.saltar-contenido:focus-visible {
+  outline-color: var(--color-blanco);
+  transform: none;
+}
+
+#contenido:focus {
+  outline: none;
+}
+
+/* ---------- Botones: mismo lenguaje en todo el sitio ---------- */
+:where(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+  .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn) {
+  min-height: var(--toque-min);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Al presionar: se hunde levemente (respuesta inmediata) */
+:is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+  .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn):active:not(:disabled) {
+  transform: scale(0.97);
+  transition-duration: var(--dur-rapida);
+}
+
+/* Deshabilitado: claramente inactivo, sin efectos */
+:is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+  .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn):is(:disabled, [aria-disabled="true"]) {
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+/* ---------- Áreas táctiles mínimas (ley de Fitts) ---------- */
+:where([class*="-breadcrumb"]) a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ---------- Estado de carga (mientras llega una página) ---------- */
+.carga {
+  min-height: 75vh;
+}
+
+.carga-hero {
+  padding: 9rem 0 3.5rem;
+  border-bottom: 3px solid var(--color-rojo);
+  background: linear-gradient(180deg, var(--color-blanco) 0%, var(--color-gris-claro) 100%);
+}
+
+.carga-contenedor {
+  display: grid;
+  gap: var(--esp-4);
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 0 var(--esp-5);
+}
+
+.esqueleto {
+  display: block;
+  border-radius: var(--radio-sm);
+  background: linear-gradient(90deg, rgba(56, 54, 55, 0.07) 25%, rgba(56, 54, 55, 0.13) 50%, rgba(56, 54, 55, 0.07) 75%);
+  background-size: 200% 100%;
+  animation: esqueleto 1.4s var(--curva-estado) infinite;
+}
+
+.esqueleto--chip { width: 140px; height: 32px; border-radius: var(--radio-pildora); }
+.esqueleto--titulo { width: min(520px, 80%); height: 3rem; }
+.esqueleto--linea { width: min(680px, 100%); height: 1.1rem; }
+.esqueleto--corta { width: min(420px, 70%); }
+.esqueleto--tarjeta { height: 220px; border-radius: var(--radio-lg); }
+
+.carga-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--esp-5);
+  padding-top: var(--esp-7);
+}
+
+@keyframes esqueleto {
+  from { background-position: 100% 0; }
+  to   { background-position: -100% 0; }
+}
+
+/* ---------- Estado de error (la página no se pudo cargar) ---------- */
+.estado-error {
+  display: grid;
+  place-items: center;
+  min-height: 75vh;
+  padding: 9rem var(--esp-5) var(--esp-8);
+  background-color: var(--color-blanco);
+  text-align: center;
+}
+
+.estado-error-caja {
+  display: grid;
+  justify-items: center;
+  gap: var(--esp-4);
+  max-width: 560px;
+}
+
+.estado-error-icono {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-rojo-suave);
+  color: var(--color-rojo);
+}
+
+.estado-error h1 {
+  margin: 0;
+  color: var(--color-gris-oscuro);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.estado-error p {
+  margin: 0;
+  text-align: justify;
+  text-align-last: center;
+}
+
+.estado-error-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--esp-3);
+  margin-top: var(--esp-2);
+}
+
+.estado-error-acciones :is(button, a) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: var(--toque-min);
+  padding: var(--esp-3) var(--esp-5);
+  border: 2px solid var(--color-rojo);
+  border-radius: var(--radio-sm);
+  background: var(--color-blanco);
+  color: var(--color-rojo);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--dur-media) var(--curva-estado), color var(--dur-media) var(--curva-estado);
+}
+
+.estado-error-acciones button {
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+}
+
+.estado-error-acciones button:hover {
+  border-color: var(--color-rojo-oscuro);
+  background: var(--color-rojo-oscuro);
+}
+
+.estado-error-acciones a:hover {
+  background: var(--color-rojo-tenue);
+}
+
+/* ---------- Movimiento reducido: todo queda en su estado final ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .esqueleto {
+    animation: none;
+  }
+
+  :is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+    .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn):active:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* Texto solo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }

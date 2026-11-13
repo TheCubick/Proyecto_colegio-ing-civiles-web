@@ -3,6 +3,7 @@ import { ArrowRight, Download, FileText, Info } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "../../../data/requisitos";
 import ModalContacto from "../../ui/ModalContacto/ModalContacto";
 import Migas from "../../ui/Migas/Migas";
+import VideoFondo from "../../ui/VideoFondo/VideoFondo";
 import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
 import { galerias } from "../../../data/galerias";
 import TramiteDetalle from "../../sections/TramiteDetalle/TramiteDetalle";
@@ -30,9 +31,7 @@ export default function PaginaTramite({ datos }) {
       <section className={`tr-hero${video ? " tr-hero--video" : " decor-plano"}`}>
         {video && (
           <>
-            <video className="tr-hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-              <source src={video} type="video/mp4" />
-            </video>
+            <VideoFondo src={video} className="tr-hero-video" etiqueta={`video de fondo de ${sigla}`} />
             <div className="tr-hero-overlay" aria-hidden="true" />
           </>
         )}

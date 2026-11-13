@@ -2,10 +2,10 @@
    MODAL UNIVERSAL DE CONTACTO Y TRÁMITES
    ========================================================= */
 .mc-modal {
-  --mc-red: #ba2a33;
-  --mc-red-dark: #962e35;
-  --mc-dark: #383637;
-  --mc-light: #e5e5e5;
+  --mc-red: var(--color-rojo);
+  --mc-red-dark: var(--color-rojo-oscuro);
+  --mc-dark: var(--color-gris-oscuro);
+  --mc-light: var(--color-gris-claro);
 
   width: min(600px, calc(100% - 32px));
   max-height: calc(100vh - 48px);

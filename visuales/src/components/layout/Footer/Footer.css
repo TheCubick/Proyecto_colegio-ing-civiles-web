@@ -1,8 +1,8 @@
 .cic-footer {
-  --cic-red: #ba2a33;
-  --cic-red-dark: #962e35;
+  --cic-red: var(--color-rojo);
+  --cic-red-dark: var(--color-rojo-oscuro);
   --cic-text: rgba(255, 255, 255, 0.75);
-  --cic-muted: rgba(255, 255, 255, 0.55);
+  --cic-muted: rgba(255, 255, 255, 0.7); /* ≈ 7:1 sobre #383637 (antes 0.55 ≈ 4.8:1) */
   --cic-line: rgba(255, 255, 255, 0.1);
 
   position: relative;
@@ -99,8 +99,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.05);
@@ -144,15 +144,16 @@
   list-style: none;
 }
 
+/* Área táctil de 44 px (ley de Fitts) sin cambiar el aspecto */
 .cic-footer-link {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 6px;
+  min-height: 44px;
 }
 
 .cic-footer-link svg {
   flex-shrink: 0;
-  margin-top: 4px;
   color: var(--cic-red);
   transition: all 0.25s ease;
 }
@@ -337,4 +338,11 @@
 .cic-footer-text {
   text-align: justify;
   hyphens: auto;
+}
+
+/* Enlaces legales con área táctil de 44 px */
+.cic-footer-bottom nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }

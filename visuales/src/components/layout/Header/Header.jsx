@@ -176,7 +176,7 @@ export default function Header() {
               whileTap={{ scale: 0.96 }}
             >
               <UserPlus size={17} aria-hidden="true" />
-              Afíliate ↗
+              Afíliate
             </motion.button>
 
             <button

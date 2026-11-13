@@ -1,0 +1,35 @@
+/* Botón para pausar el video de fondo (la sección contenedora debe tener position: relative) */
+.vf-control {
+  position: absolute;
+  right: var(--esp-5);
+  bottom: var(--esp-5);
+  z-index: 3;
+  display: inline-grid;
+  place-items: center;
+  width: var(--toque-min);
+  height: var(--toque-min);
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: rgba(56, 54, 55, 0.55);
+  color: var(--color-blanco);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background var(--dur-media) var(--curva-estado), transform var(--dur-rapida) var(--curva-estado);
+}
+
+.vf-control:hover {
+  background: var(--color-rojo);
+}
+
+.vf-control:active {
+  transform: scale(0.94);
+}
+
+@media (max-width: 600px) {
+  .vf-control {
+    right: var(--esp-4);
+    bottom: var(--esp-4);
+  }
+}

@@ -3,6 +3,7 @@ import { ArrowRight, HandHeart, Landmark, ShieldCheck } from "lucide-react";
 import { compromisos, enlaces, pilares, valores } from "../../../data/misionVision";
 import { hayServicioSocial, servicioSocial } from "../../../data/servicioSocial";
 import Migas from "../../../components/ui/Migas/Migas";
+import VideoFondo from "../../../components/ui/VideoFondo/VideoFondo";
 import "./MisionVision.css";
 
 // PÁGINA «MISIÓN Y VISIÓN». Los textos están en src/data/misionVision.js.
@@ -10,9 +11,7 @@ export default function MisionVision() {
   return (
     <main className="mv-page">
       <section className="mv-hero">
-        <video className="mv-hero-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-          <source src="/videos/parque-central.mp4" type="video/mp4" />
-        </video>
+        <VideoFondo src="/videos/parque-central.mp4" className="mv-hero-video" etiqueta="video de fondo de Misión y Visión" />
         <div className="mv-hero-overlay" aria-hidden="true" />
         <div className="mv-container">
           <Migas className="mv-breadcrumb mv-hero-anim" />

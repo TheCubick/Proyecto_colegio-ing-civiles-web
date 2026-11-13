@@ -4,12 +4,12 @@
    por eso la cabecera de la página es clara y deja espacio arriba.
    ========================================================= */
 .asm-page {
-  --asm-red: #ba2a33;
-  --asm-red-dark: #962e35;
-  --asm-dark: #383637;
+  --asm-red: var(--color-rojo);
+  --asm-red-dark: var(--color-rojo-oscuro);
+  --asm-dark: var(--color-gris-oscuro);
   --asm-text: #383637;
   --asm-muted: rgba(56, 54, 55, 0.7);
-  --asm-light: #e5e5e5;
+  --asm-light: var(--color-gris-claro);
 
   background: var(--asm-light);
   font-family: "DM Sans", "Segoe UI", sans-serif;
@@ -218,7 +218,7 @@
   justify-content: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 1rem;
 }
 

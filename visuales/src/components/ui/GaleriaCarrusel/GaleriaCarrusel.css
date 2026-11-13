@@ -60,3 +60,37 @@ img.gc-respaldo {
   color: #383637;
   font-size: 1rem;
 }
+
+/* Marco para posicionar el botón de pausa; ocupa el mismo espacio que el carrusel */
+.gc-marco {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gc-pausa {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: rgba(56, 54, 55, 0.6);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.gc-pausa:hover {
+  background: #ba2a33;
+}
+
+.gc-pausa:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}

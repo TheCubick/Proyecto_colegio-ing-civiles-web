@@ -2,10 +2,10 @@
    PLANTILLA: PÁGINAS DE SERVICIOS (Peritos Valuadores y Cálculo Estructural)
    ========================================================= */
 .sv-page {
-  --sv-red: #ba2a33;
-  --sv-red-dark: #962e35;
-  --sv-dark: #383637;
-  --sv-light: #e5e5e5;
+  --sv-red: var(--color-rojo);
+  --sv-red-dark: var(--color-rojo-oscuro);
+  --sv-dark: var(--color-gris-oscuro);
+  --sv-light: var(--color-gris-claro);
 
   background: #fff;
   color: var(--sv-dark);
@@ -59,7 +59,7 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 20px;
-  color: rgba(56, 54, 55, 0.7);
+  color: var(--color-texto-suave);
   font-size: 0.95rem; /* Actualizado de 0.85rem a 0.95rem (etiqueta) */
 }
 
@@ -192,7 +192,7 @@
   gap: 10px;
   height: 100%;
   background: var(--sv-light);
-  color: rgba(56, 54, 55, 0.6);
+  color: var(--color-texto-suave);
   font-size: 1rem; /* Actualizado de 0.9rem a 1rem (texto normal) */
 }
 

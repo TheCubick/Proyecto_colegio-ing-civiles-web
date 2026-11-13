@@ -3,10 +3,10 @@
    Usa los botones .hd-btn definidos en Header.css.
    ========================================================= */
 .hd-modal-overlay {
-  --hd-red: #ba2a33;
-  --hd-red-dark: #962e35;
-  --hd-dark: #383637;
-  --hd-light: #e5e5e5;
+  --hd-red: var(--color-rojo);
+  --hd-red-dark: var(--color-rojo-oscuro);
+  --hd-dark: var(--color-gris-oscuro);
+  --hd-light: var(--color-gris-claro);
 }
 
 .hd-modal-overlay {
@@ -357,7 +357,7 @@
 }
 
 .hd-descarga-text small {
-  color: rgba(56, 54, 55, 0.65);
+  color: var(--color-texto-suave);
   font-size: 0.95rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -433,7 +433,7 @@
 
 .hd-pie-tabla {
   margin: 8px 0 0;
-  color: rgba(56, 54, 55, 0.7);
+  color: var(--color-texto-suave);
   font-size: 1rem;
 }
 
@@ -479,7 +479,7 @@
 }
 
 .hd-oficio small {
-  color: rgba(56, 54, 55, 0.7);
+  color: var(--color-texto-suave);
   font-size: 0.95rem;
 }
 
@@ -534,7 +534,7 @@
 
 .hd-dato-label {
   grid-column: 1 / -1;
-  color: rgba(56, 54, 55, 0.65);
+  color: var(--color-texto-suave);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.05em;

@@ -4,10 +4,10 @@
    (clase .tr-hero--video, la usan los trámites que tienen `video` en data/tramites.js).
    ========================================================= */
 .tr-page {
-  --tr-red: #ba2a33;
-  --tr-red-dark: #962e35;
-  --tr-dark: #383637;
-  --tr-light: #e5e5e5;
+  --tr-red: var(--color-rojo);
+  --tr-red-dark: var(--color-rojo-oscuro);
+  --tr-dark: var(--color-gris-oscuro);
+  --tr-light: var(--color-gris-claro);
 
   background: #fff;
   color: var(--tr-dark);
@@ -39,7 +39,7 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 20px;
-  color: rgba(56, 54, 55, 0.7);
+  color: var(--color-texto-suave);
   font-size: 0.95rem; /* Actualizado de 0.85rem a 0.95rem (etiqueta) */
 }
 
@@ -132,7 +132,7 @@
   gap: 10px;
   height: 100%;
   background: var(--tr-light);
-  color: rgba(56, 54, 55, 0.6);
+  color: var(--color-texto-suave);
   font-size: 1rem; /* Actualizado de 0.9rem a 1rem (texto normal) */
 }
 

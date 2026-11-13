@@ -2,10 +2,10 @@
    ATENCIÓN POR WHATSAPP: PREGUNTAS FRECUENTES + BUZÓN
    ========================================================= */
 .aw-section {
-  --aw-red: #ba2a33;
-  --aw-red-dark: #962e35;
-  --aw-dark: #383637;
-  --aw-light: #e5e5e5;
+  --aw-red: var(--color-rojo);
+  --aw-red-dark: var(--color-rojo-oscuro);
+  --aw-dark: var(--color-gris-oscuro);
+  --aw-light: var(--color-gris-claro);
 
   padding: 5rem 0;
   background: var(--aw-light);
@@ -191,7 +191,7 @@
 }
 
 .aw-field small {
-  color: rgba(56, 54, 55, 0.65);
+  color: var(--color-texto-suave);
   font-weight: 500;
   font-size: 0.95rem; /* Actualizado de tamaño menor a 0.95rem */
 }

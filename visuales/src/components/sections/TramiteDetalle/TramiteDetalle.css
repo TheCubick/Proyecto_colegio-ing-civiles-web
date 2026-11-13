@@ -2,10 +2,10 @@
    TRÁMITES: INFORMACIÓN AMPLIADA (funciones, contratación, normativa)
    ========================================================= */
 .td-section {
-  --td-red: #ba2a33;
-  --td-red-dark: #962e35;
-  --td-dark: #383637;
-  --td-light: #e5e5e5;
+  --td-red: var(--color-rojo);
+  --td-red-dark: var(--color-rojo-oscuro);
+  --td-dark: var(--color-gris-oscuro);
+  --td-light: var(--color-gris-claro);
 
   padding: 4.5rem 0;
   color: var(--td-dark);

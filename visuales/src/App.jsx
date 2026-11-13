@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { rutas } from "./config/rutas";
 import { tramites } from "./data/tramites";
 import { servicios } from "./data/servicios";
@@ -10,6 +10,8 @@ import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import ScrollArriba from "./components/layout/ScrollArriba";
 import Inicio from "./pages/Inicio/Inicio";
+import CargandoPagina from "./components/ui/EstadosPagina/CargandoPagina";
+import LimiteError from "./components/ui/EstadosPagina/LimiteError";
 
 // Carga diferida: cada página se descarga solo cuando se visita (Inicio va en el paquete principal).
 const PaginaTramite = lazy(() => import("./components/templates/PaginaTramite/PaginaTramite"));
@@ -50,13 +52,15 @@ const paginas = {
   "/conocenos/beneficio-social": <PaginaInformativa key="beneficio-social" datos={beneficioSocial} />,
 };
 
-export default function App() {
+// Contenido de cada página con sus estados: carga (esqueleto) y error (si no se pudo descargar).
+// El límite de error se reinicia al cambiar de ruta.
+function ContenidoPagina() {
+  const { pathname } = useLocation();
+
   return (
-    <BrowserRouter>
-      <ScrollArriba />
-      <div className="main-container">
-        <Header />
-        <Suspense fallback={<p className="cargando">Cargando…</p>}>
+    <div id="contenido" tabIndex={-1}>
+      <LimiteError key={pathname}>
+        <Suspense fallback={<CargandoPagina />}>
           <Routes>
             {rutas.map(({ ruta }) => (
               <Route key={ruta} path={ruta} element={paginas[ruta]} />
@@ -64,6 +68,22 @@ export default function App() {
             <Route path="*" element={<NoEncontrada />} />
           </Routes>
         </Suspense>
+      </LimiteError>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ScrollArriba />
+      {/* Primer elemento con Tab: salta el menú y va directo al contenido */}
+      <a className="saltar-contenido" href="#contenido">
+        Saltar al contenido
+      </a>
+      <div className="main-container">
+        <Header />
+        <ContenidoPagina />
         <Footer />
       </div>
     </BrowserRouter>

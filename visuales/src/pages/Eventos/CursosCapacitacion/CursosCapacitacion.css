@@ -2,10 +2,10 @@
    CURSOS, CAPACITACIONES Y EVENTOS (MURO DE NOTICIAS)
    ========================================================= */
 .cc-page {
-  --cc-red: #ba2a33;
-  --cc-red-dark: #962e35;
-  --cc-dark: #383637;
-  --cc-light: #e5e5e5;
+  --cc-red: var(--color-rojo);
+  --cc-red-dark: var(--color-rojo-oscuro);
+  --cc-dark: var(--color-gris-oscuro);
+  --cc-light: var(--color-gris-claro);
 
   background: #fff;
   color: var(--cc-dark);
@@ -58,7 +58,7 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 20px;
-  color: rgba(56, 54, 55, 0.7);
+  color: var(--color-texto-suave);
   font-size: 1rem;
 }
 
@@ -360,7 +360,7 @@
   justify-content: center;
   min-height: 160px;
   background: var(--cc-light);
-  color: rgba(56, 54, 55, 0.5);
+  color: var(--color-texto-suave);
 }
 
 /* ---------- Modal "Leer más" ---------- */

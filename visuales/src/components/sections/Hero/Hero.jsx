@@ -1,21 +1,16 @@
 import { LOGO } from "../../../data/contacto";
+import VideoFondo from "../../ui/VideoFondo/VideoFondo";
 import "./Hero.css";
 
 export default function Hero() {
   return (
     <section className="hero-section" id="inicio">
       <div className="video-overlay" />
-      <video
+      <VideoFondo
+        src="/videos/home.mp4"
         className="hero-bg"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-label="Video de presentación del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C."
-      >
-        <source src="/videos/home.mp4" type="video/mp4" />
-        Tu navegador no soporta la reproducción de video.
-      </video>
+        etiqueta="video de presentación del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C."
+      />
       <div className="hero-content">
         <div className="hero-text-box">
           <span className="hero-eyebrow hero-anim">CICTGZ · Tuxtla Gutiérrez, Chiapas</span>

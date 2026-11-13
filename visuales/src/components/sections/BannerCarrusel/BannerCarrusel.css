@@ -2,10 +2,10 @@
    CARRUSEL DE BANNERS (INICIO)
    ========================================================= */
 .bc-section {
-  --bc-red: #ba2a33;
-  --bc-red-dark: #962e35;
-  --bc-dark: #383637;
-  --bc-light: #e5e5e5;
+  --bc-red: var(--color-rojo);
+  --bc-red-dark: var(--color-rojo-oscuro);
+  --bc-dark: var(--color-gris-oscuro);
+  --bc-light: var(--color-gris-claro);
 
   padding: 4.5rem 0;
   background: var(--bc-light);

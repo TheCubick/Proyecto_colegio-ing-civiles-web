@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, ChevronRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ChevronRight, Clock, Mail, MapPin, MessageCircle, Phone, UserPlus } from "lucide-react";
 import { paginasDe } from "../../../config/rutas";
 import { contacto, LOGO, NOMBRE_COLEGIO, SIGLAS } from "../../../data/contacto";
-import { codigoEtica } from "../../../data/documentos";
+import { documentosLegales } from "../../../data/documentos";
 import { enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
 import { IconoFacebook, IconoInstagram } from "./IconosRedes";
 import "./Footer.css";
@@ -73,7 +73,7 @@ export default function Footer() {
             <ColumnaEnlaces titulo="Eventos y El Colegio" paginas={paginasDe("Eventos", "Conócenos")} />
             <Link to="#afiliacion" className="cic-footer-cta">
               Afíliate al Colegio
-              <ArrowUpRight size={16} aria-hidden="true" />
+              <UserPlus size={16} aria-hidden="true" />
             </Link>
           </div>
 
@@ -133,14 +133,18 @@ export default function Footer() {
 
         <div className="cic-footer-bottom">
           <p>© {anioActual} Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. Todos los derechos reservados.</p>
-          {codigoEtica && (
-            <ul>
-              <li>
-                <a href={codigoEtica} target="_blank" rel="noopener noreferrer">
-                  Código de Ética
-                </a>
-              </li>
-            </ul>
+          {documentosLegales.length > 0 && (
+            <nav aria-label="Documentos legales">
+              <ul>
+                {documentosLegales.map(({ titulo, ruta }) => (
+                  <li key={titulo}>
+                    <a href={ruta} target="_blank" rel="noopener noreferrer">
+                      {titulo}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           )}
         </div>
       </div>
