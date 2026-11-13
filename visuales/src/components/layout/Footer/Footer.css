@@ -332,3 +332,9 @@
     transition: none !important;
   }
 }
+
+/* Texto justificado (F1-IM1) */
+.cic-footer-text {
+  text-align: justify;
+  hyphens: auto;
+}

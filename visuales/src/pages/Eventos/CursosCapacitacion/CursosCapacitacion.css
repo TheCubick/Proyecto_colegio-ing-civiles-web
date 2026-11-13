@@ -691,3 +691,12 @@
     transition: none !important;
   }
 }
+
+/* Texto justificado (F1-IM1) */
+.cc-intro,
+.cc-curso p,
+.cc-card p,
+.cc-modal-body p {
+  text-align: justify;
+  hyphens: auto;
+}

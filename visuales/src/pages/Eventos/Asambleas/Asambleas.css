@@ -268,3 +268,9 @@
     font-size: 1.3rem;
   }
 }
+
+/* Texto justificado (F1-IM1) */
+.asm-card p {
+  text-align: justify;
+  hyphens: auto;
+}
