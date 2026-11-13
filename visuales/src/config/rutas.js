@@ -12,6 +12,9 @@
   - portada:  true si la página abre con video o imagen grande detrás del Header
               (sirve para la especificación del Header de CLAUDE.md).
 
+  Servicio Social y Beneficio a la Sociedad solo existen si su archivo de datos tiene contenido
+  (data/servicioSocial.js y data/beneficioSocial.js): no hay que tocar este archivo para activarlas.
+
   Para agregar una página nueva:
     1) agrégala aquí;
     2) conecta su componente en src/App.jsx (objeto `paginas`).
@@ -22,12 +25,16 @@ import {
   CalendarDays,
   DraftingCompass,
   GraduationCap,
+  HandHeart,
   HardHat,
+  HeartHandshake,
   House,
   ShieldAlert,
   Target,
   Users,
 } from "lucide-react";
+import { hayServicioSocial } from "../data/servicioSocial";
+import { hayBeneficioSocial } from "../data/beneficioSocial";
 
 export const GRUPOS = ["Trámites", "Servicios", "Eventos", "Conócenos"];
 
@@ -106,6 +113,19 @@ export const rutas = [
     grupo: "Conócenos",
     icono: Users,
   },
+  ...(hayServicioSocial
+    ? [{ ruta: "/conocenos/servicio-social", titulo: "Servicio Social", grupo: "Conócenos", icono: HandHeart }]
+    : []),
+  ...(hayBeneficioSocial
+    ? [
+        {
+          ruta: "/conocenos/beneficio-social",
+          titulo: "Beneficio a la Sociedad",
+          grupo: "Conócenos",
+          icono: HeartHandshake,
+        },
+      ]
+    : []),
 ];
 
 // Menús del Header: [{ grupo: "Trámites", paginas: [...] }, ...]

@@ -1,0 +1,144 @@
+/* =========================================================
+   PLANTILLA: PÁGINA INFORMATIVA (Servicio Social, Beneficio a la Sociedad)
+   ========================================================= */
+.pi-page {
+  --pi-red: #ba2a33;
+  --pi-red-dark: #962e35;
+  --pi-dark: #383637;
+  --pi-light: #e5e5e5;
+
+  background: #fff;
+  color: var(--pi-dark);
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+}
+
+.pi-page h1,
+.pi-page h2,
+.pi-btn {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
+.pi-container {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* El padding superior deja espacio al header fijo del sitio */
+.pi-hero {
+  padding: 9rem 0 3.5rem;
+  border-bottom: 3px solid var(--pi-red);
+  background: linear-gradient(180deg, #fff 0%, var(--pi-light) 100%);
+}
+
+.pi-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  color: rgba(56, 54, 55, 0.7);
+  font-size: 1rem;
+}
+
+.pi-breadcrumb a {
+  color: var(--pi-red);
+  font-weight: 600;
+}
+
+.pi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(186, 42, 51, 0.1);
+  color: var(--pi-red);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pi-hero h1 {
+  margin: 0;
+  color: var(--pi-red);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+}
+
+.pi-section {
+  padding: 4rem 0 5rem;
+}
+
+.pi-contenido p {
+  margin: 0 0 1.2rem;
+  font-size: var(--fs-parrafo, 1.05rem);
+  line-height: var(--lh-parrafo, 1.75);
+}
+
+.pi-contenido h2 {
+  margin: 2rem 0 1rem;
+  color: var(--pi-red);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 800;
+}
+
+.pi-lista {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.pi-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-left: 4px solid var(--pi-red);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(56, 54, 55, 0.08);
+  font-size: 1rem;
+}
+
+.pi-lista svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--pi-red);
+}
+
+.pi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 8px;
+  background: var(--pi-red);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background 0.25s ease;
+}
+
+.pi-btn:hover {
+  background: var(--pi-red-dark);
+}
+
+.pi-btn:focus-visible {
+  outline: 2px solid var(--pi-red-dark);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .pi-hero {
+    padding-top: 7.5rem;
+  }
+
+  .pi-container {
+    padding: 0 16px;
+  }
+}

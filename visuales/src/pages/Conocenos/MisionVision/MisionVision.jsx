@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Landmark, ShieldCheck } from "lucide-react";
+import { ArrowRight, HandHeart, Landmark, ShieldCheck } from "lucide-react";
 import { compromisos, enlaces, pilares, valores } from "../../../data/misionVision";
+import { hayServicioSocial, servicioSocial } from "../../../data/servicioSocial";
 import Migas from "../../../components/ui/Migas/Migas";
 import "./MisionVision.css";
 
@@ -122,6 +123,23 @@ export default function MisionVision() {
           </div>
         </div>
       </section>
+
+      {/* Plan B del servicio social: solo mientras el Colegio no mande su texto (data/servicioSocial.js) */}
+      {!hayServicioSocial && (
+        <section className="mv-privacidad" aria-labelledby="mv-servicio-social-titulo">
+          <div className="mv-container">
+            <div className="mv-privacidad-box">
+              <span className="mv-card-icon mv-card-icon-lg">
+                <HandHeart size={30} aria-hidden="true" />
+              </span>
+              <div>
+                <h2 id="mv-servicio-social-titulo">{servicioSocial.aviso.titulo}</h2>
+                <p>{servicioSocial.aviso.texto}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="mv-mas fondo-cuadricula">
         <div className="mv-container">
