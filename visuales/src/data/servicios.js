@@ -20,7 +20,7 @@ export const servicios = {
   peritos: {
     galeria: "peritos",
     titulo: "Peritos Valuadores",
-    intro: "Dictámenes de valor con respaldo técnico y profesional del Colegio de Ingenieros Civiles.",
+    intro: "Dictámenes de valor con respaldo técnico y profesional del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C.",
     asuntoCorreo: "Solicitud de peritaje",
     textoBoton: "Solicitar peritaje",
     descripcion: {
