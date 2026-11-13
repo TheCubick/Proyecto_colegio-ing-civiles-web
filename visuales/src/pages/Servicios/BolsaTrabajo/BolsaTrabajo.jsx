@@ -12,7 +12,8 @@ import { dirigidoA } from "../../../data/bolsaTrabajo";
 import { enlaceCorreo } from "../../../utils/enlaces";
 import ModalContacto from "../../../components/ui/ModalContacto/ModalContacto";
 import Migas from "../../../components/ui/Migas/Migas";
-import ImagenSegura from "../../../components/ui/ImagenSegura/ImagenSegura";
+import GaleriaCarrusel from "../../../components/ui/GaleriaCarrusel/GaleriaCarrusel";
+import { galerias } from "../../../data/galerias";
 import "./BolsaTrabajo.css";
 
 // PÁGINA «BOLSA DE TRABAJO». Las vacantes están en src/data/vacantes.js.
@@ -61,14 +62,7 @@ export default function BolsaTrabajo() {
             </p>
           </article>
           <figure className="bt-figure">
-            <ImagenSegura
-              src="/img/paginas/servicios/bolsa.jpg"
-              alt="Ingenieros civiles trabajando en una obra"
-              claseVacia="bt-img-placeholder"
-              texto="Imagen pendiente"
-              tamanoIcono={32}
-              lazy={false}
-            />
+            <GaleriaCarrusel fotos={galerias.bolsa} />
           </figure>
         </div>
       </section>

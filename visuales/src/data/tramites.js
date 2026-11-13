@@ -5,6 +5,7 @@
 
   Campos:
   - sigla:          se usa en «¿Qué funciones realiza un ___?».
+  - galeria:        nombre de la galería de data/galerias.js que rota en el carrusel de la página.
   - titulo, intro:  encabezado de la página.
   - icono:          ícono de la etiqueta «Trámites».
   - video:          (opcional) video de fondo del encabezado. Sin video, el encabezado es claro.
@@ -18,6 +19,7 @@ import { infoDictaminador, infoDro, infoRt } from "./tramitesInfo";
 export const tramites = {
   dro: {
     sigla: "DRO",
+    galeria: "dro",
     titulo: "Director Responsable de Obra (DRO)",
     intro:
       "Registro y respaldo gremial para los ingenieros civiles que ejercen como Directores Responsables de Obra ante el municipio.",
@@ -35,6 +37,7 @@ export const tramites = {
 
   rt: {
     sigla: "RT",
+    galeria: "rt",
     titulo: "Representante Técnico (RT)",
     intro:
       "Gestión y respaldo del Colegio para que sus agremiados obtengan y mantengan sus claves de especialidad como Representantes Técnicos de empresas constructoras.",
@@ -52,6 +55,7 @@ export const tramites = {
 
   dictaminador: {
     sigla: "Dictaminador",
+    galeria: "dictaminador",
     titulo: "Dictaminador de Riesgos",
     intro:
       "Formación y registro de profesionales que evalúan y dictaminan los riesgos de obras e instalaciones, tanto en proyectos nuevos como en situaciones de emergencia.",
