@@ -336,3 +336,51 @@
     transition: none !important;
   }
 }
+/* ---------- Servicios oficiales del perito (solo si el Colegio los mandó) ---------- */
+.sv-oficiales {
+  padding: 4rem 0;
+  background: #fff;
+}
+
+.sv-oficiales h2 {
+  margin: 0 0 1.5rem;
+  color: var(--sv-red, #ba2a33);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+.sv-oficiales-lista {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sv-oficiales-lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--sv-red, #ba2a33);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(56, 54, 55, 0.08);
+}
+
+.sv-oficiales-lista svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--sv-red, #ba2a33);
+}
+
+.sv-oficiales-lista h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.sv-oficiales-lista p {
+  margin: 0;
+  font-size: 1rem;
+  text-align: justify;
+  hyphens: auto;
+}

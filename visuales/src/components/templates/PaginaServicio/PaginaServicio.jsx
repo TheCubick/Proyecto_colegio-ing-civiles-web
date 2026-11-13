@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
 import ModalContacto from "../../ui/ModalContacto/ModalContacto";
 import Migas from "../../ui/Migas/Migas";
 import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
@@ -14,6 +14,7 @@ import "./PaginaServicio.css";
 */
 export default function PaginaServicio({ datos }) {
   const { titulo, intro, asuntoCorreo, textoBoton, descripcion, imagen, alt, tituloTarjetas, tarjetas, cta } = datos;
+  const serviciosOficiales = datos.serviciosOficiales ?? [];
   const [contactoAbierto, setContactoAbierto] = useState(false);
   const mailto = enlaceCorreo(undefined, asuntoCorreo);
   const IconoDescripcion = descripcion.icono;
@@ -69,6 +70,25 @@ export default function PaginaServicio({ datos }) {
           </div>
         </div>
       </section>
+
+      {serviciosOficiales.length > 0 && (
+        <section className="sv-oficiales" aria-labelledby="sv-oficiales-titulo">
+          <div className="sv-container">
+            <h2 id="sv-oficiales-titulo">Servicios que ofrecen</h2>
+            <ul className="sv-oficiales-lista">
+              {serviciosOficiales.map(({ titulo: tituloServicio, texto }) => (
+                <li key={tituloServicio}>
+                  <CheckCircle2 size={22} aria-hidden="true" />
+                  <div>
+                    <h3>{tituloServicio}</h3>
+                    {texto && <p>{texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <section className="sv-cta fondo-cuadricula">
         <div className="sv-container sv-cta-box">

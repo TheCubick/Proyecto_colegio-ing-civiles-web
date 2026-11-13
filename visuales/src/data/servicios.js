@@ -13,6 +13,8 @@
   - tituloTarjetas:     título de la sección de tres tarjetas.
   - tarjetas:           lista de { icono, titulo, texto }.
   - cta:                cierre de la página ({ titulo, texto }).
+  - serviciosOficiales: (opcional, solo Peritos) lista { titulo, texto } copiada LETRA POR LETRA de lo
+                        que mande el Colegio (F2-JM1). Vacía = la sección no se muestra.
 */
 import { Building2, DraftingCompass, HardHat, House, Landmark, Ruler, Scale } from "lucide-react";
 
@@ -52,6 +54,8 @@ export const servicios = {
       titulo: "¿Necesitas un dictamen de valor?",
       texto: "Escríbenos y un perito del Colegio te dará seguimiento.",
     },
+    // Servicios del perito valuador TAL CUAL los mande el Colegio. Si no llegan, se queda vacía.
+    serviciosOficiales: [],
   },
 
   calculo: {
