@@ -61,7 +61,7 @@ export default function AtencionWhatsapp() {
     .join("\n\n");
 
   return (
-    <section className="aw-section" id="atencion" aria-labelledby="aw-titulo">
+    <section className="aw-section fondo-trazos" id="atencion" aria-labelledby="aw-titulo">
       <div className="aw-container">
         <header className="aw-header">
           <span className="aw-badge">

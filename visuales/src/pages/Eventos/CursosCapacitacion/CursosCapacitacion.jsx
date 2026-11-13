@@ -264,7 +264,7 @@ export default function CursosCapacitacion() {
         </div>
       </section>
 
-      <section className="cc-cursos" aria-labelledby="cc-cursos-titulo">
+      <section className="cc-cursos fondo-trazos" aria-labelledby="cc-cursos-titulo">
         <div className="cc-container">
           <div className="cc-section-header">
             <GraduationCap size={28} aria-hidden="true" />
@@ -284,7 +284,7 @@ export default function CursosCapacitacion() {
         </div>
       </section>
 
-      <section className="cc-muro" aria-labelledby="cc-muro-titulo">
+      <section className="cc-muro fondo-trazos" aria-labelledby="cc-muro-titulo">
         <div className="cc-container">
           <div className="cc-section-header">
             <Newspaper size={26} aria-hidden="true" />

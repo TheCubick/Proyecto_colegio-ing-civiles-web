@@ -23,7 +23,7 @@ export default function Comisiones() {
         </div>
       </section>
 
-      <section className="com-section">
+      <section className="com-section fondo-trazos">
         <div className="com-container">
           <div className="com-grid">
             {comisiones.map(({ icono: Icono, titulo, texto, enlace }) => (

@@ -104,7 +104,7 @@ export default function Asambleas() {
           </div>
         </header>
 
-        <section className="asm-listado asm-container" aria-label="Asambleas realizadas">
+        <section className="asm-listado asm-container fondo-trazos" aria-label="Asambleas realizadas">
           {ordenadas.length > 0 ? (
             ordenadas.map((asamblea) => <AsambleaCard key={asamblea.id} asamblea={asamblea} />)
           ) : (
