@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <!-- Patrón de trazos arquitectónicos (mosaico de 320×320 sin uniones visibles). Solo #383637 a baja opacidad. -->
+  <g fill="none" stroke="#383637" stroke-linecap="round">
+    <!-- Retícula de plano: los ejes del borde se continúan en el cuadro vecino -->
+    <path stroke-opacity="0.08" d="M0 0.5H320M0.5 0V320"/>
+    <path stroke-opacity="0.05" stroke-dasharray="2 6" d="M0 160.5H320M160.5 0V320"/>
+
+    <!-- Alzado de una casa con su línea de cota -->
+    <g stroke-opacity="0.09">
+      <path d="M36 268V196H124V268M28 268H132M36 196L80 152L124 196M66 268V232H94V268"/>
+      <path d="M36 290H124M36 284V296M124 284V296M32 294L40 286M120 294L128 286"/>
+    </g>
+
+    <!-- Columna circular con ejes y arco de trazo -->
+    <g stroke-opacity="0.09">
+      <circle cx="240" cy="80" r="38"/>
+      <circle cx="240" cy="80" r="6"/>
+      <path stroke-dasharray="10 4 2 4" d="M188 80H292M240 28V132"/>
+    </g>
+
+    <!-- Arco de puerta (abatimiento) -->
+    <path stroke-opacity="0.08" d="M190 284V220M190 284H254M190 220A64 64 0 0 1 254 284"/>
+
+    <!-- Ángulo con su arco -->
+    <g stroke-opacity="0.08">
+      <path d="M28 120H120M28 120L100 56"/>
+      <path d="M76 120A48 48 0 0 0 64 88"/>
+    </g>
+
+    <!-- Marcas de nivel -->
+    <path stroke-opacity="0.07" d="M280 196L288 204L296 196ZM276 196H300"/>
+  </g>
+</svg>
