@@ -13,41 +13,13 @@ export const requisitosInscripcion = [
 ];
 
 /*
-  Cursos y capacitaciones activas. DATOS DE EJEMPLO: reemplázalos con los cursos reales.
+  Cursos y capacitaciones activas.
   - modalidad: "Presencial", "En línea" o "Mixta"
   - temario:   (opcional) ruta a un PDF en public/, ej. "/documentos/temario-precios.pdf".
                Si no se indica, no se muestra el botón "Ver temario".
   El botón "Inscribirse" abre el modal con el proceso de inscripción y requisitos.
 */
-export const cursos = [
-  {
-    id: 1,
-    img: "/img/paginas/eventos/cursos/curso1.jpg",
-    titulo: "Diplomado en Supervisión de Obra Pública",
-    fecha: "Inicia: 15 de noviembre de 2026",
-    horario: "Sábados, 9:00 AM – 2:00 PM",
-    modalidad: "Mixta",
-    descripcion: "Especialización enfocada en la normativa actual y control de calidad en obra.",
-  },
-  {
-    id: 2,
-    img: "/img/paginas/eventos/cursos/curso2.jpg",
-    titulo: "Curso de Análisis de Precios Unitarios",
-    fecha: "Inicia: 22 de noviembre de 2026",
-    horario: "Martes y jueves, 6:00 PM – 9:00 PM",
-    modalidad: "En línea",
-    descripcion: "Integración de costos directos, indirectos y financiamiento para presupuestos de obra.",
-  },
-  {
-    id: 3,
-    img: "/img/paginas/eventos/cursos/curso3.jpg",
-    titulo: "Taller de Bitácora Electrónica de Obra Pública",
-    fecha: "5 de diciembre de 2026",
-    horario: "Viernes, 4:00 PM – 8:00 PM",
-    modalidad: "Presencial",
-    descripcion: "Uso práctico de la BEOP: apertura, notas, firmas y cierre de bitácora.",
-  },
-];
+export const cursos = [];
 
 // Publicaciones del muro. Las más nuevas van al inicio del arreglo.
 export const noticias = [
@@ -73,7 +45,7 @@ export const noticias = [
     id: 4,
     img: "/img/posts/4.png",
     titulo: "XV aniversario de MORENA",
-    texto: "Representantes del VI Consejo Directivo asistieron al XV aniversario de MORENA en Tuxtla Gutiérrez, respondiendo al diálogo institucional y al papel clave de la ingeniería civil en el desarrollo del estado.",
+    texto: "Representantes del VI Consejo Directivo, como Asociación Civil sin filiación partidista, asistieron al XV aniversario de MORENA en Tuxtla Gutiérrez, respondiendo al diálogo institucional y al papel clave de la ingeniería civil en el desarrollo del estado.",
   },
   {
     id: 5,
