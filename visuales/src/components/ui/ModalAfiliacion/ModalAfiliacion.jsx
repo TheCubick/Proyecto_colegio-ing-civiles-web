@@ -96,8 +96,8 @@ function PanelRequisitos() {
         <Pin size={20} aria-hidden="true" />
         <div>
           <p>
-            <strong>El trámite de inscripción es 100% presencial</strong> en nuestras oficinas. Los
-            formatos se entregan en nuestras oficinas.
+            <strong>El trámite de inscripción es 100% presencial</strong> en nuestras oficinas, donde
+            también se entregan los formatos.
           </p>
           <ul className="hd-aviso-datos">
             <li>

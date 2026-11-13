@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronDown, Menu, UserPlus } from "lucide-react";
 import { menus, RUTAS_CON_PORTADA } from "../../../config/rutas";
 import { LOGO, NOMBRE_COLEGIO, SIGLAS } from "../../../data/contacto";
 import useBloquearScroll from "../../../hooks/useBloquearScroll";
-import ModalAfiliacion from "../../ui/ModalAfiliacion/ModalAfiliacion";
 import MenuEnlace from "./MenuEnlace";
 import MenuMovil from "./MenuMovil";
 import "./Header.css";
@@ -24,6 +23,9 @@ import "./Header.css";
 // Cualquier enlace a "#afiliacion" (por ejemplo, desde el footer) abre el pop-up de afiliación.
 const AFILIACION_HASH = "#afiliacion";
 
+// El pop-up «Afíliate» se descarga solo la primera vez que se abre (carga diferida, F2-MF3).
+const ModalAfiliacion = lazy(() => import("../../ui/ModalAfiliacion/ModalAfiliacion"));
+
 const menuId = (grupo) => `hd-menu-${grupo.normalize("NFD").replace(/[^\w]/g, "").toLowerCase()}`;
 
 export default function Header() {
@@ -35,6 +37,9 @@ export default function Header() {
   const [movilAbierto, setMovilAbierto] = useState(false);
 
   const afiliacionAbierta = location.hash === AFILIACION_HASH;
+  // Una vez abierto, el pop-up se queda montado para conservar su animación de cierre.
+  const [modalCargado, setModalCargado] = useState(afiliacionAbierta);
+  if (afiliacionAbierta && !modalCargado) setModalCargado(true);
 
   const cerrarMenus = () => {
     setMenuAbierto(null);
@@ -196,7 +201,11 @@ export default function Header() {
         onAfiliacion={abrirAfiliacion}
       />
 
-      <ModalAfiliacion abierto={afiliacionAbierta} onCerrar={cerrarAfiliacion} />
+      {modalCargado && (
+        <Suspense fallback={null}>
+          <ModalAfiliacion abierto={afiliacionAbierta} onCerrar={cerrarAfiliacion} />
+        </Suspense>
+      )}
     </>
   );
 }

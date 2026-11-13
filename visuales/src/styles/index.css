@@ -74,6 +74,16 @@ button, input, textarea, select { font: inherit; }
   background-size: 22px 22px;
 }
 
+/* Aviso mientras se descarga una página (carga diferida en App.jsx) */
+.cargando {
+  min-height: 70vh;
+  margin: 0;
+  padding: 10rem 24px 4rem;
+  color: #383637;
+  font-size: 1rem;
+  text-align: center;
+}
+
 /* Trazos arquitectónicos (petición del Consejo): plano tenue en mosaico.
    Clase duplicada a propósito: gana a los "background" de cada componente. */
 .fondo-trazos.fondo-trazos {
