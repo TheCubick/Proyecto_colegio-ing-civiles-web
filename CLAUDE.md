@@ -54,15 +54,13 @@ Comportamiento deseado (**letras del menú siempre blancas**; solo cambia el fon
 - Fondos con patrón: ⚠️ `.fondo-cuadricula` y `.fondo-puntos` en `index.css`; faltan Inicio, Cursos, Asambleas y Comisiones.
 - Letras grandes: ⚠️ base 18px; quedan 74 `font-size` menores a 14px (26 en Header.css + ModalAfiliacion.css, 48 en el resto).
 
-2ª presentación (líneas 7-19): todo ❌ salvo lo parcial de arriba. Pendientes: header de color (spec arriba), fotos DRO→RT, carrusel automático en Trámites y Servicios, fotos de derrumbes en Dictaminador, siglas CICTGZ (Header, Hero, Footer, `<title>`), servicios del Perito, organigrama (logo izquierda + siglas), fotos de cursos, trazos y animación en fondos, página Beneficio a la Sociedad, página Servicio Social gratuito + PDF.
+2ª presentación (líneas 7-19), estado en `rama/final` (13-nov): ✅ header de color, ✅ siglas CICTGZ (Header, Hero, Footer, `<title>`), ✅ carrusel automático (`GaleriaCarrusel` + `data/galerias.js`), ✅ foto DRO→RT (`galerias/rt/rt-01.jpg`), ✅ trazos (`fondo-trazos` + planos de Jocelyn con `decor-plano`) y animación (`.aparecer`), ✅ Servicio Social / Beneficio Social / servicios del Perito listos para activarse solos al llenar sus `data/*.js` (plan B visible en Misión y Visión). ⏳ Depende del Colegio: fotos de derrumbes y de cursos, organigrama aprobado, textos oficiales.
 
-## Hallazgos críticos abiertos (ver `docs/Estado_Y_Verificacion_Proyecto.md`)
-- C1 PDF de formatos (`public/documentos/oficio-inscripcion.pdf`, `cedula-inscripcion.pdf`, `carta-protesta-*.pdf`) **con datos personales reales** → reemplazar por formatos en blanco.
-- C2 `bolsa.jpg` es un flyer del gobierno de la CDMX → retirar.
-- C3 El organigrama dice "de Chiapas" y "Visepresidente".
-- C4 `data/asambleas.js` y `data/cursos.js` (lista `cursos`) publican datos de ejemplo.
-- C5 `data/requisitos.js:15` dice 3 años (el dato oficial es 2 años de expedición de cédula).
-- C6 `requisitos-dro|rt|dictaminador.pdf` no existen (404).
+## Hallazgos críticos abiertos (ver `docs/Estado_Y_Verificacion_Proyecto.md` y `docs/QA_Reglas_Fase1.md`)
+- ~~C1 PDF con datos personales~~ → retirados en `rama/final` (F1-PR0); `formatos` vacío hasta recibir formatos en blanco.
+- ~~C2 `bolsa.jpg` (flyer CDMX)~~ → retirado (F1-PR0).
+- C3 El organigrama dice "de Chiapas" y "Visepresidente" (sigue abierto; plan B: retirar la imagen el 17-nov).
+- ~~C4 datos de ejemplo~~ → vaciados (F1-JM2). ~~C5 3 años~~ → corregido (F1-JM2). ~~C6 PDF 404~~ → botones retirados (F1-PR0).
 - ~~C7 Cambio local sin commit en `Header.css`~~ → descartado el 2026-11-08 (`git restore`).
 
 ## Reparto de trabajo
@@ -73,6 +71,7 @@ Comportamiento deseado (**letras del menú siempre blancas**; solo cambia el fon
 - Panel administrativo (idea de Pablo): recomendado Supabase (auth + Postgres + storage + RLS); nunca la `service_role` en el frontend ni en git.
 
 ## Bitácora (lo más nuevo arriba; una línea por cambio)
+- 2026-11-13 · Rama `rama/final` (sin unir a `main`): todas las tareas de código de Fase 1 y 2 que no dependen del Colegio. F1-PR0, F1-MF1/MF2 (carrusel; cherry-pick de `fase1/mf2-galeria-carrusel`), F1-MF3 (header de color), F1-MF4 (siglas, `<title>`, favicon PNG porque el SVG pesa 9 MB), F1-JA2 (solo `rt-01.jpg`), F1-JA3 (SVG de trazos + planos de Jocelyn en WebP como `decor-plano` en portadas claras), restos de F1-JB1 (BolsaTrabajo.css), F2-MF1 (Servicio/Beneficio Social y peritos se activan solos con sus datos), F2-MF2 (404 + Código de Ética por `data/documentos.js`), F2-MF3 (lazy, pop-up diferido, `manualChunks`, Open Graph sin imagen), F2-MF4, F2-JB1, F2-IM1, F2-DB2 (`docs/Manual_Usuario.md`), F2-DB3 (`docs/panel-admin/consultas.sql`), F1-DB2 (`docs/QA_Reglas_Fase1.md`). Verificador 0/0; lint y build OK; JS principal 41 kB. Pendientes humanos/Colegio: F1-JM1/JM3, F1-JA1 (organigrama), fotos de galerías, F2-JB2, F2-IM2, F2-DB1, F2-JA1/JA2, F2-JM*, og:image con dominio, panel admin.
 - 2026-11-12 · Unidas a `main` (`6e29a8b`): `fase1/daniel` (F1-DB1 esquema.sql), `fase1/jose-maria` (F1-JM2: cursos y asambleas vacíos, requisitos 2/5 años y Art. 23, nota MORENA), `fase1/ignacio` (F1-IM1 justificado, F1-IM2 videos comprimidos), `fase1/josue` (tipografía, paleta, leyes citadas retiradas). Conflictos de fin de archivo resueltos conservando ambos cambios. Lint y build OK; verificador 30 errores / 6 advertencias. Pendientes: `fase1/mf2-galeria-carrusel` (necesita F1-MF1 `GaleriaCarrusel` + `data/galerias.js`, no existen) y `fase1/jocelin` (organigrama aún dice «de Chiapas» y «Visepresidente»; rama basada en un commit viejo con archivos ajenos).
 - 2026-11-12 · `docs/Guia_Git_Equipo.md`: guía paso a paso de Git para el equipo (instalar, configurar, clonar el repo nuevo `TheCubick/Proyecto_colegio-ing-civiles-web`, ramas `fase1/<nombre>`, verificaciones y Pull Request).
 - 2026-11-09 · Reestructura modular (sin cambios visuales): `config/rutas.js`, `data/{contacto,afiliacion,inicio,tramites,servicios,cursos,bolsaTrabajo,misionVision,comisiones}.js`, plantillas `PaginaTramite`/`PaginaServicio` (se borran Dro, Rt, Dictaminador, PeritosValuadores, CalculoEstructural), `ModalAfiliacion` sale del Header (JSX y CSS), `MenuMovil`/`MenuEnlace`, `Migas`, `ImagenSegura`, `ScrollArriba`, hooks y `utils/enlaces.js`. Al unificar datos: horario 9:00–13:00 y WhatsApp 961-119-0009 en todo el sitio (pendiente confirmar, F1-JM2) y la ventana de contacto muestra los 4 teléfonos. Verificador: 87 errores / 19 advertencias. README (sin emojis, estructura y mapa de rutas), plan e instrucciones actualizados a las rutas y líneas nuevas.
