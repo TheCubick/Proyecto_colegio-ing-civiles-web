@@ -3,7 +3,8 @@ import { ArrowRight, Download, FileText, Info } from "lucide-react";
 import { notaCartas, requisitosGenerales } from "../../../data/requisitos";
 import ModalContacto from "../../ui/ModalContacto/ModalContacto";
 import Migas from "../../ui/Migas/Migas";
-import ImagenSegura from "../../ui/ImagenSegura/ImagenSegura";
+import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
+import { galerias } from "../../../data/galerias";
 import TramiteDetalle from "../../sections/TramiteDetalle/TramiteDetalle";
 import "./PaginaTramite.css";
 
@@ -52,14 +53,10 @@ export default function PaginaTramite({ datos }) {
             <p>{queEs.texto}</p>
           </div>
           <figure className="tr-figure">
-            <ImagenSegura
-              key={queEs.imagen}
-              src={queEs.imagen}
-              alt={queEs.alt}
-              claseVacia="tr-img-placeholder"
-              texto="Imagen pendiente"
-              tamanoIcono={32}
-              lazy={false}
+            <GaleriaCarrusel
+              key={datos.galeria}
+              fotos={galerias[datos.galeria]}
+              respaldo={{ src: queEs.imagen, alt: queEs.alt }}
             />
           </figure>
         </div>

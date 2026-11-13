@@ -2,7 +2,8 @@ import { useState } from "react";
 import { ArrowRight, Mail } from "lucide-react";
 import ModalContacto from "../../ui/ModalContacto/ModalContacto";
 import Migas from "../../ui/Migas/Migas";
-import ImagenSegura from "../../ui/ImagenSegura/ImagenSegura";
+import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
+import { galerias } from "../../../data/galerias";
 import { enlaceCorreo } from "../../../utils/enlaces";
 import "./PaginaServicio.css";
 
@@ -43,14 +44,10 @@ export default function PaginaServicio({ datos }) {
             <p>{descripcion.texto}</p>
           </article>
           <figure className="sv-figure">
-            <ImagenSegura
-              key={imagen}
-              src={imagen}
-              alt={alt}
-              claseVacia="sv-img-placeholder"
-              texto="Imagen pendiente"
-              tamanoIcono={32}
-              lazy={false}
+            <GaleriaCarrusel
+              key={datos.galeria}
+              fotos={galerias[datos.galeria]}
+              respaldo={{ src: imagen, alt }}
             />
           </figure>
         </div>
