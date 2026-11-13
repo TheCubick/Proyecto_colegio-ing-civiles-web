@@ -48,7 +48,7 @@
 /* El padding superior deja espacio al header fijo del sitio */
 .cc-hero {
   padding: 9rem 0 3.5rem;
-  background: linear-gradient(180deg, #fff 0%, #f3f3f3 100%);
+  background: linear-gradient(180deg, #fff 0%, #E5E5E5 100%);
   border-bottom: 3px solid var(--cc-red);
 }
 
@@ -59,7 +59,7 @@
   gap: 6px;
   margin-bottom: 20px;
   color: rgba(56, 54, 55, 0.7);
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .cc-breadcrumb a {
@@ -146,7 +146,7 @@
   background: var(--cc-red);
   color: #fff;
   font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -174,7 +174,7 @@
   margin: 0 0 14px;
   padding: 0;
   list-style: none;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -203,7 +203,7 @@
 
 .cc-curso-actions .cc-btn {
   padding: 12px 22px;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .cc-btn-outline {
@@ -308,7 +308,7 @@
   display: -webkit-box;
   margin: 0 0 18px;
   overflow: hidden;
-  font-size: 0.93rem;
+  font-size: 1rem;
   line-height: 1.6;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
@@ -326,7 +326,7 @@
   border-radius: 8px;
   background: var(--cc-red);
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -374,7 +374,7 @@
   background: #fff;
   color: var(--cc-dark);
   font-family: "Open Sans", "Segoe UI", sans-serif;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 60px rgba(56, 54, 55, 0.35);
 }
 
 .cc-modal[open] {
@@ -403,7 +403,7 @@
   background: rgba(255, 255, 255, 0.92);
   color: var(--cc-dark);
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(56, 54, 55, 0.2);
   transition: all 0.25s ease;
 }
 
@@ -560,12 +560,12 @@
   display: block;
   margin-bottom: 4px;
   font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
 }
 
 .cc-insc-pago p {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -594,7 +594,7 @@
   background: #fff;
   color: var(--cc-dark);
   font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;

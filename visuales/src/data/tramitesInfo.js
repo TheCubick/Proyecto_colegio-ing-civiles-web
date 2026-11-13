@@ -15,13 +15,8 @@ const pasosContratacion = (perito) => [
       "Indícanos la ubicación, el tipo de obra, la superficie aproximada y la etapa en la que se encuentra (proyecto, trámite de licencia o ejecución).",
   },
   {
-    titulo: "Recibe el directorio oficial",
-    texto: `Te compartimos el directorio de agremiados con registro vigente como ${perito}, para que elijas al profesional que mejor se adapte a tu obra.`,
-  },
-  {
-    titulo: "Formaliza la contratación",
-    texto:
-      "Acuerda directamente con el profesional el alcance, los honorarios y la carta responsiva correspondiente. El Colegio respalda que su registro esté vigente.",
+    titulo: "Acude a las oficinas",
+    texto: `Todo el trámite se realiza de forma presencial en las oficinas del Colegio, donde te orientan para contactar a un ${perito} con registro vigente.`,
   },
 ];
 
@@ -73,7 +68,6 @@ export const infoDro = {
   },
   normativa: {
     parrafos: [
-      "El Reglamento de Construcción del municipio de Tuxtla Gutiérrez establece que las obras que requieren licencia de construcción deben contar con un Director Responsable de Obra. Sin su firma, la autoridad municipal no puede otorgar la licencia y la obra se considera irregular.",
       "Construir sin DRO expone al propietario a la suspensión o clausura de los trabajos, a multas y a la imposibilidad de escriturar, asegurar o vender el inmueble con su construcción en regla. Además, en una zona de alta sismicidad como Chiapas, omitir la supervisión técnica pone en riesgo la vida de quienes habitarán o transitarán cerca de la edificación.",
     ],
     riesgos: [
@@ -130,7 +124,6 @@ export const infoRt = {
   },
   normativa: {
     parrafos: [
-      "Para participar en licitaciones y contratos de obra pública en Chiapas, las empresas deben estar inscritas en el padrón de contratistas del Estado, y uno de los requisitos es contar con un Representante Técnico con claves de especialidad acreditadas ante la Secretaría de la Honestidad y Buen Gobierno.",
       "Una empresa sin Representante Técnico vigente no puede registrarse ni refrendar su inscripción, por lo que queda fuera de los concursos de obra pública. Además, la falta de un responsable técnico calificado aumenta el riesgo de errores en la ejecución, sanciones contractuales y obras que no cumplen con la calidad esperada por la ciudadanía.",
     ],
     riesgos: [
@@ -187,7 +180,6 @@ export const infoDictaminador = {
   },
   normativa: {
     parrafos: [
-      "La Ley de Protección Civil del Estado de Chiapas y los reglamentos municipales exigen un dictamen de riesgo para autorizar construcciones en zonas identificadas en el Atlas de Riesgos, así como para el funcionamiento de establecimientos con afluencia de personas e inmuebles de uso público.",
       "Chiapas es una de las entidades con mayor actividad sísmica del país y con zonas expuestas a inundaciones y deslaves. Construir u ocupar un inmueble sin un dictamen avalado por un especialista puede derivar en la negativa de licencias y permisos, clausuras por parte de Protección Civil y, sobre todo, en pérdidas humanas y materiales que pudieron evitarse.",
     ],
     riesgos: [

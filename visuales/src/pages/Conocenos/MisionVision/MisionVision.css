@@ -45,7 +45,7 @@
   gap: 6px;
   margin-bottom: 20px;
   color: rgba(255, 255, 255, 0.75);
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .mv-breadcrumb a {
@@ -67,7 +67,7 @@
   border: 1px solid rgba(255, 255, 255, 0.35);
   background: rgba(186, 42, 51, 0.55);
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -198,7 +198,7 @@
 .mv-pilar-etiqueta {
   display: block;
   color: var(--mv-red-dark);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -273,7 +273,7 @@
 }
 
 .mv-mas-text span {
-  font-size: 0.92rem;
+  font-size: 1rem;
 }
 
 .mv-mas-arrow {
@@ -380,7 +380,7 @@
 .mv-organigrama-figura figcaption {
   margin-top: 12px;
   color: rgba(56, 54, 55, 0.7);
-  font-size: 0.85rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -561,7 +561,7 @@
   color: #fff;
   font-size: clamp(2.2rem, 5vw, 3rem);
   line-height: 1.15;
-  text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+  text-shadow: 2px 2px 4px rgb(56 54 55 / 50%);
 }
 
 .mv-page .mv-intro {
@@ -570,7 +570,7 @@
   font-family: "Open Sans", "Segoe UI", sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
-  text-shadow: 1px 1px 3px rgb(0 0 0 / 80%);
+  text-shadow: 1px 1px 3px rgb(56 54 55 / 80%);
 }
 
 .mv-page .mv-badge {

@@ -16,7 +16,7 @@
   background: #fff;
   color: var(--mc-dark);
   font-family: "Open Sans", "Segoe UI", sans-serif;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 60px rgba(56, 54, 55, 0.35);
 }
 
 .mc-modal[open] {
@@ -140,7 +140,7 @@
 
 .mc-lista strong {
   font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .mc-telefonos {
@@ -179,7 +179,7 @@
   padding: 11px 20px;
   border-radius: 8px;
   font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
   transition: all 0.25s ease;
