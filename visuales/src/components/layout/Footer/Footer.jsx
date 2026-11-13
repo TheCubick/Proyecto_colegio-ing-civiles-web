@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, ChevronRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { paginasDe } from "../../../config/rutas";
-import { contacto, LOGO } from "../../../data/contacto";
+import { contacto, LOGO, NOMBRE_COLEGIO, SIGLAS } from "../../../data/contacto";
 import { enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
 import { IconoFacebook, IconoInstagram } from "./IconosRedes";
 import "./Footer.css";
@@ -47,8 +47,8 @@ export default function Footer() {
             <Link to="/" className="cic-footer-logo">
               <img src={LOGO} alt="" />
               <span>
-                Colegio de Ingenieros Civiles
-                <small>de Tuxtla Gutiérrez A.C.</small>
+                {SIGLAS}
+                <small>{NOMBRE_COLEGIO}</small>
               </span>
             </Link>
             <p className="cic-footer-text">
@@ -131,7 +131,7 @@ export default function Footer() {
         </div>
 
         <div className="cic-footer-bottom">
-          <p>© {anioActual} Colegio de Ingenieros Civiles de Tuxtla Gutiérrez A.C. Todos los derechos reservados.</p>
+          <p>© {anioActual} Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

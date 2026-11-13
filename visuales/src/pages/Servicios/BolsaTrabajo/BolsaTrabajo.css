@@ -60,7 +60,7 @@
   gap: 6px;
   margin-bottom: 20px;
   color: rgba(56, 54, 55, 0.7);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 
 .bt-breadcrumb a {
@@ -193,7 +193,7 @@
   height: 100%;
   background: var(--bt-light);
   color: rgba(56, 54, 55, 0.6);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 /* ---------- Bloque destacado ---------- */
@@ -323,7 +323,7 @@
   border-radius: 999px;
   background: rgba(186, 42, 51, 0.1);
   color: var(--bt-red);
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -341,7 +341,7 @@
   padding: 0;
   list-style: none;
   color: rgba(56, 54, 55, 0.75);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 
 .bt-vacante-meta li {
