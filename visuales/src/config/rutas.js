@@ -29,6 +29,7 @@ import {
   HardHat,
   HeartHandshake,
   House,
+  ScrollText,
   ShieldAlert,
   Target,
   Users,
@@ -112,6 +113,12 @@ export const rutas = [
     titulo: "Comisiones",
     grupo: "Conócenos",
     icono: Users,
+  },
+  {
+    ruta: "/conocenos/estatutos",
+    titulo: "Estatutos",
+    grupo: "Conócenos",
+    icono: ScrollText,
   },
   ...(hayServicioSocial
     ? [{ ruta: "/conocenos/servicio-social", titulo: "Servicio Social", grupo: "Conócenos", icono: HandHeart }]

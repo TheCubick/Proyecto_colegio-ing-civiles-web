@@ -1,24 +1,25 @@
 /*
   BENEFICIO A LA SOCIEDAD (F2-MF1 / F2-JM1).
 
-  REGLA: aquí solo se copia, LETRA POR LETRA, lo que mande el Colegio. Nada redactado ni pasado por IA.
-  Cada PR que cambie este archivo lleva la captura de la fuente.
+  REGLA: aquí solo va, LETRA POR LETRA, lo que mande el Colegio. Nada redactado ni pasado por IA.
 
-  Plan B: si el Colegio no manda nada, la página NO existe. Mientras `parrafos` y `requisitos`
-  estén vacíos, /conocenos/beneficio-social no se crea ni sale en el menú.
-  En cuanto se pegue al menos un párrafo, la página aparece sola (menú, Footer y migas).
+  Contenido actual: artículo 9° de los Estatutos, «Objetivos del Colegio ante la sociedad»
+  (data/estatutos.js), entregado por el Colegio el 13-nov-2026. Con contenido, la página
+  /conocenos/beneficio-social aparece sola (menú, Footer y migas); vacía, no existe (plan B).
 
-  Campos (los mismos que data/servicioSocial.js; llena solo los que el Colegio haya mandado):
-  - parrafos:   ["Párrafo 1 tal cual."]
-  - requisitos: [] (lista opcional, por ejemplo acciones o programas, tal cual)
-  - pdf:        "/documentos/beneficio-social.pdf" (solo si mandaron PDF)
+  Campos: los mismos que data/servicioSocial.js (ver components/templates/PaginaInformativa).
 */
+import { estatutos, FUENTE_ESTATUTOS } from "./estatutos";
+
 export const beneficioSocial = {
   titulo: "Beneficio a la Sociedad",
+  secciones: [estatutos.art9],
   tituloLista: "Acciones",
   parrafos: [],
   requisitos: [],
   pdf: "",
+  fuente: `${FUENTE_ESTATUTOS}, artículo 9°.`,
 };
 
-export const hayBeneficioSocial = beneficioSocial.parrafos.length > 0 || beneficioSocial.requisitos.length > 0;
+export const hayBeneficioSocial =
+  beneficioSocial.secciones.length > 0 || beneficioSocial.parrafos.length > 0 || beneficioSocial.requisitos.length > 0;

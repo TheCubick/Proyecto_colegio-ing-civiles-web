@@ -12,9 +12,12 @@
   - queEs:          bloque de texto + imagen bajo el encabezado.
   - info:           bloques ampliados (funciones, normativa, contratación) de data/tramitesInfo.js.
   - pdfRequisitos:  (opcional) PDF de la lista de documentos. Si no hay, no se muestra el botón.
+  - estatuto:       (opcional) artículo de los Estatutos con los requisitos de la figura
+                    (texto oficial del Colegio, data/estatutos.js).
 */
 import { BadgeCheck, HardHat, ShieldAlert } from "lucide-react";
 import { infoDictaminador, infoDro, infoRt } from "./tramitesInfo";
+import { estatutos } from "./estatutos";
 
 export const tramites = {
   dro: {
@@ -33,6 +36,7 @@ export const tramites = {
       alt: "Director Responsable de Obra supervisando una construcción",
     },
     info: infoDro,
+    estatuto: estatutos.art56,
   },
 
   rt: {
@@ -51,6 +55,7 @@ export const tramites = {
       alt: "Representante Técnico revisando planos de una obra",
     },
     info: infoRt,
+    estatuto: estatutos.art55,
   },
 
   dictaminador: {

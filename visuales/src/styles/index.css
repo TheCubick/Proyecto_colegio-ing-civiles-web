@@ -161,3 +161,32 @@ button, input, textarea, select { font: inherit; }
 @keyframes decor-plano-entrar {
   from { opacity: 0; transform: translateY(16px); }
 }
+
+/* =========================================================
+   TEXTO JUSTIFICADO EN TODO EL SITIO (petición del Consejo).
+   Párrafos y listas de las páginas, del pie y del pop-up «Afíliate».
+   Un componente que necesite otra alineación la declara en su propia clase.
+   ========================================================= */
+main p,
+main li,
+main figcaption,
+footer p,
+.hd-modal p,
+.hd-modal li {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* En bloques centrados, la última línea (o la única) se queda centrada */
+.aw-header p,
+.red-card p,
+.mv-valor p,
+.mv-organigrama-figura figcaption,
+.asm-vacio p,
+.cc-cursos-vacio p,
+.bt-vacio p,
+.ne-page p,
+p.cargando {
+  text-align: justify;
+  text-align-last: center;
+}

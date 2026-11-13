@@ -6,6 +6,8 @@ import Migas from "../../ui/Migas/Migas";
 import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
 import { galerias } from "../../../data/galerias";
 import TramiteDetalle from "../../sections/TramiteDetalle/TramiteDetalle";
+import ArticuloEstatuto from "../../ui/ArticuloEstatuto/ArticuloEstatuto";
+import { FUENTE_ESTATUTOS } from "../../../data/estatutos";
 import "./PaginaTramite.css";
 
 /*
@@ -17,7 +19,7 @@ import "./PaginaTramite.css";
   (clase tr-hero--video); si no, el encabezado es claro.
 */
 export default function PaginaTramite({ datos }) {
-  const { sigla, titulo, intro, icono: Icono, video, queEs, info, pdfRequisitos } = datos;
+  const { sigla, titulo, intro, icono: Icono, video, queEs, info, pdfRequisitos, estatuto } = datos;
   const [contactoAbierto, setContactoAbierto] = useState(false);
 
   // Las animaciones de entrada solo se usan en el encabezado con video.
@@ -63,6 +65,15 @@ export default function PaginaTramite({ datos }) {
       </section>
 
       <TramiteDetalle info={info} sigla={sigla} onContactar={() => setContactoAbierto(true)} />
+
+      {estatuto && (
+        <section className="tr-estatuto fondo-trazos" aria-label="Requisitos según los Estatutos del Colegio">
+          <div className="tr-container">
+            <ArticuloEstatuto articulo={estatuto} />
+            <p className="tr-estatuto-fuente">Fuente: {FUENTE_ESTATUTOS}</p>
+          </div>
+        </section>
+      )}
 
       <section className="tr-requisitos">
         <div className="tr-container">

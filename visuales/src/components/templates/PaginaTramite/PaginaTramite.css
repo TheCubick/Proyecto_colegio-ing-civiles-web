@@ -469,3 +469,19 @@
     animation: none;
   }
 }
+/* ---------- Requisitos según los Estatutos (texto oficial del Colegio) ---------- */
+.tr-estatuto {
+  padding: 4rem 0;
+  background-color: #fff;
+}
+
+.tr-estatuto .tr-container {
+  max-width: 960px;
+}
+
+.tr-estatuto-fuente {
+  margin: 14px 0 0;
+  color: rgba(56, 54, 55, 0.8);
+  font-size: 1rem;
+  font-style: italic;
+}

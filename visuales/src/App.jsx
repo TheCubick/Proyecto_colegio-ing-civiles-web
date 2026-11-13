@@ -5,6 +5,7 @@ import { tramites } from "./data/tramites";
 import { servicios } from "./data/servicios";
 import { servicioSocial } from "./data/servicioSocial";
 import { beneficioSocial } from "./data/beneficioSocial";
+import { paginaEstatutos } from "./data/estatutos";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import ScrollArriba from "./components/layout/ScrollArriba";
@@ -27,8 +28,9 @@ const NoEncontrada = lazy(() => import("./pages/NoEncontrada/NoEncontrada"));
   aquí solo se conecta cada ruta con su componente.
   - Trámites (DRO, RT, Dictaminador): plantilla PaginaTramite + textos de data/tramites.js
   - Peritos y Cálculo:                plantilla PaginaServicio + textos de data/servicios.js
-  - Servicio Social y Beneficio:      plantilla PaginaInformativa + data/servicioSocial.js y
-                                      data/beneficioSocial.js (solo existen si tienen contenido)
+  - Estatutos, Servicio Social y
+    Beneficio a la Sociedad:          plantilla PaginaInformativa + data/estatutos.js, data/servicioSocial.js
+                                      y data/beneficioSocial.js (estas dos solo existen si tienen contenido)
   - Cualquier otra dirección:         página 404 (pages/NoEncontrada)
 */
 const paginas = {
@@ -43,6 +45,7 @@ const paginas = {
   "/eventos/asambleas": <Asambleas />,
   "/conocenos/mision-y-vision": <MisionVision />,
   "/conocenos/comisiones": <Comisiones />,
+  "/conocenos/estatutos": <PaginaInformativa key="estatutos" datos={paginaEstatutos} />,
   "/conocenos/servicio-social": <PaginaInformativa key="servicio-social" datos={servicioSocial} />,
   "/conocenos/beneficio-social": <PaginaInformativa key="beneficio-social" datos={beneficioSocial} />,
 };

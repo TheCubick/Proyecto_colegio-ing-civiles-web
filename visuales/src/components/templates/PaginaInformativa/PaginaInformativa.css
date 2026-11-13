@@ -133,7 +133,45 @@
   outline-offset: 3px;
 }
 
+.pi-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 22px 26px;
+  border: 1px solid rgba(186, 42, 51, 0.2);
+  border-left: 6px solid var(--pi-red);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--pi-dark);
+}
+
+.pi-aviso svg {
+  flex-shrink: 0;
+  color: var(--pi-red);
+}
+
+.pi-contenido .pi-aviso h2 {
+  margin: 0 0 6px;
+}
+
+.pi-contenido .pi-aviso p {
+  margin: 0;
+}
+
+.pi-contenido .pi-fuente {
+  margin-top: 2rem;
+  color: rgba(56, 54, 55, 0.8);
+  font-size: 1rem;
+  font-style: italic;
+}
+
 @media (max-width: 600px) {
+  .pi-aviso {
+    flex-direction: column;
+    padding: 20px 18px;
+  }
+
   .pi-hero {
     padding-top: 7.5rem;
   }

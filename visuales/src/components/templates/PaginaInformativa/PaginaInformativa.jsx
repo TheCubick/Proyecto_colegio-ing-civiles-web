@@ -1,15 +1,24 @@
-import { CheckCircle2, Download, HeartHandshake } from "lucide-react";
+import { CheckCircle2, Download, HandHeart, HeartHandshake } from "lucide-react";
 import Migas from "../../ui/Migas/Migas";
+import ArticuloEstatuto from "../../ui/ArticuloEstatuto/ArticuloEstatuto";
 import "./PaginaInformativa.css";
 
 /*
-  PLANTILLA DE PÁGINAS INFORMATIVAS DEL COLEGIO (Servicio Social y Beneficio a la Sociedad).
-  Muestra SOLO los campos que tengan contenido; los textos vienen tal cual del Colegio en
-  src/data/servicioSocial.js y src/data/beneficioSocial.js.
+  PLANTILLA DE PÁGINAS INFORMATIVAS DEL COLEGIO (Servicio Social, Beneficio a la Sociedad, Estatutos).
+  Muestra SOLO los campos que tengan contenido; los textos vienen tal cual del Colegio
+  (src/data/servicioSocial.js, beneficioSocial.js y estatutos.js).
+
+  Campos de `datos`:
+  - titulo:      título de la página.
+  - aviso:       (opcional) recuadro destacado { titulo, texto }.
+  - secciones:   (opcional) artículos de los Estatutos (ver data/estatutos.js).
+  - parrafos, tituloLista, requisitos: (opcional) texto suelto que mande el Colegio.
+  - pdf:         (opcional) documento para descargar.
+  - fuente:      (opcional) de dónde sale el texto; se muestra al final.
   Uso (en App.jsx): <PaginaInformativa datos={servicioSocial} />
 */
 export default function PaginaInformativa({ datos }) {
-  const { titulo, tituloLista, parrafos = [], requisitos = [], pdf } = datos;
+  const { titulo, aviso, secciones = [], tituloLista, parrafos = [], requisitos = [], pdf, fuente } = datos;
 
   return (
     <main className="pi-page">
@@ -26,10 +35,22 @@ export default function PaginaInformativa({ datos }) {
 
       <section className="pi-section fondo-cuadricula">
         <div className="pi-container pi-contenido">
+          {aviso && (
+            <div className="pi-aviso">
+              <HandHeart size={28} aria-hidden="true" />
+              <div>
+                <h2>{aviso.titulo}</h2>
+                <p>{aviso.texto}</p>
+              </div>
+            </div>
+          )}
+
+          {secciones.map((articulo) => (
+            <ArticuloEstatuto key={articulo.id} articulo={articulo} />
+          ))}
+
           {parrafos.map((parrafo) => (
-            <p key={parrafo} className="texto-justificado">
-              {parrafo}
-            </p>
+            <p key={parrafo}>{parrafo}</p>
           ))}
 
           {requisitos.length > 0 && (
@@ -52,6 +73,8 @@ export default function PaginaInformativa({ datos }) {
               Descargar PDF
             </a>
           )}
+
+          {fuente && <p className="pi-fuente">Fuente: {fuente}</p>}
         </div>
       </section>
     </main>

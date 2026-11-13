@@ -1,32 +1,40 @@
 /*
-  SERVICIO SOCIAL GRATUITO (F2-MF1 / F2-JM1).
+  SERVICIO SOCIAL (F2-MF1 / F2-JM1).
 
-  REGLA: aquí solo se copia, LETRA POR LETRA, lo que mande el Colegio. Nada redactado ni pasado por IA.
-  Cada PR que cambie este archivo lleva la captura de la fuente.
+  REGLA: aquí solo va, LETRA POR LETRA, lo que mande el Colegio. Nada redactado ni pasado por IA.
 
-  Mientras `parrafos` y `requisitos` estén vacíos:
-    - NO existe la página /conocenos/servicio-social (no sale en el menú ni en el Footer);
-    - Misión y Visión muestra el aviso breve de `aviso` (plan B, dato confirmado en la entrevista).
-  En cuanto se pegue al menos un párrafo o requisito, la página aparece sola.
+  Contenido actual: artículos 69° y 9.5 de los Estatutos (data/estatutos.js), entregados por el
+  Colegio el 13-nov-2026. Con contenido, la página /conocenos/servicio-social aparece sola en el
+  menú, el Footer y las migas; si se vacían `secciones`, `parrafos` y `requisitos`, la página
+  desaparece y Misión y Visión vuelve a mostrar el `aviso` (plan B).
 
-  Campos (llena solo los que el Colegio haya mandado; no rellenes los demás):
-  - parrafos:   ["Párrafo 1 tal cual.", "Párrafo 2 tal cual."]
-  - requisitos: ["Requisito 1 tal cual."]
-  - pdf:        "/documentos/servicio-social.pdf" (solo si mandaron PDF; va en public/documentos/)
+  Campos (ver components/templates/PaginaInformativa):
+  - aviso:      recuadro destacado. Dato confirmado en la entrevista: el servicio social es gratuito.
+  - secciones:  artículos de los Estatutos.
+  - parrafos / requisitos: texto suelto que mande el Colegio (tal cual).
+  - pdf:        "/documentos/servicio-social.pdf" (solo si mandan PDF; va en public/documentos/).
 */
+import { estatutos, FUENTE_ESTATUTOS } from "./estatutos";
+
+const objetivo95 = estatutos.art9.lista.find((punto) => punto.startsWith("9.5"));
+
 export const servicioSocial = {
   titulo: "Servicio Social",
-  tituloLista: "Requisitos",
-  parrafos: [],
-  requisitos: [],
-  pdf: "",
-
-  // Plan B (docs/Plan_Fases_Equipo.md): único dato confirmado en la entrevista.
   aviso: {
     titulo: "Servicio social gratuito",
     texto:
       "El Colegio ofrece servicio social de manera gratuita. Informes únicamente en nuestras oficinas o por los teléfonos oficiales.",
   },
+  secciones: [
+    estatutos.art69,
+    { ...estatutos.art9, id: "art-9-5", lista: [objetivo95] },
+  ],
+  tituloLista: "Requisitos",
+  parrafos: [],
+  requisitos: [],
+  pdf: "",
+  fuente: `${FUENTE_ESTATUTOS}, artículos 69° y 9°.`,
 };
 
-export const hayServicioSocial = servicioSocial.parrafos.length > 0 || servicioSocial.requisitos.length > 0;
+export const hayServicioSocial =
+  servicioSocial.secciones.length > 0 || servicioSocial.parrafos.length > 0 || servicioSocial.requisitos.length > 0;
