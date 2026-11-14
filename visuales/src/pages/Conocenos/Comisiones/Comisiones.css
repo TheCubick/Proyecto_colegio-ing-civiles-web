@@ -110,16 +110,50 @@
 }
 
 .com-card {
-  padding: 28px;
-  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  padding: var(--esp-6) var(--esp-5) var(--esp-5);
+  border: 1px solid var(--color-borde);
+  border-radius: 20px;
   background: #fff;
-  box-shadow: 0 4px 14px rgba(56, 54, 55, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 1px 2px rgba(56, 54, 55, 0.05), 0 10px 28px rgba(56, 54, 55, 0.08);
+  transition: transform var(--dur-media) var(--curva-estado), box-shadow var(--dur-media) var(--curva-estado);
 }
 
-.com-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 32px rgba(150, 46, 53, 0.18);
+/* Barra de acento en degradado institucional */
+.com-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--com-red), var(--com-red-dark));
+}
+
+/* Número editorial grande y tenue en la esquina */
+.com-card-num {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  color: rgba(186, 42, 51, 0.12);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+/* Solo las tarjetas con enlace reaccionan al mouse (no fingir que todo es clicable) */
+@media (hover: hover) {
+  .com-card--enlace:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px rgba(186, 42, 51, 0.18), 0 22px 48px rgba(56, 54, 55, 0.16);
+  }
+
+  .com-card--enlace:hover .com-card-icon {
+    background: var(--com-red);
+    color: #fff;
+  }
 }
 
 .com-card-icon {
@@ -129,15 +163,10 @@
   justify-content: center;
   width: 52px;
   height: 52px;
-  border-radius: 12px;
+  border-radius: 14px;
   background: rgba(186, 42, 51, 0.1);
   color: var(--com-red);
-  transition: all 0.3s ease;
-}
-
-.com-card:hover .com-card-icon {
-  background: var(--com-red);
-  color: #fff;
+  transition: background var(--dur-media) var(--curva-estado), color var(--dur-media) var(--curva-estado);
 }
 
 .com-breadcrumb a:focus-visible,
@@ -156,11 +185,6 @@
 .com-card {
   display: flex;
   flex-direction: column;
-  border-bottom: 4px solid transparent;
-}
-
-.com-card:hover {
-  border-bottom-color: var(--com-red);
 }
 
 .com-card .com-card-icon {
@@ -169,6 +193,7 @@
 
 .com-card h2 {
   margin: 0 0 10px;
+  text-wrap: balance;
   color: var(--com-red);
   font-size: 1.12rem;
   font-weight: 700;
@@ -239,9 +264,14 @@
   }
 }
 
-/* Texto justificado (F1-IM1) */
-.com-intro,
-.com-card p {
-  text-align: justify;
+/* Texto justificado solo en la introducción (ancha); en tarjetas angostas va a la izquierda */
+.com-intro {
+  text-align: var(--alineacion-lectura);
   hyphens: auto;
+}
+
+.com-card p {
+  text-align: left;
+  hyphens: manual;
+  text-wrap: pretty;
 }

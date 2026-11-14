@@ -115,16 +115,22 @@ export default function AtencionWhatsapp() {
               <span>
                 Comentario <small>(opcional)</small>
               </span>
-              <textarea
-                rows={5}
-                maxLength={MAX_COMENTARIO}
-                value={comentario}
-                onChange={(event) => setComentario(event.target.value)}
-                placeholder="Escribe aquí tu comentario…"
-              />
-              <small className="aw-contador">
-                {comentario.length}/{MAX_COMENTARIO}
-              </small>
+              {/* Área de texto y contador en una misma caja: el contador queda justo debajo */}
+              <span className="aw-textarea">
+                <textarea
+                  rows={5}
+                  maxLength={MAX_COMENTARIO}
+                  value={comentario}
+                  onChange={(event) => setComentario(event.target.value)}
+                  placeholder="Escribe aquí tu comentario…"
+                  aria-describedby="aw-contador"
+                />
+                <span className="aw-textarea-pie">
+                  <small id="aw-contador" className={`aw-contador${comentario.length >= MAX_COMENTARIO ? " is-limite" : ""}`}>
+                    {comentario.length}/{MAX_COMENTARIO}
+                  </small>
+                </span>
+              </span>
             </label>
 
             <a href={enlaceWhatsapp(mensajeBuzon)} target="_blank" rel="noopener noreferrer" className="aw-btn aw-btn-primary">

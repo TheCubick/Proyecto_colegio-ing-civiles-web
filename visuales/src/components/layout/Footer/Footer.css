@@ -197,7 +197,7 @@
 /* ---------- Columna 4: contacto ---------- */
 .cic-footer-contact {
   display: grid;
-  gap: 10px;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -288,6 +288,20 @@
   color: #fff;
 }
 
+.cic-footer-bottom a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Acceso al panel: discreto, pero con contraste suficiente (≥ 4.5:1) */
+.cic-footer-admin {
+  opacity: 0.85;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 4px;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .cic-footer-inner {
@@ -334,10 +348,60 @@
   }
 }
 
-/* Texto justificado (F1-IM1) */
-.cic-footer-text {
-  text-align: justify;
-  hyphens: auto;
+/* Alineación (F1-IM1; en columnas angostas va a la izquierda o centrado, ver index.css) */
+body .cic-footer .cic-footer-text {
+  text-align: left;
+  text-align-last: auto;
+  hyphens: manual;
+  text-wrap: pretty;
+}
+
+/* ---------- Teléfonos: más aire y jerarquía (2 columnas de botones discretos) ---------- */
+.cic-footer-contact .cic-footer-telefonos > div {
+  gap: 8px;
+}
+
+.cic-footer-etiqueta {
+  color: #fff;
+  font-weight: 600;
+}
+
+.cic-footer-contact .cic-footer-phones {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cic-footer-contact .cic-footer-phones li {
+  display: block;
+}
+
+.cic-footer-phone {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.cic-footer-phone:hover {
+  border-color: var(--cic-red);
+  background: var(--cic-red);
+}
+
+@media (max-width: 360px) {
+  .cic-footer-contact .cic-footer-phones {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Enlaces legales con área táctil de 44 px */

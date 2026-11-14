@@ -18,6 +18,32 @@ export function enlaceTelefono(telefono) {
   return `tel:+52${soloDigitos(telefono)}`;
 }
 
+// Copia un texto (por ejemplo, el enlace de una noticia). Devuelve true si se pudo.
+// Si el navegador no permite el portapapeles moderno, usa el método antiguo con un campo oculto.
+export async function copiarAlPortapapeles(texto) {
+  try {
+    await navigator.clipboard.writeText(texto);
+    return true;
+  } catch {
+    const campo = document.createElement("textarea");
+    campo.value = texto;
+    campo.setAttribute("readonly", "");
+    campo.className = "sr-only";
+    // Dentro de una ventana <dialog> abierta, el resto de la página no acepta selección
+    const contenedor = document.activeElement?.closest("dialog") ?? document.body;
+    contenedor.appendChild(campo);
+    campo.select();
+    let copiado = false;
+    try {
+      copiado = document.execCommand("copy");
+    } catch {
+      copiado = false;
+    }
+    campo.remove();
+    return copiado;
+  }
+}
+
 // Enlace para abrir el correo con asunto opcional.
 export function enlaceCorreo(correo = contacto.correo, asunto = "") {
   return asunto ? `mailto:${correo}?subject=${encodeURIComponent(asunto)}` : `mailto:${correo}`;

@@ -1,0 +1,215 @@
+/* =========================================================
+   CONOCE EL COLEGIO (portada)
+   ========================================================= */
+.cn-section {
+  padding: var(--esp-9) 0;
+  background-color: var(--color-blanco);
+}
+
+.cn-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.cn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--esp-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cn-item {
+  display: flex;
+  min-width: 0;
+}
+
+/* La primera tarjeta (Misión y Visión) ocupa dos filas, en rojo institucional */
+.cn-item--destacado {
+  grid-row: span 2;
+}
+
+.cn-card {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  gap: var(--esp-4);
+  min-width: 0;
+  min-height: 112px;
+  padding: var(--esp-5);
+  border: 1px solid rgba(56, 54, 55, 0.1);
+  border-radius: 20px;
+  background: var(--color-blanco);
+  box-shadow: 0 4px 16px rgba(56, 54, 55, 0.06);
+  color: var(--color-gris-oscuro);
+  text-decoration: none;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+}
+
+.cn-card:hover {
+  border-color: rgba(186, 42, 51, 0.3);
+  box-shadow: 0 16px 36px rgba(150, 46, 53, 0.14);
+  transform: translateY(-5px);
+}
+
+.cn-card:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.cn-card:focus-visible {
+  outline: 3px solid var(--color-rojo-oscuro);
+  outline-offset: 4px;
+}
+
+.cn-card-icono {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--color-rojo-tenue);
+  color: var(--color-rojo);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cn-card:hover .cn-card-icono {
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+}
+
+.cn-card-cuerpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding-right: var(--esp-6);
+}
+
+.cn-insignia {
+  align-self: flex-start;
+  margin-bottom: 4px;
+  padding: 2px 10px;
+  border-radius: var(--radio-pildora);
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.cn-card-titulo {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.cn-card-texto {
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.cn-card-flecha {
+  position: absolute;
+  top: var(--esp-5);
+  right: var(--esp-5);
+  color: var(--color-rojo);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cn-card:hover .cn-card-flecha {
+  transform: translate(2px, -2px);
+}
+
+/* Tarjeta destacada: degradado rojo, ícono grande y texto blanco */
+.cn-item--destacado .cn-card {
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--esp-6);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(150deg, var(--color-rojo) 0%, var(--color-rojo-oscuro) 100%);
+  box-shadow: 0 14px 30px rgba(150, 46, 53, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  color: var(--color-blanco);
+}
+
+.cn-item--destacado .cn-card-icono {
+  width: 72px;
+  height: 72px;
+  margin-bottom: auto;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-blanco);
+}
+
+.cn-item--destacado .cn-card:hover .cn-card-icono {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cn-item--destacado .cn-card-titulo {
+  margin-top: var(--esp-6);
+  font-size: 1.5rem;
+}
+
+.cn-item--destacado .cn-card-texto {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.05rem;
+}
+
+.cn-item--destacado .cn-card-flecha {
+  color: var(--color-blanco);
+}
+
+@media (max-width: 960px) {
+  .cn-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .cn-section {
+    padding: var(--esp-8) 0;
+  }
+
+  .cn-container {
+    padding: 0 16px;
+  }
+
+  .cn-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cn-item--destacado {
+    grid-row: auto;
+  }
+
+  .cn-item--destacado .cn-card-titulo {
+    margin-top: var(--esp-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cn-card,
+  .cn-card-icono,
+  .cn-card-flecha {
+    transition: none;
+  }
+
+  .cn-card:hover,
+  .cn-card:active,
+  .cn-card:hover .cn-card-flecha {
+    transform: none;
+  }
+}

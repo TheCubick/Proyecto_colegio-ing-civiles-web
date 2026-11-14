@@ -576,3 +576,98 @@
     transition: none !important;
   }
 }
+
+/* =========================================================
+   MEGA-MENÚ COMPACTO (desplegables de escritorio)
+   Ícono en recuadro suave, título en seminegrita y una línea de descripción
+   (campo `descripcion` de src/config/rutas.js). El menú del celular no cambia.
+   ========================================================= */
+.hd-menu {
+  width: max-content;
+  min-width: 320px;
+  max-width: min(460px, 92vw);
+  padding: 10px;
+  border: 1px solid rgba(56, 54, 55, 0.08);
+  border-top: 0;
+  border-radius: 18px;
+  box-shadow: 0 2px 6px rgba(56, 54, 55, 0.08), 0 24px 60px rgba(56, 54, 55, 0.22);
+}
+
+/* Filete superior en degradado (el ::before es el puente invisible para el mouse) */
+.hd-menu::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 22px;
+  left: 22px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, var(--hd-red), var(--hd-red-dark));
+}
+
+/* El último menú se abre hacia la izquierda para no salirse de la pantalla */
+.hd-dropdown:last-child .hd-menu {
+  right: 0;
+  left: auto;
+  transform-origin: top right;
+}
+
+.hd-menu .hd-menu-link {
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  transition:
+    background var(--dur-media) var(--curva-estado),
+    transform var(--dur-media) var(--curva-estado);
+}
+
+.hd-menu .hd-menu-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(186, 42, 51, 0.08);
+}
+
+.hd-menu-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hd-menu .hd-menu-titulo {
+  color: var(--hd-dark);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: color var(--dur-media) var(--curva-estado);
+}
+
+.hd-menu-desc {
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.hd-menu .hd-menu-link:hover {
+  background: rgba(186, 42, 51, 0.06);
+  transform: translateX(4px);
+}
+
+.hd-menu .hd-menu-link:hover .hd-menu-titulo,
+.hd-menu .hd-menu-link.is-current .hd-menu-titulo {
+  color: var(--hd-red);
+}
+
+.hd-menu .hd-menu-link.is-current .hd-menu-titulo {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hd-menu .hd-menu-link:hover {
+    transform: none;
+  }
+}

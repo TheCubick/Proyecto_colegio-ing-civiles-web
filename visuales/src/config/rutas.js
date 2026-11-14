@@ -7,6 +7,8 @@
   - ruta:     dirección en el navegador. Sin espacios, sin «ñ» y sin acentos.
   - titulo:   nombre completo (se ve en el menú y en el Footer).
   - corto:    (opcional) nombre corto para las migas de pan. Si no hay, se usa `titulo`.
+  - descripcion: (opcional) una línea bajo el título en el menú desplegable de escritorio.
+                 Corta (≤ 45 caracteres) y sacada del texto de la propia página: no inventar.
   - grupo:    menú en el que aparece ("Trámites", "Servicios", "Eventos" o "Conócenos").
   - icono:    ícono de lucide-react que se ve en el menú desplegable.
   - portada:  true si la página abre con video o imagen grande detrás del Header
@@ -47,6 +49,7 @@ export const rutas = [
     ruta: "/tramites/dro",
     titulo: "Director Responsable de Obra (DRO)",
     corto: "DRO",
+    descripcion: "Registro y respaldo ante el municipio",
     grupo: "Trámites",
     icono: HardHat,
     portada: true,
@@ -55,6 +58,7 @@ export const rutas = [
     ruta: "/tramites/rt",
     titulo: "Representante Técnico (RT)",
     corto: "RT",
+    descripcion: "Claves de especialidad para constructoras",
     grupo: "Trámites",
     icono: BadgeCheck,
     portada: true,
@@ -62,6 +66,7 @@ export const rutas = [
   {
     ruta: "/tramites/dictaminador-de-riesgos",
     titulo: "Dictaminador de Riesgos",
+    descripcion: "Dictámenes de riesgo de obras e instalaciones",
     grupo: "Trámites",
     icono: ShieldAlert,
   },
@@ -70,18 +75,21 @@ export const rutas = [
   {
     ruta: "/servicios/peritos-valuadores",
     titulo: "Peritos Valuadores",
+    descripcion: "Dictámenes de valor de inmuebles",
     grupo: "Servicios",
     icono: House,
   },
   {
     ruta: "/servicios/calculo-estructural",
     titulo: "Cálculo Estructural",
+    descripcion: "Memorias de cálculo por especialistas",
     grupo: "Servicios",
     icono: DraftingCompass,
   },
   {
     ruta: "/servicios/bolsa-de-trabajo",
     titulo: "Bolsa de Trabajo",
+    descripcion: "Oportunidades laborales en Chiapas",
     grupo: "Servicios",
     icono: Briefcase,
   },
@@ -90,12 +98,14 @@ export const rutas = [
   {
     ruta: "/eventos/cursos-y-capacitacion",
     titulo: "Cursos y Capacitación",
+    descripcion: "Actualización profesional y noticias",
     grupo: "Eventos",
     icono: GraduationCap,
   },
   {
     ruta: "/eventos/asambleas",
     titulo: "Asambleas",
+    descripcion: "Asambleas generales del Colegio",
     grupo: "Eventos",
     icono: CalendarDays,
   },
@@ -104,6 +114,7 @@ export const rutas = [
   {
     ruta: "/conocenos/mision-y-vision",
     titulo: "Misión y Visión",
+    descripcion: "Quiénes somos y nuestros valores",
     grupo: "Conócenos",
     icono: Target,
     portada: true,
@@ -111,23 +122,34 @@ export const rutas = [
   {
     ruta: "/conocenos/comisiones",
     titulo: "Comisiones",
+    descripcion: "Comisiones y especialidades técnicas",
     grupo: "Conócenos",
     icono: Users,
   },
   {
     ruta: "/conocenos/estatutos",
     titulo: "Estatutos",
+    descripcion: "Extractos del texto oficial",
     grupo: "Conócenos",
     icono: ScrollText,
   },
   ...(hayServicioSocial
-    ? [{ ruta: "/conocenos/servicio-social", titulo: "Servicio Social", grupo: "Conócenos", icono: HandHeart }]
+    ? [
+        {
+          ruta: "/conocenos/servicio-social",
+          titulo: "Servicio Social",
+          descripcion: "Servicio social gratuito",
+          grupo: "Conócenos",
+          icono: HandHeart,
+        },
+      ]
     : []),
   ...(hayBeneficioSocial
     ? [
         {
           ruta: "/conocenos/beneficio-social",
           titulo: "Beneficio a la Sociedad",
+          descripcion: "Objetivos del Colegio ante la sociedad",
           grupo: "Conócenos",
           icono: HeartHandshake,
         },

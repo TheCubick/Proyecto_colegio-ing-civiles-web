@@ -1,128 +1,92 @@
 import { Fragment, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
-  ArrowRight,
   Banknote,
-  CalendarDays,
   CheckCircle2,
-  Clock,
   CreditCard,
-  FileText,
   GraduationCap,
-  Laptop,
   Mail,
   MapPin,
   MessageCircle,
   Newspaper,
   Phone,
   Pin,
-  Shuffle,
   X,
 } from "lucide-react";
-import { cursos, noticias, requisitosInscripcion } from "../../../data/cursos";
+import { requisitosInscripcion } from "../../../data/cursos";
+import useContenidoPublico from "../../../hooks/useContenidoPublico";
+import { CursoCard, DetalleNoticia, PostCard } from "./TarjetasCursos";
 import { contacto } from "../../../data/contacto";
 import useBloquearScroll from "../../../hooks/useBloquearScroll";
 import useDialogo from "../../../hooks/useDialogo";
-import { enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
+import { copiarAlPortapapeles, enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
+import ModalContacto from "../../../components/ui/ModalContacto/ModalContacto";
 import Migas from "../../../components/ui/Migas/Migas";
-import ImagenSegura from "../../../components/ui/ImagenSegura/ImagenSegura";
 import "./CursosCapacitacion.css";
 
 /*
   PÁGINA «CURSOS Y CAPACITACIÓN».
-  Los cursos, las noticias y los requisitos están en src/data/cursos.js.
+  Cursos y noticias: panel /admin (Supabase) o, de respaldo, src/data/cursos.js (useContenidoPublico).
+  Requisitos de inscripción: src/data/cursos.js.
+  Cada noticia tiene su enlace (#noticia-<id>): al abrirlo, la ventana de la noticia aparece sola.
 */
 
 const MENSAJE_WHATSAPP_INSCRIPCION =
   "Hola, me gustaría inscribirme a un curso y solicitar los datos bancarios.";
 
-const iconoModalidad = {
-  Presencial: MapPin,
-  "En línea": Laptop,
-  Mixta: Shuffle,
-};
+const PREFIJO_NOTICIA = "#noticia-";
 
-function CursoCard({ curso, onInscribirse }) {
-  const IconoModalidad = iconoModalidad[curso.modalidad] ?? MapPin;
-
-  return (
-    <article className="cc-curso">
-      <div className="cc-curso-media">
-        <ImagenSegura claseVacia="cc-img-vacia" src={curso.img} alt={curso.titulo} className="cc-curso-img" />
-        <span className="cc-curso-modalidad">
-          <IconoModalidad size={14} aria-hidden="true" />
-          {curso.modalidad}
-        </span>
-      </div>
-      <div className="cc-curso-body">
-        <h3>{curso.titulo}</h3>
-        <ul className="cc-curso-meta">
-          <li>
-            <CalendarDays size={17} aria-hidden="true" />
-            {curso.fecha}
-          </li>
-          <li>
-            <Clock size={17} aria-hidden="true" />
-            {curso.horario}
-          </li>
-        </ul>
-        <p>{curso.descripcion}</p>
-        <div className="cc-curso-actions">
-          <button type="button" className="cc-btn" onClick={onInscribirse}>
-            Inscribirse
-            <ArrowRight size={16} aria-hidden="true" />
-          </button>
-          {curso.temario && (
-            <a href={curso.temario} target="_blank" rel="noopener noreferrer" className="cc-btn cc-btn-outline">
-              <FileText size={16} aria-hidden="true" />
-              Ver temario
-            </a>
-          )}
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function PostCard({ post, onAbrir }) {
-  return (
-    <article className="cc-card">
-      <div className="cc-card-media">
-        <ImagenSegura claseVacia="cc-img-vacia" src={post.img} alt={post.titulo} className="cc-card-img" />
-      </div>
-      <div className="cc-card-body">
-        <h3>{post.titulo}</h3>
-        <p>{post.texto}</p>
-        <button type="button" className="cc-btn" onClick={() => onAbrir(post)}>
-          Leer más
-          <ArrowRight size={16} aria-hidden="true" />
-        </button>
-      </div>
-    </article>
-  );
-}
-
-function PostModal({ post, onCerrar }) {
+/*
+  Ventana «Leer más» de una noticia. Se mueve entre noticias sin cerrarse
+  (botones «Anterior» / «Siguiente» o flechas ← → del teclado).
+*/
+function PostModal({ noticias, abiertoId, onAbrir, onCerrar }) {
+  const indice = noticias.findIndex((n) => String(n.id) === abiertoId);
+  const post = indice >= 0 ? noticias[indice] : null;
   const { dialogRef, cerrarAlClicFuera } = useDialogo(Boolean(post), onCerrar);
+  useBloquearScroll(Boolean(post));
+
+  const anterior = indice > 0 ? noticias[indice - 1] : null;
+  const siguiente = indice >= 0 && indice < noticias.length - 1 ? noticias[indice + 1] : null;
+
+  const ir = (destino) => {
+    if (!destino) return;
+    onAbrir(destino);
+    dialogRef.current?.scrollTo?.(0, 0);
+  };
+
+  const alPulsarTecla = (event) => {
+    if (event.key === "ArrowLeft" && anterior) {
+      event.preventDefault();
+      ir(anterior);
+    }
+    if (event.key === "ArrowRight" && siguiente) {
+      event.preventDefault();
+      ir(siguiente);
+    }
+  };
+
+  const copiarEnlace = () =>
+    copiarAlPortapapeles(`${window.location.origin}${window.location.pathname}${PREFIJO_NOTICIA}${encodeURIComponent(post.id)}`);
 
   return (
     <dialog
       ref={dialogRef}
-      className="cc-modal"
+      className="cc-modal cc-modal--noticia"
       onClose={onCerrar}
       onClick={cerrarAlClicFuera}
+      onKeyDown={alPulsarTecla}
       aria-labelledby="cc-modal-titulo"
     >
       {post && (
-        <div className="cc-modal-content">
-          <button type="button" className="cc-modal-close" onClick={onCerrar} aria-label="Cerrar">
-            <X size={20} aria-hidden="true" />
-          </button>
-          <ImagenSegura claseVacia="cc-img-vacia" src={post.img} alt={post.titulo} className="cc-modal-img" />
-          <div className="cc-modal-body">
-            <h2 id="cc-modal-titulo">{post.titulo}</h2>
-            <p>{post.texto}</p>
-          </div>
-        </div>
+        <DetalleNoticia
+          post={post}
+          onCerrar={onCerrar}
+          onAnterior={anterior ? () => ir(anterior) : null}
+          onSiguiente={siguiente ? () => ir(siguiente) : null}
+          onCopiar={copiarEnlace}
+          posicion={noticias.length > 1 ? `${indice + 1} de ${noticias.length}` : ""}
+        />
       )}
     </dialog>
   );
@@ -248,8 +212,21 @@ function InscripcionModal({ isOpen, onCerrar }) {
 }
 
 export default function CursosCapacitacion() {
-  const [postAbierto, setPostAbierto] = useState(null);
+  // Cursos y noticias publicados en el panel (/admin); si no hay base, los de src/data/cursos.js
+  const { items: cursos } = useContenidoPublico("cursos");
+  const { items: noticias } = useContenidoPublico("noticias");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [contactoAbierto, setContactoAbierto] = useState(false);
+
+  // La noticia abierta vive en el enlace (#noticia-<id>) para poder compartirla
+  const location = useLocation();
+  const navigate = useNavigate();
+  const abiertoId = location.hash.startsWith(PREFIJO_NOTICIA)
+    ? decodeURIComponent(location.hash.slice(PREFIJO_NOTICIA.length))
+    : null;
+  const irA = (hash) => navigate({ pathname: location.pathname, search: location.search, hash }, { replace: true });
+  const abrirNoticia = (post) => irA(`${PREFIJO_NOTICIA}${encodeURIComponent(post.id)}`);
+  const cerrarNoticia = () => irA("");
 
   return (
     <main className="cc-page">
@@ -277,9 +254,20 @@ export default function CursosCapacitacion() {
               ))}
             </div>
           ) : (
-            <p className="cc-cursos-vacio">
-              Por ahora no hay cursos programados. Consulta esta sección próximamente.
-            </p>
+            <div className="cc-cursos-vacio">
+              <span className="cc-cursos-vacio-icono" aria-hidden="true">
+                <GraduationCap size={36} />
+              </span>
+              <h3>No hay cursos programados por el momento</h3>
+              <p>
+                Las convocatorias e inscripciones a cursos se gestionan de forma presencial en las
+                oficinas del Colegio. Consulta esta sección próximamente o comunícate con nosotros.
+              </p>
+              <button type="button" className="cc-btn" onClick={() => setContactoAbierto(true)}>
+                <MapPin size={18} aria-hidden="true" />
+                Ver ubicación y contacto
+              </button>
+            </div>
           )}
         </div>
       </section>
@@ -292,13 +280,14 @@ export default function CursosCapacitacion() {
           </div>
           <div className="cc-grid">
             {noticias.map((post) => (
-              <PostCard key={post.id} post={post} onAbrir={setPostAbierto} />
+              <PostCard key={post.id} post={post} onAbrir={abrirNoticia} />
             ))}
           </div>
         </div>
       </section>
 
-      <PostModal post={postAbierto} onCerrar={() => setPostAbierto(null)} />
+      <PostModal noticias={noticias} abiertoId={abiertoId} onAbrir={abrirNoticia} onCerrar={cerrarNoticia} />
+      <ModalContacto isOpen={contactoAbierto} onClose={() => setContactoAbierto(false)} />
       <InscripcionModal isOpen={isModalOpen} onCerrar={() => setIsModalOpen(false)} />
     </main>
   );

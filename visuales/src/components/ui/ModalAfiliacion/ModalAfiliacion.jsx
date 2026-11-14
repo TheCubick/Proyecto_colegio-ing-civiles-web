@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   Banknote,
   Check,
-  CheckCircle2,
   ClipboardList,
   Clock,
   Copy,
@@ -33,7 +32,7 @@ import {
   requisitosIngreso,
   triptico,
 } from "../../../data/afiliacion";
-import { contacto, horarioEnLinea } from "../../../data/contacto";
+import { contacto } from "../../../data/contacto";
 import { enlaceCorreo, enlaceWhatsapp } from "../../../utils/enlaces";
 import "./ModalAfiliacion.css";
 
@@ -91,76 +90,85 @@ function EnlaceOficio({ imagen, titulo }) {
 
 function PanelRequisitos() {
   return (
-    <>
-      <div className="hd-aviso">
-        <Pin size={20} aria-hidden="true" />
-        <div>
+    <div className="hd-req-layout">
+      <div className="hd-req-principal">
+        <h3 className="hd-subtitulo hd-subtitulo--primero">
+          Requisitos de ingreso
+          <span className="hd-contador">{requisitosIngreso.length}</span>
+        </h3>
+        <ol className="hd-requisitos" role="list">
+          {requisitosIngreso.map((requisito, i) => (
+            <li key={requisito}>
+              <span className="hd-req-num" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span>{requisito}</span>
+            </li>
+          ))}
+        </ol>
+        <div className="hd-nota-cartas">
+          <Info size={20} aria-hidden="true" />
           <p>
-            <strong>El trámite de inscripción es 100% presencial</strong> en nuestras oficinas, donde
-            también se entregan los formatos.
+            <strong>Notas para cartas:</strong> {notaCartasAfiliacion}
           </p>
+        </div>
+      </div>
+
+      {/* Columna lateral: todo lo que no es un requisito, junto (ley de proximidad) */}
+      <aside className="hd-req-lateral" aria-label="Datos del trámite">
+        <div className="hd-lateral-bloque hd-lateral-bloque--rojo">
+          <p className="hd-lateral-titulo">
+            <Pin size={18} aria-hidden="true" />
+            Trámite 100% presencial
+          </p>
+          <p>En nuestras oficinas, donde también se entregan los formatos.</p>
           <ul className="hd-aviso-datos">
             <li>
-              <MapPin size={15} aria-hidden="true" />
+              <MapPin size={16} aria-hidden="true" />
               {contacto.direccion.corta}
             </li>
-            <li>
-              <Clock size={15} aria-hidden="true" />
-              {horarioEnLinea}
-            </li>
+            {contacto.horario.map(({ dias, horas }) => (
+              <li key={dias}>
+                <Clock size={16} aria-hidden="true" />
+                {dias}: {horas}
+              </li>
+            ))}
           </ul>
         </div>
-      </div>
 
-      <h3 className="hd-subtitulo">Requisitos de ingreso</h3>
-      <ol className="hd-requisitos">
-        {requisitosIngreso.map((requisito) => (
-          <li key={requisito}>
-            <CheckCircle2 size={18} aria-hidden="true" />
-            <span>{requisito}</span>
-          </li>
-        ))}
-      </ol>
-
-      <div className="hd-nota">
-        <Info size={18} aria-hidden="true" />
-        <p>
-          <strong>Notas para cartas:</strong> {notaCartasAfiliacion}
-        </p>
-      </div>
-
-      <h3 className="hd-subtitulo">Formatos de inscripción</h3>
-      {formatos.length === 0 && (
-        <div className="hd-nota">
-          <Info size={18} aria-hidden="true" />
-          <p>{avisoFormatos}</p>
+        <div className="hd-lateral-bloque">
+          <p className="hd-lateral-titulo">
+            <FileDown size={18} aria-hidden="true" />
+            Formatos y tríptico
+          </p>
+          {formatos.length === 0 && <p>{avisoFormatos}</p>}
+          {formatos.length > 0 && (
+            <div className="hd-descargas">
+              {formatos.map(([titulo, href]) => (
+                <a key={href} href={href} download target="_blank" rel="noopener noreferrer" className="hd-descarga">
+                  <span className="hd-descarga-icon">
+                    <FileDown size={20} aria-hidden="true" />
+                  </span>
+                  <span className="hd-descarga-text">
+                    <small>Descargar</small>
+                    {titulo}
+                  </span>
+                  <Download size={18} aria-hidden="true" className="hd-descarga-arrow" />
+                </a>
+              ))}
+            </div>
+          )}
+          <div className="hd-triptico">
+            {triptico.map(([titulo, href]) => (
+              <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="hd-btn hd-btn-secondary">
+                <Image size={18} aria-hidden="true" />
+                {titulo}
+              </a>
+            ))}
+          </div>
         </div>
-      )}
-      <div className="hd-descargas">
-        {formatos.map(([titulo, href]) => (
-          <a key={href} href={href} download target="_blank" rel="noopener noreferrer" className="hd-descarga">
-            <span className="hd-descarga-icon">
-              <FileDown size={20} aria-hidden="true" />
-            </span>
-            <span className="hd-descarga-text">
-              <small>Descargar</small>
-              {titulo}
-            </span>
-            <Download size={18} aria-hidden="true" className="hd-descarga-arrow" />
-          </a>
-        ))}
-      </div>
-
-      <h3 className="hd-subtitulo">Tríptico informativo</h3>
-      <div className="hd-triptico">
-        {triptico.map(([titulo, href]) => (
-          <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="hd-btn hd-btn-secondary">
-            <Image size={18} aria-hidden="true" />
-            {titulo}
-          </a>
-        ))}
-      </div>
-    </>
+      </aside>
+    </div>
   );
 }
 
@@ -170,30 +178,25 @@ function PanelCostos() {
       <p className="hd-panel-intro">
         Cuotas oficiales vigentes según el oficio <strong>{costos.oficio}</strong>. Montos en pesos mexicanos.
       </p>
-      <div className="hd-tabla-wrap">
-        <table className="hd-tabla">
-          <thead>
-            <tr>
-              <th scope="col">Concepto</th>
-              <th scope="col">Costo</th>
-            </tr>
-          </thead>
-          {costos.grupos.map(({ grupo, filas }) => (
-            <tbody key={grupo}>
-              <tr className="hd-tabla-grupo">
-                <th scope="rowgroup" colSpan={2}>
-                  {grupo}
-                </th>
-              </tr>
+      <div className="hd-costos">
+        {costos.grupos.map(({ grupo, filas }, i) => (
+          <article className="hd-costo" key={grupo}>
+            <header className="hd-costo-cabecera">
+              <span className="hd-costo-num" aria-hidden="true">
+                {i + 1}
+              </span>
+              <h3>{grupo}</h3>
+            </header>
+            <dl className="hd-costo-filas">
               {filas.map(([concepto, monto]) => (
-                <tr key={concepto}>
-                  <td>{concepto}</td>
-                  <td>{monto}</td>
-                </tr>
+                <div className="hd-costo-fila" key={concepto}>
+                  <dt>{concepto}</dt>
+                  <dd>{monto}</dd>
+                </div>
               ))}
-            </tbody>
-          ))}
-        </table>
+            </dl>
+          </article>
+        ))}
       </div>
       <p className="hd-pie-tabla">{costos.pie}</p>
 

@@ -26,8 +26,11 @@ export default function Comisiones() {
       <section className="com-section fondo-trazos">
         <div className="com-container">
           <div className="com-grid">
-            {comisiones.map(({ icono: Icono, titulo, texto, enlace }) => (
-              <article className="com-card" key={titulo}>
+            {comisiones.map(({ icono: Icono, titulo, texto, enlace }, i) => (
+              <article className={`com-card${enlace ? " com-card--enlace" : ""}`} key={titulo}>
+                <span className="com-card-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <span className="com-card-icon">
                   <Icono size={26} aria-hidden="true" />
                 </span>

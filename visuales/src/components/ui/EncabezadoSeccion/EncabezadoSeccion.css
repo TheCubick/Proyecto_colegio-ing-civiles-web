@@ -1,0 +1,152 @@
+/* =========================================================
+   ENCABEZADO DE SECCIÓN (portada)
+   Mismo lenguaje que «Actividades del Colegio»: filete rojo a la izquierda del título.
+   ========================================================= */
+.es-encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--esp-4) var(--esp-6);
+  margin-bottom: var(--esp-7);
+}
+
+.es-textos {
+  flex: 1 1 520px;
+  min-width: 0;
+  max-width: 760px;
+}
+
+.es-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  margin-bottom: var(--esp-3);
+  color: var(--color-rojo);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* «01 ——»: raya corta antes de la etiqueta */
+.es-etiqueta::before {
+  content: "";
+  width: 32px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.es-encabezado h2 {
+  margin: 0 0 var(--esp-2);
+  padding-left: 14px;
+  border-left: 5px solid var(--color-rojo);
+  color: var(--color-gris-oscuro);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+body .es-encabezado p {
+  margin: 0;
+  padding-left: 19px;
+  color: var(--color-texto-suave);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: left;
+  hyphens: manual;
+  text-wrap: pretty;
+}
+
+/* Enlace «Ver más» con flecha en círculo (área táctil de 48 px) */
+.es-enlace {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--esp-3);
+  min-height: var(--toque-min, 48px);
+  padding: 4px 4px 4px 18px;
+  border: 1.5px solid rgba(186, 42, 51, 0.35);
+  border-radius: var(--radio-pildora);
+  color: var(--color-rojo);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 0.25s var(--curva-estado, ease),
+    border-color 0.25s var(--curva-estado, ease),
+    color 0.25s var(--curva-estado, ease),
+    transform 0.2s var(--curva-estado, ease);
+}
+
+.es-enlace-flecha {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.25s ease;
+}
+
+.es-enlace:hover {
+  border-color: var(--color-rojo);
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+}
+
+.es-enlace:hover .es-enlace-flecha {
+  background: var(--color-blanco);
+  color: var(--color-rojo);
+  transform: rotate(-45deg);
+}
+
+.es-enlace:active {
+  transform: scale(0.98);
+}
+
+.es-enlace:focus-visible {
+  outline: 3px solid var(--color-rojo-oscuro);
+  outline-offset: 3px;
+}
+
+/* Sobre fondo oscuro */
+.es-encabezado--claro h2 {
+  color: var(--color-blanco);
+}
+
+body .es-encabezado--claro p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.es-encabezado--claro .es-etiqueta {
+  color: var(--color-blanco);
+}
+
+@media (max-width: 600px) {
+  .es-encabezado {
+    margin-bottom: var(--esp-6);
+  }
+
+  .es-enlace {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .es-enlace,
+  .es-enlace-flecha {
+    transition: none;
+  }
+
+  .es-enlace:hover .es-enlace-flecha {
+    transform: none;
+  }
+}

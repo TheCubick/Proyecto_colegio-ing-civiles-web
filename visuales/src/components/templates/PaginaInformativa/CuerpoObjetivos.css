@@ -1,0 +1,140 @@
+/* =========================================================
+   /conocenos/beneficio-social: cuadrícula de objetivos (Art. 9°)
+   ========================================================= */
+.ob-cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-6);
+}
+
+.ob-sello {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--color-rojo), var(--color-rojo-oscuro));
+  box-shadow: 0 10px 22px rgba(186, 42, 51, 0.3);
+  color: var(--color-blanco);
+}
+
+.ob-cabecera .ob-articulo {
+  margin: 0;
+  color: var(--color-rojo);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.ob-cabecera h2 {
+  margin: 0;
+  color: var(--color-gris-oscuro);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.ob-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--esp-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.ob-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+  padding: var(--esp-5);
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  border-radius: 20px;
+  background: var(--color-blanco);
+  box-shadow: 0 1px 2px rgba(56, 54, 55, 0.05), 0 10px 28px rgba(56, 54, 55, 0.08);
+}
+
+/* Filete inferior que crece: acento sin sugerir que la tarjeta es un enlace */
+.ob-card::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-rojo), var(--color-rojo-oscuro));
+}
+
+.ob-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+}
+
+.ob-icono {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--color-rojo-suave);
+  color: var(--color-rojo);
+}
+
+.ob-num {
+  display: inline-grid;
+  place-items: center;
+  min-width: 52px;
+  height: 34px;
+  padding: 0 var(--esp-3);
+  border-radius: var(--radio-pildora);
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.ob-card p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  text-align: left;
+  hyphens: manual;
+  text-wrap: pretty;
+}
+
+.ob-fuente {
+  margin: var(--esp-5) 0 var(--esp-7);
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+  font-style: italic;
+  text-align: left;
+}
+
+@media (max-width: 1100px) {
+  .ob-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ob-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ob-cabecera {
+    align-items: flex-start;
+  }
+}

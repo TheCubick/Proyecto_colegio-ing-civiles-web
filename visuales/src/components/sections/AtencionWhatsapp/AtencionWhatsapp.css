@@ -95,21 +95,44 @@
 }
 
 .aw-faq-item {
+  position: relative;
   overflow: hidden;
-  border: 1px solid transparent;
+  border: 1px solid rgba(56, 54, 55, 0.1);
   border-radius: 14px;
   background: #fff;
-  box-shadow: 0 4px 14px rgba(56, 54, 55, 0.06);
+  box-shadow: 0 2px 6px rgba(56, 54, 55, 0.05), 0 6px 18px rgba(56, 54, 55, 0.06);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Filete rojo a la izquierda: aparece al pasar el cursor y se queda en la pregunta abierta */
+.aw-faq-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--aw-red);
+  transform: scaleY(0);
+  transition: transform 0.25s ease;
+}
+
 .aw-faq-item:hover {
-  box-shadow: 0 10px 24px rgba(150, 46, 53, 0.12);
+  border-color: rgba(186, 42, 51, 0.25);
+  box-shadow: 0 10px 24px rgba(150, 46, 53, 0.1);
+}
+
+.aw-faq-item:hover::before {
+  transform: scaleY(0.5);
 }
 
 .aw-faq-item.is-open {
   border-color: rgba(186, 42, 51, 0.35);
-  box-shadow: 0 12px 28px rgba(150, 46, 53, 0.15);
+  box-shadow: 0 14px 30px rgba(150, 46, 53, 0.14);
+}
+
+.aw-faq-item.is-open::before {
+  transform: scaleY(1);
 }
 
 .aw-faq-btn {
@@ -157,24 +180,37 @@
 .aw-faq-content p {
   margin: 16px 0;
   line-height: 1.7;
+  text-align: left;
+  hyphens: manual;
+  text-wrap: pretty;
 }
 
 /* ---------- Buzón ---------- */
+/* Tarjeta elevada y limpia */
 .aw-buzon {
   position: sticky;
   top: 100px;
-  padding: 28px;
+  padding: 30px 28px 28px;
+  border: 1px solid rgba(56, 54, 55, 0.08);
   border-top: 5px solid var(--aw-red);
   border-radius: 18px;
   background: #fff;
-  box-shadow: 0 16px 36px rgba(150, 46, 53, 0.15);
+  box-shadow: 0 2px 8px rgba(56, 54, 55, 0.05), 0 20px 44px rgba(56, 54, 55, 0.12);
+}
+
+.aw-buzon .aw-block-title {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--aw-light);
 }
 
 .aw-buzon-intro {
-  margin: -6px 0 20px;
-  color: rgba(56, 54, 55, 0.8);
+  margin: 0 0 22px;
+  color: var(--color-texto-suave);
   font-size: 0.95rem; /* Actualizado de 0.9rem a 0.95rem */
   line-height: 1.6;
+  text-align: left;
+  hyphens: manual;
+  text-wrap: pretty;
 }
 
 .aw-field {
@@ -196,35 +232,91 @@
   font-size: 0.95rem; /* Actualizado de tamaño menor a 0.95rem */
 }
 
+/* Campos: borde suave, fondo gris muy claro y foco en rojo institucional */
 .aw-field select,
-.aw-field textarea {
+.aw-textarea {
   width: 100%;
-  padding: 12px 14px;
-  border: 2px solid var(--aw-light);
-  border-radius: 10px;
+  border: 1.5px solid rgba(56, 54, 55, 0.18);
+  border-radius: 12px;
   background: #fff;
   color: var(--aw-dark);
   font-family: "Open Sans", "Segoe UI", sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.aw-field textarea {
-  min-height: 120px;
+.aw-field select {
+  min-height: 50px;
+  padding: 12px 44px 12px 14px;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--aw-red) 50%),
+    linear-gradient(135deg, var(--aw-red) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+  background-repeat: no-repeat;
+  background-size: 6px 6px;
+  cursor: pointer;
+}
+
+.aw-field select:hover,
+.aw-textarea:hover {
+  border-color: rgba(56, 54, 55, 0.32);
+}
+
+/* El área de texto y su contador forman una sola caja: el contador queda pegado debajo */
+.aw-field > .aw-textarea {
+  display: block;
+  overflow: hidden;
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.aw-textarea textarea {
+  display: block;
+  width: 100%;
+  min-height: 130px;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1.55;
   resize: vertical;
-  line-height: 1.5;
+}
+
+.aw-textarea textarea:focus {
+  outline: none;
+}
+
+.aw-textarea-pie {
+  display: flex;
+  justify-content: flex-end;
+  padding: 6px 14px;
+  border-top: 1px solid var(--aw-light);
+  background: rgba(229, 229, 229, 0.35);
 }
 
 .aw-field select:focus,
-.aw-field textarea:focus {
+.aw-textarea:focus-within {
   border-color: var(--aw-red);
   outline: none;
   box-shadow: 0 0 0 4px rgba(186, 42, 51, 0.12);
 }
 
-.aw-contador {
-  align-self: flex-end;
+.aw-field .aw-contador {
+  color: var(--color-texto-suave);
   font-size: 0.95rem; /* Actualizado de 0.75rem a 0.95rem */
+  font-variant-numeric: tabular-nums;
+}
+
+.aw-field .aw-contador.is-limite {
+  color: var(--aw-red);
+  font-weight: 700;
+}
+
+.aw-buzon .aw-field:last-of-type {
+  margin-bottom: 22px;
 }
 
 /* ---------- Botones ---------- */

@@ -1,75 +1,228 @@
-/* Artículo de los Estatutos (texto oficial del Colegio) */
+/* =========================================================
+   ARTÍCULO DE LOS ESTATUTOS (texto oficial del Colegio)
+   Tarjeta con sello, número de artículo y lista de incisos con distintivos.
+   ========================================================= */
 .ae-articulo {
-  padding: 26px 28px;
-  border-left: 5px solid #ba2a33;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(56, 54, 55, 0.08);
-  color: #383637;
+  position: relative;
+  padding: var(--esp-6) var(--esp-6) var(--esp-5);
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  border-radius: 20px;
+  background: var(--color-blanco);
+  box-shadow: 0 1px 2px rgba(56, 54, 55, 0.05), 0 12px 32px rgba(56, 54, 55, 0.08);
+  color: var(--color-gris-oscuro);
+  scroll-margin-top: 110px;
+}
+
+/* Filete superior en degradado institucional */
+.ae-articulo::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-rojo), var(--color-rojo-oscuro));
 }
 
 .ae-articulo + .ae-articulo {
-  margin-top: 22px;
+  margin-top: var(--esp-5);
+}
+
+.ae-cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-5);
+}
+
+.ae-sello {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--color-rojo), var(--color-rojo-oscuro));
+  box-shadow: 0 8px 18px rgba(186, 42, 51, 0.28);
+  color: var(--color-blanco);
 }
 
 .ae-articulo .ae-titulo {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin: 0 0 14px;
-  color: #ba2a33;
-  font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
-  font-weight: 800;
-  line-height: 1.3;
-}
-
-.ae-titulo svg {
-  flex-shrink: 0;
-  margin-top: 4px;
-}
-
-.ae-titulo span {
-  display: flex;
   flex-direction: column;
+  margin: 0;
+  color: var(--color-gris-oscuro);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  font-weight: 800;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 .ae-titulo small {
-  color: #962e35;
+  color: var(--color-rojo);
   font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.ae-articulo p {
-  margin: 0 0 12px;
-  font-size: var(--fs-parrafo, 1.1rem);
-  line-height: var(--lh-parrafo, 1.7);
-  text-align: justify;
+/* ---------- Cuerpo ---------- */
+.ae-cuerpo {
+  display: grid;
+  gap: var(--esp-4);
+}
+
+.ae-cuerpo .ae-parrafo {
+  margin: 0;
+  font-size: var(--fs-parrafo);
+  line-height: var(--lh-parrafo);
+  text-align: var(--alineacion-lectura);
   hyphens: auto;
 }
 
-.ae-lista {
+/* Subtítulo de grupo («Para representante técnico de empresa propia.») */
+.ae-cuerpo .ae-grupo {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  margin: var(--esp-3) 0 0;
+  color: var(--color-rojo-oscuro);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.ae-cuerpo .ae-grupo::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-borde);
+}
+
+/* ---------- Incisos ---------- */
+.ae-incisos {
   display: grid;
-  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.ae-lista li {
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: rgba(229, 229, 229, 0.55);
+.ae-inciso {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--esp-4);
+  align-items: start;
+  padding: var(--esp-4) 0;
+  border-top: 1px solid var(--color-borde);
+}
+
+.ae-inciso:first-child {
+  border-top: 0;
+  padding-top: var(--esp-1);
+}
+
+.ae-marca {
+  display: inline-grid;
+  place-items: center;
+  justify-self: start;
+  min-width: 44px;
+  height: 36px;
+  padding: 0 var(--esp-2);
+  border-radius: 10px;
+  background: var(--color-rojo-tenue);
+  color: var(--color-rojo);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.ae-texto {
+  padding-top: 4px;
   font-size: 1.05rem;
-  line-height: 1.6;
-  text-align: justify;
-  hyphens: auto;
+  line-height: 1.65;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+/* Sub-incisos (1., 2., 3. dentro de 48.2): un nivel adentro y distintivo gris */
+.ae-inciso--sub {
+  margin-left: 56px;
+  border-top-style: dashed;
+}
+
+.ae-inciso--sub .ae-marca {
+  border: 1px solid var(--color-borde);
+  background: var(--color-blanco);
+  color: var(--color-gris-oscuro);
+}
+
+/* Texto sin marca: continuación del inciso anterior o nota del artículo */
+.ae-inciso--nota .ae-marca {
+  min-width: 0;
+  width: 8px;
+  height: 8px;
+  margin: 12px 0 0 18px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(56, 54, 55, 0.25);
+}
+
+.ae-inciso--nota .ae-texto {
+  color: var(--color-texto-suave);
+}
+
+/* ---------- Botón «Ver más» ---------- */
+.ae-mas {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: var(--esp-2);
+  min-height: var(--toque-min);
+  padding: 0 var(--esp-5);
+  border: 2px solid var(--color-rojo);
+  border-radius: var(--radio-pildora);
+  background: var(--color-blanco);
+  color: var(--color-rojo);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--dur-media) var(--curva-estado);
+}
+
+.ae-mas:hover {
+  background: var(--color-rojo-tenue);
+}
+
+.ae-mas svg {
+  transition: transform var(--dur-media) var(--curva-estado);
+}
+
+.ae-mas[aria-expanded="true"] svg {
+  transform: rotate(180deg);
 }
 
 @media (max-width: 600px) {
   .ae-articulo {
-    padding: 20px 18px;
+    padding: var(--esp-5) var(--esp-4) var(--esp-4);
+  }
+
+  .ae-inciso {
+    grid-template-columns: 48px 1fr;
+    gap: var(--esp-3);
+  }
+
+  .ae-inciso--sub {
+    margin-left: var(--esp-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ae-mas,
+  .ae-mas svg {
+    transition: none;
   }
 }

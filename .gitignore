@@ -6,3 +6,17 @@ Notas_observaciones.txt
 
 # Archivos temporales de Office
 ~$*
+
+# Variables de entorno y credenciales (Supabase, etc.): NUNCA en git.
+# La plantilla sin valores (.env.example) sí se sube.
+.env
+.env.local
+.env.*.local
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets*.json
+service-account*.json
+supabase/.temp/

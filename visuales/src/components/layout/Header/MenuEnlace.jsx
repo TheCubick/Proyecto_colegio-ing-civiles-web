@@ -4,9 +4,10 @@ import { FileText } from "lucide-react";
 
 /*
   Un enlace dentro de un menú desplegable (escritorio) o del menú del celular.
-  Recibe una página de src/config/rutas.js ({ ruta, titulo, icono }).
+  Recibe una página de src/config/rutas.js ({ ruta, titulo, icono, descripcion }).
+  `conDescripcion` muestra la línea de descripción (menú de escritorio).
 */
-export default function MenuEnlace({ pagina, actual, onNavegar, indice = 0 }) {
+export default function MenuEnlace({ pagina, actual, onNavegar, indice = 0, conDescripcion = false }) {
   const Icono = pagina.icono ?? FileText;
 
   return (
@@ -24,7 +25,10 @@ export default function MenuEnlace({ pagina, actual, onNavegar, indice = 0 }) {
         <span className="hd-menu-icon">
           <Icono size={18} aria-hidden="true" />
         </span>
-        <span>{pagina.titulo}</span>
+        <span className="hd-menu-texto">
+          <span className="hd-menu-titulo">{pagina.titulo}</span>
+          {conDescripcion && pagina.descripcion && <span className="hd-menu-desc">{pagina.descripcion}</span>}
+        </span>
       </Link>
     </motion.li>
   );

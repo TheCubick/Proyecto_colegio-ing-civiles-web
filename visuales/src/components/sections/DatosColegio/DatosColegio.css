@@ -1,0 +1,99 @@
+/* =========================================================
+   FRANJA «EL COLEGIO EN CIFRAS» (portada)
+   Gris oscuro institucional con cuadrícula arquitectónica blanca muy tenue.
+   ========================================================= */
+.dc-section {
+  position: relative;
+  padding: var(--esp-8) 24px;
+  overflow: hidden;
+  border-top: 4px solid var(--color-rojo);
+  background-color: var(--color-gris-oscuro);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  background-position: -1px -1px;
+  color: var(--color-blanco);
+}
+
+/* Resplandor rojo suave en una esquina (fijo, no animado) */
+.dc-section::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 55%;
+  height: 180%;
+  background: radial-gradient(closest-side, rgba(186, 42, 51, 0.28), transparent);
+  pointer-events: none;
+}
+
+.dc-lista {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--esp-5);
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.dc-dato {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+  padding: var(--esp-2) var(--esp-5);
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.dc-dato:first-child {
+  border-left-color: var(--color-rojo);
+}
+
+.dc-cifra {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.dc-sufijo {
+  font-size: 0.6em;
+  letter-spacing: 0;
+}
+
+.dc-etiqueta {
+  margin-top: var(--esp-2);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.dc-detalle {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .dc-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--esp-6) var(--esp-4);
+  }
+}
+
+@media (max-width: 420px) {
+  .dc-section {
+    padding: var(--esp-7) 16px;
+  }
+
+  .dc-dato {
+    padding: var(--esp-1) var(--esp-3);
+  }
+}

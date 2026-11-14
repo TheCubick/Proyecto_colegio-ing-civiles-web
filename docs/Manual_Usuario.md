@@ -55,9 +55,51 @@ Con solo enviar el material, el equipo lo agrega sin rediseñar nada:
 
 ---
 
-## 3. Panel administrativo
+## 3. Panel administrativo (Estudio de publicación)
 
-**Pendiente: se completa cuando el panel esté publicado.**
+El panel permite que el personal del Colegio publique **noticias del muro**, **cursos y capacitaciones** y **asambleas** sin pedírselo al equipo. Lo que se publica aparece en el sitio al momento.
+
+### Cómo entrar
+1. Abre la dirección del sitio y agrega **/admin** al final (por ejemplo, `…/admin`). También hay un enlace discreto, «Acceso administrativo», al pie de todas las páginas.
+2. Escribe tu **correo** y tu **contraseña**. El ojo junto a la contraseña la muestra u oculta.
+3. Las cuentas las crea el administrador del panel. Si olvidaste tu contraseña o tu cuenta dice que no tiene permiso, pídele que la restablezca o que la active.
+4. Al terminar, usa **Cerrar sesión**. La sesión también se cierra sola al cerrar el navegador.
+
+### Qué hay dentro
+- **Menú de la izquierda** (arriba en el celular): 1. Noticias del Muro, 2. Cursos y Capacitaciones, 3. Asambleas, 4. Conexión y guía rápida.
+- **Indicadores**: noticias publicadas, cursos activos, asambleas registradas y borradores pendientes.
+- **Tabla de publicaciones**: filtro *Todos / Publicados / Borradores* y buscador.
+
+### Publicar algo nuevo
+1. Entra a la sección (por ejemplo, Noticias) y pulsa **Nueva publicación**.
+2. A la izquierda llena el formulario; a la derecha ves **cómo quedará en el sitio** mientras escribes. Puedes cambiar entre **Escritorio** y **Celular**.
+3. **Foto**: arrástrala al recuadro o pulsa «Elegir foto». El panel la optimiza sola y te dice cuánto pesaba y cuánto pesa ahora (por ejemplo, «de 8.8 MB a 161 KB»).
+4. Revisa el **semáforo de reglas** al final del formulario (se enciende una de sus tres luces y dice en palabras qué pasa):
+   - **Abajo, «Todo en orden»:** se puede publicar.
+   - **En medio, «Revisa los avisos»:** se puede publicar, pero conviene corregir. Ejemplo: se menciona un partido político sin la aclaración de neutralidad; el botón «Insertar cláusula de neutralidad» la agrega donde está el cursor.
+   - **Arriba, en rojo, «No se puede publicar»:** hay una CURP, un teléfono o correo que no es del Colegio, o el nombre del Colegio escrito «…de Chiapas». El botón «Publicar» se desactiva hasta corregirlo.
+5. Pulsa **Publicar**, o **Guardar borrador** si aún no está lista. Un borrador no se ve en el sitio.
+
+Campos de cada tipo:
+- **Noticia**: foto, título, fecha y cuerpo. La tarjeta muestra el inicio; el texto completo se lee en «Leer más».
+- **Curso**: imagen, título, fecha de inicio (ej. «Inicia: 5 de diciembre de 2026»), horario, descripción y temario en PDF (opcional). La modalidad siempre es **Presencial** (regla del Colegio).
+- **Asamblea**: tipo (Ordinaria o Extraordinaria), fecha, lugar, título, párrafos del resumen, acuerdos y galería de fotos. Escribe una descripción para cada foto: la leen las personas que usan lector de pantalla.
+
+### Pausar, editar, duplicar o eliminar
+- **Interruptor** de la columna «Activa»: un clic **publica** y otro **pausa** (la publicación deja de verse en el sitio, pero no se borra).
+- **Editar**: abre la publicación en el Estudio.
+- **Duplicar**: crea una copia como borrador (útil para cursos que se repiten).
+- **Eliminar**: la borra para siempre; el panel pide confirmación. Si solo quieres ocultarla, mejor páusala.
+
+### Modo vista previa local
+Si el panel muestra el aviso **«Modo Vista Previa Local»**, todavía no está conectado a la base de datos: lo que se haga se guarda **solo en ese navegador** y nadie más lo ve. Sirve para practicar y para presentar el panel. En «Conexión y guía rápida» se puede **restablecer** a las publicaciones actuales del sitio.
+
+### Para el administrador del panel (instalación)
+- Base de datos: Supabase. Ejecutar en el SQL Editor `docs/panel-admin/esquema.sql` y después `docs/panel-admin/storage_y_seguridad.sql`, que crea el bucket de fotos `multimedia` (si no se creó desde el tablero) y corrige la política de perfiles.
+- Cuentas: invitar en *Authentication › Users*, **desactivar el registro público** y asignar el rol (`editor` o `admin`) en la tabla `perfiles`. Las instrucciones están al final del SQL.
+- Conexión: copiar `visuales/.env.example` como `visuales/.env` con la URL y la *anon key*. **Nunca** la *service_role*; `.env` no se sube a git.
+- Al conectar por primera vez, «Conexión y guía rápida» ofrece **importar** las noticias que hoy muestra el sitio, para no empezar de cero.
+- Si la base no responde, el sitio sigue mostrando las publicaciones de respaldo de `src/data/`.
 
 ---
 
@@ -92,6 +134,12 @@ El carrusel la oculta solo y muestra las demás; si no hay ninguna, muestra la f
 
 **¿Cómo cambio el horario de atención?**
 Avisa el horario nuevo; se cambia en un solo lugar y se actualiza en todo el sitio.
+
+**¿Lo que publico en el panel se ve al instante?**
+Sí, en cuanto pulsas «Publicar» o activas el interruptor. Si alguien ya tenía la página abierta, lo verá al recargarla.
+
+**¿Puedo publicar una foto donde salen agremiados?**
+Solo con su autorización. El panel optimiza las fotos, pero no puede saber si hay permiso.
 
 **¿Qué pasa si alguien escribe una dirección que no existe?**
 El sitio muestra «Página no encontrada» con un botón para volver al inicio.

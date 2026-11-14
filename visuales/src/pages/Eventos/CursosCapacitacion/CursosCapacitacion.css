@@ -219,12 +219,52 @@
   box-shadow: none;
 }
 
+/* Sin cursos publicados: tarjeta institucional centrada */
 .cc-cursos-vacio {
-  margin: 0;
-  padding: 40px 24px;
-  border: 2px dashed rgba(56, 54, 55, 0.2);
-  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 44px 32px 40px;
+  border: 1px solid var(--cc-light);
+  border-top: 5px solid var(--cc-red);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(56, 54, 55, 0.08);
   text-align: center;
+}
+
+.cc-cursos-vacio-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: var(--cc-light);
+  color: var(--cc-red);
+}
+
+.cc-cursos-vacio h3 {
+  margin: 0 0 10px;
+  color: var(--cc-dark);
+  font-size: clamp(1.15rem, 2.4vw, 1.35rem);
+  line-height: 1.3;
+}
+
+.cc-cursos-vacio p {
+  max-width: 52ch;
+  margin: 0 0 24px;
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.cc-cursos-vacio .cc-btn {
+  align-self: center;
+  margin-top: 0;
 }
 
 /* ---------- Muro de noticias ---------- */
@@ -256,18 +296,67 @@
 
 /* ---------- Tarjeta ---------- */
 .cc-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border-radius: 14px;
   background: #fff;
   box-shadow: 0 4px 14px rgba(56, 54, 55, 0.08);
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cc-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 32px rgba(150, 46, 53, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(56, 54, 55, 0.14);
+}
+
+/* El botón «Leer más» cubre toda la tarjeta: clic en cualquier parte abre la noticia */
+.cc-card-abrir::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.cc-card .cc-card-abrir:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.cc-card:hover .cc-card-abrir {
+  background: var(--cc-red-dark);
+}
+
+.cc-card:hover .cc-card-abrir svg {
+  transform: translateX(3px);
+}
+
+.cc-card .cc-card-abrir:focus-visible {
+  outline: none;
+}
+
+.cc-card:has(.cc-card-abrir:focus-visible) {
+  outline: 3px solid var(--cc-red-dark);
+  outline-offset: 3px;
+}
+
+/* Fecha de la noticia (tarjeta y ventana) */
+.cc-fecha {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.cc-fecha svg {
+  flex-shrink: 0;
+  color: var(--cc-red);
 }
 
 .cc-card-media {
@@ -435,6 +524,208 @@
 .cc-modal-body p {
   margin: 0;
   line-height: 1.75;
+}
+
+/* ---------- Ventana de una noticia (foto + texto + navegación) ---------- */
+.cc-modal--noticia {
+  width: min(1040px, calc(100% - 32px));
+  overflow: hidden auto;
+}
+
+/* El marco mide el ancho disponible: dos columnas solo si cabe (sirve igual en la vista previa del panel) */
+.cc-detalle-marco {
+  container-type: inline-size;
+}
+
+.cc-detalle {
+  display: grid;
+  grid-template-areas:
+    "media"
+    "texto"
+    "pie";
+  grid-template-columns: minmax(0, 1fr);
+  position: relative;
+}
+
+.cc-detalle-media {
+  display: flex;
+  grid-area: media;
+  align-items: center;
+  justify-content: center;
+  background: var(--cc-light);
+}
+
+.cc-detalle-img {
+  display: block;
+  width: 100%;
+  max-height: min(460px, 55vh);
+  object-fit: contain;
+}
+
+.cc-detalle-media .cc-img-vacia {
+  width: 100%;
+  min-height: 200px;
+}
+
+.cc-detalle-texto {
+  grid-area: texto;
+  padding: 22px 22px 8px;
+}
+
+.cc-detalle-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 8px;
+}
+
+.cc-detalle-cabecera .cc-fecha {
+  margin: 0;
+}
+
+/* En una columna, «Cerrar» flota sobre la foto para tenerlo siempre a mano */
+.cc-modal-close.cc-detalle-cerrar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+}
+
+.cc-detalle-texto h2 {
+  margin: 10px 0 14px;
+  color: var(--cc-dark);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.35rem, 3.2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.cc-detalle-texto p {
+  margin: 0 0 1em;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.cc-detalle-pie {
+  display: flex;
+  grid-area: pie;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--cc-light);
+  background: #fff;
+}
+
+.cc-detalle-centro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cc-detalle-posicion {
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.cc-detalle-nav,
+.cc-detalle-copiar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 10px 16px;
+  border: 2px solid var(--cc-light);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--cc-dark);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.cc-detalle-nav:hover:not(:disabled),
+.cc-detalle-copiar:hover {
+  border-color: var(--cc-red);
+  color: var(--cc-red);
+}
+
+.cc-detalle-nav:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.cc-detalle-copiar.is-copiado {
+  border-color: var(--cc-red);
+  background: var(--cc-red);
+  color: #fff;
+}
+
+.cc-detalle-nav:focus-visible,
+.cc-detalle-copiar:focus-visible {
+  outline: 2px solid var(--cc-red-dark);
+  outline-offset: 3px;
+}
+
+/* Dos columnas: foto a la izquierda (vertical u horizontal, sin recortar) y texto a la derecha */
+@container (min-width: 720px) {
+  .cc-detalle {
+    grid-template-areas:
+      "media texto"
+      "pie pie";
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  }
+
+  .cc-detalle-media {
+    min-height: 460px;
+    padding: 20px;
+  }
+
+  .cc-detalle-img {
+    max-height: 460px;
+    border-radius: 8px;
+  }
+
+  .cc-detalle-texto {
+    max-height: 500px;
+    padding: 26px 30px 12px;
+    overflow-y: auto;
+  }
+
+  .cc-modal-close.cc-detalle-cerrar {
+    position: static;
+    flex-shrink: 0;
+    margin-left: auto;
+    background: var(--cc-light);
+    box-shadow: none;
+  }
+
+  .cc-detalle-pie {
+    padding: 16px 30px;
+  }
+}
+
+@container (max-width: 480px) {
+  .cc-detalle-pie {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cc-detalle-centro {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .cc-detalle-copiar {
+    width: 100%;
+  }
 }
 
 /* ---------- Modal de inscripción ---------- */
@@ -692,11 +983,20 @@
   }
 }
 
-/* Texto justificado (F1-IM1) */
+/* Texto justificado solo en lectura ancha (F1-IM1) */
 .cc-intro,
-.cc-curso p,
-.cc-card p,
 .cc-modal-body p {
-  text-align: justify;
+  text-align: var(--alineacion-lectura);
   hyphens: auto;
+}
+
+.cc-detalle-texto p {
+  text-align: var(--alineacion-lectura);
+  hyphens: auto;
+}
+
+/* Tarjetas de cursos y noticias (columnas angostas): a la izquierda, sin ríos de espacio */
+.cc-page :is(.cc-curso, .cc-card) :is(h3, p) {
+  text-align: left;
+  text-wrap: pretty;
 }

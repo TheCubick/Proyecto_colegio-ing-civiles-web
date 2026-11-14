@@ -4,9 +4,16 @@
   - banners:             fotos del carrusel «Actividades del Colegio» (BannerCarrusel).
   - preguntasFrecuentes: preguntas de la sección de WhatsApp (AtencionWhatsapp).
   - tiposMensaje:        opciones del buzón de quejas y sugerencias.
+  - extractosCatalogo:   texto de cada tarjeta de «Trámites y Servicios» (sale de la propia página).
+  - datosColegio:        franja de 4 datos oficiales (fuentes en CLAUDE.md › «Fuentes de verdad»).
+  - insigniasConocenos:  distintivo de algunas tarjetas de «Conoce el Colegio».
   Aquí solo hay textos; el diseño está en components/sections/.
+  Títulos, rutas e íconos de las tarjetas de la portada salen de src/config/rutas.js.
 */
 import { BadgeAlert, GraduationCap, Handshake, Users } from "lucide-react";
+import { tramites } from "./tramites";
+import { servicios } from "./servicios";
+import { contacto } from "./contacto";
 
 // [título, descripción, ícono]
 export const tarjetas = [
@@ -94,3 +101,40 @@ export const tiposMensaje = [
   "Solicitud de Convenio",
   "Duda sobre Trámites",
 ];
+
+/*
+  Extractos del catálogo «Trámites y Servicios» de la portada: es la introducción de cada página
+  (src/data/tramites.js y servicios.js). Si una página no tiene, se usa la `descripcion` de rutas.js.
+*/
+export const extractosCatalogo = {
+  "/tramites/dro": tramites.dro.intro,
+  "/tramites/rt": tramites.rt.intro,
+  "/tramites/dictaminador-de-riesgos": tramites.dictaminador.intro,
+  "/servicios/peritos-valuadores": servicios.peritos.intro,
+  "/servicios/calculo-estructural": servicios.calculo.intro,
+};
+
+/*
+  Franja de datos oficiales. Solo datos verificados (CLAUDE.md › «Fuentes de verdad» y
+  src/data/misionVision.js): padrón mayor a 100 colegiados (registro SEP), 4 cursos / 30 h al año,
+  delegaciones de src/data/contacto.js y trámites 100 % presenciales.
+  - numero: se anima contando desde 0 · prefijo / sufijo: texto alrededor del número.
+*/
+export const datosColegio = [
+  { numero: 100, prefijo: "+", sufijo: "", etiqueta: "Colegiados activos", detalle: "Registro vigente ante la SEP" },
+  { numero: 4, prefijo: "", sufijo: " / 30 h", etiqueta: "Cursos al año", detalle: "Capacitación técnica anual por agremiado" },
+  {
+    numero: contacto.delegaciones.length,
+    prefijo: "",
+    sufijo: "",
+    etiqueta: "Delegaciones",
+    detalle: contacto.delegaciones.map(({ ciudad }) => ciudad).join(", "),
+  },
+  { numero: 100, prefijo: "", sufijo: "%", etiqueta: "Presencial", detalle: "Trámites y pagos en las oficinas del Colegio" },
+];
+
+// Distintivos de «Conoce el Colegio» (servicio social gratuito: regla del Colegio; estatutos: Notaría 112)
+export const insigniasConocenos = {
+  "/conocenos/servicio-social": "100% Gratuito",
+  "/conocenos/estatutos": "Notaría 112",
+};

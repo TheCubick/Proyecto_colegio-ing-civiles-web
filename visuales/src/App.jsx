@@ -23,6 +23,8 @@ const Asambleas = lazy(() => import("./pages/Eventos/Asambleas/Asambleas"));
 const MisionVision = lazy(() => import("./pages/Conocenos/MisionVision/MisionVision"));
 const Comisiones = lazy(() => import("./pages/Conocenos/Comisiones/Comisiones"));
 const NoEncontrada = lazy(() => import("./pages/NoEncontrada/NoEncontrada"));
+// Panel administrativo: paquete aparte, nunca se descarga en las visitas normales.
+const PanelAdmin = lazy(() => import("./pages/Admin/PanelAdmin"));
 
 /*
   QUÉ SE MUESTRA EN CADA RUTA.
@@ -34,6 +36,8 @@ const NoEncontrada = lazy(() => import("./pages/NoEncontrada/NoEncontrada"));
     Beneficio a la Sociedad:          plantilla PaginaInformativa + data/estatutos.js, data/servicioSocial.js
                                       y data/beneficioSocial.js (estas dos solo existen si tienen contenido)
   - Cualquier otra dirección:         página 404 (pages/NoEncontrada)
+  - /admin:                           panel administrativo (pages/Admin), a pantalla completa,
+                                      sin el Header ni el Footer públicos y fuera de los menús.
 */
 const paginas = {
   "/": <Inicio />,
@@ -73,10 +77,21 @@ function ContenidoPagina() {
   );
 }
 
-export default function App() {
+function Sitio() {
+  const { pathname } = useLocation();
+
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    return (
+      <LimiteError>
+        <Suspense fallback={<div className="adm-verificando" role="status">Cargando el panel…</div>}>
+          <PanelAdmin />
+        </Suspense>
+      </LimiteError>
+    );
+  }
+
   return (
-    <BrowserRouter>
-      <ScrollArriba />
+    <>
       {/* Primer elemento con Tab: salta el menú y va directo al contenido */}
       <a className="saltar-contenido" href="#contenido">
         Saltar al contenido
@@ -86,6 +101,15 @@ export default function App() {
         <ContenidoPagina />
         <Footer />
       </div>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ScrollArriba />
+      <Sitio />
     </BrowserRouter>
   );
 }

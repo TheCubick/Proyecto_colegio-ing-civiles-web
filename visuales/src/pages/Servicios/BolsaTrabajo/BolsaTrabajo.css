@@ -142,8 +142,8 @@
   margin: 0;
   font-size: var(--fs-parrafo);
   line-height: var(--lh-parrafo);
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
+  text-wrap: pretty;
 }
 
 /* ---------- Información + imagen ---------- */

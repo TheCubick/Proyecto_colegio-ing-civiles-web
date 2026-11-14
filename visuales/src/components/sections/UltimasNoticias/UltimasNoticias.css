@@ -1,0 +1,61 @@
+/* =========================================================
+   ÚLTIMAS NOTICIAS (portada). Las tarjetas son las del muro (CursosCapacitacion.css).
+   ========================================================= */
+.un-section {
+  padding: var(--esp-9) 0;
+  background-color: var(--color-blanco);
+}
+
+.un-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* .cc-page aporta los colores de la tarjeta; aquí sin su fondo blanco */
+.un-grid.cc-page {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--esp-5);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  list-style: none;
+}
+
+.un-item {
+  display: flex;
+  min-width: 0;
+}
+
+.un-item .cc-card {
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .un-grid.cc-page {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .un-item:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .un-section {
+    padding: var(--esp-8) 0;
+  }
+
+  .un-container {
+    padding: 0 16px;
+  }
+
+  .un-grid.cc-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .un-item:nth-child(3) {
+    display: flex;
+  }
+}

@@ -157,6 +157,7 @@ export default function Header() {
                             indice={i}
                             actual={location.pathname === pagina.ruta}
                             onNavegar={cerrarMenus}
+                            conDescripcion
                           />
                         ))}
                       </motion.ul>

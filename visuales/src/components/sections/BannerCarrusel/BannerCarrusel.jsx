@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Autoplay, EffectFade, Keyboard } from "swiper/modules";
+import { Link } from "react-router-dom";
 import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { banners } from "../../../data/inicio";
+import EncabezadoSeccion from "../../ui/EncabezadoSeccion/EncabezadoSeccion";
 import "./BannerCarrusel.css";
 
 // Carrusel «Actividades del Colegio». Las fotos y textos están en src/data/inicio.js.
@@ -28,16 +29,13 @@ export default function BannerCarrusel() {
   return (
     <section className="bc-section" aria-labelledby="bc-titulo">
       <div className="bc-container">
-        <header className="bc-header">
-          <div>
-            <h2 id="bc-titulo">Actividades del Colegio</h2>
-            <p>Promoviendo la capacitación permanente y la representación del gremio.</p>
-          </div>
-          <Link to="/eventos/cursos-y-capacitacion" className="bc-header-link">
-            Ver noticias y eventos
-            <ArrowRight size={18} aria-hidden="true" />
-          </Link>
-        </header>
+        <EncabezadoSeccion
+          id="bc-titulo"
+          etiqueta="Galería"
+          titulo="Actividades del Colegio"
+          subtitulo="Promoviendo la capacitación permanente y la representación del gremio."
+          enlace={{ to: "/eventos/cursos-y-capacitacion", texto: "Ver noticias y eventos" }}
+        />
 
         <div className="bc-carousel">
           <Swiper

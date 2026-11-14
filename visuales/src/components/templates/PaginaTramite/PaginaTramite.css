@@ -105,7 +105,7 @@
   margin: 0;
   font-size: var(--fs-parrafo);
   line-height: var(--lh-parrafo);
-  text-align: justify;
+  text-align: var(--alineacion-lectura);
   hyphens: auto;
 }
 
@@ -136,7 +136,7 @@
   font-size: 1rem; /* Actualizado de 0.9rem a 1rem (texto normal) */
 }
 
-/* ---------- Requisitos ---------- */
+/* ---------- Requisitos: tarjeta con pestañas (tríptico / Estatutos) ---------- */
 .tr-requisitos {
   padding: 4.5rem 0;
   background: var(--tr-light);
@@ -149,10 +149,108 @@
   font-weight: 700;
 }
 
+.tr-req-tarjeta {
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  border-radius: 24px;
+  background: var(--color-blanco);
+  box-shadow: 0 1px 2px rgba(56, 54, 55, 0.05), 0 18px 44px rgba(56, 54, 55, 0.1);
+}
+
+.tr-req-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--esp-2);
+  padding: var(--esp-2);
+  border-bottom: 1px solid var(--color-borde);
+  background: rgba(229, 229, 229, 0.5);
+}
+
+.tr-req-tab {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  min-height: 64px;
+  padding: var(--esp-3) var(--esp-4);
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: var(--tr-dark);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-media) var(--curva-estado), box-shadow var(--dur-media) var(--curva-estado);
+}
+
+.tr-req-tab:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.tr-req-tab.is-activa {
+  background: var(--color-blanco);
+  box-shadow: 0 1px 2px rgba(56, 54, 55, 0.08), 0 8px 20px rgba(56, 54, 55, 0.08);
+}
+
+.tr-req-tab-icono {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-rojo-tenue);
+  color: var(--tr-red);
+  transition: background var(--dur-media) var(--curva-estado), color var(--dur-media) var(--curva-estado);
+}
+
+.tr-req-tab.is-activa .tr-req-tab-icono {
+  background: linear-gradient(135deg, var(--tr-red), var(--tr-red-dark));
+  color: var(--color-blanco);
+}
+
+.tr-req-tab-texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.tr-req-tab-texto strong {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.tr-req-tab-texto small {
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+}
+
+.tr-req-tab:focus-visible {
+  outline-offset: -3px;
+}
+
+.tr-req-panel {
+  padding: var(--esp-6);
+}
+
+.tr-req-panel:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tr-req-panel {
+    animation: tr-panel-entrar 0.35s var(--curva-entrada) both;
+  }
+}
+
+@keyframes tr-panel-entrar {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+/* Lista del tríptico: 2 columnas numeradas, sin cajas pesadas */
 .tr-requisitos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--esp-6);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -160,33 +258,31 @@
 
 .tr-requisitos-grid li {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 18px;
-  border-left: 4px solid var(--tr-red);
-  border-radius: 8px;
-  background: #fff;
+  align-items: flex-start;
+  gap: var(--esp-3);
+  padding: var(--esp-3) 0;
+  border-bottom: 1px solid var(--color-borde);
+  font-size: 1.05rem;
   font-weight: 600;
-  transition: all 0.25s ease;
+  line-height: 1.45;
 }
 
-.tr-requisitos-grid li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(150, 46, 53, 0.15);
-}
-
-.tr-requisitos-grid svg {
+.tr-req-num {
   flex-shrink: 0;
+  min-width: 2.2em;
   color: var(--tr-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }
 
 .tr-nota {
   display: flex;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: var(--esp-5);
   padding: 16px 20px;
-  border-radius: 8px;
-  background: rgba(150, 46, 53, 0.08);
+  border-radius: 14px;
+  background: var(--color-rojo-tenue);
 }
 
 .tr-nota svg {
@@ -198,6 +294,89 @@
 .tr-nota p {
   margin: 0;
   line-height: 1.7;
+}
+
+/* Pestaña de Estatutos */
+.tr-est-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3);
+  margin-bottom: var(--esp-5);
+}
+
+.tr-est-num {
+  display: inline-grid;
+  place-items: center;
+  height: 36px;
+  padding: 0 var(--esp-4);
+  border-radius: var(--radio-pildora);
+  background: linear-gradient(135deg, var(--tr-red), var(--tr-red-dark));
+  color: var(--color-blanco);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.tr-req-panel .tr-est-cabecera h3 {
+  margin: 0;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+  font-weight: 800;
+}
+
+.tr-est-pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  margin-top: var(--esp-5);
+  padding-top: var(--esp-4);
+  border-top: 1px solid var(--color-borde);
+}
+
+.tr-estatuto-fuente {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+  font-style: italic;
+  text-align: left;
+}
+
+.tr-est-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: var(--toque-min);
+  color: var(--tr-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(186, 42, 51, 0.35);
+  text-underline-offset: 4px;
+  transition: color var(--dur-media) var(--curva-estado);
+}
+
+.tr-est-enlace:hover {
+  color: var(--tr-red-dark);
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 760px) {
+  .tr-requisitos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tr-req-panel {
+    padding: var(--esp-5) var(--esp-4);
+  }
+}
+
+@media (max-width: 520px) {
+  .tr-req-tabs {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Llamado a la acción ---------- */
@@ -468,20 +647,4 @@
     transform: none;
     animation: none;
   }
-}
-/* ---------- Requisitos según los Estatutos (texto oficial del Colegio) ---------- */
-.tr-estatuto {
-  padding: 4rem 0;
-  background-color: #fff;
-}
-
-.tr-estatuto .tr-container {
-  max-width: 960px;
-}
-
-.tr-estatuto-fuente {
-  margin: 14px 0 0;
-  color: rgba(56, 54, 55, 0.8);
-  font-size: 1rem;
-  font-style: italic;
 }

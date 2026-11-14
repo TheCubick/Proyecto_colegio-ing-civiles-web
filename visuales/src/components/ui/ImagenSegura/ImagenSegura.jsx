@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ImageOff } from "lucide-react";
 
 /*
-  Imagen que nunca se ve rota: si el archivo no existe (404), muestra un recuadro
+  Imagen que nunca se ve rota: si no hay archivo o no existe (404), muestra un recuadro
   gris con un ícono y, opcionalmente, un texto como «Imagen pendiente».
 
   Uso:
@@ -18,7 +18,8 @@ import { ImageOff } from "lucide-react";
 export default function ImagenSegura({ src, alt, className, claseVacia, texto, tamanoIcono = 28, lazy = true }) {
   const [error, setError] = useState(false);
 
-  if (error) {
+  // Sin archivo o con error (404): recuadro gris en lugar de una imagen rota
+  if (error || !src) {
     return (
       <div className={[className, claseVacia].filter(Boolean).join(" ")} role="img" aria-label={alt || texto}>
         <ImageOff size={tamanoIcono} aria-hidden="true" />

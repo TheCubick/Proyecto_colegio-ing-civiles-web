@@ -89,14 +89,19 @@ export default function Footer() {
                   </a>
                 </div>
               </li>
-              <li>
+              <li className="cic-footer-telefonos">
                 <Phone size={18} aria-hidden="true" />
                 <div>
-                  {contacto.telefonos.map((telefono) => (
-                    <a key={telefono} href={enlaceTelefono(telefono)} className="cic-footer-inline">
-                      {telefono}
-                    </a>
-                  ))}
+                  <span className="cic-footer-etiqueta">Teléfonos</span>
+                  <ul className="cic-footer-phones">
+                    {contacto.telefonos.map((telefono) => (
+                      <li key={telefono}>
+                        <a href={enlaceTelefono(telefono)} className="cic-footer-phone">
+                          {telefono}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </li>
               <li>
@@ -132,20 +137,24 @@ export default function Footer() {
         </div>
 
         <div className="cic-footer-bottom">
-          <p>© {anioActual} Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. Todos los derechos reservados.</p>
-          {documentosLegales.length > 0 && (
-            <nav aria-label="Documentos legales">
-              <ul>
-                {documentosLegales.map(({ titulo, ruta }) => (
-                  <li key={titulo}>
-                    <a href={ruta} target="_blank" rel="noopener noreferrer">
-                      {titulo}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
+          <p>© {anioActual} Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. (CICTGZ). Todos los derechos reservados.</p>
+          <nav aria-label="Documentos legales y acceso administrativo">
+            <ul>
+              {documentosLegales.map(({ titulo, ruta }) => (
+                <li key={titulo}>
+                  <a href={ruta} target="_blank" rel="noopener noreferrer">
+                    {titulo}
+                  </a>
+                </li>
+              ))}
+              {/* Enlace discreto al panel del personal del Colegio (/admin) */}
+              <li>
+                <Link to="/admin" className="cic-footer-admin" rel="nofollow">
+                  Acceso administrativo
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

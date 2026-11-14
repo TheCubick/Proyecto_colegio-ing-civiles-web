@@ -19,6 +19,8 @@
   y la página /conocenos/estatutos.
 */
 
+import { HandHeart, HardHat, Landmark, Scale, Users } from "lucide-react";
+
 const art7 = {
   id: "art-7",
   articulo: "Artículo 7°",
@@ -181,9 +183,24 @@ export const estatutos = { art7, art9, art17, art33, art35, art37, art48, art54,
 // Orden en que se muestran en /conocenos/estatutos
 export const estatutosEnOrden = [art7, art9, art17, art33, art35, art37, art48, art54, art55, art56, art69];
 
-// Página /conocenos/estatutos (plantilla PaginaInformativa)
+/*
+  Temas del índice de /conocenos/estatutos. Solo ORDENAN los artículos para navegarlos;
+  no cambian su texto. Para mover un artículo de tema, muévelo de una lista a otra.
+*/
+export const temasEstatutos = [
+  { id: "tema-ejercicio", titulo: "Ejercicio y Sociedad", icono: Scale, articulos: [art7, art9] },
+  { id: "tema-membresia", titulo: "Membresía y Asambleas", icono: Users, articulos: [art17, art33] },
+  { id: "tema-consejo", titulo: "Comisiones y Consejo", icono: Landmark, articulos: [art35, art37, art48, art54] },
+  { id: "tema-dro-rt", titulo: "DRO y RT", icono: HardHat, articulos: [art55, art56] },
+  { id: "tema-servicio", titulo: "Servicio Social", icono: HandHeart, articulos: [art69] },
+];
+
+// Página /conocenos/estatutos (plantilla PaginaInformativa, diseño «estatutos»: índice + acordeones)
 export const paginaEstatutos = {
   titulo: "Estatutos (extractos)",
+  diseno: "estatutos",
+  subtitulo: `${estatutosEnOrden.length} artículos del texto oficial, organizados en ${temasEstatutos.length} temas.`,
+  temas: temasEstatutos,
   secciones: estatutosEnOrden,
   fuente: FUENTE_ESTATUTOS,
 };

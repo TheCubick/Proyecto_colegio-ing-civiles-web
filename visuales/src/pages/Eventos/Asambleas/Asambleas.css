@@ -234,6 +234,11 @@
   text-align: center;
 }
 
+/* Asamblea sin fotos: el texto ocupa todo el ancho (no deja media tarjeta vacía) */
+.asm-card:not(:has(.asm-galeria)) {
+  grid-template-columns: 1fr;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 850px) {
   .asm-hero {
@@ -269,8 +274,8 @@
   }
 }
 
-/* Texto justificado (F1-IM1) */
+/* Alineación (F1-IM1; en columnas angostas va a la izquierda o centrado, ver index.css) */
 .asm-card p {
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
+  text-wrap: pretty;
 }

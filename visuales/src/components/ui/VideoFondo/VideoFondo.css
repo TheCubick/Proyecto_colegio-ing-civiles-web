@@ -9,18 +9,24 @@
   width: var(--toque-min);
   height: var(--toque-min);
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 50%;
-  background: rgba(56, 54, 55, 0.55);
+  background: rgba(56, 54, 55, 0.65);
+  box-shadow: 0 8px 22px rgba(56, 54, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
   color: var(--color-blanco);
   cursor: pointer;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  transition: background var(--dur-media) var(--curva-estado), transform var(--dur-rapida) var(--curva-estado);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition:
+    background var(--dur-media) var(--curva-estado),
+    border-color var(--dur-media) var(--curva-estado),
+    transform var(--dur-rapida) var(--curva-estado);
 }
 
+/* Cristal oscuro: al pasar el cursor se vuelve rojo institucional */
 .vf-control:hover {
-  background: var(--color-rojo);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(186, 42, 51, 0.85);
 }
 
 .vf-control:active {

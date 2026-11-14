@@ -26,7 +26,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: min(780px, 100%);
+  width: min(1040px, 100%);
   max-height: calc(100dvh - 32px);
   overflow: hidden;
   border-radius: 20px;
@@ -201,33 +201,6 @@
   color: var(--hd-red);
 }
 
-/* Aviso de trámite presencial */
-.hd-aviso {
-  display: flex;
-  gap: 12px;
-  padding: 16px 18px;
-  border: 1px solid rgba(186, 42, 51, 0.25);
-  border-left: 5px solid var(--hd-red);
-  border-radius: 12px;
-  background: rgba(186, 42, 51, 0.06);
-}
-
-.hd-aviso > svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-  color: var(--hd-red);
-}
-
-.hd-aviso p {
-  margin: 0 0 10px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.hd-aviso strong {
-  color: var(--hd-red);
-}
-
 .hd-aviso-datos {
   display: grid;
   gap: 6px;
@@ -250,63 +223,9 @@
   color: var(--hd-red-dark);
 }
 
-/* Requisitos */
-.hd-requisitos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hd-requisitos li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: var(--hd-light);
-  font-size: 1rem;
-  line-height: 1.45;
-  transition: background 0.2s ease;
-}
-
-.hd-requisitos li:hover {
-  background: rgba(186, 42, 51, 0.1);
-}
-
-.hd-requisitos svg {
-  flex-shrink: 0;
-  margin-top: 1px;
-  color: var(--hd-red);
-}
-
-.hd-nota {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  background: rgba(150, 46, 53, 0.06);
-  font-size: 1rem;
-}
-
-.hd-nota svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-  color: var(--hd-red-dark);
-}
-
-.hd-nota p {
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* Descargas de formatos PDF */
+/* Descargas de formatos PDF (columna lateral) */
 .hd-descargas {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -370,65 +289,13 @@
 }
 
 .hd-triptico {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
 }
 
-/* Tabla de costos */
-.hd-tabla-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--hd-light);
-  border-radius: 12px;
-}
-
-.hd-tabla {
+.hd-triptico .hd-btn {
+  justify-content: flex-start;
   width: 100%;
-  border-collapse: collapse;
-  font-size: 1rem;
-}
-
-.hd-tabla th,
-.hd-tabla td {
-  padding: 10px 16px;
-  text-align: left;
-}
-
-.hd-tabla td:last-child,
-.hd-tabla thead th:last-child {
-  text-align: right;
-  white-space: nowrap;
-}
-
-.hd-tabla thead th {
-  background: var(--hd-dark);
-  color: #fff;
-  font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.hd-tabla-grupo th {
-  background: rgba(186, 42, 51, 0.08);
-  color: var(--hd-red);
-  font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 0.95rem;
-}
-
-.hd-tabla tbody tr:not(.hd-tabla-grupo) {
-  border-top: 1px solid var(--hd-light);
-  transition: background 0.15s ease;
-}
-
-.hd-tabla tbody tr:not(.hd-tabla-grupo):hover {
-  background: rgba(229, 229, 229, 0.5);
-}
-
-.hd-tabla td:last-child {
-  color: var(--hd-dark);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
 }
 
 .hd-pie-tabla {
@@ -592,6 +459,224 @@
   overflow-wrap: anywhere;
 }
 
+/* ---------- Pestaña 1: requisitos (izquierda) + resumen (columna lateral) ---------- */
+.hd-req-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: var(--esp-6);
+  align-items: start;
+}
+
+.hd-subtitulo--primero {
+  margin-top: 0;
+}
+
+.hd-contador {
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: var(--radio-pildora);
+  background: var(--color-rojo-tenue);
+  color: var(--hd-red);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+/* Lista numerada 01–NN en 2 columnas, sin cajas: solo separadores finos */
+.hd-requisitos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--esp-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hd-requisitos li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--esp-3);
+  padding: var(--esp-3) 0;
+  border-bottom: 1px solid var(--color-borde);
+  font-size: 1rem;
+  line-height: 1.45;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.hd-req-num {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--hd-red), var(--hd-red-dark));
+  color: #fff;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.hd-req-lateral {
+  display: grid;
+  gap: var(--esp-3);
+  padding: var(--esp-3);
+  border-radius: 18px;
+  background: rgba(229, 229, 229, 0.55);
+}
+
+.hd-lateral-bloque {
+  padding: var(--esp-4);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.hd-lateral-bloque--rojo {
+  border-left: 4px solid var(--hd-red);
+}
+
+.hd-modal .hd-lateral-bloque p {
+  margin: 0 0 var(--esp-2);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.hd-modal .hd-lateral-bloque p:last-child {
+  margin-bottom: 0;
+}
+
+.hd-modal .hd-lateral-bloque .hd-lateral-titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  margin-bottom: var(--esp-2);
+  color: var(--hd-red);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.hd-aviso-datos li {
+  text-align: left;
+}
+
+.hd-lateral-bloque .hd-triptico {
+  margin-top: var(--esp-3);
+}
+
+/* Nota de cartas: junto a los requisitos (ley de proximidad) */
+.hd-nota-cartas {
+  display: flex;
+  gap: var(--esp-3);
+  margin-top: var(--esp-4);
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: 14px;
+  background: var(--color-rojo-tenue);
+}
+
+.hd-nota-cartas svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--hd-red-dark);
+}
+
+.hd-modal .hd-nota-cartas p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+/* ---------- Pestaña 2: costos en 3 tarjetas comparativas ---------- */
+.hd-costos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--esp-4);
+  align-items: start;
+}
+
+.hd-costo {
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(56, 54, 55, 0.05), 0 10px 24px rgba(56, 54, 55, 0.08);
+}
+
+.hd-costo-cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  padding: var(--esp-4);
+  background: linear-gradient(135deg, var(--hd-red), var(--hd-red-dark));
+  color: #fff;
+}
+
+.hd-costo-num {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.hd-costo-cabecera h3 {
+  margin: 0;
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.hd-costo-filas {
+  margin: 0;
+  padding: var(--esp-2) var(--esp-4) var(--esp-3);
+}
+
+.hd-costo-fila {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  padding: var(--esp-3) 0;
+  border-bottom: 1px dashed var(--color-borde);
+}
+
+.hd-costo-fila:last-child {
+  border-bottom: 0;
+}
+
+.hd-costo-fila dt {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.hd-costo-fila dd {
+  margin: 0;
+  color: var(--hd-dark);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .hd-req-layout,
+  .hd-costos {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Pie del pop-up */
 .hd-modal-footer {
   display: flex;
@@ -616,9 +701,6 @@
     text-align: center;
   }
 
-  .hd-descargas {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 600px) {
@@ -660,19 +742,10 @@
   }
 
   .hd-requisitos,
-  .hd-descargas,
   .hd-cuentas {
     grid-template-columns: 1fr;
   }
 
-  .hd-triptico .hd-btn {
-    flex: 1;
-  }
-
-  .hd-tabla th,
-  .hd-tabla td {
-    padding: 9px 12px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

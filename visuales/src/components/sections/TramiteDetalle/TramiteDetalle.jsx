@@ -21,13 +21,16 @@ export default function TramiteDetalle({ info, sigla, onContactar }) {
           </header>
           <p className="td-intro texto-legible texto-justificado">{funciones.intro}</p>
           <ul className="td-funciones">
-            {funciones.lista.map(({ titulo, texto }) => (
+            {funciones.lista.map(({ titulo, texto }, i) => (
               <li className="td-funcion" key={titulo}>
-                <CheckCircle2 size={24} aria-hidden="true" />
-                <div>
-                  <h3>{titulo}</h3>
-                  <p className="texto-legible texto-justificado">{texto}</p>
-                </div>
+                <span className="td-funcion-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="td-funcion-icono" aria-hidden="true">
+                  <CheckCircle2 size={22} />
+                </span>
+                <h3>{titulo}</h3>
+                <p>{texto}</p>
               </li>
             ))}
           </ul>
@@ -72,12 +75,23 @@ export default function TramiteDetalle({ info, sigla, onContactar }) {
             <h2 id={`td-contratar-${sigla}`}>¿Cómo contratar a uno de nuestros agremiados?</h2>
           </header>
           <p className="td-intro texto-legible texto-justificado">{contratar.intro}</p>
-          <ol className="td-pasos">
+          {/* Línea de tiempo: el número va sobre la línea y la tarjeta debajo */}
+          <ol className="td-pasos" style={{ "--td-pasos": contratar.pasos.length }}>
             {contratar.pasos.map(({ titulo, texto }, i) => (
               <li className="td-paso" key={titulo}>
-                <span className="td-paso-num" aria-hidden="true">{i + 1}</span>
-                <h3>{titulo}</h3>
-                <p className="texto-legible texto-justificado">{texto}</p>
+                <span className="td-paso-marca" aria-hidden="true">
+                  <span className="td-paso-num">{i + 1}</span>
+                </span>
+                <div className="td-paso-tarjeta">
+                  <span className="td-paso-fondo" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3>
+                    <span className="sr-only">Paso {i + 1}: </span>
+                    {titulo}
+                  </h3>
+                  <p>{texto}</p>
+                </div>
               </li>
             ))}
           </ol>

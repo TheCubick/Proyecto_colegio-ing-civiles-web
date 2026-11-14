@@ -1,0 +1,302 @@
+/* =========================================================
+   CATÁLOGO DE TRÁMITES Y SERVICIOS (portada)
+   ========================================================= */
+.cs-section {
+  padding: var(--esp-9) 0;
+  background-color: var(--color-gris-claro);
+  scroll-margin-top: 72px;
+}
+
+/* Recibe el foco al llegar desde el botón del Hero; no hace falta marco visible */
+.cs-section:focus {
+  outline: none;
+}
+
+.cs-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Filtros (Ley de Hick) ---------- */
+.cs-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  margin-bottom: var(--esp-6);
+}
+
+.cs-filtro {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: var(--toque-min, 48px);
+  padding: 0 var(--esp-5);
+  border: 1.5px solid rgba(56, 54, 55, 0.16);
+  border-radius: var(--radio-pildora);
+  background: var(--color-blanco);
+  color: var(--color-gris-oscuro);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.25s var(--curva-estado, ease),
+    border-color 0.25s var(--curva-estado, ease),
+    color 0.25s var(--curva-estado, ease),
+    transform 0.2s var(--curva-estado, ease);
+}
+
+.cs-filtro svg {
+  color: var(--color-rojo);
+}
+
+.cs-filtro-num {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: var(--radio-pildora);
+  background: var(--color-gris-claro);
+  font-size: 0.95rem;
+}
+
+.cs-filtro:hover {
+  border-color: var(--color-rojo);
+}
+
+.cs-filtro:active {
+  transform: scale(0.98);
+}
+
+.cs-filtro[aria-pressed="true"] {
+  border-color: var(--color-rojo);
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+}
+
+.cs-filtro[aria-pressed="true"] svg {
+  color: var(--color-blanco);
+}
+
+.cs-filtro[aria-pressed="true"] .cs-filtro-num {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.cs-filtro:focus-visible {
+  outline: 3px solid var(--color-rojo-oscuro);
+  outline-offset: 3px;
+}
+
+/* ---------- Tarjetas ---------- */
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: var(--esp-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-grid > li {
+  display: flex;
+  min-width: 0;
+}
+
+.cs-card {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--esp-3);
+  min-width: 0;
+  padding: var(--esp-6) var(--esp-6) var(--esp-5);
+  overflow: hidden;
+  border: 1px solid rgba(56, 54, 55, 0.08);
+  border-radius: 20px;
+  background: var(--color-blanco);
+  box-shadow: 0 4px 16px rgba(56, 54, 55, 0.08);
+  color: var(--color-gris-oscuro);
+  text-decoration: none;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+}
+
+/* Barra de color arriba: rojo en trámites, gris oscuro en servicios (se agranda al pasar) */
+.cs-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-rojo), var(--color-rojo-oscuro));
+  transform: scaleX(0.18);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-card--servicio::before {
+  background: linear-gradient(90deg, var(--color-gris-oscuro), var(--color-rojo-oscuro));
+}
+
+.cs-card:hover {
+  border-color: rgba(186, 42, 51, 0.25);
+  box-shadow: 0 18px 40px rgba(150, 46, 53, 0.16);
+  transform: translateY(-6px);
+}
+
+.cs-card:hover::before {
+  transform: scaleX(1);
+}
+
+.cs-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+.cs-card:focus-visible {
+  outline: 3px solid var(--color-rojo-oscuro);
+  outline-offset: 4px;
+}
+
+.cs-card-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  margin-bottom: var(--esp-2);
+}
+
+.cs-card-icono {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: var(--color-rojo-tenue);
+  color: var(--color-rojo);
+  transition: background-color 0.35s ease, color 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs-card--servicio .cs-card-icono {
+  background: rgba(56, 54, 55, 0.07);
+  color: var(--color-gris-oscuro);
+}
+
+.cs-card:hover .cs-card-icono {
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+  transform: scale(1.05);
+}
+
+.cs-card-categoria {
+  padding: 4px 12px;
+  border-radius: var(--radio-pildora);
+  background: var(--color-rojo-tenue);
+  color: var(--color-rojo-oscuro);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cs-card--servicio .cs-card-categoria {
+  background: rgba(56, 54, 55, 0.08);
+  color: var(--color-gris-oscuro);
+}
+
+.cs-card-titulo {
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* Extracto de 3 líneas, a la izquierda (columnas angostas: sin justificar) */
+.cs-card-texto {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--color-texto-suave);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+  text-wrap: pretty;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.cs-card-pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  margin-top: auto;
+  padding-top: var(--esp-4);
+  border-top: 1px solid var(--color-gris-claro);
+  color: var(--color-rojo);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.cs-card-flecha {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-rojo-tenue);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease, color 0.3s ease;
+}
+
+.cs-card:hover .cs-card-flecha {
+  background: var(--color-rojo);
+  color: var(--color-blanco);
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 600px) {
+  .cs-section {
+    padding: var(--esp-8) 0;
+  }
+
+  .cs-container {
+    padding: 0 16px;
+  }
+
+  /* Todas las opciones a la vista (sin desplazamiento lateral que esconda alguna) */
+  .cs-filtros {
+    margin-bottom: var(--esp-5);
+  }
+
+  .cs-filtro {
+    padding: 0 var(--esp-4);
+  }
+
+  .cs-card {
+    padding: var(--esp-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-card,
+  .cs-card::before,
+  .cs-card-icono,
+  .cs-card-flecha,
+  .cs-filtro {
+    transition: none;
+  }
+
+  .cs-card:hover,
+  .cs-card:active,
+  .cs-card:hover .cs-card-icono,
+  .cs-card:hover .cs-card-flecha {
+    transform: none;
+  }
+}

@@ -1,0 +1,131 @@
+/* Banner institucional de contacto: rojo con degradado, datos a la izquierda y acciones a la derecha */
+.bc-banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--esp-6);
+  align-items: center;
+  padding: var(--esp-7);
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    radial-gradient(80% 120% at 100% 0%, rgba(255, 255, 255, 0.14), transparent 60%),
+    linear-gradient(135deg, var(--color-rojo) 0%, var(--color-rojo-oscuro) 100%);
+  box-shadow: 0 24px 50px rgba(150, 46, 53, 0.32);
+  color: var(--color-blanco);
+  isolation: isolate;
+}
+
+/* Plano tenue de fondo (dibujo de Jocelyn) */
+.bc-banner::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  bottom: -30px;
+  z-index: -1;
+  width: 360px;
+  height: 260px;
+  background: url("/img/patrones/plano-edificio.webp") no-repeat right bottom / contain;
+  filter: invert(1);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.bc-texto h2 {
+  margin: 0 0 var(--esp-3);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.bc-texto p {
+  margin: 0 0 var(--esp-4);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.bc-datos {
+  display: grid;
+  gap: var(--esp-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bc-banner .bc-datos li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--esp-3);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.bc-datos svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
+.bc-acciones {
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.bc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-height: var(--toque-min);
+  padding: 0 var(--esp-5);
+  border: 2px solid var(--color-blanco);
+  border-radius: var(--radio-md);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  transition:
+    background var(--dur-media) var(--curva-estado),
+    color var(--dur-media) var(--curva-estado),
+    transform var(--dur-media) var(--curva-estado);
+}
+
+.bc-btn--blanco {
+  background: var(--color-blanco);
+  color: var(--color-rojo);
+}
+
+.bc-btn--blanco:hover {
+  background: var(--color-gris-claro);
+  transform: translateY(-2px);
+}
+
+.bc-btn--borde {
+  background: transparent;
+  color: var(--color-blanco);
+}
+
+.bc-btn--borde:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.bc-banner :focus-visible {
+  outline-color: var(--color-blanco);
+}
+
+@media (max-width: 850px) {
+  .bc-banner {
+    grid-template-columns: 1fr;
+    padding: var(--esp-6) var(--esp-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bc-btn {
+    transition: none;
+  }
+}

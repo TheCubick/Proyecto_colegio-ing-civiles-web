@@ -72,37 +72,63 @@
 }
 
 .td-funcion {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 24px;
-  border: 1px solid var(--td-light);
-  border-top: 4px solid var(--td-red);
-  border-radius: 12px;
+  flex-direction: column;
+  gap: var(--esp-2);
+  padding: var(--esp-6) var(--esp-5) var(--esp-5);
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  border-radius: 20px;
   background: #fff;
-  box-shadow: 0 6px 18px rgba(56, 54, 55, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 1px 2px rgba(56, 54, 55, 0.05), 0 10px 28px rgba(56, 54, 55, 0.08);
 }
 
-.td-funcion:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(150, 46, 53, 0.15);
+/* Barra de acento superior en degradado institucional */
+.td-funcion::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--td-red), var(--td-red-dark));
 }
 
-.td-funcion > svg {
-  flex-shrink: 0;
-  margin-top: 2px;
+/* Número editorial grande y tenue en la esquina */
+.td-funcion-num {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  color: rgba(186, 42, 51, 0.12);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+.td-funcion-icono {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--esp-2);
+  border-radius: 12px;
+  background: var(--color-rojo-tenue);
   color: var(--td-red);
 }
 
 .td-funcion h3 {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.3;
 }
 
 .td-funcion p {
   margin: 0;
+  font-size: var(--fs-parrafo);
+  line-height: 1.65;
 }
 
 /* ---------- Cómo contratar (bloque oscuro para cerrar con contraste) ---------- */
@@ -121,44 +147,87 @@
 
 .td-pasos {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  margin: 0;
+  grid-template-columns: repeat(var(--td-pasos, 3), minmax(0, 1fr));
+  gap: var(--esp-5);
+  margin: var(--esp-6) 0 0;
   padding: 0;
   list-style: none;
 }
 
 .td-paso {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+}
+
+/* Número sobre la línea; la línea une cada paso con el siguiente */
+.td-paso-marca {
   position: relative;
-  padding: 28px 22px 24px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 6px 18px rgba(56, 54, 55, 0.08);
+  display: flex;
+  align-items: center;
+}
+
+.td-paso:not(:last-child) .td-paso-marca::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(var(--esp-5) * -1);
+  left: 72px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.45) 0 10px, transparent 10px 18px);
 }
 
 .td-paso-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 14px;
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 4px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
-  background: var(--td-red);
+  background: linear-gradient(135deg, var(--td-red), var(--td-red-dark));
+  background-clip: padding-box;
+  box-shadow: 0 10px 24px rgba(150, 46, 53, 0.45);
   color: #fff;
   font-family: "Montserrat", "Segoe UI", sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 800;
 }
 
+.td-paso-tarjeta {
+  position: relative;
+  flex: 1;
+  padding: var(--esp-5) var(--esp-5) var(--esp-6);
+  overflow: hidden;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(56, 54, 55, 0.35);
+}
+
+.td-paso-fondo {
+  position: absolute;
+  right: 12px;
+  bottom: -18px;
+  color: rgba(56, 54, 55, 0.06);
+  font-family: "Montserrat", "Segoe UI", sans-serif;
+  font-size: 7rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+}
+
 .td-paso h3 {
-  margin: 0 0 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  position: relative;
+  margin: 0 0 var(--esp-2);
+  font-size: 1.25rem;
+  font-weight: 800;
 }
 
 .td-paso p {
+  position: relative;
   margin: 0;
+  font-size: var(--fs-parrafo);
+  line-height: 1.65;
 }
 
 .td-contratar-pie {
@@ -272,19 +341,44 @@
 
 /* ---------- Responsive ---------- */
 @media (max-width: 950px) {
-  .td-pasos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .td-normativa {
     grid-template-columns: 1fr;
     gap: 32px;
   }
 }
 
-@media (max-width: 700px) {
-  .td-funciones,
+/* Celular y tablet angosta: línea de tiempo vertical */
+@media (max-width: 860px) {
   .td-pasos {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .td-paso {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: var(--esp-4);
+    padding-bottom: var(--esp-5);
+  }
+
+  .td-paso-marca {
+    align-items: flex-start;
+    align-self: stretch;
+  }
+
+  .td-paso:not(:last-child) .td-paso-marca::after {
+    top: 64px;
+    right: auto;
+    bottom: calc(var(--esp-5) * -1);
+    left: 27px;
+    width: 2px;
+    height: auto;
+    background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0 10px, transparent 10px 18px);
+  }
+}
+
+@media (max-width: 700px) {
+  .td-funciones {
     grid-template-columns: 1fr;
   }
 
@@ -309,7 +403,22 @@
   }
 
   .td-funcion {
-    padding: 20px;
+    padding: var(--esp-5) var(--esp-4) var(--esp-4);
+  }
+
+  .td-paso {
+    grid-template-columns: 48px 1fr;
+    gap: var(--esp-3);
+  }
+
+  .td-paso-num {
+    width: 48px;
+    height: 48px;
+  }
+
+  .td-paso:not(:last-child) .td-paso-marca::after {
+    top: 56px;
+    left: 23px;
   }
 }
 

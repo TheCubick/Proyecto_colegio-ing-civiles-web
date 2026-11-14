@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { ArrowRight, Download, FileText, Info } from "lucide-react";
-import { notaCartas, requisitosGenerales } from "../../../data/requisitos";
+import { ArrowRight, Download } from "lucide-react";
 import ModalContacto from "../../ui/ModalContacto/ModalContacto";
 import Migas from "../../ui/Migas/Migas";
 import VideoFondo from "../../ui/VideoFondo/VideoFondo";
 import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
 import { galerias } from "../../../data/galerias";
 import TramiteDetalle from "../../sections/TramiteDetalle/TramiteDetalle";
-import ArticuloEstatuto from "../../ui/ArticuloEstatuto/ArticuloEstatuto";
-import { FUENTE_ESTATUTOS } from "../../../data/estatutos";
+import RequisitosTramite from "./RequisitosTramite";
 import "./PaginaTramite.css";
 
 /*
@@ -65,36 +63,7 @@ export default function PaginaTramite({ datos }) {
 
       <TramiteDetalle info={info} sigla={sigla} onContactar={() => setContactoAbierto(true)} />
 
-      {estatuto && (
-        <section className="tr-estatuto fondo-trazos" aria-label="Requisitos según los Estatutos del Colegio">
-          <div className="tr-container">
-            <ArticuloEstatuto articulo={estatuto} />
-            <p className="tr-estatuto-fuente">Fuente: {FUENTE_ESTATUTOS}</p>
-          </div>
-        </section>
-      )}
-
-      <section className="tr-requisitos">
-        <div className="tr-container">
-          <h2>Requisitos generales</h2>
-          <ul className="tr-requisitos-grid">
-            {requisitosGenerales.map((requisito) => (
-              <li key={requisito}>
-                <FileText size={20} aria-hidden="true" />
-                <span>{requisito}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="tr-nota">
-            <Info size={20} aria-hidden="true" />
-            <p>
-              {notaCartas.propias}
-              <br />
-              {notaCartas.ajenas}
-            </p>
-          </div>
-        </div>
-      </section>
+      <RequisitosTramite estatuto={estatuto} />
 
       <section className="tr-cta fondo-cuadricula">
         <div className="tr-container tr-cta-box">
