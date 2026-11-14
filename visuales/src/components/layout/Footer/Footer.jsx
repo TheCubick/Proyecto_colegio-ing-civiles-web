@@ -47,8 +47,7 @@ export default function Footer() {
             <Link to="/" className="cic-footer-logo">
               <img src={LOGO} alt="" />
               <span>
-                {SIGLAS} · Colegio de Ingenieros Civiles
-                <small>de Tuxtla Gutiérrez, A.C.</small>
+                {SIGLAS} · Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C.
               </span>
             </Link>
             <p className="cic-footer-text">
