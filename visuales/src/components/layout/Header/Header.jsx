@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronDown, Menu, UserPlus } from "lucide-react";
-import { menus } from "../../../config/rutas";
+import { menus, RUTAS_CON_PORTADA } from "../../../config/rutas";
 import { LOGO } from "../../../data/contacto";
 import useBloquearScroll from "../../../hooks/useBloquearScroll";
 import ModalAfiliacion from "../../ui/ModalAfiliacion/ModalAfiliacion";
@@ -82,10 +82,14 @@ export default function Header() {
 
   const grupoActivo = (paginas) => paginas.some(({ ruta }) => ruta === location.pathname);
 
+  // Fondo del header: transparente con degradado sobre la portada (video o imagen) y arriba
+  // del todo; rojo sólido en las páginas sin portada o en cuanto se hace scroll.
+  const sobreMedia = RUTAS_CON_PORTADA.includes(location.pathname) && !scrolled;
+
   return (
     <>
       <motion.header
-        className={`hd-header ${scrolled ? "is-scrolled" : ""}`}
+        className={`hd-header ${sobreMedia ? "hd-sobre-media" : "hd-solido"} ${scrolled ? "is-scrolled" : ""}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
