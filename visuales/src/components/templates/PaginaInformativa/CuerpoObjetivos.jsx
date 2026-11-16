@@ -26,7 +26,7 @@ export default function CuerpoObjetivos({ articulo, iconos = {}, fuente }) {
         </div>
       </header>
 
-      <ol className="ob-grid" role="list">
+      <ol className="ob-grid grilla-movil-carrusel" role="list">
         {incisos.map(({ marca, texto }) => {
           const Icono = iconos[marca] ?? ScrollText;
           return (

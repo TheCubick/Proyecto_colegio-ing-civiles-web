@@ -57,7 +57,7 @@ export default function PaginaServicio({ datos }) {
       <section className="sv-features">
         <div className="sv-container">
           <h2>{tituloTarjetas}</h2>
-          <div className="sv-features-grid">
+          <div className="sv-features-grid grilla-movil-carrusel">
             {tarjetas.map(({ icono: Icono, titulo: tituloTarjeta, texto }) => (
               <article className="sv-card" key={tituloTarjeta}>
                 <span className="sv-card-icon">
@@ -90,8 +90,8 @@ export default function PaginaServicio({ datos }) {
         </section>
       )}
 
-      <section className="sv-cta fondo-cuadricula">
-        <div className="sv-container sv-cta-box">
+      <section className="sv-cta fondo-luz-institucional">
+        <div className="sv-container sv-cta-box fondo-profundo">
           <div>
             <h2>{cta.titulo}</h2>
             <p>{cta.texto}</p>

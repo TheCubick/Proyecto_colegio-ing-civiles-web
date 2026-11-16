@@ -303,6 +303,17 @@
   }
 }
 
+/* Menos aire en tablet/celular (601-768px se quedaba con el espaciado de escritorio).
+   El hero NO se toca aquí: su padding superior deja espacio al header fijo. */
+@media (max-width: 768px) {
+  .sv-content,
+  .sv-features,
+  .sv-oficiales,
+  .sv-cta {
+    padding: 3.25rem 0;
+  }
+}
+
 @media (max-width: 600px) {
   .sv-container {
     padding: 0 16px;

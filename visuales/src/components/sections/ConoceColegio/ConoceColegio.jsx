@@ -25,7 +25,7 @@ export default function ConoceColegio() {
           subtitulo="Quiénes somos, cómo nos organizamos y los compromisos que asumimos con la sociedad."
         />
 
-        <ul className="cn-grid">
+        <ul className="cn-grid grilla-movil-carrusel">
           {paginas.map(({ ruta, titulo, descripcion, icono: Icono }, i) => {
             const insignia = insigniasConocenos[ruta];
             return (

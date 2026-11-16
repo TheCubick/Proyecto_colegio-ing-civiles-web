@@ -48,3 +48,10 @@ export async function copiarAlPortapapeles(texto) {
 export function enlaceCorreo(correo = contacto.correo, asunto = "") {
   return asunto ? `mailto:${correo}?subject=${encodeURIComponent(asunto)}` : `mailto:${correo}`;
 }
+
+// Para MOSTRAR un correo largo (nunca para el href/mailto): agrega un espacio invisible
+// después de la "@" para que, si el celular tiene que partir la línea, lo haga ahí y no dentro
+// de una palabra (evita que queden 1 o 2 letras solas, p. ej. "...tg@gmail.c" / "om").
+export function correoLegible(correo) {
+  return correo.replace("@", "​@");
+}

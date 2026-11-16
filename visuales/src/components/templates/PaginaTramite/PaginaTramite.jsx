@@ -65,8 +65,8 @@ export default function PaginaTramite({ datos }) {
 
       <RequisitosTramite estatuto={estatuto} />
 
-      <section className="tr-cta fondo-cuadricula">
-        <div className="tr-container tr-cta-box">
+      <section className="tr-cta fondo-luz-institucional">
+        <div className="tr-container tr-cta-box fondo-profundo">
           <div>
             <h2>¿Listo para iniciar tu trámite?</h2>
             <p>

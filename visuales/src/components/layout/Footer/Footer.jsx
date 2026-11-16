@@ -3,7 +3,7 @@ import { ChevronRight, Clock, Mail, MapPin, MessageCircle, Phone, UserPlus } fro
 import { paginasDe } from "../../../config/rutas";
 import { contacto, LOGO, NOMBRE_COLEGIO, SIGLAS } from "../../../data/contacto";
 import { documentosLegales } from "../../../data/documentos";
-import { enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
+import { correoLegible, enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
 import { IconoFacebook, IconoInstagram } from "./IconosRedes";
 import "./Footer.css";
 
@@ -109,7 +109,7 @@ export default function Footer() {
                 <div>
                   {[contacto.correo, contacto.correoContabilidad].map((correo) => (
                     <a key={correo} href={enlaceCorreo(correo)} className="cic-footer-inline cic-footer-email">
-                      {correo}
+                      {correoLegible(correo)}
                     </a>
                   ))}
                 </div>

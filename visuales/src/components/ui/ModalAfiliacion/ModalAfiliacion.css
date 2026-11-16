@@ -173,6 +173,7 @@
 
 /* ---------- Contenido de las pestañas ---------- */
 .hd-modal-body {
+  position: relative;
   flex: 1;
   min-height: 0;
   padding: 24px 28px;
@@ -677,12 +678,16 @@
   }
 }
 
-/* Pie del pop-up */
+/* Pie del pop-up: vive DENTRO de .hd-modal-body (mismo scroll que el contenido) y se queda
+   pegado abajo con sticky mientras se pueda, igual que antes; en celular se suelta (ver ≤768px). */
 .hd-modal-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
   display: flex;
-  flex-shrink: 0;
   justify-content: center;
-  padding: 14px 28px;
+  margin-top: 20px;
+  padding: 14px 0 4px;
   border-top: 1px solid var(--hd-light);
   background: #fff;
 }
@@ -701,6 +706,47 @@
     text-align: center;
   }
 
+}
+
+/* Celular: encabezado rojo compacto, el botón de dudas ya no queda "flotando" a media
+   pantalla: al moverlo dentro de .hd-modal-body (ModalAfiliacion.jsx) ya se mueve con el
+   contenido; aquí solo se le quita el "sticky" para que quede al final del todo. */
+@media (max-width: 768px) {
+  .hd-modal-banner {
+    padding: 16px 18px 14px;
+  }
+
+  .hd-modal-badge {
+    margin-bottom: 8px;
+    padding: 3px 10px;
+  }
+
+  .hd-modal-heading {
+    gap: 12px;
+    padding-right: 28px;
+  }
+
+  .hd-modal-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hd-modal-heading h2 {
+    font-size: 1.15rem;
+  }
+
+  .hd-modal-footer {
+    position: static;
+    margin-top: 16px;
+  }
+}
+
+/* Menos de 480px: el subtítulo del encabezado ya no cabe cómodo junto al ícono; se oculta
+   (el título solo ya dice de qué trata el pop-up) */
+@media (max-width: 480px) {
+  .hd-modal-heading p {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {

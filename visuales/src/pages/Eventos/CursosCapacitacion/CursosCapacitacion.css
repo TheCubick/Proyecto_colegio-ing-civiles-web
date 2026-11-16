@@ -919,6 +919,28 @@
   }
 }
 
+/* Modal de la noticia en celular: la foto ya no empuja el texto fuera de la pantalla, y la
+   barra «Anterior / Siguiente» (al final de .cc-detalle, dentro del mismo scroll) nunca tapa nada. */
+@media (max-width: 768px) {
+  .cc-detalle-img {
+    max-height: 190px;
+    object-fit: cover;
+  }
+
+  .cc-detalle-media .cc-img-vacia {
+    min-height: 150px;
+  }
+
+  /* Menos aire en tablet (601-768px quedaba con el padding de escritorio) */
+  .cc-cursos {
+    padding: 3.25rem 0;
+  }
+
+  .cc-muro {
+    padding: 3.25rem 0 3.75rem;
+  }
+}
+
 @media (max-width: 600px) {
   .cc-container {
     padding: 0 16px;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, HandHeart, Landmark, ShieldCheck } from "lucide-react";
+import { ArrowRight, HandHeart, Info, Landmark, ShieldCheck } from "lucide-react";
 import { compromisos, enlaces, pilares, valores } from "../../../data/misionVision";
 import { hayServicioSocial, servicioSocial } from "../../../data/servicioSocial";
 import Migas from "../../../components/ui/Migas/Migas";
@@ -47,7 +47,7 @@ export default function MisionVision() {
       <section className="mv-valores fondo-cuadricula" aria-labelledby="mv-valores-titulo">
         <div className="mv-container">
           <h2 id="mv-valores-titulo" className="mv-section-title">Nuestros Valores Institucionales</h2>
-          <div className="mv-valores-grid">
+          <div className="mv-valores-grid grilla-movil-carrusel">
             {valores.map(({ icono: Icono, titulo, texto }) => (
               <article className="mv-card mv-valor" key={titulo}>
                 <span className="mv-card-icon mv-card-icon-lg">
@@ -81,6 +81,11 @@ export default function MisionVision() {
             </a>
             <figcaption>Haz clic en la imagen para verla en tamaño completo.</figcaption>
           </figure>
+          {/* Aviso discreto: el organigrama vigente tiene pendientes de corrección institucional (hallazgo C3, CLAUDE.md) */}
+          <p className="mv-organigrama-aviso">
+            <Info size={16} aria-hidden="true" />
+            Organigrama en actualización institucional.
+          </p>
         </div>
       </section>
 

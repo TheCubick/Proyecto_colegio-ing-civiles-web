@@ -1,33 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
-  <!-- Patrón de trazos arquitectónicos (mosaico de 320×320 sin uniones visibles). Solo #383637 a baja opacidad. -->
-  <g fill="none" stroke="#383637" stroke-linecap="round">
-    <!-- Retícula de plano: los ejes del borde se continúan en el cuadro vecino -->
-    <path stroke-opacity="0.08" d="M0 0.5H320M0.5 0V320"/>
-    <path stroke-opacity="0.05" stroke-dasharray="2 6" d="M0 160.5H320M160.5 0V320"/>
-
-    <!-- Alzado de una casa con su línea de cota -->
-    <g stroke-opacity="0.09">
-      <path d="M36 268V196H124V268M28 268H132M36 196L80 152L124 196M66 268V232H94V268"/>
-      <path d="M36 290H124M36 284V296M124 284V296M32 294L40 286M120 294L128 286"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <!-- Trazos técnicos abiertos (mosaico de 360×360 sin uniones visibles): curvas de nivel, ejes
+       topográficos punteados, arcos de compás y cotas a 45°. Solo #383637 al 4–6 % de opacidad. -->
+  <g fill="none" stroke="#383637" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+    <!-- Curvas de nivel suaves: entran y salen a la misma altura, así continúan en el cuadro vecino -->
+    <g stroke-opacity="0.045">
+      <path d="M0 248C60 224 112 270 182 246S302 222 360 248"/>
+      <path d="M0 272C64 250 118 294 188 270S306 248 360 272"/>
+      <path d="M0 296C68 276 124 318 194 294S310 274 360 296"/>
     </g>
 
-    <!-- Columna circular con ejes y arco de trazo -->
-    <g stroke-opacity="0.09">
-      <circle cx="240" cy="80" r="38"/>
-      <circle cx="240" cy="80" r="6"/>
-      <path stroke-dasharray="10 4 2 4" d="M188 80H292M240 28V132"/>
+    <!-- Ejes topográficos punteados (el patrón de guiones cabe exacto en 360 px) -->
+    <path stroke-opacity="0.05" stroke-dasharray="1 7" d="M0 120H360"/>
+    <path stroke-opacity="0.04" stroke-dasharray="10 6 2 6" d="M96 0V360"/>
+
+    <!-- Arco de compás con su centro y radio -->
+    <g stroke-opacity="0.06">
+      <path d="M242 41A70 70 0 0 1 299 122"/>
+      <path stroke-dasharray="4 5" d="M230 110L287 70"/>
+      <path d="M224 110H236M230 104V116"/>
     </g>
 
-    <!-- Arco de puerta (abatimiento) -->
-    <path stroke-opacity="0.08" d="M190 284V220M190 284H254M190 220A64 64 0 0 1 254 284"/>
+    <!-- Abatimiento de puerta (cuarto de arco abierto) -->
+    <path stroke-opacity="0.05" d="M40 26V60H74M74 60A34 34 0 0 0 40 26"/>
 
-    <!-- Ángulo con su arco -->
-    <g stroke-opacity="0.08">
-      <path d="M28 120H120M28 120L100 56"/>
-      <path d="M76 120A48 48 0 0 0 64 88"/>
+    <!-- Cota a 45° con líneas de extensión -->
+    <g stroke-opacity="0.055">
+      <path d="M150 220L214 156"/>
+      <path d="M144 214L156 226M208 150L220 162"/>
+      <path d="M140 200L150 190M196 154L206 144"/>
     </g>
 
-    <!-- Marcas de nivel -->
-    <path stroke-opacity="0.07" d="M280 196L288 204L296 196ZM276 196H300"/>
+    <!-- Marca de nivel -->
+    <path stroke-opacity="0.05" d="M300 196L308 204L316 196ZM294 196H322"/>
   </g>
 </svg>

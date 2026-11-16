@@ -388,6 +388,13 @@
   }
 }
 
+/* Menos aire en tablet/celular (601-768px quedaba con el padding de escritorio) */
+@media (max-width: 768px) {
+  .td-section {
+    padding: 3.25rem 0;
+  }
+}
+
 @media (max-width: 600px) {
   .td-section {
     padding: 3rem 0;

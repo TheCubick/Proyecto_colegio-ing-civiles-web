@@ -324,7 +324,7 @@
   }
 
   .bc-slide::after {
-    background: linear-gradient(0deg, rgba(56, 54, 55, 0.92) 0%, rgba(56, 54, 55, 0.66) 34%, rgba(56, 54, 55, 0.2) 58%, transparent 74%);
+    background: linear-gradient(0deg, rgba(56, 54, 55, 0.94) 0%, rgba(56, 54, 55, 0.7) 34%, rgba(56, 54, 55, 0.26) 58%, transparent 74%);
   }
 
   .bc-slide-text {
@@ -342,6 +342,8 @@
 
   .bc-slide-text p {
     margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 10px rgba(56, 54, 55, 0.75);
   }
 
   .bc-slide-link {

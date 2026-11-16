@@ -74,3 +74,52 @@ body .red-card p {
     transform: none;
   }
 }
+
+/* ---------- Celular: fila compacta (ícono a la izquierda, texto a la derecha) ----------
+   En vez de 4 bloques altos apilados, cada tarjeta mide el alto de su contenido. */
+@media (max-width: 768px) {
+  .cards-section {
+    padding: 40px 16px;
+  }
+
+  .cards-grid {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    gap: 14px;
+  }
+
+  .red-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 16px;
+    align-items: center;
+    padding: 18px;
+    text-align: left;
+  }
+
+  .red-card .card-icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+
+  .red-card h2 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+  }
+
+  body .red-card p {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .red-card:hover {
+    /* en celular no hay hover real; que no "flote" al tocar */
+    transform: none;
+  }
+}

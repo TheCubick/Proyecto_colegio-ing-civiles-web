@@ -102,7 +102,7 @@ export default function AtencionWhatsapp() {
 
             <label className="aw-field">
               <span>Tipo de mensaje</span>
-              <select value={tipo} onChange={(event) => setTipo(event.target.value)}>
+              <select id="aw-tipo-mensaje" name="tipo-mensaje" value={tipo} onChange={(event) => setTipo(event.target.value)}>
                 {tiposMensaje.map((opcion) => (
                   <option key={opcion} value={opcion}>
                     {opcion}
@@ -118,6 +118,8 @@ export default function AtencionWhatsapp() {
               {/* Área de texto y contador en una misma caja: el contador queda justo debajo */}
               <span className="aw-textarea">
                 <textarea
+                  id="aw-comentario"
+                  name="comentario"
                   rows={5}
                   maxLength={MAX_COMENTARIO}
                   value={comentario}

@@ -24,9 +24,13 @@
   --alineacion-lectura: justify;
 
   /* Patrones de fondo (gris oscuro #383637 a muy baja opacidad) */
-  --patron-linea: rgba(56, 54, 55, 0.04);
-  --patron-linea-mayor: rgba(56, 54, 55, 0.07);
+  --patron-linea: rgba(56, 54, 55, 0.035);
+  --patron-linea-mayor: rgba(56, 54, 55, 0.06);
   --patron-punto: rgba(56, 54, 55, 0.08);
+
+  /* Fondos claros hechos SOLO con la paleta (capas de #E5E5E5 sobre #FFFFFF) */
+  --capa-suave: rgba(229, 229, 229, 0.35);   /* ≈ gris perla, fondo «limpio» */
+  --capa-portada: rgba(229, 229, 229, 0.65); /* ≈ arriba de las portadas claras */
 
   /* ===================== TOKENS DE DISEÑO =====================
      Una sola fuente para colores, espacios, radios, sombras y movimiento.
@@ -87,6 +91,16 @@
   }
 }
 
+/* Secciones menos "infladas" en tablet/celular (601-768 px quedaba con el espaciado de escritorio
+   porque la mayoría de las páginas solo reducen el suyo en ≤600 px). Afecta a cualquier sección que
+   use estos tokens; las portadas con video usan rem fijos (para no tapar el header) y no los tocan. */
+@media (max-width: 768px) {
+  :root {
+    --esp-8: 44px;
+    --esp-9: 60px;
+  }
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -121,13 +135,68 @@ button, input, textarea, select { font: inherit; }
 }
 
 /* =========================================================
-   FONDOS CON PATRÓN SUTIL
-   Solo usan background-image, así que respetan el color de
-   fondo de cada sección. Aplicar a secciones sin fondo propio.
+   GRILLAS LARGAS → CARRUSEL DESLIZABLE EN MÓVIL
+   En escritorio no cambia nada (conserva el "display: grid" del propio componente).
+   En ≤768 px se vuelve un carrusel horizontal con "scroll-snap": cada tarjeta hija ocupa
+   84vw (máx. 340px) y deja ver un pedacito de la siguiente para invitar a deslizar.
+   Uso: agregar la clase junto a la propia del contenedor, ej. className="cs-grid grilla-movil-carrusel".
+   Selector duplicado a propósito (como .fondo-trazos.fondo-trazos): así gana sin importar en qué
+   archivo CSS caiga cada regla, sobre el "grid-template-columns" que cada página ya trae para
+   tablet/escritorio.
+   ========================================================= */
+@media (max-width: 768px) {
+  .grilla-movil-carrusel.grilla-movil-carrusel {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* El deslizamiento horizontal nunca debe secuestrar el scroll vertical de la página (iOS Safari) */
+    touch-action: pan-x pan-y;
+  }
+
+  .grilla-movil-carrusel.grilla-movil-carrusel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .grilla-movil-carrusel.grilla-movil-carrusel > * {
+    flex: 0 0 84vw;
+    max-width: 340px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .grilla-movil-carrusel.grilla-movil-carrusel {
+    scroll-behavior: auto;
+  }
+}
+
+/* =========================================================
+   FONDOS Y TEXTURAS
+   - Patrones (.fondo-cuadricula, .fondo-trazos): van en una capa aparte (::before / ::after)
+     con máscara, para que se desvanezcan hacia los bordes sin cortes rectos entre secciones.
+     Respetan el color de fondo de cada sección.
+   - Fondos de color (.fondo-luz-institucional, .fondo-suave, .fondo-profundo): degradados
+     hechos solo con la paleta. Clase duplicada a propósito: gana al «background» de cada componente.
+   Recorrido sugerido para alternar: luz → patrón → franja profunda → suave (nunca dos iguales seguidas).
+   La máscara usa #383637 solo como «opaco»: en una máscara el color no se ve, solo su opacidad.
    ========================================================= */
 
-/* Cuadrícula arquitectónica: líneas finas cada 24px y mayores cada 120px */
+/* Cuadrícula arquitectónica: aparece en el centro y se desvanece hacia los bordes */
 .fondo-cuadricula {
+  position: relative;
+  isolation: isolate;
+}
+
+.fondo-cuadricula::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background-image:
     linear-gradient(var(--patron-linea-mayor) 1px, transparent 1px),
     linear-gradient(90deg, var(--patron-linea-mayor) 1px, transparent 1px),
@@ -135,6 +204,16 @@ button, input, textarea, select { font: inherit; }
     linear-gradient(90deg, var(--patron-linea) 1px, transparent 1px);
   background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
   background-position: -1px -1px;
+  /* Desvanecimiento radial + arriba/abajo (para que la retícula nunca marque el borde de la sección) */
+  -webkit-mask-image:
+    radial-gradient(ellipse 80% 70% at 50% 50%, #383637 40%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #383637 18%, #383637 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 80% 70% at 50% 50%, #383637 40%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, #383637 18%, #383637 82%, transparent 100%);
+  mask-composite: intersect;
+  pointer-events: none;
 }
 
 /* Puntos tipo "polka": alternativa más suave para secciones pequeñas */
@@ -143,12 +222,61 @@ button, input, textarea, select { font: inherit; }
   background-size: 22px 22px;
 }
 
-/* Trazos arquitectónicos (petición del Consejo): plano tenue en mosaico.
-   Clase duplicada a propósito: gana a los "background" de cada componente. */
-.fondo-trazos.fondo-trazos {
-  background-image: url("/img/patrones/trazos-arquitectonicos.svg");
-  background-repeat: repeat;
-  background-size: 320px auto;
+/* Trazos técnicos abiertos (petición del Consejo): curvas de nivel, ejes punteados, arcos de
+   compás y cotas a 45°. Se desvanecen arriba y abajo para no marcar el borde de la sección.
+   Va en ::after con z-index -2 para quedar debajo de cualquier velo ::before de la sección. */
+.fondo-trazos {
+  position: relative;
+  isolation: isolate;
+}
+
+.fondo-trazos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("/img/patrones/trazos-arquitectonicos.svg") repeat 0 0 / 360px auto;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #383637 14%, #383637 86%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #383637 14%, #383637 86%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Luz ambiental: blanco con un toque rojo muy tenue en una esquina y gris perla en la otra */
+.fondo-luz-institucional.fondo-luz-institucional {
+  background:
+    radial-gradient(ellipse 45% 55% at 6% 38%, rgba(186, 42, 51, 0.045) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 60% at 94% 64%, rgba(229, 229, 229, 0.55) 0%, transparent 62%),
+    #FFFFFF;
+}
+
+/* Bloques gris claro de las páginas internas: se funden con el blanco arriba y abajo (sin línea de corte) */
+body :is(.sv-features, .tr-requisitos, .com-section, .mv-section, .aw-section) {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(229, 229, 229, 0) 0,
+      rgba(229, 229, 229, 1) 140px,
+      rgba(229, 229, 229, 1) calc(100% - 140px),
+      rgba(229, 229, 229, 0) 100%
+    ),
+    #FFFFFF;
+}
+
+/* Gris perla limpio (gris muy claro hecho con capas de la paleta); se funde con el blanco arriba y abajo */
+.fondo-suave.fondo-suave {
+  background:
+    linear-gradient(180deg, transparent 0, var(--capa-suave) 120px, var(--capa-suave) calc(100% - 120px), transparent 100%),
+    #FFFFFF;
+}
+
+/* Franja profunda: gris oscuro que se tiñe de rojo oscuro en la esquina y un brillo rojo tenue.
+   Texto blanco: contraste ≥ 9:1 en todo el degradado. */
+.fondo-profundo.fondo-profundo {
+  background:
+    radial-gradient(ellipse 55% 80% at 88% 10%, rgba(186, 42, 51, 0.15) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(56, 54, 55, 0) 0%, rgba(56, 54, 55, 0) 55%, rgba(150, 46, 53, 0.45) 100%),
+    #383637;
+  color: #FFFFFF;
 }
 
 /* =========================================================
@@ -184,6 +312,12 @@ button, input, textarea, select { font: inherit; }
   overflow: hidden;
 }
 
+/* Portadas claras: degradado suave hacia blanco (se funde con la sección siguiente, sin línea de corte) */
+body .decor-plano.decor-plano {
+  border-bottom: 0;
+  background: linear-gradient(180deg, var(--capa-portada) 0%, #FFFFFF 100%);
+}
+
 .decor-plano::after {
   content: "";
   position: absolute;
@@ -194,6 +328,11 @@ button, input, textarea, select { font: inherit; }
   height: 100%;
   background: url("/img/patrones/plano-calle.webp") no-repeat right bottom / contain;
   opacity: 0.22;
+  /* El plano se difumina hacia abajo y hacia la izquierda */
+  -webkit-mask-image: linear-gradient(180deg, #383637 35%, transparent 100%), linear-gradient(90deg, transparent 0%, #383637 30%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(180deg, #383637 35%, transparent 100%), linear-gradient(90deg, transparent 0%, #383637 30%);
+  mask-composite: intersect;
   pointer-events: none;
 }
 
@@ -240,7 +379,8 @@ main figcaption {
 body :is(
     .red-card, .sv-card, .bt-card, .com-card, .mv-card, .cc-curso, .cc-card, .asm-card,
     .td-funcion, .td-paso, .td-riesgos, .td-contratar-pie, .aw-faq, .ob-card, .ss-resumen-card, .tr-req-tarjeta,
-    .ae-inciso, .bc-banner, .hd-menu, .hd-drawer, .hd-modal, .mc-modal, .cic-footer
+    .ae-inciso, .bc-banner, .hd-menu, .hd-drawer, .hd-modal, .mc-modal, .cic-footer,
+    .cs-card, .cn-card, .dc-dato
   ) :is(p, li, figcaption, h2, h3, h4),
 main li,
 footer p {
@@ -248,6 +388,22 @@ footer p {
   text-align-last: auto;
   hyphens: manual;
   text-wrap: pretty;
+}
+
+/* Las métricas de la franja de cifras van en <span>, no en <p>/<li> (no las alcanza la regla de
+   arriba): mismo criterio, a la izquierda y sin guion en cualquier tamaño de pantalla. */
+.dc-etiqueta,
+.dc-detalle {
+  text-align: left;
+  hyphens: none;
+}
+
+/* El texto de un botón nunca debe justificarse (si alguno llega a tener varias líneas) */
+@media (max-width: 768px) {
+  main :is(button, [class*="-btn"]) {
+    text-align: left;
+    hyphens: none;
+  }
 }
 
 /* Títulos: líneas equilibradas, nunca justificados */
@@ -487,4 +643,48 @@ body :is(.red-card, .mv-valor) :is(p, h2, h3),
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* =========================================================
+   BANNERS FINALES DE ACCIÓN («¿Listo para iniciar tu trámite?» y equivalentes)
+   Tarjeta profunda redondeada sobre fondo de luz; mismo diseño en Trámites, Servicios y Bolsa.
+   ========================================================= */
+body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) {
+  position: relative;
+  width: min(1200px, calc(100% - 32px));
+  padding: var(--esp-7) var(--esp-7);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 24px 50px rgba(56, 54, 55, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) h2 {
+  color: #FFFFFF;
+}
+
+body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Botón secundario en blanco (el rojo sobre gris oscuro no llega a 4.5:1) */
+body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) :is(.tr-btn-secondary, .sv-btn-secondary, .bt-btn-secondary) {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #FFFFFF;
+}
+
+body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) :is(.tr-btn-secondary, .sv-btn-secondary, .bt-btn-secondary):hover {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) :is(.tr-btn, .sv-btn, .bt-btn):focus-visible {
+  outline-color: #FFFFFF;
+}
+
+@media (max-width: 600px) {
+  body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) {
+    padding: var(--esp-6) var(--esp-5);
+    border-radius: 20px;
+  }
 }

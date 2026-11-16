@@ -81,6 +81,8 @@ export default function Acceso({ onEntrar }) {
           <label className="adm-campo">
             <span className="adm-etiqueta">Correo electrónico</span>
             <input
+              id="adm-correo"
+              name="correo"
               type="email"
               autoComplete="username"
               value={correo}
@@ -94,6 +96,8 @@ export default function Acceso({ onEntrar }) {
             <span className="adm-etiqueta">Contraseña</span>
             <span className="adm-campo-clave">
               <input
+                id="adm-contrasena"
+                name="contrasena"
                 type={verContrasena ? "text" : "password"}
                 autoComplete="current-password"
                 value={contrasena}

@@ -47,7 +47,7 @@ function Cifra({ numero, prefijo, sufijo }) {
 export default function DatosColegio() {
   return (
     <section className="dc-section" aria-label="El Colegio en cifras">
-      <ul className="dc-lista">
+      <ul className="dc-lista fondo-profundo">
         {datosColegio.map(({ numero, prefijo, sufijo, etiqueta, detalle }, i) => (
           <Revelar as="li" key={etiqueta} retraso={i * 0.12} className="dc-dato">
             <Cifra numero={numero} prefijo={prefijo} sufijo={sufijo} />

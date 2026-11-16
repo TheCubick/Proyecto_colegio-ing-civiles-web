@@ -70,7 +70,7 @@ export default function BolsaTrabajo() {
       <section className="bt-features">
         <div className="bt-container">
           <h2>¿A quién va dirigida?</h2>
-          <div className="bt-features-grid">
+          <div className="bt-features-grid grilla-movil-carrusel">
             {dirigidoA.map(({ icono: Icono, titulo, texto }) => (
               <article className="bt-card" key={titulo}>
                 <span className="bt-card-icon">
@@ -125,8 +125,8 @@ export default function BolsaTrabajo() {
         </div>
       </section>
 
-      <section className="bt-cta fondo-cuadricula">
-        <div className="bt-container bt-cta-box">
+      <section className="bt-cta fondo-luz-institucional">
+        <div className="bt-container bt-cta-box fondo-profundo">
           <div>
             <h2>¿Tienes una vacante para ingenieros civiles?</h2>
             <p>Universidades, constructoras y agremiados pueden publicar sus ofertas con nosotros.</p>

@@ -29,7 +29,7 @@ export default function CatalogoServicios() {
   const paginas = paginasDe(...grupos);
 
   return (
-    <section className="cs-section fondo-cuadricula" id="catalogo" aria-labelledby="cs-titulo" tabIndex={-1}>
+    <section className="cs-section fondo-suave fondo-cuadricula" id="catalogo" aria-labelledby="cs-titulo" tabIndex={-1}>
       <div className="cs-container">
         <EncabezadoSeccion
           id="cs-titulo"
@@ -48,7 +48,7 @@ export default function CatalogoServicios() {
           ))}
         </div>
 
-        <motion.ul className="cs-grid" layout={!reducir} aria-live="polite">
+        <motion.ul className="cs-grid grilla-movil-carrusel" layout={!reducir} aria-live="polite">
           <AnimatePresence mode="popLayout" initial={false}>
             {paginas.map(({ ruta, titulo, descripcion, grupo, icono: Icono }, i) => (
               <motion.li

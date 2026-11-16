@@ -61,9 +61,14 @@ function archivosCambiados() {
     ...correr("git diff --name-only --diff-filter=ACMR HEAD"),
     ...correr("git ls-files --others --exclude-standard"),
   ]);
+  // En Windows, "git rev-parse" puede devolver la unidad en mayúsculas (C:\...) aunque la
+  // terminal haya arrancado en minúsculas (c:\...): sin comparar sin distinguir mayúsculas
+  // aquí, "startsWith" fallaba en silencio y el modo por defecto revisaba 0 archivos.
+  const dentroDeVisuales = (ruta) =>
+    process.platform === "win32" ? ruta.toLowerCase().startsWith(VISUALES.toLowerCase()) : ruta.startsWith(VISUALES);
   return [...rutas]
     .map((r) => join(raiz, r))
-    .filter((r) => r.startsWith(VISUALES) && existsSync(r) && !IGNORAR.some((i) => r.includes(i)));
+    .filter((r) => dentroDeVisuales(r) && existsSync(r) && !IGNORAR.some((i) => r.includes(i)));
 }
 
 let archivos;

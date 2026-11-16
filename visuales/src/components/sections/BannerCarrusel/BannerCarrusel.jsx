@@ -27,7 +27,7 @@ export default function BannerCarrusel() {
   };
 
   return (
-    <section className="bc-section" aria-labelledby="bc-titulo">
+    <section className="bc-section fondo-luz-institucional" aria-labelledby="bc-titulo">
       <div className="bc-container">
         <EncabezadoSeccion
           id="bc-titulo"

@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Mail, Phone, UserPlus, X } from "lucide-react";
 import { menus } from "../../../config/rutas";
 import { contacto } from "../../../data/contacto";
-import { enlaceCorreo, enlaceTelefono } from "../../../utils/enlaces";
+import { correoLegible, enlaceCorreo, enlaceTelefono } from "../../../utils/enlaces";
 import MenuEnlace from "./MenuEnlace";
 
 /*
@@ -92,7 +92,7 @@ export default function MenuMovil({ abierto, onCerrar, rutaActual, grupoActivo, 
               </a>
               <a href={enlaceCorreo(contacto.correo)} className="hd-drawer-contact">
                 <Mail size={16} aria-hidden="true" />
-                {contacto.correo}
+                {correoLegible(contacto.correo)}
               </a>
             </div>
           </motion.aside>

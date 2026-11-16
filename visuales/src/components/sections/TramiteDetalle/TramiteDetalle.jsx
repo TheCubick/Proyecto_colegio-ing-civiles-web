@@ -20,7 +20,7 @@ export default function TramiteDetalle({ info, sigla, onContactar }) {
             <h2 id={`td-funciones-${sigla}`}>¿Qué funciones realiza un {sigla}?</h2>
           </header>
           <p className="td-intro texto-legible texto-justificado">{funciones.intro}</p>
-          <ul className="td-funciones">
+          <ul className="td-funciones grilla-movil-carrusel">
             {funciones.lista.map(({ titulo, texto }, i) => (
               <li className="td-funcion" key={titulo}>
                 <span className="td-funcion-num" aria-hidden="true">
@@ -66,7 +66,7 @@ export default function TramiteDetalle({ info, sigla, onContactar }) {
         </div>
       </section>
 
-      <section className="td-section td-contratar" aria-labelledby={`td-contratar-${sigla}`}>
+      <section className="td-section td-contratar fondo-profundo" aria-labelledby={`td-contratar-${sigla}`}>
         <div className="td-container">
           <header className="td-head">
             <span className="td-head-icon">

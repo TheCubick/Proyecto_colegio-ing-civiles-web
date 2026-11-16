@@ -457,7 +457,8 @@
   color: var(--hd-dark);
   font-family: "Open Sans", "Segoe UI", sans-serif;
   font-size: 0.95rem;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .hd-drawer-contact svg {

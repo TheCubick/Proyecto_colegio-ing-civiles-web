@@ -59,3 +59,32 @@
     display: flex;
   }
 }
+
+/* Carrusel (.grilla-movil-carrusel, ver index.css): las 3 noticias visibles, deslizables.
+   ".un-grid.cc-page" tiene la misma especificidad que ".grilla-movil-carrusel.grilla-movil-
+   carrusel" (2 clases); para no depender de en qué archivo gane el empate, se repite aquí
+   completo, al final, para ganarle también a la regla de arriba que oculta la 3ª en ≤900px. */
+@media (max-width: 768px) {
+  .un-grid.cc-page.grilla-movil-carrusel {
+    display: flex;
+    grid-template-columns: none;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+  }
+
+  .un-grid.cc-page.grilla-movil-carrusel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .un-grid.cc-page.grilla-movil-carrusel > .un-item {
+    flex: 0 0 84vw;
+    max-width: 340px;
+    min-width: 0;
+    scroll-snap-align: start;
+    display: flex;
+  }
+}

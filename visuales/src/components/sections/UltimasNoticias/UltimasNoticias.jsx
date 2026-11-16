@@ -23,7 +23,7 @@ export default function UltimasNoticias() {
   if (recientes.length === 0) return null;
 
   return (
-    <section className="un-section" aria-labelledby="un-titulo">
+    <section className="un-section fondo-suave" aria-labelledby="un-titulo">
       <div className="un-container">
         <EncabezadoSeccion
           id="un-titulo"
@@ -32,7 +32,7 @@ export default function UltimasNoticias() {
           subtitulo="Lo más reciente de la vida gremial, la capacitación y la representación del Colegio."
           enlace={{ to: RUTA_NOTICIAS, texto: "Ver todas las noticias y eventos" }}
         />
-        <ul className="un-grid cc-page">
+        <ul className="un-grid cc-page grilla-movil-carrusel">
           {recientes.map((post, i) => (
             <Revelar as="li" key={post.id} retraso={i * 0.12} className="un-item">
               <PostCard post={post} onAbrir={(noticia) => navigate(`${RUTA_NOTICIAS}#noticia-${encodeURIComponent(noticia.id)}`)} />

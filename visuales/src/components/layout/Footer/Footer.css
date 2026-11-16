@@ -218,7 +218,8 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .cic-footer-contact strong {
@@ -232,7 +233,9 @@
 }
 
 .cic-footer-email {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
+  font-size: 0.95rem;
 }
 
 .cic-footer-branches {

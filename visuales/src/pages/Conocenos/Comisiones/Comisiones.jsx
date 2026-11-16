@@ -25,7 +25,7 @@ export default function Comisiones() {
 
       <section className="com-section fondo-trazos">
         <div className="com-container">
-          <div className="com-grid">
+          <div className="com-grid grilla-movil-carrusel">
             {comisiones.map(({ icono: Icono, titulo, texto, enlace }, i) => (
               <article className={`com-card${enlace ? " com-card--enlace" : ""}`} key={titulo}>
                 <span className="com-card-num" aria-hidden="true">

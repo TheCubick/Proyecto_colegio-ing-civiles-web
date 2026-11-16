@@ -2,8 +2,7 @@
    CATÁLOGO DE TRÁMITES Y SERVICIOS (portada)
    ========================================================= */
 .cs-section {
-  padding: var(--esp-9) 0;
-  background-color: var(--color-gris-claro);
+  padding: var(--esp-9) 0 var(--esp-8);
   scroll-margin-top: 72px;
 }
 

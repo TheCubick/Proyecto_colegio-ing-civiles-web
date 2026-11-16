@@ -350,18 +350,21 @@ function Contenido({ onCerrar }) {
             <Panel />
           </motion.div>
         </AnimatePresence>
-      </div>
 
-      <div className="hd-modal-footer">
-        <a
-          href={enlaceWhatsapp(MENSAJE_WHATSAPP_AFILIACION)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hd-btn hd-btn-primary"
-        >
-          <MessageCircle size={18} aria-hidden="true" />
-          Tengo dudas sobre mi inscripción
-        </a>
+        {/* Va DENTRO del área que hace scroll (no flota aparte): en escritorio se queda pegada
+            abajo con position: sticky (misma idea de siempre); en celular (≤768px, ModalAfiliacion.css)
+            se suelta y queda al final del contenido, para no ocuparle media pantalla a la lectura. */}
+        <div className="hd-modal-footer">
+          <a
+            href={enlaceWhatsapp(MENSAJE_WHATSAPP_AFILIACION)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hd-btn hd-btn-primary"
+          >
+            <MessageCircle size={18} aria-hidden="true" />
+            Tengo dudas sobre mi inscripción
+          </a>
+        </div>
       </div>
     </motion.div>
   );
