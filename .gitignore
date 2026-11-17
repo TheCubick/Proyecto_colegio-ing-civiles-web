@@ -23,3 +23,10 @@ supabase/.temp/
 
 # Config MCP local (puede traer claves de API vía variables de entorno)
 .mcp.json
+
+# Editor (cada quien los suyos; visuales/.gitignore ya hace lo mismo para esa carpeta)
+.vscode/
+
+# Carpetas temporales de herramientas de auditoría (Playwright, capturas de depuración)
+.playwright-mcp/
+*.playwright-mcp/

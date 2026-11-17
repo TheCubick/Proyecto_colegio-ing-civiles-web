@@ -28,16 +28,15 @@
 
 1. [Descripción del proyecto](#descripción-del-proyecto)
 2. [Tecnologías](#tecnologías)
-3. [Instalación local](#instalación-local)
-4. [Estructura del proyecto](#estructura-del-proyecto)
-5. [Mapa de rutas](#mapa-de-rutas)
-6. [Decisiones de diseño y UX](#decisiones-de-diseño-y-ux)
-7. [Reglas del proyecto](#reglas-del-proyecto)
-8. [Convenciones de código](#convenciones-de-código)
-9. [Flujo de trabajo con Git](#flujo-de-trabajo-con-git)
-10. [Guía del equipo: fases, Classroom y Drive](#guía-del-equipo-fases-classroom-y-drive)
-11. [Pendientes conocidos](#pendientes-conocidos)
-12. [Equipo](#equipo)
+3. [Estructura del proyecto](#estructura-del-proyecto)
+4. [Mapa de rutas](#mapa-de-rutas)
+5. [Decisiones de diseño y UX](#decisiones-de-diseño-y-ux)
+6. [Reglas del proyecto](#reglas-del-proyecto)
+7. [Convenciones de código](#convenciones-de-código)
+8. [Flujo de trabajo con Git](#flujo-de-trabajo-con-git)
+9. [Guía del equipo: fases, Classroom y Drive](#guía-del-equipo-fases-classroom-y-drive)
+10. [Pendientes conocidos](#pendientes-conocidos)
+11. [Equipo](#equipo)
 
 ---
 
@@ -46,7 +45,7 @@
 El portal moderniza la presencia digital del Colegio y reúne en un solo lugar la información que hoy se consulta por teléfono o en oficina:
 
 - **Trámites** (DRO, Representante Técnico, Dictaminador de Riesgos): qué son, qué funciones realizan, cómo contratar a un agremiado, su importancia normativa y los requisitos de registro.
-- **Servicios** (Peritos Valuadores, Cálculo Estructural, Bolsa de Trabajo).
+- **Servicios** (Peritos Valuadores, Cálculo Estructural).
 - **Eventos** (Cursos y Capacitación, Asambleas).
 - **Conócenos** (Misión y Visión, valores, organigrama, Comisiones).
 - **Afiliación**: requisitos, formatos descargables, costos y datos bancarios en un pop-up desde el menú.
@@ -70,35 +69,6 @@ El portal moderniza la presencia digital del Colegio y reúne en un solo lugar l
 | **Oxlint** | Revisión automática del código (`npm run lint`). |
 
 Tipografías (Google Fonts): **Montserrat** para títulos y botones, **Open Sans** para textos.
-
----
-
-## Instalación local
-
-**Requisitos:** [Node.js](https://nodejs.org/) 20 o superior y Git.
-
-```bash
-# 1. Clonar el repositorio
-git clone git@github.com:TheCubick/Proyecto_colegio-web.git
-cd Proyecto_colegio-web
-
-# 2. Todo el código vive en la carpeta visuales/
-cd visuales
-
-# 3. Instalar dependencias (la primera vez o cuando cambie package.json)
-npm install
-
-# 4. Levantar el servidor de desarrollo → http://localhost:5173
-npm run dev
-```
-
-Otros comandos útiles:
-
-| Comando | Qué hace |
-| :--- | :--- |
-| `npm run lint` | Busca errores comunes (imports sin usar, variables muertas, etc.). |
-| `npm run build` | Compila el sitio en `visuales/dist/`. **Ejecútalo antes de abrir un Pull Request.** |
-| `npm run preview` | Sirve la versión compilada para probarla como en producción. |
 
 ---
 
@@ -152,7 +122,6 @@ web_colegio/
         │       └── ImagenSegura/      Imagen que muestra «Imagen pendiente» si falta el archivo
         └── pages/                Páginas con diseño propio (no usan plantilla)
             ├── Inicio/
-            ├── Servicios/BolsaTrabajo/
             ├── Eventos/          CursosCapacitacion, Asambleas
             └── Conocenos/        MisionVision, Comisiones
 ```
@@ -179,7 +148,6 @@ web_colegio/
 | `tramitesInfo.js` | Funciones, normativa y pasos para contratar de cada trámite | Sección TramiteDetalle |
 | `requisitos.js` | Requisitos generales y nota de cartas de los trámites | Plantilla PaginaTramite |
 | `servicios.js` | Textos, tarjetas y foto de Peritos y Cálculo | Plantilla PaginaServicio |
-| `bolsaTrabajo.js` · `vacantes.js` | «¿A quién va dirigida?» · vacantes publicadas | Bolsa de Trabajo |
 | `cursos.js` | Requisitos de inscripción, cursos activos y noticias | Cursos y Capacitación |
 | `asambleas.js` | Asambleas realizadas | Asambleas |
 | `misionVision.js` | Misión, visión, valores, compromisos | Misión y Visión |
@@ -199,7 +167,6 @@ La lista oficial está en [`visuales/src/config/rutas.js`](visuales/src/config/r
 | `/tramites/dictaminador-de-riesgos` | Dictaminador de Riesgos | `data/tramites.js` → `dictaminador` · `data/tramitesInfo.js` | `components/templates/PaginaTramite/` |
 | `/servicios/peritos-valuadores` | Peritos Valuadores | `data/servicios.js` → `peritos` | `components/templates/PaginaServicio/` |
 | `/servicios/calculo-estructural` | Cálculo Estructural | `data/servicios.js` → `calculo` | `components/templates/PaginaServicio/` |
-| `/servicios/bolsa-de-trabajo` | Bolsa de Trabajo | `data/bolsaTrabajo.js` · `data/vacantes.js` | `pages/Servicios/BolsaTrabajo/` |
 | `/eventos/cursos-y-capacitacion` | Cursos y Capacitación | `data/cursos.js` | `pages/Eventos/CursosCapacitacion/` |
 | `/eventos/asambleas` | Asambleas | `data/asambleas.js` | `pages/Eventos/Asambleas/` |
 | `/conocenos/mision-y-vision` | Misión y Visión | `data/misionVision.js` | `pages/Conocenos/MisionVision/` |
@@ -313,9 +280,9 @@ El script [`visuales/scripts/verificar-reglas.mjs`](visuales/scripts/verificar-r
 
 | Qué | Formato | Ejemplo |
 | :--- | :--- | :--- |
-| Componentes y páginas (`.jsx`) | *PascalCase*, en su propia carpeta | `BolsaTrabajo/BolsaTrabajo.jsx` |
+| Componentes y páginas (`.jsx`) | *PascalCase*, en su propia carpeta | `Comisiones/Comisiones.jsx` |
 | Hooks | `use` + *PascalCase* | `useDialogo.js` |
-| Estilos | Mismo nombre que el componente | `BolsaTrabajo/BolsaTrabajo.css` |
+| Estilos | Mismo nombre que el componente | `Comisiones/Comisiones.css` |
 | Datos (`.js`) | *camelCase*, solo contenido (sin diseño) | `contacto.js`, `tramitesInfo.js` |
 | Clases CSS | Prefijo corto del componente + *kebab-case* | `tr-hero`, `td-paso`, `hd-menu` |
 | Archivos en `public/` | minúsculas, *kebab-case*, **sin espacios, acentos ni "ñ"** | `datos-bancarios.jpg` |
@@ -323,7 +290,7 @@ El script [`visuales/scripts/verificar-reglas.mjs`](visuales/scripts/verificar-r
 
 El prefijo en las clases evita que los estilos de una página afecten a otra; revisa que el tuyo no lo use nadie más.
 
-Prefijos en uso: `hd-` Header y pop-up Afíliate · `cic-footer-` Footer · `tr-` plantilla de trámites · `sv-` plantilla de servicios · `td-` TramiteDetalle · `mc-` ModalContacto · `bc-` BannerCarrusel · `aw-` AtencionWhatsapp · `hero-` Hero · `cards-`/`red-card` FeatureCards · `bt-` Bolsa de Trabajo · `cc-` Cursos · `asm-` Asambleas · `mv-` Misión y Visión · `com-` Comisiones.
+Prefijos en uso: `hd-` Header y pop-up Afíliate · `cic-footer-` Footer · `tr-` plantilla de trámites · `sv-` plantilla de servicios · `td-` TramiteDetalle · `mc-` ModalContacto · `bc-` BannerCarrusel · `aw-` AtencionWhatsapp · `hero-` Hero · `cards-`/`red-card` FeatureCards · `cc-` Cursos · `asm-` Asambleas · `mv-` Misión y Visión · `com-` Comisiones.
 
 **No escribas datos dentro de los `.jsx`.** Si un componente necesita un teléfono, usa `contacto` de `data/contacto.js`; si necesita un enlace de WhatsApp, usa `enlaceWhatsapp()` de `utils/enlaces.js`.
 

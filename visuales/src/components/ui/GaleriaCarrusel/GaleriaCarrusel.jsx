@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "./GaleriaCarrusel.css";
 
 /*
-  CARRUSEL AUTOMÁTICO DE FOTOS (Trámites, Servicios y Bolsa de Trabajo).
+  CARRUSEL AUTOMÁTICO DE FOTOS (Trámites y Servicios).
   Las listas de fotos están en src/data/galerias.js.
 
   - Las fotos que no existan en public/ se ocultan solas: Diseño puede subir

@@ -1,4 +1,6 @@
 import { ArrowRight, CheckCircle2, ClipboardList, Lock, PhoneCall, Scale, TriangleAlert } from "lucide-react";
+import IndicadorCarrusel from "../../ui/IndicadorCarrusel/IndicadorCarrusel";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import "./TramiteDetalle.css";
 
 /*
@@ -8,6 +10,7 @@ import "./TramiteDetalle.css";
 */
 export default function TramiteDetalle({ info, sigla, onContactar }) {
   const { funciones, contratar, normativa } = info;
+  const { ref, activo, ir } = useIndicadorCarrusel(funciones.lista.length);
 
   return (
     <>
@@ -20,7 +23,7 @@ export default function TramiteDetalle({ info, sigla, onContactar }) {
             <h2 id={`td-funciones-${sigla}`}>¿Qué funciones realiza un {sigla}?</h2>
           </header>
           <p className="td-intro texto-legible texto-justificado">{funciones.intro}</p>
-          <ul className="td-funciones grilla-movil-carrusel">
+          <ul className="td-funciones grilla-movil-carrusel" ref={ref}>
             {funciones.lista.map(({ titulo, texto }, i) => (
               <li className="td-funcion" key={titulo}>
                 <span className="td-funcion-num" aria-hidden="true">
@@ -34,6 +37,7 @@ export default function TramiteDetalle({ info, sigla, onContactar }) {
               </li>
             ))}
           </ul>
+          <IndicadorCarrusel total={funciones.lista.length} activo={activo} onIr={ir} />
         </div>
       </section>
 

@@ -55,7 +55,14 @@ export default function useBloquearScroll(activo) {
 
 // Reset de seguridad: ninguna ruta nueva debe arrancar con el scroll bloqueado
 // (por ejemplo, si una navegación se saltó la limpieza de algún candado).
+// "scrollPrevio" SIEMPRE se pone en 0 aquí, incluso si no hay candado activo todavía:
+// si el menú móvil sigue "abierto" en React en el momento de navegar (se cierra un
+// instante después, ej. al elegir una ruta desde dentro del menú) y recién entonces
+// dispara su desbloqueo, ese desbloqueo usaría el scrollY viejo (el de la página
+// anterior) si no lo hubiéramos limpiado ya aquí, y la página nueva "saltaría" de
+// vuelta hasta abajo después de haber llegado a 0.
 export function desbloquearPorSeguridad() {
+  scrollPrevio = 0;
   if (candados === 0 && document.body.style.position !== "fixed") return;
   candados = 0;
   const { style } = document.body;

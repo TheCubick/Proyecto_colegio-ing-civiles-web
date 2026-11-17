@@ -23,7 +23,6 @@
 */
 import {
   BadgeCheck,
-  Briefcase,
   CalendarDays,
   DraftingCompass,
   GraduationCap,
@@ -85,13 +84,6 @@ export const rutas = [
     descripcion: "Memorias de cálculo por especialistas",
     grupo: "Servicios",
     icono: DraftingCompass,
-  },
-  {
-    ruta: "/servicios/bolsa-de-trabajo",
-    titulo: "Bolsa de Trabajo",
-    descripcion: "Oportunidades laborales en Chiapas",
-    grupo: "Servicios",
-    icono: Briefcase,
   },
 
   // ---------- Eventos ----------

@@ -138,7 +138,8 @@ button, input, textarea, select { font: inherit; }
    GRILLAS LARGAS → CARRUSEL DESLIZABLE EN MÓVIL
    En escritorio no cambia nada (conserva el "display: grid" del propio componente).
    En ≤768 px se vuelve un carrusel horizontal con "scroll-snap": cada tarjeta hija ocupa
-   84vw (máx. 340px) y deja ver un pedacito de la siguiente para invitar a deslizar.
+   82vw (máx. 320px) y deja ver un pedacito de la siguiente para invitar a deslizar.
+   Debajo va el indicador de puntitos + "1 / N" (ui/IndicadorCarrusel, hooks/useIndicadorCarrusel).
    Uso: agregar la clase junto a la propia del contenedor, ej. className="cs-grid grilla-movil-carrusel".
    Selector duplicado a propósito (como .fondo-trazos.fondo-trazos): así gana sin importar en qué
    archivo CSS caiga cada regla, sobre el "grid-template-columns" que cada página ya trae para
@@ -163,8 +164,8 @@ button, input, textarea, select { font: inherit; }
   }
 
   .grilla-movil-carrusel.grilla-movil-carrusel > * {
-    flex: 0 0 84vw;
-    max-width: 340px;
+    flex: 0 0 82vw;
+    max-width: 320px;
     scroll-snap-align: start;
   }
 }
@@ -377,7 +378,7 @@ main figcaption {
 }
 
 body :is(
-    .red-card, .sv-card, .bt-card, .com-card, .mv-card, .cc-curso, .cc-card, .asm-card,
+    .red-card, .sv-card, .com-card, .mv-card, .cc-curso, .cc-card, .asm-card,
     .td-funcion, .td-paso, .td-riesgos, .td-contratar-pie, .aw-faq, .ob-card, .ss-resumen-card, .tr-req-tarjeta,
     .ae-inciso, .bc-banner, .hd-menu, .hd-drawer, .hd-modal, .mc-modal, .cic-footer,
     .cs-card, .cn-card, .dc-dato
@@ -417,7 +418,6 @@ body :is(.red-card, .mv-valor) :is(p, h2, h3),
 .mv-organigrama-figura figcaption,
 .asm-vacio p,
 .cc-cursos-vacio p,
-.bt-vacio p,
 .ne-page p,
 .estado-error p {
   text-align: center;
@@ -470,7 +470,7 @@ body :is(.red-card, .mv-valor) :is(p, h2, h3),
 }
 
 /* ---------- Botones: mismo lenguaje en todo el sitio ---------- */
-:where(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+:where(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .pi-btn, .ne-btn, .mc-btn,
   .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn) {
   min-height: var(--toque-min);
   cursor: pointer;
@@ -478,14 +478,14 @@ body :is(.red-card, .mv-valor) :is(p, h2, h3),
 }
 
 /* Al presionar: se hunde levemente (respuesta inmediata) */
-:is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+:is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .pi-btn, .ne-btn, .mc-btn,
   .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn):active:not(:disabled) {
   transform: scale(0.97);
   transition-duration: var(--dur-rapida);
 }
 
 /* Deshabilitado: claramente inactivo, sin efectos */
-:is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+:is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .pi-btn, .ne-btn, .mc-btn,
   .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn):is(:disabled, [aria-disabled="true"]) {
   box-shadow: none;
   cursor: not-allowed;
@@ -626,7 +626,7 @@ body :is(.red-card, .mv-valor) :is(p, h2, h3),
     animation: none;
   }
 
-  :is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .bt-btn, .pi-btn, .ne-btn, .mc-btn,
+  :is(.hd-cta, .hd-btn, .tr-btn, .td-btn, .sv-btn, .pi-btn, .ne-btn, .mc-btn,
     .aw-btn, .aw-btn-outline, .cc-btn, .cc-btn-outline, .mv-btn, .com-btn):active:not(:disabled) {
     transform: none;
   }
@@ -647,9 +647,9 @@ body :is(.red-card, .mv-valor) :is(p, h2, h3),
 
 /* =========================================================
    BANNERS FINALES DE ACCIÓN («¿Listo para iniciar tu trámite?» y equivalentes)
-   Tarjeta profunda redondeada sobre fondo de luz; mismo diseño en Trámites, Servicios y Bolsa.
+   Tarjeta profunda redondeada sobre fondo de luz; mismo diseño en Trámites y Servicios.
    ========================================================= */
-body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) {
+body :is(.tr-cta-box, .sv-cta-box) {
   position: relative;
   width: min(1200px, calc(100% - 32px));
   padding: var(--esp-7) var(--esp-7);
@@ -659,31 +659,31 @@ body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) {
   box-shadow: 0 24px 50px rgba(56, 54, 55, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) h2 {
+body :is(.tr-cta-box, .sv-cta-box) h2 {
   color: #FFFFFF;
 }
 
-body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) p {
+body :is(.tr-cta-box, .sv-cta-box) p {
   color: rgba(255, 255, 255, 0.85);
 }
 
 /* Botón secundario en blanco (el rojo sobre gris oscuro no llega a 4.5:1) */
-body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) :is(.tr-btn-secondary, .sv-btn-secondary, .bt-btn-secondary) {
+body :is(.tr-cta-box, .sv-cta-box) :is(.tr-btn-secondary, .sv-btn-secondary) {
   border-color: rgba(255, 255, 255, 0.7);
   color: #FFFFFF;
 }
 
-body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) :is(.tr-btn-secondary, .sv-btn-secondary, .bt-btn-secondary):hover {
+body :is(.tr-cta-box, .sv-cta-box) :is(.tr-btn-secondary, .sv-btn-secondary):hover {
   border-color: #FFFFFF;
   background: rgba(255, 255, 255, 0.12);
 }
 
-body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) :is(.tr-btn, .sv-btn, .bt-btn):focus-visible {
+body :is(.tr-cta-box, .sv-cta-box) :is(.tr-btn, .sv-btn):focus-visible {
   outline-color: #FFFFFF;
 }
 
 @media (max-width: 600px) {
-  body :is(.tr-cta-box, .sv-cta-box, .bt-cta-box) {
+  body :is(.tr-cta-box, .sv-cta-box) {
     padding: var(--esp-6) var(--esp-5);
     border-radius: 20px;
   }

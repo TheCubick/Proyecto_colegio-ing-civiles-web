@@ -81,8 +81,8 @@
   }
 
   .un-grid.cc-page.grilla-movil-carrusel > .un-item {
-    flex: 0 0 84vw;
-    max-width: 340px;
+    flex: 0 0 82vw;
+    max-width: 320px;
     min-width: 0;
     scroll-snap-align: start;
     display: flex;

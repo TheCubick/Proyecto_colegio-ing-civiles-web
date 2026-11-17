@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Users } from "lucide-react";
 import { comisiones } from "../../../data/comisiones";
 import Migas from "../../../components/ui/Migas/Migas";
+import IndicadorCarrusel from "../../../components/ui/IndicadorCarrusel/IndicadorCarrusel";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import "./Comisiones.css";
 
 // PÁGINA «COMISIONES». Las comisiones están en src/data/comisiones.js.
 export default function Comisiones() {
+  const { ref, activo, ir } = useIndicadorCarrusel(comisiones.length);
+
   return (
     <main className="com-page">
       <section className="com-hero decor-plano decor-plano--edificio">
@@ -25,7 +29,7 @@ export default function Comisiones() {
 
       <section className="com-section fondo-trazos">
         <div className="com-container">
-          <div className="com-grid grilla-movil-carrusel">
+          <div className="com-grid grilla-movil-carrusel" ref={ref}>
             {comisiones.map(({ icono: Icono, titulo, texto, enlace }, i) => (
               <article className={`com-card${enlace ? " com-card--enlace" : ""}`} key={titulo}>
                 <span className="com-card-num" aria-hidden="true">
@@ -45,6 +49,7 @@ export default function Comisiones() {
               </article>
             ))}
           </div>
+          <IndicadorCarrusel total={comisiones.length} activo={activo} onIr={ir} />
         </div>
       </section>
     </main>

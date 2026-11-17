@@ -1,6 +1,8 @@
 import { ScrollText } from "lucide-react";
 import { separarInciso } from "../../ui/ArticuloEstatuto/incisos";
 import BannerContacto from "../../ui/BannerContacto/BannerContacto";
+import IndicadorCarrusel from "../../ui/IndicadorCarrusel/IndicadorCarrusel";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import "./CuerpoObjetivos.css";
 
 /*
@@ -13,6 +15,7 @@ const MENSAJE_WHATSAPP = "Hola, quisiera información sobre las acciones del Col
 
 export default function CuerpoObjetivos({ articulo, iconos = {}, fuente }) {
   const incisos = articulo.lista.map(separarInciso);
+  const { ref, activo, ir } = useIndicadorCarrusel(incisos.length);
 
   return (
     <>
@@ -26,7 +29,7 @@ export default function CuerpoObjetivos({ articulo, iconos = {}, fuente }) {
         </div>
       </header>
 
-      <ol className="ob-grid grilla-movil-carrusel" role="list">
+      <ol className="ob-grid grilla-movil-carrusel" role="list" ref={ref}>
         {incisos.map(({ marca, texto }) => {
           const Icono = iconos[marca] ?? ScrollText;
           return (
@@ -42,6 +45,7 @@ export default function CuerpoObjetivos({ articulo, iconos = {}, fuente }) {
           );
         })}
       </ol>
+      <IndicadorCarrusel total={incisos.length} activo={activo} onIr={ir} />
 
       {fuente && <p className="ob-fuente">Fuente: {fuente}</p>}
 

@@ -14,7 +14,6 @@ Para el Consejo Directivo del **Colegio de Ingenieros Civiles de Tuxtla Gutiérr
 | Dictaminador de Riesgos | `/tramites/dictaminador-de-riesgos` | Qué hace un dictaminador, requisitos y contacto. |
 | Peritos Valuadores | `/servicios/peritos-valuadores` | Descripción del servicio y solicitud por correo. |
 | Cálculo Estructural | `/servicios/calculo-estructural` | Descripción del servicio y solicitud por correo. |
-| Bolsa de Trabajo | `/servicios/bolsa-de-trabajo` | Vacantes para ingenieros civiles (aparece «sin vacantes» si no hay). |
 | Cursos y Capacitación | `/eventos/cursos-y-capacitacion` | Cursos vigentes y muro de noticias del Colegio. |
 | Asambleas | `/eventos/asambleas` | Asambleas realizadas (aparece un aviso si no hay). |
 | Misión y Visión | `/conocenos/mision-y-vision` | Misión, visión, valores, organigrama y compromisos. |

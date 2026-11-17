@@ -4,10 +4,14 @@ import { compromisos, enlaces, pilares, valores } from "../../../data/misionVisi
 import { hayServicioSocial, servicioSocial } from "../../../data/servicioSocial";
 import Migas from "../../../components/ui/Migas/Migas";
 import VideoFondo from "../../../components/ui/VideoFondo/VideoFondo";
+import IndicadorCarrusel from "../../../components/ui/IndicadorCarrusel/IndicadorCarrusel";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import "./MisionVision.css";
 
 // PÁGINA «MISIÓN Y VISIÓN». Los textos están en src/data/misionVision.js.
 export default function MisionVision() {
+  const { ref, activo, ir } = useIndicadorCarrusel(valores.length);
+
   return (
     <main className="mv-page">
       <section className="mv-hero">
@@ -47,7 +51,7 @@ export default function MisionVision() {
       <section className="mv-valores fondo-cuadricula" aria-labelledby="mv-valores-titulo">
         <div className="mv-container">
           <h2 id="mv-valores-titulo" className="mv-section-title">Nuestros Valores Institucionales</h2>
-          <div className="mv-valores-grid grilla-movil-carrusel">
+          <div className="mv-valores-grid grilla-movil-carrusel" ref={ref}>
             {valores.map(({ icono: Icono, titulo, texto }) => (
               <article className="mv-card mv-valor" key={titulo}>
                 <span className="mv-card-icon mv-card-icon-lg">
@@ -58,6 +62,7 @@ export default function MisionVision() {
               </article>
             ))}
           </div>
+          <IndicadorCarrusel total={valores.length} activo={activo} onIr={ir} />
         </div>
       </section>
 

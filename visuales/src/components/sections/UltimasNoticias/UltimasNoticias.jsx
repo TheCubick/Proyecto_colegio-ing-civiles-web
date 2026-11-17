@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import useContenidoPublico from "../../../hooks/useContenidoPublico";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import { PostCard } from "../../../pages/Eventos/CursosCapacitacion/TarjetasCursos";
 import EncabezadoSeccion from "../../ui/EncabezadoSeccion/EncabezadoSeccion";
+import IndicadorCarrusel from "../../ui/IndicadorCarrusel/IndicadorCarrusel";
 import Revelar from "../../ui/Revelar/Revelar";
 import "./UltimasNoticias.css";
 
@@ -19,6 +21,7 @@ export default function UltimasNoticias() {
   const { items } = useContenidoPublico("noticias");
   const navigate = useNavigate();
   const recientes = items.slice(0, CANTIDAD);
+  const { ref, activo, ir } = useIndicadorCarrusel(recientes.length);
 
   if (recientes.length === 0) return null;
 
@@ -32,13 +35,14 @@ export default function UltimasNoticias() {
           subtitulo="Lo más reciente de la vida gremial, la capacitación y la representación del Colegio."
           enlace={{ to: RUTA_NOTICIAS, texto: "Ver todas las noticias y eventos" }}
         />
-        <ul className="un-grid cc-page grilla-movil-carrusel">
+        <ul className="un-grid cc-page grilla-movil-carrusel" ref={ref}>
           {recientes.map((post, i) => (
             <Revelar as="li" key={post.id} retraso={i * 0.12} className="un-item">
               <PostCard post={post} onAbrir={(noticia) => navigate(`${RUTA_NOTICIAS}#noticia-${encodeURIComponent(noticia.id)}`)} />
             </Revelar>
           ))}
         </ul>
+        <IndicadorCarrusel total={recientes.length} activo={activo} onIr={ir} />
       </div>
     </section>
   );

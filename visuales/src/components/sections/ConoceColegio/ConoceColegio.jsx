@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { paginasDe } from "../../../config/rutas";
 import { insigniasConocenos } from "../../../data/inicio";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import EncabezadoSeccion from "../../ui/EncabezadoSeccion/EncabezadoSeccion";
+import IndicadorCarrusel from "../../ui/IndicadorCarrusel/IndicadorCarrusel";
 import Revelar from "../../ui/Revelar/Revelar";
 import "./ConoceColegio.css";
 
@@ -14,6 +16,7 @@ import "./ConoceColegio.css";
 */
 export default function ConoceColegio() {
   const paginas = paginasDe("Conócenos");
+  const { ref, activo, ir } = useIndicadorCarrusel(paginas.length);
 
   return (
     <section className="cn-section fondo-trazos" aria-labelledby="cn-titulo">
@@ -25,7 +28,7 @@ export default function ConoceColegio() {
           subtitulo="Quiénes somos, cómo nos organizamos y los compromisos que asumimos con la sociedad."
         />
 
-        <ul className="cn-grid grilla-movil-carrusel">
+        <ul className="cn-grid grilla-movil-carrusel" ref={ref}>
           {paginas.map(({ ruta, titulo, descripcion, icono: Icono }, i) => {
             const insignia = insigniasConocenos[ruta];
             return (
@@ -47,6 +50,7 @@ export default function ConoceColegio() {
             );
           })}
         </ul>
+        <IndicadorCarrusel total={paginas.length} activo={activo} onIr={ir} />
       </div>
     </section>
   );

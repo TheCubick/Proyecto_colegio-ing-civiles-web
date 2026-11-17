@@ -4,7 +4,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ClipboardCheck, LayoutGrid, Wrench } from "lucide-react";
 import { paginasDe } from "../../../config/rutas";
 import { extractosCatalogo } from "../../../data/inicio";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import EncabezadoSeccion from "../../ui/EncabezadoSeccion/EncabezadoSeccion";
+import IndicadorCarrusel from "../../ui/IndicadorCarrusel/IndicadorCarrusel";
 import "./CatalogoServicios.css";
 
 /*
@@ -27,6 +29,7 @@ export default function CatalogoServicios() {
   const reducir = useReducedMotion();
   const { grupos } = CATEGORIAS.find((c) => c.id === categoria);
   const paginas = paginasDe(...grupos);
+  const { ref, activo, ir } = useIndicadorCarrusel(paginas.length);
 
   return (
     <section className="cs-section fondo-suave fondo-cuadricula" id="catalogo" aria-labelledby="cs-titulo" tabIndex={-1}>
@@ -48,7 +51,7 @@ export default function CatalogoServicios() {
           ))}
         </div>
 
-        <motion.ul className="cs-grid grilla-movil-carrusel" layout={!reducir} aria-live="polite">
+        <motion.ul className="cs-grid grilla-movil-carrusel" ref={ref} layout={!reducir} aria-live="polite">
           <AnimatePresence mode="popLayout" initial={false}>
             {paginas.map(({ ruta, titulo, descripcion, grupo, icono: Icono }, i) => (
               <motion.li
@@ -80,6 +83,7 @@ export default function CatalogoServicios() {
             ))}
           </AnimatePresence>
         </motion.ul>
+        <IndicadorCarrusel total={paginas.length} activo={activo} onIr={ir} />
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 /*
-  GALERÍAS DE FOTOS de Trámites, Servicios y Bolsa de Trabajo (carrusel GaleriaCarrusel).
+  GALERÍAS DE FOTOS de Trámites y Servicios (carrusel GaleriaCarrusel).
 
   Cada servicio tiene 6 lugares: /img/galerias/<servicio>/<servicio>-01.jpg … -06.jpg.
   Las fotos que no existan se ocultan solas, así que basta con subir de 1 a 6 imágenes
@@ -22,5 +22,4 @@ export const galerias = {
   dictaminador: slots("dictaminador", "Inspección de daños en una edificación"),
   peritos: slots("peritos", "Perito valuador inspeccionando un inmueble"),
   calculo: slots("calculo", "Ingeniero revisando el cálculo estructural de un edificio"),
-  bolsa: slots("bolsa", "Ingenieros civiles trabajando en obra"),
 };

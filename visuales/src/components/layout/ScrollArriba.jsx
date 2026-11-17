@@ -14,7 +14,9 @@ export default function ScrollArriba() {
 
   useEffect(() => {
     desbloquearPorSeguridad();
-    window.scrollTo(0, 0);
+    // "instant": el CSS global pone "scroll-behavior: smooth" en <html>, y un cambio
+    // de ruta debe arrancar arriba de inmediato, no deslizarse.
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname]);
 
   return null;

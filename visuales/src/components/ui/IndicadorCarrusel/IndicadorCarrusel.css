@@ -1,0 +1,61 @@
+/* =========================================================
+   INDICADOR DE CARRUSEL MÓVIL (puntitos + "1 / N" + "Desliza →")
+   Oculto en escritorio; solo se ve bajo un .grilla-movil-carrusel en ≤768px.
+   ========================================================= */
+.ic-indicador {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ic-indicador.ic-indicador {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--esp-3);
+    margin-top: var(--esp-3);
+  }
+}
+
+.ic-puntos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ic-punto {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio-pildora);
+  background: var(--color-gris-claro);
+  cursor: pointer;
+  transition: width var(--dur-media) var(--curva-estado), background var(--dur-media) var(--curva-estado);
+}
+
+.ic-punto.is-activo {
+  width: 22px;
+  background: var(--color-rojo);
+}
+
+.ic-contador {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ic-pista {
+  color: var(--color-rojo);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ic-punto {
+    transition: none;
+  }
+}

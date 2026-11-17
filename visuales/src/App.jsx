@@ -17,7 +17,6 @@ import LimiteError from "./components/ui/EstadosPagina/LimiteError";
 const PaginaTramite = lazy(() => import("./components/templates/PaginaTramite/PaginaTramite"));
 const PaginaServicio = lazy(() => import("./components/templates/PaginaServicio/PaginaServicio"));
 const PaginaInformativa = lazy(() => import("./components/templates/PaginaInformativa/PaginaInformativa"));
-const BolsaTrabajo = lazy(() => import("./pages/Servicios/BolsaTrabajo/BolsaTrabajo"));
 const CursosCapacitacion = lazy(() => import("./pages/Eventos/CursosCapacitacion/CursosCapacitacion"));
 const Asambleas = lazy(() => import("./pages/Eventos/Asambleas/Asambleas"));
 const MisionVision = lazy(() => import("./pages/Conocenos/MisionVision/MisionVision"));
@@ -46,7 +45,6 @@ const paginas = {
   "/tramites/dictaminador-de-riesgos": <PaginaTramite key="dictaminador" datos={tramites.dictaminador} />,
   "/servicios/peritos-valuadores": <PaginaServicio key="peritos" datos={servicios.peritos} />,
   "/servicios/calculo-estructural": <PaginaServicio key="calculo" datos={servicios.calculo} />,
-  "/servicios/bolsa-de-trabajo": <BolsaTrabajo />,
   "/eventos/cursos-y-capacitacion": <CursosCapacitacion />,
   "/eventos/asambleas": <Asambleas />,
   "/conocenos/mision-y-vision": <MisionVision />,

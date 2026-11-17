@@ -261,11 +261,18 @@ const paneles = {
 function Contenido({ onCerrar }) {
   const cerrarRef = useRef(null);
   const tabsRef = useRef([]);
+  const cuerpoRef = useRef(null);
   const [activa, setActiva] = useState(pestanas[0].id);
 
   useEffect(() => {
     cerrarRef.current?.focus();
   }, []);
+
+  // Cada pestaña (Requisitos, Costos, Pagos) empieza desde arriba, no donde se
+  // quedó el scroll de la pestaña anterior.
+  useEffect(() => {
+    cuerpoRef.current?.scrollTo(0, 0);
+  }, [activa]);
 
   // Flechas izquierda/derecha para moverse entre pestañas
   const handleTabKey = (event, index) => {
@@ -335,7 +342,7 @@ function Contenido({ onCerrar }) {
         ))}
       </div>
 
-      <div className="hd-modal-body">
+      <div className="hd-modal-body" ref={cuerpoRef}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activa}

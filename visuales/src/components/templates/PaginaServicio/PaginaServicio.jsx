@@ -3,6 +3,8 @@ import { ArrowRight, CheckCircle2, Mail } from "lucide-react";
 import ModalContacto from "../../ui/ModalContacto/ModalContacto";
 import Migas from "../../ui/Migas/Migas";
 import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
+import IndicadorCarrusel from "../../ui/IndicadorCarrusel/IndicadorCarrusel";
+import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import { galerias } from "../../../data/galerias";
 import { enlaceCorreo } from "../../../utils/enlaces";
 import "./PaginaServicio.css";
@@ -18,6 +20,7 @@ export default function PaginaServicio({ datos }) {
   const [contactoAbierto, setContactoAbierto] = useState(false);
   const mailto = enlaceCorreo(undefined, asuntoCorreo);
   const IconoDescripcion = descripcion.icono;
+  const { ref, activo, ir } = useIndicadorCarrusel(tarjetas.length);
 
   return (
     <main className="sv-page">
@@ -57,7 +60,7 @@ export default function PaginaServicio({ datos }) {
       <section className="sv-features">
         <div className="sv-container">
           <h2>{tituloTarjetas}</h2>
-          <div className="sv-features-grid grilla-movil-carrusel">
+          <div className="sv-features-grid grilla-movil-carrusel" ref={ref}>
             {tarjetas.map(({ icono: Icono, titulo: tituloTarjeta, texto }) => (
               <article className="sv-card" key={tituloTarjeta}>
                 <span className="sv-card-icon">
@@ -68,6 +71,7 @@ export default function PaginaServicio({ datos }) {
               </article>
             ))}
           </div>
+          <IndicadorCarrusel total={tarjetas.length} activo={activo} onIr={ir} />
         </div>
       </section>
 
