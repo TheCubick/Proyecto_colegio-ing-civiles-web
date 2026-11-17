@@ -4,6 +4,7 @@
   Aquí solo va el contenido de cada una.
 
   Campos:
+  - galeria:            nombre de la galería de data/galerias.js que rota en el carrusel de la página.
   - titulo, intro:      encabezado de la página.
   - asuntoCorreo:       asunto del correo que se abre con el botón «Solicitar».
   - textoBoton:         texto del botón rojo («Solicitar peritaje»).
@@ -17,6 +18,7 @@ import { Building2, DraftingCompass, HardHat, House, Landmark, Ruler, Scale } fr
 
 export const servicios = {
   peritos: {
+    galeria: "peritos",
     titulo: "Peritos Valuadores",
     intro: "Dictámenes de valor con respaldo técnico y profesional del Colegio de Ingenieros Civiles.",
     asuntoCorreo: "Solicitud de peritaje",
@@ -53,6 +55,7 @@ export const servicios = {
   },
 
   calculo: {
+    galeria: "calculo",
     titulo: "Cálculo Estructural",
     intro: "Memorias de cálculo elaboradas y dictaminadas por especialistas en estructuras.",
     asuntoCorreo: "Solicitud de cálculo estructural",
