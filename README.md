@@ -1,73 +1,58 @@
-<div align="center">
-  <img src="visuales/public/img/logos/logo-colegio.png" alt="Logo del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez" width="140" />
+<p align="center">
+  <img src="visuales/public/img/logos/logo-colegio.png" alt="Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C." width="110">
+</p>
 
-  <h1>Portal Web del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez A.C.</h1>
+# Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C.
 
-  <p>Sitio institucional, moderno y accesible, desarrollado para la asignatura <em>Desarrollo de Páginas Web</em>.</p>
+Portal institucional para la consulta de trámites, servicios y marco normativo del Colegio, con un estudio administrativo que permite publicar noticias, cursos y asambleas en tiempo real.
 
-  <table>
-    <tr>
-      <td align="center"><img src="visuales/public/img/logos/logo-uni.png" alt="Logo Universidad" width="110" /></td>
-      <td width="60"></td>
-      <td align="center"><img src="visuales/public/img/logos/logo-carrera.png" alt="Logo Licenciatura" width="110" /></td>
-    </tr>
-  </table>
-
-  ![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-  ![Vite](https://img.shields.io/badge/Vite_8-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
-  ![React Router](https://img.shields.io/badge/React_Router_7-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white)
-  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-  ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-  ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-</div>
+<p align="center">
+  <img src="visuales/public/img/logos/logo-uni.png" alt="Universidad" height="38">
+  &nbsp;&nbsp;&nbsp;
+  <img src="visuales/public/img/logos/logo-carrera.png" alt="Licenciatura" height="38">
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/React_19-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React 19">
+  <img src="https://img.shields.io/badge/Vite_8-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 8">
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+</p>
 
 ---
 
-## Índice
+## Enfoque del sistema
 
-1. [Descripción del proyecto](#descripción-del-proyecto)
-2. [Stack tecnológico](#stack-tecnológico)
-3. [Equipo](#equipo)
+**Arquitectura híbrida.** El contenido normativo e institucional del Colegio —trámites, servicios, estatutos— vive en módulos de datos locales dentro del propio código. Noticias, Cursos y Asambleas, en cambio, se gestionan de forma dinámica desde el panel `/admin`, con Supabase (PostgreSQL, Storage y Auth) como motor de datos; si no hay conexión configurada, el sitio público sigue mostrando el contenido de respaldo guardado en el repositorio.
 
----
+**Seguridad y prevención de riesgos.** El diseño del sistema asume que la extorsión y el fraude son un riesgo real para un colegio de profesionales. Por eso los trámites son 100% presenciales, el contacto se canaliza únicamente a los medios oficiales del Colegio, no se expone ningún dato personal de agremiados y el sitio no implementa pasarela de pago alguna: informa, pero nunca cobra ni recibe documentos en línea.
 
-## Descripción del proyecto
-
-El portal moderniza la presencia digital del Colegio y reúne en un solo lugar la información que hoy se consulta por teléfono o en oficina:
-
-- **Trámites** (100 % presenciales): Director Responsable de Obra (DRO), Representante Técnico (RT) y Dictaminador de Riesgos — qué son, qué funciones realizan y cómo contratar a un agremiado.
-- **Servicios**: Peritos Valuadores y Cálculo Estructural.
-- **Eventos**: Cursos y Capacitación, Asambleas, y un muro de noticias dinámico publicado desde el panel administrativo.
-- **Conócenos**: Misión y Visión, organigrama, Comisiones, Estatutos, Servicio Social gratuito y Beneficio a la Sociedad.
-- **Afiliación**: requisitos de ingreso, costos y datos bancarios en un pop-up disponible desde cualquier página.
-- **Estudio de publicación** (`/admin`): panel conectado a **Supabase** (autenticación, base de datos y almacenamiento) para que el Colegio publique y edite noticias, cursos y asambleas sin tocar código.
-
-> **Regla de negocio importante:** los trámites siguen siendo **presenciales**. El sitio informa y ofrece los formatos para descargar, pero no recibe documentos. Por seguridad, **no se publican datos de contacto de los agremiados**: las solicitudes de especialistas se canalizan por las oficinas del Colegio.
+**Accesibilidad y experiencia móvil.** Todo el sistema de diseño está escrito en CSS puro sobre una paleta institucional fija y una tipografía de alto contraste (base de 18px), pensadas para un público adulto que consulta el sitio desde el teléfono. Los listados largos se presentan como carruseles táctiles con `scroll-snap`, probados en iOS y Android.
 
 ---
 
-## Stack tecnológico
+## Mapa funcional
 
-| Herramienta | Para qué la usamos |
-| :--- | :--- |
-| ![React](https://img.shields.io/badge/-React_19-20232A?style=flat-square&logo=react&logoColor=61DAFB) | Interfaz construida por componentes. |
-| ![Vite](https://img.shields.io/badge/-Vite_8-B73BFE?style=flat-square&logo=vite&logoColor=FFD62E) | Servidor de desarrollo y compilación de producción. |
-| ![React Router](https://img.shields.io/badge/-React_Router_7-CA4245?style=flat-square&logo=reactrouter&logoColor=white) | Navegación entre páginas sin recargar (SPA). |
-| ![Framer Motion](https://img.shields.io/badge/-Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white) | Animaciones del menú, indicador de sección activa y botón de WhatsApp. |
-| ![Lucide React](https://img.shields.io/badge/-Lucide_React-F56565?style=flat-square&logo=lucide&logoColor=white) | Todos los íconos del sitio. |
-| ![Swiper](https://img.shields.io/badge/-Swiper-6332F6?style=flat-square&logo=swiper&logoColor=white) | Carrusel de banners en la página de inicio. |
-| ![Supabase](https://img.shields.io/badge/-Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white) | Autenticación, base de datos y almacenamiento del panel `/admin`. |
-| ![CSS3](https://img.shields.io/badge/-CSS_puro-1572B6?style=flat-square&logo=css3&logoColor=white) | Un archivo `.css` por componente, con prefijo de clase propio. |
-| ![Oxlint](https://img.shields.io/badge/-Oxlint-262626?style=flat-square&logo=oxc&logoColor=white) | Revisión automática del código (`npm run lint`). |
+Sitio público:
 
-Tipografías (Google Fonts): **Montserrat** para títulos y botones, **Open Sans** para textos.
+- Inicio (`/`)
+- Trámites — Director Responsable de Obra, Representante Técnico, Dictaminador de Riesgos
+- Servicios — Peritos Valuadores, Cálculo Estructural
+- Eventos — Cursos y Capacitación, Asambleas, muro de noticias
+- Conócenos — Misión y Visión, Comisiones, Estatutos, Servicio Social, Beneficio a la Sociedad
+- Afíliate — requisitos, costos y datos bancarios, accesible desde cualquier página
+
+Panel privado:
+
+- `/admin` — estudio de publicación, conectado a Supabase, para editar noticias, cursos y asambleas sin tocar código
 
 ---
 
-## Equipo
+## Créditos y equipo
+
+Proyecto desarrollado para la asignatura *Desarrollo de Páginas Web*, Universidad Salazar.
 
 | Rol | Integrantes |
 | :--- | :--- |
-| **Desarrollo Web** | Pablo Ángel Ramírez García (líder), Daniel Barrera, María Fernanda Uribe |
+| **Desarrollo Web** | Pablo Ramírez — líder de proyecto y responsable de que todo esto llegara a buen puerto; Daniel Barrera, María Fernanda Uribe |
 | **Diseño** | María Fernanda Uribe, Jocelyn Aguilar |
 | **Documentación** | Ignacio Moela, Josué Balbuena, José María Orantes |

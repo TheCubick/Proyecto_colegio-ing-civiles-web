@@ -10,7 +10,7 @@
 <!-- Ruta de la página y qué revisar. -->
 
 ## Reglas del Colegio (marca todas; si una no aplica, márcala igual)
-- [ ] Solo toqué los archivos de mi tarea (columna «Archivos» de `docs/Plan_Fases_Equipo.md`).
+- [ ] Solo toqué los archivos de mi tarea.
 - [ ] `npm run lint`, `npm run build` y `npm run verificar` pasan sin errores.
 - [ ] Cero datos personales: sin teléfonos, domicilios, CURP ni fotos personales de socios; los PDF son plantillas en blanco.
 - [ ] Toda solicitud de especialistas lleva a los teléfonos o WhatsApp **oficiales** del Colegio.
