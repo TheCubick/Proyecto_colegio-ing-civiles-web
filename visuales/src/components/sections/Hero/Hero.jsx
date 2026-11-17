@@ -1,4 +1,4 @@
-import { LOGO } from "../../../data/contacto";
+import { LOGO, SIGLAS } from "../../../data/contacto";
 import "./Hero.css";
 
 export default function Hero() {
@@ -11,14 +11,14 @@ export default function Hero() {
         muted
         loop
         playsInline
-        aria-label="Video de presentación del Colegio de Ingenieros Civiles"
+        aria-label="Video de presentación del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C."
       >
         <source src="/videos/home.mp4" type="video/mp4" />
         Tu navegador no soporta la reproducción de video.
       </video>
       <div className="hero-content">
         <div className="hero-text-box">
-          <span className="hero-eyebrow hero-anim">Tuxtla Gutiérrez, Chiapas</span>
+          <span className="hero-eyebrow hero-anim">{SIGLAS} · Tuxtla Gutiérrez, Chiapas</span>
           <h1>
             <span className="hero-line hero-anim">Colegio de Ingenieros</span>
             <span className="hero-line hero-anim">Civiles de Tuxtla Gutiérrez</span>
@@ -30,7 +30,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="hero-logo-large">
-          <img src={LOGO} alt="Logo del Colegio de Ingenieros Civiles" />
+          <img src={LOGO} alt={`Logo del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. (${SIGLAS})`} />
         </div>
       </div>
     </section>
