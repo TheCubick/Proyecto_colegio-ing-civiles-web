@@ -30,3 +30,8 @@ supabase/.temp/
 # Carpetas temporales de herramientas de auditoría (Playwright, capturas de depuración)
 .playwright-mcp/
 *.playwright-mcp/
+
+# Documentación y bitácora interna del equipo: se queda en cada máquina, no se sube
+# (planes, auditorías, SQL de referencia y el contexto/instrucciones de Claude Code).
+docs/
+CLAUDE.md
