@@ -35,3 +35,6 @@ supabase/.temp/
 # (planes, auditorías, SQL de referencia y el contexto/instrucciones de Claude Code).
 docs/
 CLAUDE.md
+
+# Configuración local de Claude Code (permisos y ajustes personales)
+.claude/
