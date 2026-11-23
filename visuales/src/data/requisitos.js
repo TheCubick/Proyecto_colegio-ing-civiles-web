@@ -13,6 +13,6 @@ export const requisitosGenerales = [
 ];
 
 export const notaCartas = {
-  propias: "Carta propia: 2 años de expedición de la cédula profesional.",
-  ajenas: "Carta ajena: 5 años de expedición de la cédula profesional.",
+  propias: "Carta propia: 3 años de antigüedad de cédula profesional y 2 años de colegiado, más 30 horas de cursos de actualización (Art. 55° de los Estatutos).",
+  ajenas: "Carta ajena: 5 años de antigüedad de cédula profesional y 3 años de colegiado, más 30 horas de cursos de actualización (Art. 55° de los Estatutos).",
 };

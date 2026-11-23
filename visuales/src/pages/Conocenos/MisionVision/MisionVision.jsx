@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, HandHeart, Info, Landmark, ShieldCheck } from "lucide-react";
+import { ArrowRight, HandHeart, Landmark, ShieldCheck } from "lucide-react";
 import { compromisos, enlaces, pilares, valores } from "../../../data/misionVision";
 import { hayServicioSocial, servicioSocial } from "../../../data/servicioSocial";
 import Migas from "../../../components/ui/Migas/Migas";
@@ -86,11 +86,6 @@ export default function MisionVision() {
             </a>
             <figcaption>Haz clic en la imagen para verla en tamaño completo.</figcaption>
           </figure>
-          {/* Aviso discreto: el organigrama vigente tiene pendientes de corrección institucional (hallazgo C3, CLAUDE.md) */}
-          <p className="mv-organigrama-aviso">
-            <Info size={16} aria-hidden="true" />
-            Organigrama en actualización institucional.
-          </p>
         </div>
       </section>
 

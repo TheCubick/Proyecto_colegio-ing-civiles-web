@@ -17,7 +17,7 @@ export const requisitosIngreso = [
 ];
 
 export const notaCartasAfiliacion =
-  "2 años de expedición de cédula para solicitar Carta Propia; 5 años para Carta Ajena. Si perteneció a otro Colegio, anexar carta de no adeudo y renuncia.";
+  "Carta Propia: 3 años de antigüedad de cédula profesional y 2 años de colegiado. Carta Ajena: 5 años de antigüedad de cédula profesional y 3 años de colegiado. En ambas, 30 horas de cursos de actualización en el año inmediato anterior (Art. 55° de los Estatutos). Si perteneció a otro Colegio, anexar carta de no adeudo y renuncia.";
 
 // Formatos de inscripción EN BLANCO: [título, ruta del PDF en public/].
 // Los PDF anteriores tenían datos personales y se retiraron (F1-PR0). Cuando el Colegio
@@ -64,7 +64,7 @@ export const costos = {
       ],
     },
   ],
-  pie: "* Acuerdo intercolegial.",
+  pie: "* Acuerdo intercolegial del Estado de Chiapas",
 };
 
 // Oficio CICTG/PRES/VI/02/2026
