@@ -110,7 +110,7 @@
 /* En columnas de ~500 px el párrafo va alineado a la izquierda (sin ríos de espacio) */
 .ss-articulos .ae-cuerpo .ae-parrafo {
   text-align: left;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 

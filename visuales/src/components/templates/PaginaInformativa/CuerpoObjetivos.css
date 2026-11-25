@@ -111,7 +111,7 @@
   font-size: 1.02rem;
   line-height: 1.6;
   text-align: left;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 

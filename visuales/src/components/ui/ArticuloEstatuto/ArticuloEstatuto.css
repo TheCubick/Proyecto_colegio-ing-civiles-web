@@ -77,7 +77,7 @@
   font-size: var(--fs-parrafo);
   line-height: var(--lh-parrafo);
   text-align: var(--alineacion-lectura);
-  hyphens: auto;
+  hyphens: none;
 }
 
 /* Subtítulo de grupo («Para representante técnico de empresa propia.») */

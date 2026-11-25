@@ -121,7 +121,7 @@
     line-height: 1.6;
     text-align: var(--alineacion-lectura, justify);
     text-align-last: left;
-    hyphens: auto;
+    hyphens: none;
     text-shadow: 1px 1px 3px rgb(56 54 55 / 80%);
 }
 

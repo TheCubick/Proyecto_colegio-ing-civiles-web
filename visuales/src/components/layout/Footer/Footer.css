@@ -355,7 +355,7 @@
 body .cic-footer .cic-footer-text {
   text-align: left;
   text-align-last: auto;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 

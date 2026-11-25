@@ -267,11 +267,11 @@
 /* Texto justificado solo en la introducción (ancha); en tarjetas angostas va a la izquierda */
 .com-intro {
   text-align: var(--alineacion-lectura);
-  hyphens: auto;
+  hyphens: none;
 }
 
 .com-card p {
   text-align: left;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }

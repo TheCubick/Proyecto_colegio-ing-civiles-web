@@ -58,7 +58,7 @@ body .es-encabezado p {
   font-size: 1.05rem;
   line-height: 1.6;
   text-align: left;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 

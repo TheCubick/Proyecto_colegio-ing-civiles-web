@@ -18,9 +18,9 @@
   --fs-parrafo: 1.15rem;  /* ~18.4px */
   --lh-parrafo: 1.7;
 
-  /* Alineación de los párrafos de lectura: justificado (petición del Consejo).
-     En celular pasa a la izquierda (ver más abajo): en ~40 caracteres por línea
-     el justificado abre «ríos» de espacio entre palabras. */
+  /* Alineación de los textos de lectura: justificado en todo el sitio y en todos los
+     tamaños de pantalla (petición del Consejo), SIEMPRE sin partir palabras con guion
+     («Di-rector»): ver el bloque «TEXTO JUSTIFICADO» más abajo. */
   --alineacion-lectura: justify;
 
   /* Patrones de fondo (gris oscuro #383637 a muy baja opacidad) */
@@ -85,12 +85,6 @@
   --contenido-max: 1200px;
 }
 
-@media (max-width: 600px) {
-  :root {
-    --alineacion-lectura: left;
-  }
-}
-
 /* Secciones menos "infladas" en tablet/celular (601-768 px quedaba con el espaciado de escritorio
    porque la mayoría de las páginas solo reducen el suyo en ≤600 px). Afecta a cualquier sección que
    use estos tokens; las portadas con video usan rem fijos (para no tapar el header) y no los tocan. */
@@ -127,11 +121,9 @@ button, input, textarea, select { font: inherit; }
   line-height: var(--lh-parrafo);
 }
 
-/* hyphens: auto divide palabras (el sitio declara lang="es") y evita
-   los "ríos" de espacios que deja la justificación en columnas angostas */
 .texto-justificado {
   text-align: var(--alineacion-lectura);
-  hyphens: auto;
+  hyphens: none;
 }
 
 /* =========================================================
@@ -363,18 +355,15 @@ body .decor-plano.decor-plano {
 
 /* =========================================================
    ALINEACIÓN DEL TEXTO (petición del Consejo + legibilidad)
-   1) Lectura ancha (introducciones, textos editoriales, cuerpos de artículos):
-      justificado con guiones, como pidió el Consejo.
-   2) Columnas angostas (tarjetas de 3-4 columnas, pasos, menús, pop-ups, pie):
-      a la izquierda. Justificar menos de ~45 caracteres por línea abre «ríos»
-      de espacio entre palabras; text-wrap: pretty evita palabras sueltas al final.
-   3) Bloques centrados (estados vacíos, tarjetas de valores): centrados.
-   Se usa "body :is(...)" para ganar a las reglas de cada componente.
+   Los textos de lectura (párrafos, listas, descripciones) se justifican en todo el sitio,
+   y NINGUNA palabra se parte con guion: ver el bloque «TEXTO JUSTIFICADO» más abajo, que
+   manda sobre las reglas de cada componente.
+   Títulos, botones, etiquetas, pies de foto y estados vacíos no se justifican.
    ========================================================= */
 main p,
 main figcaption {
   text-align: var(--alineacion-lectura);
-  hyphens: auto;
+  hyphens: none;
 }
 
 body :is(
@@ -387,7 +376,7 @@ main li,
 footer p {
   text-align: left;
   text-align-last: auto;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 
@@ -422,8 +411,43 @@ body :is(.red-card, .mv-valor) :is(p, h2, h3),
 .estado-error p {
   text-align: center;
   text-align-last: auto;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
+}
+
+/* =========================================================
+   TEXTO JUSTIFICADO EN TODO EL SITIO (sin partir palabras)
+   - Párrafos, listas y descripciones de las páginas, ventanas emergentes, menús y pie:
+     text-align: justify. La última línea queda a la izquierda (text-align-last).
+   - hyphens: none + word-break: normal: ninguna palabra se corta con guion («Di-rector»);
+     las palabras pasan completas a la línea siguiente. Solo los correos y enlaces muy largos
+     pueden partirse si de otro modo se saldrían de la pantalla (overflow-wrap).
+   - !important a propósito: cada componente trae sus propios «text-align: left/center» y
+     «hyphens»; esta es la única regla de lectura y debe ganarles a todas.
+   - NO se justifican: títulos (h1-h4), botones, etiquetas y números sueltos (span),
+     pies de foto y estados vacíos/errores (centrados), ni las listas de navegación y de
+     datos de contacto (líneas cortas con ícono).
+   - Fuera de alcance a propósito: el panel /admin (interfaz interna, no es texto de lectura).
+   ========================================================= */
+html body :is(main, footer, .hd-modal, .mc-modal, .hd-drawer, .hd-menu) :is(p, li, dd, blockquote),
+html body :is(main, footer, .hd-modal, .mc-modal, .hd-drawer, .hd-menu) :is(.cs-card-texto, .cn-card-texto, .ae-texto) {
+  text-align: justify !important;
+  text-align-last: left !important;
+  hyphens: none !important;
+  word-break: normal;
+}
+
+/* Excepciones: estados vacíos, errores y pies de foto, centrados */
+html body main :is(.asm-vacio, .cc-cursos-vacio, .ne-page, .estado-error) :is(p, li),
+html body main figcaption {
+  text-align: center !important;
+  text-align-last: auto !important;
+}
+
+/* Menús de navegación y filas de contacto (líneas cortas con ícono): a la izquierda */
+html body :is(.hd-menu, .hd-drawer, .bc-datos, .hd-aviso-datos) li {
+  text-align: left !important;
+  text-align-last: auto !important;
 }
 
 /* =========================================================

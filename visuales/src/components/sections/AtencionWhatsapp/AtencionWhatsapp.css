@@ -181,7 +181,7 @@
   margin: 16px 0;
   line-height: 1.7;
   text-align: left;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 
@@ -209,7 +209,7 @@
   font-size: 0.95rem; /* Actualizado de 0.9rem a 0.95rem */
   line-height: 1.6;
   text-align: left;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 

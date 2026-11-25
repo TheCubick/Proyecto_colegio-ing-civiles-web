@@ -59,7 +59,7 @@ body .red-card p {
   line-height: 1.55;
   text-align: center;
   text-align-last: auto;
-  hyphens: manual;
+  hyphens: none;
   text-wrap: pretty;
 }
 

@@ -1009,12 +1009,12 @@
 .cc-intro,
 .cc-modal-body p {
   text-align: var(--alineacion-lectura);
-  hyphens: auto;
+  hyphens: none;
 }
 
 .cc-detalle-texto p {
   text-align: var(--alineacion-lectura);
-  hyphens: auto;
+  hyphens: none;
 }
 
 /* Tarjetas de cursos y noticias (columnas angostas): a la izquierda, sin ríos de espacio */
