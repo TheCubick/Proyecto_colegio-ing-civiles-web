@@ -65,8 +65,6 @@ export default function Hero() {
           <img
             src={LOGO}
             alt="Logo del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez, A.C. (CICTGZ)"
-            width="400"
-            height="404"
             decoding="async"
           />
         </div>

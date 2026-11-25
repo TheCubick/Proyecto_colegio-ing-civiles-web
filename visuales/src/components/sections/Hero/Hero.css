@@ -125,9 +125,11 @@
     text-shadow: 1px 1px 3px rgb(56 54 55 / 80%);
 }
 
-/* Logo nítido, con su opacidad original */
+/* Logo nítido, con su opacidad original.
+   height: auto SIEMPRE: el logo nunca se deforma (ver regla en CLAUDE.md). */
 .hero-logo-large img {
     width: 250px;
+    height: auto;
 }
 
 /* ---------- Botones de acción (Ley de Fitts: ≥ 48 px, respuesta inmediata) ---------- */
