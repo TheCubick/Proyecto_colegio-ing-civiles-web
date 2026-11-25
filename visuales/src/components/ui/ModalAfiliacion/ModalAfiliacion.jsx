@@ -78,7 +78,7 @@ function CopiarDato({ etiqueta, valor }) {
 function EnlaceOficio({ imagen, titulo }) {
   return (
     <a href={imagen} target="_blank" rel="noopener noreferrer" className="hd-oficio">
-      <img src={imagen} alt="" loading="lazy" />
+      <img src={imagen} alt="" loading="lazy" decoding="async" />
       <span>
         <strong>{titulo}</strong>
         <small>Abrir imagen en una pestaña nueva</small>

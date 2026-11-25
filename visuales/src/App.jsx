@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { MotionConfig } from "framer-motion";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { rutas } from "./config/rutas";
 import { tramites } from "./data/tramites";
@@ -105,9 +106,13 @@ function Sitio() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollArriba />
-      <Sitio />
-    </BrowserRouter>
+    // reducedMotion="user": si el sistema pide menos movimiento, TODAS las animaciones de Framer
+    // Motion (menús, pop-ups, apariciones) dejan de desplazar y solo funden.
+    <MotionConfig reducedMotion="user">
+      <BrowserRouter>
+        <ScrollArriba />
+        <Sitio />
+      </BrowserRouter>
+    </MotionConfig>
   );
 }

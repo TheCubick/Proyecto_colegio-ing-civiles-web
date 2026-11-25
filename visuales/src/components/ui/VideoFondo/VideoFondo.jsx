@@ -14,6 +14,9 @@ const reducirMovimiento =
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export default function VideoFondo({ src, className, etiqueta = "video de fondo" }) {
+  // Poster ligero (~40 KB) junto a cada video: /videos/home.mp4 → /videos/home-poster.jpg.
+  // Se ve al instante mientras el video baja (en 4G el video pesa 1.5-3 MB).
+  const poster = src.replace(/\.mp4$/, "-poster.jpg");
   const videoRef = useRef(null);
   const [enPausa, setEnPausa] = useState(reducirMovimiento);
 
@@ -28,6 +31,7 @@ export default function VideoFondo({ src, className, etiqueta = "video de fondo"
     <>
       <video
         ref={videoRef}
+        poster={poster}
         className={className}
         autoPlay={!reducirMovimiento}
         muted

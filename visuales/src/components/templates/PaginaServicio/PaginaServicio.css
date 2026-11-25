@@ -115,7 +115,7 @@
   border-radius: 12px;
   background: rgba(186, 42, 51, 0.1);
   color: var(--sv-red);
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
 .sv-card:hover .sv-card-icon {
@@ -255,7 +255,7 @@
   font-size: 1rem; /* Actualizado de 15px (~0.9375rem) a 1rem (texto normal) */
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
 }
 
 .sv-btn-primary {

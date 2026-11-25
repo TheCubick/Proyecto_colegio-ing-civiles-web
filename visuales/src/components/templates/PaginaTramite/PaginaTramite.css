@@ -420,7 +420,7 @@
   font-size: 1rem; /* Actualizado de 15px (~0.9375rem) a 1rem (texto normal) */
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
 }
 
 .tr-btn-primary {

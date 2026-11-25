@@ -35,7 +35,7 @@ export const triptico = [
 // Oficio CICTG/PRES/VI/01/2026. Montos en MXN.
 export const costos = {
   oficio: "CICTG/PRES/VI/01/2026",
-  imagen: "/img/documentos/costos.jpg",
+  imagen: "/img/documentos/costos.webp",
   grupos: [
     {
       grupo: "Inscripción",
@@ -70,7 +70,7 @@ export const costos = {
 // Oficio CICTG/PRES/VI/02/2026
 export const datosBancarios = {
   oficio: "CICTG/PRES/VI/02/2026",
-  imagen: "/img/documentos/datos-bancarios.jpg",
+  imagen: "/img/documentos/datos-bancarios.webp",
   cuentas: [
     { banco: "SANTANDER", cuenta: "65508294566", clabe: "0141-0065-5082-945-660" },
     { banco: "BBVA MÉXICO", cuenta: "0112233592", clabe: "0121-0000-1122-335-922" },

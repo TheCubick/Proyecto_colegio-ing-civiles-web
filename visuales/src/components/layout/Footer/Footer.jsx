@@ -46,7 +46,7 @@ export default function Footer() {
         <div className="cic-footer-grid">
           <section className="cic-footer-col cic-footer-brand">
             <Link to="/" className="cic-footer-logo">
-              <img src={LOGO} alt="" />
+              <img src={LOGO} alt="" width="400" height="404" loading="lazy" decoding="async" />
               <span>
                 {SIGLAS}
                 <small>{NOMBRE_COLEGIO}</small>

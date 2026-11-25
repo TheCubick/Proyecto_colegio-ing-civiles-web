@@ -34,6 +34,7 @@ export default function ImagenSegura({ src, alt, className, claseVacia, texto, t
       alt={alt}
       className={className}
       loading={lazy ? "lazy" : undefined}
+      decoding="async"
       onError={() => setError(true)}
     />
   );

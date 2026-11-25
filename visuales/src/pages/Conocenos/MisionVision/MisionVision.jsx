@@ -82,6 +82,9 @@ export default function MisionVision() {
                 src="/img/documentos/organigrama.jpeg"
                 alt="Organigrama del Consejo Directivo del Colegio de Ingenieros Civiles de Tuxtla Gutiérrez"
                 loading="lazy"
+                decoding="async"
+                width="1504"
+                height="993"
               />
             </a>
             <figcaption>Haz clic en la imagen para verla en tamaño completo.</figcaption>

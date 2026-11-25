@@ -103,7 +103,7 @@ export default function Header() {
       >
         <div className="hd-container">
           <Link className="hd-logo" to="/" aria-label="Ir al inicio" onClick={cerrarMenus}>
-            <img src={LOGO} alt="" />
+            <img src={LOGO} alt="" width="400" height="404" decoding="async" />
             <span className="hd-logo-text">
               <strong>{SIGLAS}</strong>
               <small>{NOMBRE_COLEGIO}</small>

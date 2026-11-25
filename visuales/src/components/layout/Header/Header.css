@@ -77,11 +77,15 @@
   background: #fff;
   object-fit: contain;
   box-shadow: 0 2px 8px rgba(56, 54, 55, 0.25);
-  transition: height 0.3s ease;
+  transform-origin: left center;
+  transition: transform 0.3s ease; /* antes animaba height: forzaba recalcular el diseño en cada cuadro */
 }
 
+/* Al bajar, el logo pasa de 54 px a 46 px de alto total (46/54 = 0.852) con transform, que corre en la GPU.
+   Los márgenes negativos devuelven al diseño el espacio que el transform no libera. */
 .is-scrolled .hd-logo img {
-  height: 38px;
+  margin: -4px -8px -4px 0;
+  transform: scale(0.852);
 }
 
 .hd-logo-text {
@@ -214,7 +218,7 @@
   font-family: "Open Sans", "Segoe UI", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
 .hd-menu-icon {
@@ -227,7 +231,7 @@
   border-radius: 9px;
   background: rgba(186, 42, 51, 0.1);
   color: var(--hd-red);
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
 .hd-menu-link:hover {
@@ -326,7 +330,7 @@
   background: rgba(186, 42, 51, 0.1);
   color: var(--hd-red);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
 .hd-burger:hover {
@@ -479,7 +483,7 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
 }
 
 .hd-btn-primary {
@@ -530,6 +534,12 @@
 
   .hd-logo img {
     height: 38px;
+  }
+
+  /* En celular el logo ya mide 38 px en los dos estados: no se escala */
+  .is-scrolled .hd-logo img {
+    margin: 0;
+    transform: none;
   }
 
   /* En celular solo se muestran las siglas */

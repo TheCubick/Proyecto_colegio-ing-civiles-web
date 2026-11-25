@@ -51,7 +51,7 @@
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
 .hd-modal-close:hover {
@@ -239,7 +239,7 @@
   border-radius: 12px;
   background: #fff;
   color: var(--hd-dark);
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
 }
 
 .hd-descarga:hover {
@@ -258,7 +258,7 @@
   border-radius: 10px;
   background: rgba(186, 42, 51, 0.1);
   color: var(--hd-red);
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
 }
 
 .hd-descarga:hover .hd-descarga-icon {
@@ -315,7 +315,7 @@
   border: 2px solid var(--hd-red);
   border-radius: 14px;
   color: var(--hd-dark);
-  transition: all 0.25s ease;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
 }
 
 .hd-oficio:hover {
@@ -431,7 +431,7 @@
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
 .hd-copy:hover {

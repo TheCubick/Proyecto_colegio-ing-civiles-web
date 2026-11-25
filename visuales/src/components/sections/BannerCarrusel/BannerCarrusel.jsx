@@ -68,6 +68,7 @@ export default function BannerCarrusel() {
                     alt={slide.titulo}
                     className="bc-slide-img"
                     loading={i === 0 ? "eager" : "lazy"}
+                    decoding="async"
                   />
                   <div className="bc-slide-text">
                     <span className="bc-slide-tag">{slide.tag}</span>

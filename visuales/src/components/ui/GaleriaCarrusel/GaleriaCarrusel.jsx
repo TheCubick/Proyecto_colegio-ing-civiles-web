@@ -37,6 +37,8 @@ export default function GaleriaCarrusel({ fotos = [], respaldo, intervalo = 4500
           className="gc-respaldo"
           src={respaldo.src}
           alt={respaldo.alt}
+          loading="lazy"
+          decoding="async"
           onError={() => setRespaldoRoto(true)}
         />
       );
@@ -80,6 +82,7 @@ export default function GaleriaCarrusel({ fotos = [], respaldo, intervalo = 4500
               src={foto.src}
               alt={foto.alt}
               loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
               onError={() => setRotas((prev) => [...prev, foto.src])}
             />
             {foto.pie && <p className="gc-pie">{foto.pie}</p>}
