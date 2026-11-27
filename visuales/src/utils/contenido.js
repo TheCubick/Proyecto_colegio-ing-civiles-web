@@ -24,18 +24,23 @@ export const ORDEN = {
 
 export const respaldo = { noticias, cursos, asambleas };
 
+// Las imágenes de /img/posts/ pasaron de .png a .webp (optimización del 2026-11-25) y los PNG ya no
+// existen. Las filas que se importaron antes a Supabase siguen guardando «/img/posts/N.png»: aquí se
+// traducen al archivo vigente para que la tarjeta no salga con la imagen rota. Otras rutas no se tocan.
+const imagenVigente = (ruta) => (ruta || "").replace(/^(\/img\/posts\/\d+)\.png$/, "$1.webp");
+
 export const aSitio = {
   // Si una noticia no tiene fecha de publicación, se muestra el día en que se subió al panel.
   noticias: (fila) => ({
     id: fila.id,
-    img: fila.imagen_url || "",
+    img: imagenVigente(fila.imagen_url),
     titulo: fila.titulo,
     texto: fila.texto,
     fecha: fila.fecha_publicacion || fechaISO(fila.creado_en),
   }),
   cursos: (fila) => ({
     id: fila.id,
-    img: fila.imagen_url || "",
+    img: imagenVigente(fila.imagen_url),
     titulo: fila.titulo,
     fecha: fila.fecha_texto,
     horario: fila.horario,

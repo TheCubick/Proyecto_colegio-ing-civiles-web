@@ -4,6 +4,7 @@ import ArticuloEstatuto from "../../ui/ArticuloEstatuto/ArticuloEstatuto";
 import CuerpoEstatutos from "./CuerpoEstatutos";
 import CuerpoObjetivos from "./CuerpoObjetivos";
 import CuerpoServicio from "./CuerpoServicio";
+import useRevelarAlBajar from "../../../hooks/useRevelarAlBajar";
 import "./PaginaInformativa.css";
 
 /*
@@ -28,6 +29,7 @@ const cuerpos = {
 };
 
 export default function PaginaInformativa({ datos }) {
+  useRevelarAlBajar();
   const { titulo, subtitulo, diseno } = datos;
   const Cuerpo = cuerpos[diseno] ?? CuerpoGenerico;
 

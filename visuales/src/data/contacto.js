@@ -3,7 +3,8 @@
   Header, Footer, ventanas de contacto, Cursos y la sección de WhatsApp leen de aquí:
   si cambias un dato en este archivo, cambia en todas las páginas.
 
-  Fuentes: tríptico oficial y oficio CICTG/PRES/VI/02/2026.
+  Fuentes: tríptico oficial, oficio CICTG/PRES/VI/02/2026 y el membrete 2026 del comunicado del 29 de abril
+  de 2026 (dirección, C.P. 29080 y teléfono de oficina (961) 116 2406).
   PENDIENTE (José María, F1-JM1): confirmar con el Colegio
     - el horario del sábado (el sitio mostraba 13:00 en unas páginas y 14:00 en otras);
     - el número oficial de WhatsApp (el Footer usaba 961-612-5541 y el resto 961-119-0009).
@@ -23,10 +24,13 @@ export const contacto = {
     "https://www.google.com/maps/place/Colegio+de+Ingenieros+Civiles+De+Tuxtla+Gutierrez+A.C./@16.7441016,-93.1082779,19.99z/data=!4m6!3m5!1s0x85ecd8a3b3b8a423:0xf059605d90c93d2d!8m2!3d16.7439165!4d-93.1086248!16s%2Fg%2F11cp762rvb?entry=ttu&g_ep=EgoyMDI2MTAxMy4wIKXMDSoASAFQAw%3D%3D",
 
   // El primero es el principal (se muestra en el menú del celular).
-  telefonos: ["961-612-5541", "961-119-0009", "961-114-1636", "961-130-3088"],
+  telefonos: ["961-612-5541", "961-119-0009", "961-114-1636", "961-130-3088", "961-116-2406"],
 
   correo: "colegiodeingenieroscivilestg@gmail.com",
   correoContabilidad: "cictgcontabilidad@gmail.com",
+
+  // WhatsApp de contabilidad (facturación y comprobantes de pago; oficio de facturación 2026).
+  whatsappContabilidad: "961-285-1837",
 
   // WhatsApp oficial (PENDIENTE de confirmar, ver arriba).
   whatsapp: "961-119-0009",

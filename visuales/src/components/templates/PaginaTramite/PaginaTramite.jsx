@@ -7,6 +7,8 @@ import GaleriaCarrusel from "../../ui/GaleriaCarrusel/GaleriaCarrusel";
 import { galerias } from "../../../data/galerias";
 import TramiteDetalle from "../../sections/TramiteDetalle/TramiteDetalle";
 import RequisitosTramite from "./RequisitosTramite";
+import DetalleRtec from "./DetalleRtec";
+import useRevelarAlBajar from "../../../hooks/useRevelarAlBajar";
 import "./PaginaTramite.css";
 
 /*
@@ -18,6 +20,7 @@ import "./PaginaTramite.css";
   (clase tr-hero--video); si no, el encabezado es claro.
 */
 export default function PaginaTramite({ datos }) {
+  useRevelarAlBajar();
   const { sigla, titulo, intro, icono: Icono, video, queEs, info, pdfRequisitos, estatuto } = datos;
   const [contactoAbierto, setContactoAbierto] = useState(false);
 
@@ -64,6 +67,8 @@ export default function PaginaTramite({ datos }) {
       <TramiteDetalle info={info} sigla={sigla} onContactar={() => setContactoAbierto(true)} />
 
       <RequisitosTramite estatuto={estatuto} />
+
+      {datos.rtec && <DetalleRtec rtec={datos.rtec} />}
 
       <section className="tr-cta fondo-luz-institucional">
         <div className="tr-container tr-cta-box fondo-profundo">

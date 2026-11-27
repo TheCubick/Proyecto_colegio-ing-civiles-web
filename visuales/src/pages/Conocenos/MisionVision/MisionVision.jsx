@@ -6,10 +6,12 @@ import Migas from "../../../components/ui/Migas/Migas";
 import VideoFondo from "../../../components/ui/VideoFondo/VideoFondo";
 import IndicadorCarrusel from "../../../components/ui/IndicadorCarrusel/IndicadorCarrusel";
 import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
+import useRevelarAlBajar from "../../../hooks/useRevelarAlBajar";
 import "./MisionVision.css";
 
 // PÁGINA «MISIÓN Y VISIÓN». Los textos están en src/data/misionVision.js.
 export default function MisionVision() {
+  useRevelarAlBajar();
   const { ref, activo, ir } = useIndicadorCarrusel(valores.length);
 
   return (

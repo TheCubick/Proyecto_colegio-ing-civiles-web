@@ -22,6 +22,7 @@ import useDialogo from "../../../hooks/useDialogo";
 import { copiarAlPortapapeles, enlaceCorreo, enlaceTelefono, enlaceWhatsapp } from "../../../utils/enlaces";
 import ModalContacto from "../../../components/ui/ModalContacto/ModalContacto";
 import Migas from "../../../components/ui/Migas/Migas";
+import useRevelarAlBajar from "../../../hooks/useRevelarAlBajar";
 import "./CursosCapacitacion.css";
 
 /*
@@ -212,6 +213,7 @@ function InscripcionModal({ isOpen, onCerrar }) {
 }
 
 export default function CursosCapacitacion() {
+  useRevelarAlBajar();
   // Cursos y noticias publicados en el panel (/admin); si no hay base, los de src/data/cursos.js
   const { items: cursos } = useContenidoPublico("cursos");
   const { items: noticias } = useContenidoPublico("noticias");

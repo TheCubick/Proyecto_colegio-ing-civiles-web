@@ -7,6 +7,7 @@ import IndicadorCarrusel from "../../ui/IndicadorCarrusel/IndicadorCarrusel";
 import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
 import { galerias } from "../../../data/galerias";
 import { enlaceCorreo } from "../../../utils/enlaces";
+import useRevelarAlBajar from "../../../hooks/useRevelarAlBajar";
 import "./PaginaServicio.css";
 
 /*
@@ -15,6 +16,7 @@ import "./PaginaServicio.css";
   Uso (en App.jsx): <PaginaServicio datos={servicios.peritos} />
 */
 export default function PaginaServicio({ datos }) {
+  useRevelarAlBajar();
   const { titulo, intro, asuntoCorreo, textoBoton, descripcion, imagen, alt, tituloTarjetas, tarjetas, cta } = datos;
   const serviciosOficiales = datos.serviciosOficiales ?? [];
   const [contactoAbierto, setContactoAbierto] = useState(false);

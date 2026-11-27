@@ -806,3 +806,120 @@ body :is(.tr-cta-box, .sv-cta-box) :is(.tr-btn, .sv-btn):focus-visible {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+
+/* =========================================================
+   PÁGINAS INTERIORES SIN «PLANITUD» (2026-11-25)
+   1) APARICIÓN AL BAJAR: hooks/useRevelarAlBajar.js marca tarjetas, pasos, figuras y cierres con
+      data-rv="pre" y, al entrar en pantalla, con data-rv="in". Solo opacity y translate (GPU);
+      el hover usa transform, así que no chocan. Escalonado de 80 ms por tarjeta (--rv-i, 0-3).
+      Sin JS o con «reducir movimiento» nada se oculta.
+   2) HOVER (solo escritorio con mouse): las tarjetas que se quedaban quietas ahora se elevan 4 px,
+      ganan sombra institucional y su ícono se llena de rojo, igual que las de Inicio.
+   ========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  [data-rv="pre"] {
+    opacity: 0;
+  }
+
+  [data-rv="in"] {
+    animation: rv-entrar 0.65s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation-delay: calc(var(--rv-i, 0) * 80ms);
+  }
+
+  /* En celular: recorrido corto, y las tarjetas del carrusel horizontal no se ocultan
+     (se ven al deslizar; esconderlas dejaría huecos que parecen un error). */
+  @media (max-width: 768px) {
+    [data-rv] {
+      --rv-y: 12px;
+    }
+
+    .grilla-movil-carrusel > [data-rv] {
+      opacity: 1;
+      animation: none;
+    }
+  }
+}
+
+@keyframes rv-entrar {
+  from { opacity: 0; translate: 0 var(--rv-y, 24px); }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media print {
+  [data-rv] {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html body :is(.ob-card, .ss-resumen-card, .td-funcion, .td-paso-tarjeta, .com-card, .asm-card, .sv-oficiales-lista li, .mv-mas-link) {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      border-color 0.3s ease;
+  }
+
+  html body :is(.ob-card, .ss-resumen-card, .td-funcion, .com-card, .asm-card, .sv-oficiales-lista li):hover {
+    transform: translateY(-4px);
+    border-color: rgba(186, 42, 51, 0.35);
+    box-shadow: 0 16px 34px rgba(150, 46, 53, 0.16);
+  }
+
+  /* Pasos de «Cómo contratar»: la tarjeta blanca va sobre fondo oscuro, la sombra sube de tono */
+  html body .td-paso-tarjeta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 52px rgba(56, 54, 55, 0.55);
+  }
+
+  html body .td-paso-tarjeta .td-paso-fondo {
+    transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html body .td-paso-tarjeta:hover .td-paso-fondo {
+    color: rgba(186, 42, 51, 0.14);
+    transform: translateY(-4px);
+  }
+
+  /* Ícono que se llena de rojo, como en las tarjetas de Inicio */
+  html body :is(.ob-icono, .ss-resumen-icono, .td-funcion-icono, .com-card-icon, .sv-oficiales-lista svg) {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html body .ob-card:hover .ob-icono,
+  html body .ss-resumen-card:hover .ss-resumen-icono,
+  html body .td-funcion:hover .td-funcion-icono,
+  html body .com-card:hover .com-card-icon {
+    background: var(--color-rojo);
+    color: #FFFFFF;
+    transform: scale(1.06);
+  }
+
+  html body .sv-oficiales-lista li:hover svg {
+    transform: scale(1.12);
+  }
+
+  /* Comisiones: el enlace «Ver más» avanza con la tarjeta entera, no solo con el mouse encima de él */
+  html body .com-card:hover .com-card-link {
+    transform: translateX(4px);
+  }
+
+  /* Estatutos: la fila del acordeón reacciona antes de abrirse */
+  html body .ea-item {
+    transition: border-color 0.3s ease, box-shadow 0.35s ease;
+  }
+
+  html body .ea-item:hover {
+    border-color: rgba(186, 42, 51, 0.35);
+    box-shadow: 0 10px 26px rgba(150, 46, 53, 0.1);
+  }
+
+  /* Figuras: el zoom suave de la foto ya existía en Servicios; se extiende a Trámites (el organigrama no se toca) */
+  html body .tr-figure img {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html body .tr-figure:hover img {
+    transform: scale(1.03);
+  }
+}

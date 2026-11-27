@@ -1,6 +1,7 @@
 import Migas from "../../../components/ui/Migas/Migas";
 import useContenidoPublico from "../../../hooks/useContenidoPublico";
 import AsambleaCard from "./AsambleaCard";
+import useRevelarAlBajar from "../../../hooks/useRevelarAlBajar";
 import "./Asambleas.css";
 
 // PÁGINA «ASAMBLEAS». Asambleas publicadas en el panel /admin (Supabase) o, de respaldo,
@@ -8,6 +9,7 @@ import "./Asambleas.css";
 const masReciente = (a, b) => (b.fecha ?? "").localeCompare(a.fecha ?? "");
 
 export default function Asambleas() {
+  useRevelarAlBajar();
   const { items } = useContenidoPublico("asambleas");
   const ordenadas = [...items].sort(masReciente);
 

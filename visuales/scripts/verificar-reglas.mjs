@@ -31,7 +31,7 @@ const TAMANO_MINIMO_REM = 0.95;
 // Números oficiales publicables (oficinas, WhatsApp, facturación, delegaciones y cuentas bancarias).
 const NUMEROS_OFICIALES = [
   "9616125541", "9611190009", "9611141636", "9611303088", "9612851837", "9614891596",
-  "9166880584", "9161129552", "9611776659", "9933820479",
+  "9166880584", "9161129552", "9611776659", "9933820479", "9611162406",
   "0112233592",
 ];
 

@@ -14,10 +14,13 @@
   - pdfRequisitos:  (opcional) PDF de la lista de documentos. Si no hay, no se muestra el botón.
   - estatuto:       (opcional) artículo de los Estatutos con los requisitos de la figura
                     (texto oficial del Colegio, data/estatutos.js).
+  - rtec:           (opcional, solo RT) checklist de la carta, aranceles, viáticos y formatos en blanco
+                    (data/requisitos.js). Si no existe, no se muestra el bloque.
 */
 import { BadgeCheck, HardHat, ShieldAlert } from "lucide-react";
 import { infoDictaminador, infoDro, infoRt } from "./tramitesInfo";
 import { estatutos } from "./estatutos";
+import { arancelesRtec, checklistRtec, formatosRtec, notaCuotasRtec, viaticosRtec } from "./requisitos";
 
 export const tramites = {
   dro: {
@@ -56,6 +59,13 @@ export const tramites = {
     },
     info: infoRt,
     estatuto: estatutos.art55,
+    rtec: {
+      checklist: checklistRtec,
+      notaCuotas: notaCuotasRtec,
+      aranceles: arancelesRtec,
+      viaticos: viaticosRtec,
+      formatos: formatosRtec,
+    },
   },
 
   dictaminador: {

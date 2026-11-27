@@ -4,10 +4,12 @@ import { comisiones } from "../../../data/comisiones";
 import Migas from "../../../components/ui/Migas/Migas";
 import IndicadorCarrusel from "../../../components/ui/IndicadorCarrusel/IndicadorCarrusel";
 import useIndicadorCarrusel from "../../../hooks/useIndicadorCarrusel";
+import useRevelarAlBajar from "../../../hooks/useRevelarAlBajar";
 import "./Comisiones.css";
 
 // PÁGINA «COMISIONES». Las comisiones están en src/data/comisiones.js.
 export default function Comisiones() {
+  useRevelarAlBajar();
   const { ref, activo, ir } = useIndicadorCarrusel(comisiones.length);
 
   return (

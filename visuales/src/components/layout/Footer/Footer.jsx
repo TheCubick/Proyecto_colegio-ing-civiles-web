@@ -112,6 +112,14 @@ export default function Footer() {
                       {correoLegible(correo)}
                     </a>
                   ))}
+                  <a
+                    href={enlaceWhatsapp("", contacto.whatsappContabilidad)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cic-footer-inline"
+                  >
+                    WhatsApp de contabilidad: {contacto.whatsappContabilidad}
+                  </a>
                 </div>
               </li>
               <li>

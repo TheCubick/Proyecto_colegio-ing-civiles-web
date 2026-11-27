@@ -24,6 +24,43 @@ export const cursos = [];
 // Publicaciones del muro. Las más nuevas van al inicio del arreglo.
 export const noticias = [
   {
+    id: 9,
+    img: "",
+    fecha: "2026-04-29",
+    titulo: "Relevo en la Presidencia de la Comisión de RTEC",
+    texto: "A partir del 29 de abril de 2026, el cargo de Presidente de la Comisión de Representantes Técnicos de Empresas Constructoras (RTEC) es asumido por el Ing. Nein Montero Molina. Con ello el Colegio da continuidad a los trabajos y a las solicitudes pendientes, y gestiona capacitación externa ante instancias de anticorrupción (SABG). Se reitera el compromiso de regularizar los procesos a la brevedad posible.",
+  },
+  {
+    id: 10,
+    img: "/img/posts/10.webp",
+    titulo: "Reunión de trabajo con la Comisión Estatal de Caminos",
+    texto: "Reunión de trabajo con la nueva titular de la Comisión Estatal de Caminos, Ing. Alejandra Gómez Mendoza.",
+  },
+  {
+    id: 11,
+    img: "/img/posts/11.webp",
+    titulo: "60 aniversario de la Facultad de Ingeniería de la UNACH",
+    texto: "Integrantes del CICTGZ asistieron a la celebración del 60 aniversario de la Facultad de Ingeniería de la Universidad Autónoma de Chiapas.",
+  },
+  {
+    id: 12,
+    img: "/img/posts/12.webp",
+    titulo: "Primera Asamblea General Ordinaria 2026",
+    texto: "Agremiados del CICTGZ durante la Primera Asamblea General Ordinaria 2026 del VI Consejo Directivo.",
+  },
+  {
+    id: 13,
+    img: "/img/posts/13.webp",
+    titulo: "Convivencia deportiva",
+    texto: "Convivencia y torneo deportivo del CICTGZ.",
+  },
+  {
+    id: 14,
+    img: "/img/posts/14.webp",
+    titulo: "Sala de juntas del Colegio",
+    texto: "Reunión en la sala de juntas de las oficinas del CICTGZ.",
+  },
+  {
     id: 1,
     img: "/img/posts/1.webp",
     titulo: "Avance de las nuevas instalaciones",
